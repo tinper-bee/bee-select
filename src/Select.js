@@ -56,7 +56,7 @@ export interface SelectContext {
 // => It is needless to export the declaration of below two inner components.
 // export { Option, OptGroup };
 const defaultProps = {
-    prefixCls: 'ant-select',
+    prefixCls: 'u-select',
     showSearch: false,
     transitionName: 'slide-up',
     choiceTransitionName: 'zoom',
@@ -65,7 +65,7 @@ const defaultProps = {
 const propTypes = {
   prefixCls: PropTypes.string,
   className: PropTypes.string,
-  size: PropTypes.oneOf(['default', 'large', 'small']),
+  size: PropTypes.oneOf(['default', 'lg', 'sm']),
   combobox: PropTypes.bool,
   notFoundContent: PropTypes.any,
   showSearch: PropTypes.bool,
@@ -78,7 +78,9 @@ class Select extends React.Component<SelectProps, any> {
   //static Option = Option as React.ClassicComponentClass<OptionProps>;
   //static OptGroup = OptGroup as React.ClassicComponentClass<OptGroupProps>;
 
- 
+ constructor(props) {
+    super(props);
+  }
 
   context: SelectContext;
 
@@ -94,8 +96,8 @@ class Select extends React.Component<SelectProps, any> {
     let { notFoundContent = 'Not Found', optionLabelProp } = this.props;
 
     const cls = classNames({
-      [`${prefixCls}-lg`]: size === 'large',
-      [`${prefixCls}-sm`]: size === 'small',
+      [`${prefixCls}-lg`]: size === 'lg',
+      [`${prefixCls}-sm`]: size === 'sm',
       [`${prefixCls}-show-search`]: showSearch,
     }, className);
 

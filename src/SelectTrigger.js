@@ -1,4 +1,4 @@
-import Trigger from 'rc-trigger';
+import Trigger from './trigger/index';
 import React, { PropTypes, Component } from 'react';
 import classnames from 'classnames';
 import DropdownMenu from './DropdownMenu';
@@ -57,6 +57,7 @@ class SelectTrigger extends Component{
   
 
   componentDidUpdate() {
+    debugger;
     const { visible, dropdownMatchSelectWidth } = this.props;
     if (visible) {
       const dropdownDOMNode = this.getPopupDOMNode();

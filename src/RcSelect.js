@@ -4,7 +4,6 @@ import ReactDOM from 'react-dom';
 import { KeyCode } from 'tinper-bee-core';
 import classnames from 'classnames';
 import OptGroup from './OptGroup';
-//import Animate from 'rc-animate';
 import warning from 'warning';
 import classes from 'component-classes';
 import {
@@ -286,11 +285,11 @@ class RcSelect extends Component{
         return;
       }
 
-      warning(
-        child.type === Option,
-        'the children of `Select` should be `Select.Option` or `Select.OptGroup`, ' +
-          `instead of \`${child.type.name || child.type.displayName || child.type}\`.`
-      );
+      // warning(
+      //   child.type === Option,
+      //   'the children of `Select` should be `Select.Option` or `Select.OptGroup`, ' +
+      //     `instead of \`${child.type.name || child.type.displayName || child.type}\`.`
+      // );
 
       const childValue = getValuePropValue(child);
       if (this.filterOption(inputValue, child)) {
