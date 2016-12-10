@@ -46,7 +46,7 @@ class Demo1 extends Component {
 	handleChange(value) {
   		console.log(`selected ${value}`);
 	}
-	render(){
+	render(){	
 		return( 
 			<div>
 			    <Select size="lg" defaultValue="lucy" style={{ width: 200 }} onChange={this.handleChange}>
