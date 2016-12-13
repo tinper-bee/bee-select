@@ -1,6 +1,6 @@
 # bee-select
 [![npm version](https://img.shields.io/npm/v/bee-select.svg)](https://www.npmjs.com/package/bee-select)
-[![Build Status](https://img.shields.io/travis/tinper-bee/generator-tinper-bee/master.svg)](https://travis-ci.org/tinper-bee/bee-select)
+[![Build Status](https://img.shields.io/travis/tinper-bee/bee-select/master.svg)](https://travis-ci.org/tinper-bee/bee-select)
 [![devDependency Status](https://img.shields.io/david/dev/tinper-bee/bee-select.svg)](https://david-dm.org/tinper-bee/bee-select#info=devDependencies)
 
 
