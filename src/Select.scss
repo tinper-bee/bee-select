@@ -12,74 +12,78 @@ ul {
   position: relative;
   color: #666;
   font-size: 12px;
+  :root .u-select-arrow {
+      -webkit-filter: none;
+              filter: none;
+    }
+    :root .u-select-arrow {
+      font-size: 12px;
+    }
+    .u-select-arrow * {
+      display: none;
+    }
+  .u-select-arrow {
+    font-style: normal;
+    vertical-align: baseline;
+    text-align: center;
+    text-transform: none;
+    text-rendering: auto;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    position: absolute;
+    top: 50%;
+    right: 8px;
+    line-height: 1;
+    margin-top: -6px;
+    display: inline-block;
+    font-size: 12px;
+    font-size: 9px \9;
+    -webkit-transform: scale(0.75) rotate(0deg);
+        -ms-transform: scale(0.75) rotate(0deg);
+            transform: scale(0.75) rotate(0deg);
+    /* IE6-IE8 */
+    -ms-filter: "progid:DXImageTransform.Microsoft.Matrix(sizingMethod='auto expand', M11=1, M12=0, M21=0, M22=1)";
+    zoom: 1;
+    &:before {
+      display: block;
+      font-family: "anticon" !important;
+      font-family: "uf" !important;
+      content: '\e640';
+      -webkit-transition: -webkit-transform 0.2s ease;
+      transition: -webkit-transform 0.2s ease;
+      transition: transform 0.2s ease;
+      transition: transform 0.2s ease, -webkit-transform 0.2s ease;
+    }
+  }
+  .u-select-selection {
+    outline: none;
+    -webkit-user-select: none;
+       -moz-user-select: none;
+        -ms-user-select: none;
+            user-select: none;
+    box-sizing: border-box;
+    display: block;
+    background-color: #fff;
+    border-radius: 4px;
+    border: 1px solid #d9d9d9;
+    -webkit-transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+    transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+    :hover {
+      border-color: #40a5ed;
+    }
+  }
+
 }
 .u-select > ul > li > a {
   padding: 0;
   background-color: #fff;
 }
-.u-select-arrow {
-  font-style: normal;
-  vertical-align: baseline;
-  text-align: center;
-  text-transform: none;
-  text-rendering: auto;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  position: absolute;
-  top: 50%;
-  right: 8px;
-  line-height: 1;
-  margin-top: -6px;
-  display: inline-block;
-  font-size: 12px;
-  font-size: 9px \9;
-  -webkit-transform: scale(0.75) rotate(0deg);
-      -ms-transform: scale(0.75) rotate(0deg);
-          transform: scale(0.75) rotate(0deg);
-  /* IE6-IE8 */
-  -ms-filter: "progid:DXImageTransform.Microsoft.Matrix(sizingMethod='auto expand', M11=1, M12=0, M21=0, M22=1)";
-  zoom: 1;
-}
-.u-select-arrow:before {
-  display: block;
-  font-family: "anticon" !important;
-}
-:root .u-select-arrow {
-  -webkit-filter: none;
-          filter: none;
-}
-:root .u-select-arrow {
-  font-size: 12px;
-}
-.u-select-arrow * {
-  display: none;
-}
-.u-select-arrow:before {
-  font-family: "uf" !important;
-  content: '\e640';
-  -webkit-transition: -webkit-transform 0.2s ease;
-  transition: -webkit-transform 0.2s ease;
-  transition: transform 0.2s ease;
-  transition: transform 0.2s ease, -webkit-transform 0.2s ease;
-}
-.u-select-selection {
-  outline: none;
-  -webkit-user-select: none;
-     -moz-user-select: none;
-      -ms-user-select: none;
-          user-select: none;
-  box-sizing: border-box;
-  display: block;
-  background-color: #fff;
-  border-radius: 4px;
-  border: 1px solid #d9d9d9;
-  -webkit-transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
-  transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
-}
-.u-select-selection:hover {
-  border-color: #40a5ed;
-}
+
+
+
+
+
 .u-select-focused .u-select-selection,
 .u-select-selection:focus,
 .u-select-selection:active {
