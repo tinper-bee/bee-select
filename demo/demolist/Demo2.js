@@ -1,9 +1,16 @@
 /**
- * @title 不同尺寸单选`Select`
- * @description `size`参数控制大小
+ * @title 常用多选
+ * @description Children自定义数据列表,注意：Children已经定义到全局，此处显示为注释例子，其他例子用到Children变量均以此方式定义。
  */
 
+/*
+const Children = [];
+for (let i = 10; i < 36; i++) {
+  Children.push(<Option key={i.toString(36) + i}>{i.toString(36) + i}</Option>);
+}
+*/
 class Demo2 extends Component {
+	
 	constructor() {
 		super();
 		this.handleChange = this.handleChange.bind(this);
@@ -11,28 +18,15 @@ class Demo2 extends Component {
 	handleChange(value) {
   		console.log(`selected ${value}`);
 	}
-	render(){	
+	render(){
 		return( 
-			<div>
-			    <Select size="lg" defaultValue="lucy" style={{ width: 200 }} onChange={this.handleChange}>
-			      <Option value="jack">Jack</Option>
-			      <Option value="lucy">Lucy</Option>
-			      <Option value="disabled" disabled>Disabled</Option>
-			      <Option value="yiminghe">Yiminghe</Option>
-			    </Select>
-			    <Select defaultValue="lucy" style={{ width: 200 }} onChange={this.handleChange}>
-			      <Option value="jack">Jack</Option>
-			      <Option value="lucy">Lucy</Option>
-			      <Option value="disabled" disabled>Disabled</Option>
-			      <Option value="yiminghe">Yiminghe</Option>
-			    </Select>
-			    <Select size="sm" defaultValue="lucy" style={{ width: 200 }} onChange={this.handleChange}>
-			      <Option value="jack">Jack</Option>
-			      <Option value="lucy">Lucy</Option>
-			      <Option value="disabled" disabled>Disabled</Option>
-			      <Option value="yiminghe">Yiminghe</Option>
-			    </Select>
-			</div>
+			<Select multiple
+			    style={{ width: '100%' }}
+			    searchPlaceholder="标签模式"
+			    onChange={this.handleChange}
+			  >
+			    {Children}
+			  </Select>
 		)
 	}
 }
