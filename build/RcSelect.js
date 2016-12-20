@@ -248,8 +248,8 @@ var RcSelect = function (_Component) {
   };
 
   RcSelect.prototype.componentDidUpdate = function componentDidUpdate() {
-    var state = this.state;
-    var props = this.props;
+    var state = this.state,
+        props = this.props;
 
     if (state.open && (0, _util.isMultipleOrTags)(props)) {
       var inputNode = this.getInputDOMNode();
@@ -532,8 +532,8 @@ var RcSelect = function (_Component) {
   };
 
   RcSelect.prototype.onMenuDeselect = function onMenuDeselect(_ref2) {
-    var item = _ref2.item;
-    var domEvent = _ref2.domEvent;
+    var item = _ref2.item,
+        domEvent = _ref2.domEvent;
 
     if (domEvent.type === 'click') {
       this.removeSelected((0, _util.getValuePropValue)(item));
@@ -602,8 +602,8 @@ var RcSelect = function (_Component) {
     if (props.disabled) {
       return;
     }
-    var inputValue = state.inputValue;
-    var value = state.value;
+    var inputValue = state.inputValue,
+        value = state.value;
 
     event.stopPropagation();
     if (inputValue || value.length) {
@@ -703,8 +703,8 @@ var RcSelect = function (_Component) {
   };
 
   RcSelect.prototype.getPlaceholderElement = function getPlaceholderElement() {
-    var props = this.props;
-    var state = this.state;
+    var props = this.props,
+        state = this.state;
 
     var hidden = false;
     if (state.inputValue) {
@@ -778,8 +778,8 @@ var RcSelect = function (_Component) {
   RcSelect.prototype.setOpenState = function setOpenState(open, needFocus) {
     var _this7 = this;
 
-    var props = this.props;
-    var state = this.state;
+    var props = this.props,
+        state = this.state;
 
     if (state.open === open) {
       this.maybeFocus(open, needFocus);
@@ -828,8 +828,8 @@ var RcSelect = function (_Component) {
   };
 
   RcSelect.prototype.updateFocusClassName = function updateFocusClassName() {
-    var refs = this.refs;
-    var props = this.props;
+    var refs = this.refs,
+        props = this.props;
 
 
     if (this._focused) {
@@ -842,8 +842,8 @@ var RcSelect = function (_Component) {
   RcSelect.prototype.maybeFocus = function maybeFocus(open, needFocus) {
     if (needFocus || open) {
       var input = this.getInputDOMNode();
-      var _document = document;
-      var activeElement = _document.activeElement;
+      var _document = document,
+          activeElement = _document.activeElement;
 
       if (input && (open || (0, _util.isMultipleOrTagsOrCombobox)(this.props))) {
         if (activeElement !== input) {
@@ -952,10 +952,10 @@ var RcSelect = function (_Component) {
   RcSelect.prototype.tokenize = function tokenize(string) {
     var _this10 = this;
 
-    var _props = this.props;
-    var multiple = _props.multiple;
-    var tokenSeparators = _props.tokenSeparators;
-    var children = _props.children;
+    var _props = this.props,
+        multiple = _props.multiple,
+        tokenSeparators = _props.tokenSeparators,
+        children = _props.children;
 
     var nextValue = this.state.value;
     (0, _util.splitBySeparators)(string, tokenSeparators).forEach(function (label) {
@@ -998,16 +998,16 @@ var RcSelect = function (_Component) {
   RcSelect.prototype.renderTopControlNode = function renderTopControlNode() {
     var _this11 = this;
 
-    var _state = this.state;
-    var value = _state.value;
-    var open = _state.open;
-    var inputValue = _state.inputValue;
+    var _state = this.state,
+        value = _state.value,
+        open = _state.open,
+        inputValue = _state.inputValue;
 
     var props = this.props;
-    var choiceTransitionName = props.choiceTransitionName;
-    var prefixCls = props.prefixCls;
-    var maxTagTextLength = props.maxTagTextLength;
-    var showSearch = props.showSearch;
+    var choiceTransitionName = props.choiceTransitionName,
+        prefixCls = props.prefixCls,
+        maxTagTextLength = props.maxTagTextLength,
+        showSearch = props.showSearch;
 
     var className = prefixCls + '-selection__rendered';
     // search input is inside topControlNode in single, multiple & combobox. 2016/04/13
@@ -1121,10 +1121,10 @@ var RcSelect = function (_Component) {
     var props = this.props;
     var multiple = (0, _util.isMultipleOrTags)(props);
     var state = this.state;
-    var className = props.className;
-    var disabled = props.disabled;
-    var allowClear = props.allowClear;
-    var prefixCls = props.prefixCls;
+    var className = props.className,
+        disabled = props.disabled,
+        allowClear = props.allowClear,
+        prefixCls = props.prefixCls;
 
     var ctrlNode = this.renderTopControlNode();
     var extraSelectionProps = {};

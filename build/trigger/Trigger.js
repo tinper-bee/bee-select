@@ -346,9 +346,9 @@ var Trigger = function (_Component) {
   Trigger.prototype.getPopupClassNameFromAlign = function getPopupClassNameFromAlign(align) {
     var className = [];
     var props = this.props;
-    var popupPlacement = props.popupPlacement;
-    var builtinPlacements = props.builtinPlacements;
-    var prefixCls = props.prefixCls;
+    var popupPlacement = props.popupPlacement,
+        builtinPlacements = props.builtinPlacements,
+        prefixCls = props.prefixCls;
 
     if (popupPlacement && builtinPlacements) {
       className.push((0, _utils.getPopupClassNameFromAlign)(builtinPlacements, prefixCls, align));
@@ -361,9 +361,9 @@ var Trigger = function (_Component) {
 
   Trigger.prototype.getPopupAlign = function getPopupAlign() {
     var props = this.props;
-    var popupPlacement = props.popupPlacement;
-    var popupAlign = props.popupAlign;
-    var builtinPlacements = props.builtinPlacements;
+    var popupPlacement = props.popupPlacement,
+        popupAlign = props.popupAlign,
+        builtinPlacements = props.builtinPlacements;
 
     if (popupPlacement && builtinPlacements) {
       return (0, _utils.getAlignFromPlacement)(builtinPlacements, popupPlacement, popupAlign);
@@ -372,8 +372,8 @@ var Trigger = function (_Component) {
   };
 
   Trigger.prototype.getComponent = function getComponent() {
-    var props = this.props;
-    var state = this.state;
+    var props = this.props,
+        state = this.state;
 
     var mouseProps = {};
     if (this.isMouseEnterToShow()) {
@@ -451,49 +451,49 @@ var Trigger = function (_Component) {
   };
 
   Trigger.prototype.isClickToShow = function isClickToShow() {
-    var _props = this.props;
-    var action = _props.action;
-    var showAction = _props.showAction;
+    var _props = this.props,
+        action = _props.action,
+        showAction = _props.showAction;
 
     return action.indexOf('click') !== -1 || showAction.indexOf('click') !== -1;
   };
 
   Trigger.prototype.isClickToHide = function isClickToHide() {
-    var _props2 = this.props;
-    var action = _props2.action;
-    var hideAction = _props2.hideAction;
+    var _props2 = this.props,
+        action = _props2.action,
+        hideAction = _props2.hideAction;
 
     return action.indexOf('click') !== -1 || hideAction.indexOf('click') !== -1;
   };
 
   Trigger.prototype.isMouseEnterToShow = function isMouseEnterToShow() {
-    var _props3 = this.props;
-    var action = _props3.action;
-    var showAction = _props3.showAction;
+    var _props3 = this.props,
+        action = _props3.action,
+        showAction = _props3.showAction;
 
     return action.indexOf('hover') !== -1 || showAction.indexOf('mouseEnter') !== -1;
   };
 
   Trigger.prototype.isMouseLeaveToHide = function isMouseLeaveToHide() {
-    var _props4 = this.props;
-    var action = _props4.action;
-    var hideAction = _props4.hideAction;
+    var _props4 = this.props,
+        action = _props4.action,
+        hideAction = _props4.hideAction;
 
     return action.indexOf('hover') !== -1 || hideAction.indexOf('mouseLeave') !== -1;
   };
 
   Trigger.prototype.isFocusToShow = function isFocusToShow() {
-    var _props5 = this.props;
-    var action = _props5.action;
-    var showAction = _props5.showAction;
+    var _props5 = this.props,
+        action = _props5.action,
+        showAction = _props5.showAction;
 
     return action.indexOf('focus') !== -1 || showAction.indexOf('focus') !== -1;
   };
 
   Trigger.prototype.isBlurToHide = function isBlurToHide() {
-    var _props6 = this.props;
-    var action = _props6.action;
-    var hideAction = _props6.hideAction;
+    var _props6 = this.props,
+        action = _props6.action,
+        hideAction = _props6.hideAction;
 
     return action.indexOf('focus') !== -1 || hideAction.indexOf('blur') !== -1;
   };

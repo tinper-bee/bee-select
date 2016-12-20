@@ -98,9 +98,9 @@ var SelectTrigger = function (_Component) {
 
   SelectTrigger.prototype.componentDidUpdate = function componentDidUpdate() {
     debugger;
-    var _props = this.props;
-    var visible = _props.visible;
-    var dropdownMatchSelectWidth = _props.dropdownMatchSelectWidth;
+    var _props = this.props,
+        visible = _props.visible,
+        dropdownMatchSelectWidth = _props.dropdownMatchSelectWidth;
 
     if (visible) {
       var dropdownDOMNode = this.getPopupDOMNode();
@@ -153,18 +153,17 @@ var SelectTrigger = function (_Component) {
   SelectTrigger.prototype.render = function render() {
     var _popupClassName;
 
-    var _props2 = this.props;
-    var onPopupFocus = _props2.onPopupFocus;
+    var _props2 = this.props,
+        onPopupFocus = _props2.onPopupFocus,
+        props = _objectWithoutProperties(_props2, ['onPopupFocus']);
 
-    var props = _objectWithoutProperties(_props2, ['onPopupFocus']);
-
-    var multiple = props.multiple;
-    var visible = props.visible;
-    var inputValue = props.inputValue;
-    var dropdownAlign = props.dropdownAlign;
-    var disabled = props.disabled;
-    var showSearch = props.showSearch;
-    var dropdownClassName = props.dropdownClassName;
+    var multiple = props.multiple,
+        visible = props.visible,
+        inputValue = props.inputValue,
+        dropdownAlign = props.dropdownAlign,
+        disabled = props.disabled,
+        showSearch = props.showSearch,
+        dropdownClassName = props.dropdownClassName;
 
     var dropdownPrefixCls = this.getDropdownPrefixCls();
     var popupClassName = (_popupClassName = {}, _defineProperty(_popupClassName, dropdownClassName, !!dropdownClassName), _defineProperty(_popupClassName, dropdownPrefixCls + '--' + (multiple ? 'multiple' : 'single'), 1), _popupClassName);

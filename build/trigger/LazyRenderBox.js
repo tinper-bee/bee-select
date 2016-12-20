@@ -41,11 +41,10 @@ var LazyRenderBox = function (_Component) {
   };
 
   LazyRenderBox.prototype.render = function render() {
-    var _props = this.props;
-    var hiddenClassName = _props.hiddenClassName;
-    var visible = _props.visible;
-
-    var props = _objectWithoutProperties(_props, ['hiddenClassName', 'visible']);
+    var _props = this.props,
+        hiddenClassName = _props.hiddenClassName,
+        visible = _props.visible,
+        props = _objectWithoutProperties(_props, ['hiddenClassName', 'visible']);
 
     if (hiddenClassName || _react2["default"].Children.count(props.children) > 1) {
       if (!visible && hiddenClassName) {

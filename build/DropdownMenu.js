@@ -99,13 +99,13 @@ var DropdownMenu = function (_Component) {
     var _this2 = this;
 
     var props = this.props;
-    var menuItems = props.menuItems;
-    var defaultActiveFirstOption = props.defaultActiveFirstOption;
-    var value = props.value;
-    var prefixCls = props.prefixCls;
-    var multiple = props.multiple;
-    var onMenuSelect = props.onMenuSelect;
-    var inputValue = props.inputValue;
+    var menuItems = props.menuItems,
+        defaultActiveFirstOption = props.defaultActiveFirstOption,
+        value = props.value,
+        prefixCls = props.prefixCls,
+        multiple = props.multiple,
+        onMenuSelect = props.onMenuSelect,
+        inputValue = props.inputValue;
 
     if (menuItems && menuItems.length) {
       var _ret = function () {

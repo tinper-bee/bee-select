@@ -66,17 +66,17 @@ var Select = function (_React$Component) {
   Select.prototype.render = function render() {
     var _classNames;
 
-    var _props = this.props;
-    var prefixCls = _props.prefixCls;
-    var _props$className = _props.className;
-    var className = _props$className === undefined ? '' : _props$className;
-    var size = _props.size;
-    var combobox = _props.combobox;
-    var showSearch = _props.showSearch;
-    var _props2 = this.props;
-    var _props2$notFoundConte = _props2.notFoundContent;
-    var notFoundContent = _props2$notFoundConte === undefined ? 'Not Found' : _props2$notFoundConte;
-    var optionLabelProp = _props2.optionLabelProp;
+    var _props = this.props,
+        prefixCls = _props.prefixCls,
+        _props$className = _props.className,
+        className = _props$className === undefined ? '' : _props$className,
+        size = _props.size,
+        combobox = _props.combobox,
+        showSearch = _props.showSearch;
+    var _props2 = this.props,
+        _props2$notFoundConte = _props2.notFoundContent,
+        notFoundContent = _props2$notFoundConte === undefined ? 'Not Found' : _props2$notFoundConte,
+        optionLabelProp = _props2.optionLabelProp;
 
 
     var cls = (0, _classnames2["default"])((_classNames = {}, _defineProperty(_classNames, prefixCls + '-lg', size === 'lg'), _defineProperty(_classNames, prefixCls + '-sm', size === 'sm'), _defineProperty(_classNames, prefixCls + '-show-search', showSearch), _classNames), className);
