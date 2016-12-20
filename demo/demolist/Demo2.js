@@ -1,6 +1,6 @@
 /**
- * @title 多颜色`Checkbox`
- * @description `colors`参数控制背景色
+ * @title 不同尺寸单选`Select`
+ * @description `size`参数控制大小
  */
 
 class Demo2 extends Component {

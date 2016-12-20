@@ -1,3 +1,7 @@
+/**
+ * @title 简易级联单选`Select`
+ * @description 常用语城市级联的选择。
+ */
 
 class Demo4 extends Component {
 	constructor() {

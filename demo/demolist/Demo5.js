@@ -1,3 +1,7 @@
+/**
+ * @title 自定义自动填充单选`Select`
+ * @description 常用邮箱后缀自动填充。
+ */
 class Demo5 extends Component {
 	constructor() {
 		super();

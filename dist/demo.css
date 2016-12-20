@@ -7361,9 +7361,9 @@ ul {
   display: inline-block;
   position: relative;
   color: #666;
+  width: 100%;
   font-size: 12px; }
   .u-select :root .u-select-arrow {
-    -webkit-filter: none;
     filter: none; }
   .u-select :root .u-select-arrow {
     font-size: 12px; }
@@ -7690,7 +7690,6 @@ ul {
   font-family: "anticon" !important; }
 
 :root .u-select-selection--multiple .u-select-selection__choice__remove {
-  -webkit-filter: none;
   filter: none; }
 
 :root .u-select-selection--multiple .u-select-selection__choice__remove {
@@ -7846,7 +7845,6 @@ ul {
   text-shadow: 0 0.1px 0, 0.1px 0 0, 0 -0.1px 0, -0.1px 0; }
 
 :root .u-select-dropdown.u-select-dropdown--multiple .u-select-dropdown-menu-item:after {
-  -webkit-filter: none;
   filter: none; }
 
 :root .u-select-dropdown.u-select-dropdown--multiple .u-select-dropdown-menu-item:after {

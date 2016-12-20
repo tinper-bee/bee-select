@@ -2,14 +2,14 @@
 
 下拉弹出菜单，代替原生的选择器。当然Select扩展了其他功能：多选，级联，搜索过滤单选和搜索过滤多选与自动填充选择。
 
-## 代码展示
+## 代码演示
 
 ### API
 
 ## Select
 
 |参数|说明|类型|默认值|
-|---|----|---|------|
+|:---|:----|:---|:------|
 |value|指定当前选中的条目|string/array/react node|-|
 |defaultValue|指定默认选中的条目|string/array/react node|-|
 |multiple|支持多选|bool|false|
@@ -41,7 +41,7 @@
 ## Option
 
 |参数|说明|类型|默认值|
-|---|----|---|------|
+|:---|:----|:---|:------|
 |key|如果 react 需要你设置此项，此项值与 value 的值相同，然后可以省略 value 设置|string|-|
 |value|默认根据此属性值进行筛选	|string|-|
 |disabled|是否禁用|bool|false|
@@ -50,7 +50,7 @@
 ## OptGroup
 
 |参数|说明|类型|默认值|
-|---|----|---|------|
+|:---|:----|:---|:------|
 |label|组名|string/react element|-|
 |mode||string|-|
 
