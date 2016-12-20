@@ -14,13 +14,13 @@ class Demo1 extends Component {
 	render(){	
 		return( 
 			<div>
-			    <Select size="lg" defaultValue="lucy" style={{ width: 200 }} onChange={this.handleChange}>
+			    <Select size="lg" defaultValue="lucy" style={{ width: 200,marginRight: 6 }} onChange={this.handleChange}>
 			      <Option value="jack">Jack</Option>
 			      <Option value="lucy">Lucy</Option>
 			      <Option value="disabled" disabled>Disabled</Option>
 			      <Option value="yiminghe">Yiminghe</Option>
 			    </Select>
-			    <Select defaultValue="lucy" style={{ width: 200 }} onChange={this.handleChange}>
+			    <Select defaultValue="lucy" style={{ width: 200,marginRight: 6 }} onChange={this.handleChange}>
 			      <Option value="jack">Jack</Option>
 			      <Option value="lucy">Lucy</Option>
 			      <Option value="disabled" disabled>Disabled</Option>

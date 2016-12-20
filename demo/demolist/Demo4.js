@@ -29,7 +29,7 @@ class Demo4 extends Component {
 	    const cityOptions = this.state.cities.map(city => <Option key={city}>{city}</Option>);
 	    return (
 	      <div>
-	        <Select defaultValue={provinceData[0]} style={{ width: 90 }} onChange={this.handleProvinceChange}>
+	        <Select defaultValue={provinceData[0]} style={{ width: 90,marginRight:6 }} onChange={this.handleProvinceChange}>
 	          {provinceOptions}
 	        </Select>
 	        <Select value={this.state.secondCity} style={{ width: 90 }} onChange={this.onSecondCityChange}>
