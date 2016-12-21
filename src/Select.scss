@@ -389,9 +389,12 @@ ul {
           transform: rotate(180deg);
 }
 .u-select-open .u-select-selection {
-  border-color: #40a5ed;
+  /*border-color: #40a5ed;
   outline: 0;
-  box-shadow: 0 0 0 2px rgba(16, 142, 233, 0.2);
+  box-shadow: 0 0 0 2px rgba(16, 142, 233, 0.2);*/
+  border-color: #66afe9;
+  outline: 0;
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(102, 175, 233, 0.6);
 }
 .u-select-combobox .u-select-arrow {
   display: none;
