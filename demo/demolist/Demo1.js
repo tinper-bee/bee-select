@@ -15,22 +15,22 @@ class Demo1 extends Component {
 		return( 
 			<div>
 			    <Select size="lg" defaultValue="lucy" style={{ width: 200,marginRight: 6 }} onChange={this.handleChange}>
-			      <Option value="jack">Jack</Option>
-			      <Option value="lucy">Lucy</Option>
+			      <Option value="jack">boyuzhou</Option>
+			      <Option value="lucy">renhualiu</Option>
 			      <Option value="disabled" disabled>Disabled</Option>
-			      <Option value="yiminghe">Yiminghe</Option>
+			      <Option value="yiminghe">yuzhao</Option>
 			    </Select>
 			    <Select defaultValue="lucy" style={{ width: 200,marginRight: 6 }} onChange={this.handleChange}>
-			      <Option value="jack">Jack</Option>
-			      <Option value="lucy">Lucy</Option>
+			      <Option value="jack">boyuzhou</Option>
+			      <Option value="lucy">renhualiu</Option>
 			      <Option value="disabled" disabled>Disabled</Option>
-			      <Option value="yiminghe">Yiminghe</Option>
+			      <Option value="yiminghe">yuzhao</Option>
 			    </Select>
 			    <Select size="sm" defaultValue="lucy" style={{ width: 200 }} onChange={this.handleChange}>
-			      <Option value="jack">Jack</Option>
-			      <Option value="lucy">Lucy</Option>
+			      <Option value="jack">boyuzhou</Option>
+			      <Option value="lucy">renhualiu</Option>
 			      <Option value="disabled" disabled>Disabled</Option>
-			      <Option value="yiminghe">Yiminghe</Option>
+			      <Option value="yiminghe">yuzhao</Option>
 			    </Select>
 			</div>
 		)
