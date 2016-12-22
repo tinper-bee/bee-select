@@ -57,7 +57,6 @@ class SelectTrigger extends Component{
 
 
   componentDidUpdate() {
-    debugger;
     const { visible, dropdownMatchSelectWidth } = this.props;
     if (visible) {
       const dropdownDOMNode = this.getPopupDOMNode();
