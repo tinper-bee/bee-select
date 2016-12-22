@@ -6,9 +6,9 @@ Object.defineProperty(exports, "__esModule", {
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
-var _index = require('./trigger/index');
+var _Trigger = require('bee-overlay/build/Trigger');
 
-var _index2 = _interopRequireDefault(_index);
+var _Trigger2 = _interopRequireDefault(_Trigger);
 
 var _react = require('react');
 
@@ -183,7 +183,7 @@ var SelectTrigger = function (_Component) {
       hideAction = ['blur'];
     }
     return _react2["default"].createElement(
-      _index2["default"],
+      _Trigger2["default"],
       _extends({}, props, {
         showAction: disabled ? [] : ['click'],
         hideAction: hideAction,
