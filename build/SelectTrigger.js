@@ -97,7 +97,6 @@ var SelectTrigger = function (_Component) {
   }
 
   SelectTrigger.prototype.componentDidUpdate = function componentDidUpdate() {
-    debugger;
     var _props = this.props,
         visible = _props.visible,
         dropdownMatchSelectWidth = _props.dropdownMatchSelectWidth;
