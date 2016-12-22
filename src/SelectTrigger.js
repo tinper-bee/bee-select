@@ -36,7 +36,7 @@ const propTypes = {
     inputValue: PropTypes.string,
     filterOption: PropTypes.any,
     options: PropTypes.any,
-    prefixCls: PropTypes.string,
+    clsPrefix: PropTypes.string,
     popupClassName: PropTypes.string,
     children: PropTypes.any,
 }
@@ -80,7 +80,7 @@ class SelectTrigger extends Component{
     return (<DropdownMenu
       ref={this.saveMenu}
       {...newProps}
-      prefixCls={this.getDropdownPrefixCls()}
+      clsPrefix={this.getDropdownPrefixCls()}
       onMenuSelect={props.onMenuSelect}
       onMenuDeselect={props.onMenuDeselect}
       value={props.value}
@@ -99,7 +99,7 @@ class SelectTrigger extends Component{
   }
 
   getDropdownPrefixCls() {
-    return `${this.props.prefixCls}-dropdown`;
+    return `${this.props.clsPrefix}-dropdown`;
   }
 
   saveMenu(menu) {
@@ -135,7 +135,7 @@ class SelectTrigger extends Component{
       ref="trigger"
       popupPlacement="bottomLeft"
       builtinPlacements={BUILT_IN_PLACEMENTS}
-      prefixCls={dropdownPrefixCls}
+      clsPrefix={dropdownPrefixCls}
       popupTransitionName={this.getDropdownTransitionName()}
       onPopupVisibleChange={props.onDropdownVisibleChange}
       popup={popupElement}

@@ -7,7 +7,7 @@ export type SelectValue = string | any[] | { key: string, label: React.ReactNode
  Array<{ key: string, label: React.ReactNode }>;
 
 export interface SelectProps {
-  prefixCls?: string;
+  clsPrefix?: string;
   className?: string;
   value?: SelectValue;
   defaultValue?: SelectValue;
@@ -56,14 +56,14 @@ export interface SelectContext {
 // => It is needless to export the declaration of below two inner components.
 // export { Option, OptGroup };
 const defaultProps = {
-    prefixCls: 'u-select',
+    clsPrefix: 'u-select',
     showSearch: false,
     transitionName: 'slide-up',
     choiceTransitionName: 'zoom',
 };
 
 const propTypes = {
-  prefixCls: PropTypes.string,
+  clsPrefix: PropTypes.string,
   className: PropTypes.string,
   size: PropTypes.oneOf(['default', 'lg', 'sm']),
   combobox: PropTypes.bool,
@@ -86,7 +86,7 @@ class Select extends React.Component<SelectProps, any> {
 
   render() {
     const {
-      prefixCls,
+      clsPrefix,
       className = '',
       size,
       combobox,
@@ -96,9 +96,9 @@ class Select extends React.Component<SelectProps, any> {
     let { notFoundContent = 'Not Found', optionLabelProp } = this.props;
 
     const cls = classNames({
-      [`${prefixCls}-lg`]: size === 'lg',
-      [`${prefixCls}-sm`]: size === 'sm',
-      [`${prefixCls}-show-search`]: showSearch,
+      [`${clsPrefix}-lg`]: size === 'lg',
+      [`${clsPrefix}-sm`]: size === 'sm',
+      [`${clsPrefix}-show-search`]: showSearch,
     }, className);
 
     const { antLocale } = this.context;

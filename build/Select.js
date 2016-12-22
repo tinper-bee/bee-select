@@ -33,14 +33,14 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 // => It is needless to export the declaration of below two inner components.
 // export { Option, OptGroup };
 var defaultProps = {
-  prefixCls: 'u-select',
+  clsPrefix: 'u-select',
   showSearch: false,
   transitionName: 'slide-up',
   choiceTransitionName: 'zoom'
 };
 
 var propTypes = {
-  prefixCls: _react.PropTypes.string,
+  clsPrefix: _react.PropTypes.string,
   className: _react.PropTypes.string,
   size: _react.PropTypes.oneOf(['default', 'lg', 'sm']),
   combobox: _react.PropTypes.bool,
@@ -67,7 +67,7 @@ var Select = function (_React$Component) {
     var _classNames;
 
     var _props = this.props,
-        prefixCls = _props.prefixCls,
+        clsPrefix = _props.clsPrefix,
         _props$className = _props.className,
         className = _props$className === undefined ? '' : _props$className,
         size = _props.size,
@@ -79,7 +79,7 @@ var Select = function (_React$Component) {
         optionLabelProp = _props2.optionLabelProp;
 
 
-    var cls = (0, _classnames2["default"])((_classNames = {}, _defineProperty(_classNames, prefixCls + '-lg', size === 'lg'), _defineProperty(_classNames, prefixCls + '-sm', size === 'sm'), _defineProperty(_classNames, prefixCls + '-show-search', showSearch), _classNames), className);
+    var cls = (0, _classnames2["default"])((_classNames = {}, _defineProperty(_classNames, clsPrefix + '-lg', size === 'lg'), _defineProperty(_classNames, clsPrefix + '-sm', size === 'sm'), _defineProperty(_classNames, clsPrefix + '-show-search', showSearch), _classNames), className);
 
     var antLocale = this.context.antLocale;
 

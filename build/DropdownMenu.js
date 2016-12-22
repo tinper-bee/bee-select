@@ -44,7 +44,7 @@ var propTypes = {
   onPopupFocus: _react.PropTypes.func,
   onMenuDeSelect: _react.PropTypes.func,
   onMenuSelect: _react.PropTypes.func,
-  prefixCls: _react.PropTypes.string,
+  clsPrefix: _react.PropTypes.string,
   menuItems: _react.PropTypes.any,
   inputValue: _react.PropTypes.string,
   visible: _react.PropTypes.bool
@@ -102,7 +102,7 @@ var DropdownMenu = function (_Component) {
     var menuItems = props.menuItems,
         defaultActiveFirstOption = props.defaultActiveFirstOption,
         value = props.value,
-        prefixCls = props.prefixCls,
+        clsPrefix = props.clsPrefix,
         multiple = props.multiple,
         onMenuSelect = props.onMenuSelect,
         inputValue = props.inputValue;
@@ -168,7 +168,7 @@ var DropdownMenu = function (_Component) {
               focusable: false
             }, menuProps, {
               selectedKeys: selectedKeys,
-              prefixCls: prefixCls + '-menu'
+              clsPrefix: clsPrefix + '-menu'
             }),
             clonedMenuItems
           )

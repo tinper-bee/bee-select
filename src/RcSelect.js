@@ -51,7 +51,7 @@ const propTypes = {
     allowClear: PropTypes.bool,
     showArrow: PropTypes.bool,
     tags: PropTypes.bool,
-    prefixCls: PropTypes.string,
+    clsPrefix: PropTypes.string,
     className: PropTypes.string,
     transitionName: PropTypes.string,
     optionLabelProp: PropTypes.string,
@@ -80,7 +80,7 @@ const propTypes = {
 }
 
 const defaultProps = {
-    prefixCls: 'rc-select',
+    clsPrefix: 'rc-select',
     filterOption: filterFn,
     defaultOpen: false,
     labelInValue: false,
@@ -665,7 +665,7 @@ class RcSelect extends Component{
         }}
         {...UNSELECTABLE_ATTRIBUTE}
         onClick={this.onPlaceholderClick}
-        className={`${props.prefixCls}-selection__placeholder`}
+        className={`${props.clsPrefix}-selection__placeholder`}
       >
         {placeholder}
       </div>);
@@ -675,18 +675,18 @@ class RcSelect extends Component{
 
   getInputElement() {
     const props = this.props;
-    return (<div className={`${props.prefixCls}-search__field__wrap`}>
+    return (<div className={`${props.clsPrefix}-search__field__wrap`}>
       <input
         ref={this.saveInputRef}
         onChange={this.onInputChange}
         onKeyDown={this.onInputKeyDown}
         value={this.state.inputValue}
         disabled={props.disabled}
-        className={`${props.prefixCls}-search__field`}
+        className={`${props.clsPrefix}-search__field`}
       />
       <span
         ref={this.saveInputMirrorRef}
-        className={`${props.prefixCls}-search__field__mirror`}
+        className={`${props.clsPrefix}-search__field__mirror`}
       >
         {this.state.inputValue}
       </span>
@@ -755,9 +755,9 @@ class RcSelect extends Component{
     const { refs, props } = this;
     
     if (this._focused) {
-      classes(refs.root).add(`${props.prefixCls}-focused`);
+      classes(refs.root).add(`${props.clsPrefix}-focused`);
     } else {
-      classes(refs.root).remove(`${props.prefixCls}-focused`);
+      classes(refs.root).remove(`${props.clsPrefix}-focused`);
     }
     
   }
@@ -908,8 +908,8 @@ class RcSelect extends Component{
   renderTopControlNode() {
     const { value, open, inputValue } = this.state;
     const props = this.props;
-    const { choiceTransitionName, prefixCls, maxTagTextLength, showSearch } = props;
-    const className = `${prefixCls}-selection__rendered`;
+    const { choiceTransitionName, clsPrefix, maxTagTextLength, showSearch } = props;
+    const className = `${clsPrefix}-selection__rendered`;
     // search input is inside topControlNode in single, multiple & combobox. 2016/04/13
     let innerNode = null;
     if (isSingleMode(props)) {
@@ -933,7 +933,7 @@ class RcSelect extends Component{
         selectedValue = (
           <div
             key="value"
-            className={`${prefixCls}-selection-selected-value`}
+            className={`${clsPrefix}-selection-selected-value`}
             title={singleValue.title || singleValue.label}
             style={{
               display: showSelectedValue ? 'block' : 'none',
@@ -947,7 +947,7 @@ class RcSelect extends Component{
         innerNode = [selectedValue];
       } else {
         innerNode = [selectedValue, <div
-          className={`${prefixCls}-search ${prefixCls}-search--inline`}
+          className={`${clsPrefix}-search ${clsPrefix}-search--inline`}
           key="input"
           style={{
             display: open ? 'block' : 'none',
@@ -969,8 +969,8 @@ class RcSelect extends Component{
           }
           const disabled = this.isChildDisabled(singleValue.key);
           const choiceClassName = disabled
-            ? `${prefixCls}-selection__choice ${prefixCls}-selection__choice__disabled`
-            : `${prefixCls}-selection__choice`;
+            ? `${clsPrefix}-selection__choice ${clsPrefix}-selection__choice__disabled`
+            : `${clsPrefix}-selection__choice`;
           return (
             <li
               style={UNSELECTABLE_STYLE}
@@ -980,10 +980,10 @@ class RcSelect extends Component{
               key={singleValue.key}
               title={title}
             >
-              <div className={`${prefixCls}-selection__choice__content`}>{content}</div>
+              <div className={`${clsPrefix}-selection__choice__content`}>{content}</div>
               {
                 disabled ? null : <span
-                  className={`${prefixCls}-selection__choice__remove`}
+                  className={`${clsPrefix}-selection__choice__remove`}
                   onClick={this.removeSelected.bind(this, singleValue.key)}
                 />
               }
@@ -992,7 +992,7 @@ class RcSelect extends Component{
         });
       }
       selectedValueNodes.push(<li
-        className={`${prefixCls}-search ${prefixCls}-search--inline`}
+        className={`${clsPrefix}-search ${clsPrefix}-search--inline`}
         key="__input"
       >
         {this.getInputElement()}
@@ -1008,7 +1008,7 @@ class RcSelect extends Component{
     const props = this.props;
     const multiple = isMultipleOrTags(props);
     const state = this.state;
-    const { className, disabled, allowClear, prefixCls } = props;
+    const { className, disabled, allowClear, clsPrefix } = props;
     const ctrlNode = this.renderTopControlNode();
     let extraSelectionProps = {};
     const { open } = this.state;
@@ -1021,13 +1021,13 @@ class RcSelect extends Component{
     }
     const rootCls = {
       [className]: !!className,
-      [prefixCls]: 1,
-      [`${prefixCls}-open`]: open,
-      [`${prefixCls}-focused`]: open || !!this._focused,
-      [`${prefixCls}-combobox`]: isCombobox(props),
-      [`${prefixCls}-disabled`]: disabled,
-      [`${prefixCls}-enabled`]: !disabled,
-      [`${prefixCls}-allow-clear`]: !!props.allowClear,
+      [clsPrefix]: 1,
+      [`${clsPrefix}-open`]: open,
+      [`${clsPrefix}-focused`]: open || !!this._focused,
+      [`${clsPrefix}-combobox`]: isCombobox(props),
+      [`${clsPrefix}-disabled`]: disabled,
+      [`${clsPrefix}-enabled`]: !disabled,
+      [`${clsPrefix}-allow-clear`]: !!props.allowClear,
     };
     const clearStyle = {
       ...UNSELECTABLE_STYLE,
@@ -1041,7 +1041,7 @@ class RcSelect extends Component{
       onMouseDown={preventDefaultEvent}
       style={clearStyle}
       {...UNSELECTABLE_ATTRIBUTE}
-      className={`${prefixCls}-selection__clear`}
+      className={`${clsPrefix}-selection__clear`}
       onClick={this.onClearSelection}
     />);
     return (
@@ -1054,7 +1054,7 @@ class RcSelect extends Component{
         dropdownMenuStyle={props.dropdownMenuStyle}
         transitionName={props.transitionName}
         animation={props.animation}
-        prefixCls={props.prefixCls}
+        clsPrefix={props.clsPrefix}
         dropdownStyle={props.dropdownStyle}
         combobox={props.combobox}
         showSearch={props.showSearch}
@@ -1080,8 +1080,8 @@ class RcSelect extends Component{
           <div
             ref="selection"
             key="selection"
-            className={`${prefixCls}-selection
-            ${prefixCls}-selection--${multiple ? 'multiple' : 'single'}`}
+            className={`${clsPrefix}-selection
+            ${clsPrefix}-selection--${multiple ? 'multiple' : 'single'}`}
             role="combobox"
             aria-autocomplete="list"
             aria-haspopup="true"
@@ -1093,7 +1093,7 @@ class RcSelect extends Component{
             {multiple || !props.showArrow ? null :
               (<span
                 key="arrow"
-                className={`${prefixCls}-arrow`}
+                className={`${clsPrefix}-arrow`}
                 style={UNSELECTABLE_STYLE}
                 {...UNSELECTABLE_ATTRIBUTE}
                 onMouseDown={preventDefaultEvent}

@@ -13,7 +13,7 @@ const propTypes = {
     onPopupFocus: PropTypes.func,
     onMenuDeSelect: PropTypes.func,
     onMenuSelect: PropTypes.func,
-    prefixCls: PropTypes.string,
+    clsPrefix: PropTypes.string,
     menuItems: PropTypes.any,
     inputValue: PropTypes.string,
     visible: PropTypes.bool,
@@ -63,7 +63,7 @@ class DropdownMenu extends Component{
     const {
       menuItems,
       defaultActiveFirstOption, value,
-      prefixCls, multiple,
+      clsPrefix, multiple,
       onMenuSelect, inputValue,
     } = props;
     if (menuItems && menuItems.length) {
@@ -121,7 +121,7 @@ class DropdownMenu extends Component{
         focusable={false}
         {...menuProps}
         selectedKeys={selectedKeys}
-        prefixCls={`${prefixCls}-menu`}
+        clsPrefix={`${clsPrefix}-menu`}
       >
         {clonedMenuItems}
       </Menu>);

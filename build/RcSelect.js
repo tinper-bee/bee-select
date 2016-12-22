@@ -83,7 +83,7 @@ var propTypes = {
   allowClear: _react.PropTypes.bool,
   showArrow: _react.PropTypes.bool,
   tags: _react.PropTypes.bool,
-  prefixCls: _react.PropTypes.string,
+  clsPrefix: _react.PropTypes.string,
   className: _react.PropTypes.string,
   transitionName: _react.PropTypes.string,
   optionLabelProp: _react.PropTypes.string,
@@ -106,7 +106,7 @@ var propTypes = {
 };
 
 var defaultProps = {
-  prefixCls: 'rc-select',
+  clsPrefix: 'rc-select',
   filterOption: filterFn,
   defaultOpen: false,
   labelInValue: false,
@@ -727,7 +727,7 @@ var RcSelect = function (_Component) {
           }, _util.UNSELECTABLE_STYLE)
         }, _util.UNSELECTABLE_ATTRIBUTE, {
           onClick: this.onPlaceholderClick,
-          className: props.prefixCls + '-selection__placeholder'
+          className: props.clsPrefix + '-selection__placeholder'
         }),
         placeholder
       );
@@ -739,20 +739,20 @@ var RcSelect = function (_Component) {
     var props = this.props;
     return _react2["default"].createElement(
       'div',
-      { className: props.prefixCls + '-search__field__wrap' },
+      { className: props.clsPrefix + '-search__field__wrap' },
       _react2["default"].createElement('input', {
         ref: this.saveInputRef,
         onChange: this.onInputChange,
         onKeyDown: this.onInputKeyDown,
         value: this.state.inputValue,
         disabled: props.disabled,
-        className: props.prefixCls + '-search__field'
+        className: props.clsPrefix + '-search__field'
       }),
       _react2["default"].createElement(
         'span',
         {
           ref: this.saveInputMirrorRef,
-          className: props.prefixCls + '-search__field__mirror'
+          className: props.clsPrefix + '-search__field__mirror'
         },
         this.state.inputValue
       )
@@ -833,9 +833,9 @@ var RcSelect = function (_Component) {
 
 
     if (this._focused) {
-      (0, _componentClasses2["default"])(refs.root).add(props.prefixCls + '-focused');
+      (0, _componentClasses2["default"])(refs.root).add(props.clsPrefix + '-focused');
     } else {
-      (0, _componentClasses2["default"])(refs.root).remove(props.prefixCls + '-focused');
+      (0, _componentClasses2["default"])(refs.root).remove(props.clsPrefix + '-focused');
     }
   };
 
@@ -1005,11 +1005,11 @@ var RcSelect = function (_Component) {
 
     var props = this.props;
     var choiceTransitionName = props.choiceTransitionName,
-        prefixCls = props.prefixCls,
+        clsPrefix = props.clsPrefix,
         maxTagTextLength = props.maxTagTextLength,
         showSearch = props.showSearch;
 
-    var className = prefixCls + '-selection__rendered';
+    var className = clsPrefix + '-selection__rendered';
     // search input is inside topControlNode in single, multiple & combobox. 2016/04/13
     var innerNode = null;
     if ((0, _util.isSingleMode)(props)) {
@@ -1034,7 +1034,7 @@ var RcSelect = function (_Component) {
           'div',
           {
             key: 'value',
-            className: prefixCls + '-selection-selected-value',
+            className: clsPrefix + '-selection-selected-value',
             title: singleValue.title || singleValue.label,
             style: {
               display: showSelectedValue ? 'block' : 'none',
@@ -1050,7 +1050,7 @@ var RcSelect = function (_Component) {
         innerNode = [selectedValue, _react2["default"].createElement(
           'div',
           {
-            className: prefixCls + '-search ' + prefixCls + '-search--inline',
+            className: clsPrefix + '-search ' + clsPrefix + '-search--inline',
             key: 'input',
             style: {
               display: open ? 'block' : 'none'
@@ -1069,7 +1069,7 @@ var RcSelect = function (_Component) {
             content = content.slice(0, maxTagTextLength) + '...';
           }
           var disabled = _this11.isChildDisabled(singleValue.key);
-          var choiceClassName = disabled ? prefixCls + '-selection__choice ' + prefixCls + '-selection__choice__disabled' : prefixCls + '-selection__choice';
+          var choiceClassName = disabled ? clsPrefix + '-selection__choice ' + clsPrefix + '-selection__choice__disabled' : clsPrefix + '-selection__choice';
           return _react2["default"].createElement(
             'li',
             _extends({
@@ -1082,11 +1082,11 @@ var RcSelect = function (_Component) {
             }),
             _react2["default"].createElement(
               'div',
-              { className: prefixCls + '-selection__choice__content' },
+              { className: clsPrefix + '-selection__choice__content' },
               content
             ),
             disabled ? null : _react2["default"].createElement('span', {
-              className: prefixCls + '-selection__choice__remove',
+              className: clsPrefix + '-selection__choice__remove',
               onClick: _this11.removeSelected.bind(_this11, singleValue.key)
             })
           );
@@ -1095,7 +1095,7 @@ var RcSelect = function (_Component) {
       selectedValueNodes.push(_react2["default"].createElement(
         'li',
         {
-          className: prefixCls + '-search ' + prefixCls + '-search--inline',
+          className: clsPrefix + '-search ' + clsPrefix + '-search--inline',
           key: '__input'
         },
         this.getInputElement()
@@ -1124,7 +1124,7 @@ var RcSelect = function (_Component) {
     var className = props.className,
         disabled = props.disabled,
         allowClear = props.allowClear,
-        prefixCls = props.prefixCls;
+        clsPrefix = props.clsPrefix;
 
     var ctrlNode = this.renderTopControlNode();
     var extraSelectionProps = {};
@@ -1137,7 +1137,7 @@ var RcSelect = function (_Component) {
         tabIndex: 0
       };
     }
-    var rootCls = (_rootCls = {}, _defineProperty(_rootCls, className, !!className), _defineProperty(_rootCls, prefixCls, 1), _defineProperty(_rootCls, prefixCls + '-open', open), _defineProperty(_rootCls, prefixCls + '-focused', open || !!this._focused), _defineProperty(_rootCls, prefixCls + '-combobox', (0, _util.isCombobox)(props)), _defineProperty(_rootCls, prefixCls + '-disabled', disabled), _defineProperty(_rootCls, prefixCls + '-enabled', !disabled), _defineProperty(_rootCls, prefixCls + '-allow-clear', !!props.allowClear), _rootCls);
+    var rootCls = (_rootCls = {}, _defineProperty(_rootCls, className, !!className), _defineProperty(_rootCls, clsPrefix, 1), _defineProperty(_rootCls, clsPrefix + '-open', open), _defineProperty(_rootCls, clsPrefix + '-focused', open || !!this._focused), _defineProperty(_rootCls, clsPrefix + '-combobox', (0, _util.isCombobox)(props)), _defineProperty(_rootCls, clsPrefix + '-disabled', disabled), _defineProperty(_rootCls, clsPrefix + '-enabled', !disabled), _defineProperty(_rootCls, clsPrefix + '-allow-clear', !!props.allowClear), _rootCls);
     var clearStyle = _extends({}, _util.UNSELECTABLE_STYLE, {
       display: 'none'
     });
@@ -1149,7 +1149,7 @@ var RcSelect = function (_Component) {
       onMouseDown: _util.preventDefaultEvent,
       style: clearStyle
     }, _util.UNSELECTABLE_ATTRIBUTE, {
-      className: prefixCls + '-selection__clear',
+      className: clsPrefix + '-selection__clear',
       onClick: this.onClearSelection
     }));
     return _react2["default"].createElement(
@@ -1163,7 +1163,7 @@ var RcSelect = function (_Component) {
         dropdownMenuStyle: props.dropdownMenuStyle,
         transitionName: props.transitionName,
         animation: props.animation,
-        prefixCls: props.prefixCls,
+        clsPrefix: props.clsPrefix,
         dropdownStyle: props.dropdownStyle,
         combobox: props.combobox,
         showSearch: props.showSearch,
@@ -1193,7 +1193,7 @@ var RcSelect = function (_Component) {
           _extends({
             ref: 'selection',
             key: 'selection',
-            className: prefixCls + '-selection\n            ' + prefixCls + '-selection--' + (multiple ? 'multiple' : 'single'),
+            className: clsPrefix + '-selection\n            ' + clsPrefix + '-selection--' + (multiple ? 'multiple' : 'single'),
             role: 'combobox',
             'aria-autocomplete': 'list',
             'aria-haspopup': 'true',
@@ -1205,7 +1205,7 @@ var RcSelect = function (_Component) {
             'span',
             _extends({
               key: 'arrow',
-              className: prefixCls + '-arrow',
+              className: clsPrefix + '-arrow',
               style: _util.UNSELECTABLE_STYLE
             }, _util.UNSELECTABLE_ATTRIBUTE, {
               onMouseDown: _util.preventDefaultEvent,

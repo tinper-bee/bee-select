@@ -73,7 +73,7 @@ var propTypes = {
   inputValue: _react.PropTypes.string,
   filterOption: _react.PropTypes.any,
   options: _react.PropTypes.any,
-  prefixCls: _react.PropTypes.string,
+  clsPrefix: _react.PropTypes.string,
   popupClassName: _react.PropTypes.string,
   children: _react.PropTypes.any
 };
@@ -123,7 +123,7 @@ var SelectTrigger = function (_Component) {
     return _react2["default"].createElement(_DropdownMenu2["default"], _extends({
       ref: this.saveMenu
     }, newProps, {
-      prefixCls: this.getDropdownPrefixCls(),
+      clsPrefix: this.getDropdownPrefixCls(),
       onMenuSelect: props.onMenuSelect,
       onMenuDeselect: props.onMenuDeselect,
       value: props.value,
@@ -142,7 +142,7 @@ var SelectTrigger = function (_Component) {
   };
 
   SelectTrigger.prototype.getDropdownPrefixCls = function getDropdownPrefixCls() {
-    return this.props.prefixCls + '-dropdown';
+    return this.props.clsPrefix + '-dropdown';
   };
 
   SelectTrigger.prototype.saveMenu = function saveMenu(menu) {
@@ -189,7 +189,7 @@ var SelectTrigger = function (_Component) {
         ref: 'trigger',
         popupPlacement: 'bottomLeft',
         builtinPlacements: BUILT_IN_PLACEMENTS,
-        prefixCls: dropdownPrefixCls,
+        clsPrefix: dropdownPrefixCls,
         popupTransitionName: this.getDropdownTransitionName(),
         onPopupVisibleChange: props.onDropdownVisibleChange,
         popup: popupElement,
