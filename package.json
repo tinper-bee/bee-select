@@ -33,7 +33,6 @@
   "coveralls": "bee-tools run coverage"
  },
  "dependencies": {
-  "bee-animate": "latest",
   "bee-menus": "latest",
   "bee-overlay": "^0.1.0",
   "classnames": "^2.2.5",
