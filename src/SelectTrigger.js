@@ -1,4 +1,4 @@
-import Trigger from './trigger/index';
+import Trigger from 'bee-overlay/build/Trigger';
 import React, { PropTypes, Component } from 'react';
 import classnames from 'classnames';
 import DropdownMenu from './DropdownMenu';
@@ -54,7 +54,7 @@ class SelectTrigger extends Component{
 
 
   }
-  
+
 
   componentDidUpdate() {
     debugger;
