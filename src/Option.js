@@ -1,7 +1,13 @@
-import React from 'react';
+import React,{PropTypes} from 'react';
 
-export default class Option extends React.Component {
-  static propTypes = {
-    value: React.PropTypes.string,
-  };
+const propTypes ={
+  disabled: PropTypes.bool,
+  value: PropTypes.string
+};
+
+class Option extends React.Component {
+ 
 }
+
+Option.propTypes = propTypes;
+export default Option;

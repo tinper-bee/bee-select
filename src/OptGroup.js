@@ -1,5 +1,13 @@
 import React from 'react';
 
-export default class OptGroup extends React.Component {
+const propTypes ={
+  label: React.PropTypes.oneOfType([
+  		React.PropTypes.string,
+  		React.PropTypes.object
+  ])
+};
+class OptGroup extends React.Component {
 
 }
+OptGroup.propTypes = propTypes;
+export default OptGroup;
