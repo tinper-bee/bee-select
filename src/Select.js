@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
 import { PropTypes } from 'react';
-import RcSelect ,{Option,OptGroup}from './index2';
+import RcSelect from './RcSelect';
+import Option from './Option';
+import OptGroup from './OptGroup';
 import classNames from 'classnames';
 
 const SelectContext ={
