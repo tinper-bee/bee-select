@@ -10,9 +10,17 @@ var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
 
-var _index = require('./index2');
+var _RcSelect = require('./RcSelect');
 
-var _index2 = _interopRequireDefault(_index);
+var _RcSelect2 = _interopRequireDefault(_RcSelect);
+
+var _Option = require('./Option');
+
+var _Option2 = _interopRequireDefault(_Option);
+
+var _OptGroup = require('./OptGroup');
+
+var _OptGroup2 = _interopRequireDefault(_OptGroup);
 
 var _classnames = require('classnames');
 
@@ -30,8 +38,12 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : _defaults(subClass, superClass); }
 
-// => It is needless to export the declaration of below two inner components.
-// export { Option, OptGroup };
+var SelectContext = {
+  antLocale: {
+    Select: _react.PropTypes.any
+  }
+};
+
 var defaultProps = {
   clsPrefix: 'u-select',
   showSearch: false,
@@ -42,25 +54,42 @@ var defaultProps = {
 var propTypes = {
   clsPrefix: _react.PropTypes.string,
   className: _react.PropTypes.string,
+  value: _react.PropTypes.oneOfType([_react.PropTypes.string, _react.PropTypes]),
+  defaultValue: _react.PropTypes.oneOfType([_react.PropTypes.node, _react.PropTypes.Array, _react.PropTypes.any]),
   size: _react.PropTypes.oneOf(['default', 'lg', 'sm']),
   combobox: _react.PropTypes.bool,
-  notFoundContent: _react.PropTypes.any,
+  notFoundContent: _react.PropTypes.oneOfType([_react.PropTypes.node, _react.PropTypes.Array, _react.PropTypes.any]),
   showSearch: _react.PropTypes.bool,
-  optionLabelProp: _react.PropTypes.string,
   transitionName: _react.PropTypes.string,
-  choiceTransitionName: _react.PropTypes.string
+  choiceTransitionName: _react.PropTypes.string,
+  multiple: _react.PropTypes.bool,
+  allowClear: _react.PropTypes.bool,
+  filterOption: _react.PropTypes.oneOfType([_react.PropTypes.bool, _react.PropTypes.func]),
+  tags: _react.PropTypes.bool,
+  onSelect: _react.PropTypes.func,
+  onDeselect: _react.PropTypes.func,
+  onSearch: _react.PropTypes.func,
+  placeholder: _react.PropTypes.string,
+  dropdownMatchSelectWidth: _react.PropTypes.bool,
+  optionFilterProp: _react.PropTypes.string,
+  optionLabelProp: _react.PropTypes.string,
+  disabled: _react.PropTypes.bool,
+  defaultActiveFirstOption: _react.PropTypes.bool,
+  labelInValue: _react.PropTypes.bool,
+  getPopupContainer: _react.PropTypes.func,
+  style: _react.PropTypes.object,
+  dropdownStyle: _react.PropTypes.object,
+  dropdownMenuStyle: _react.PropTypes.object,
+  onChange: _react.PropTypes.func
 };
 
-var Select = function (_React$Component) {
-  _inherits(Select, _React$Component);
-
-  //static Option = Option as React.ClassicComponentClass<OptionProps>;
-  //static OptGroup = OptGroup as React.ClassicComponentClass<OptGroupProps>;
+var Select = function (_Component) {
+  _inherits(Select, _Component);
 
   function Select(props) {
     _classCallCheck(this, Select);
 
-    return _possibleConstructorReturn(this, _React$Component.call(this, props));
+    return _possibleConstructorReturn(this, _Component.call(this, props));
   }
 
   Select.prototype.render = function render() {
@@ -93,7 +122,7 @@ var Select = function (_React$Component) {
       optionLabelProp = optionLabelProp || 'value';
     }
 
-    return _react2["default"].createElement(_index2["default"], _extends({}, this.props, {
+    return _react2["default"].createElement(_RcSelect2["default"], _extends({}, this.props, {
       className: cls,
       optionLabelProp: optionLabelProp || 'children',
       notFoundContent: notFoundContent
@@ -101,12 +130,13 @@ var Select = function (_React$Component) {
   };
 
   return Select;
-}(_react2["default"].Component);
+}(_react.Component);
 
+Select.context = SelectContext;
 Select.propTypes = propTypes;
 Select.defaultProps = defaultProps;
-Select.Option = _index.Option;
-Select.OptGroup = _index.OptGroup;
+Select.Option = _Option2["default"];
+Select.OptGroup = _OptGroup2["default"];
 
 exports["default"] = Select;
 module.exports = exports['default'];

@@ -1,4 +1,4 @@
-import Trigger from 'bee-overlay/build/Trigger';
+import Trigger from 'bee-overlay/build/trigger';
 import React, { PropTypes, Component } from 'react';
 import classnames from 'classnames';
 import DropdownMenu from './DropdownMenu';
