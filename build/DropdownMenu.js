@@ -16,9 +16,9 @@ var _reactDom = require('react-dom');
 
 var _tinperBeeCore = require('tinper-bee-core');
 
-var _beeMenus = require('bee-menus');
+var _beeMenu = require('bee-menu');
 
-var _beeMenus2 = _interopRequireDefault(_beeMenus);
+var _beeMenu2 = _interopRequireDefault(_beeMenu);
 
 var _domScrollIntoView = require('dom-scroll-into-view');
 
@@ -142,7 +142,7 @@ var DropdownMenu = function (_Component) {
             };
 
             clonedMenuItems = menuItems.map(function (item) {
-              if (item.type === _beeMenus.ItemGroup) {
+              if (item.type === _beeMenu.ItemGroup) {
                 var children = (0, _tinperBeeCore.toArray)(item.props.children).map(clone);
                 return (0, _react.cloneElement)(item, {}, children);
               }
@@ -158,7 +158,7 @@ var DropdownMenu = function (_Component) {
 
         return {
           v: _react2["default"].createElement(
-            _beeMenus2["default"],
+            _beeMenu2["default"],
             _extends({
               ref: 'menu',
               style: _this2.props.dropdownMenuStyle,

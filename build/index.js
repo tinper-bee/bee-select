@@ -4,7 +4,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _Select = require('./Select');
+var _Select = require('./Select.js');
 
 var _Select2 = _interopRequireDefault(_Select);
 
