@@ -1,7 +1,7 @@
 import React, { cloneElement, PropTypes, Component } from 'react';
 import { findDOMNode } from 'react-dom';
 import { toArray } from 'tinper-bee-core';
-import Menu, { ItemGroup as MenuItemGroup } from 'bee-menus';
+import Menu, { ItemGroup as MenuItemGroup } from 'bee-menu';
 import scrollIntoView from 'dom-scroll-into-view';
 import { getSelectKeys, preventDefaultEvent } from './util';
 

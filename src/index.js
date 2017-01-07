@@ -1,2 +1,3 @@
-import Select from './Select';
-export default Select ;
+import Select from './Select.js';
+
+export default Select;
