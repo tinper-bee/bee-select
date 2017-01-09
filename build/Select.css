@@ -1,48 +1,7 @@
 @charset "UTF-8";
-/*  IMAGES  */
-/* 默认颜色 */
-/* 客户化 */
-/* 波纹效果 */
-/*贝塞尔曲线动画 */
-/* 阴影 */
-/* ==========  文本字体  ========== */
-/* 控件 */
-/* 不同背景下对应的文字颜色 */
-/* UButton */
-/* UText */
+/* FormGroup */
 /*  Navlayout  */
-/* gridlayout */
-/* menu */
-/* Tile */
-/* Alert */
-/* Checkbox */
-/*  Radio  */
-/* Switch  */
-/* loading */
-/* datetimepicker */
-/* message */
-/* DATA TABLE */
-/* tooltip*/
-/* 进度条 */
-/* ==========  Content Tabs  ========== */
-/* CARD */
-/* Card dimensions */
-/* Cover image */
-/* ==========  Card  ========== */
-/* ============ Forms ============*/
-/* BADGE */
-/*两种加载的尺寸 width height*/
-/*居中位置top left*/
-/*color*/
-/* border-radius of different state switch   */
-/* width height line-height  of the three switches */
-/* style of u-switch-inner  */
-/* style of u-switch:active:after  */
-/* style of u-switch:after  */
-/* style of u-switch.is-checked */
-/* Typography */
-/* Shadows */
-/* Animations */
+/* keyframes 定义 */
 @-webkit-keyframes uSlideUpIn {
   0% {
     opacity: 0;
