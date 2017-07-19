@@ -23,18 +23,18 @@ const propTypes = {
   className: PropTypes.string,
   value: PropTypes.oneOfType([
       PropTypes.string, 
-      PropTypes
+      PropTypes.any
   ]),
   defaultValue: PropTypes.oneOfType([
       PropTypes.node, 
-      PropTypes.Array,
+      PropTypes.array,
       PropTypes.any
   ]),
   size: PropTypes.oneOf(['default','lg','sm']) ,
   combobox: PropTypes.bool,
   notFoundContent: PropTypes.oneOfType([
       PropTypes.node, 
-      PropTypes.Array,
+      PropTypes.array,
       PropTypes.any
   ]),
   showSearch: PropTypes.bool,
