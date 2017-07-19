@@ -4,8 +4,6 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
-
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 var _react = require('react');
@@ -108,74 +106,66 @@ var DropdownMenu = function (_Component) {
         inputValue = props.inputValue;
 
     if (menuItems && menuItems.length) {
-      var _ret = function () {
-        var menuProps = {};
-        if (multiple) {
-          menuProps.onDeselect = props.onMenuDeselect;
-          menuProps.onSelect = onMenuSelect;
-        } else {
-          menuProps.onClick = onMenuSelect;
+      var menuProps = {};
+      if (multiple) {
+        menuProps.onDeselect = props.onMenuDeselect;
+        menuProps.onSelect = onMenuSelect;
+      } else {
+        menuProps.onClick = onMenuSelect;
+      }
+
+      var selectedKeys = (0, _util.getSelectKeys)(menuItems, value);
+      var activeKeyProps = {};
+
+      var clonedMenuItems = menuItems;
+      if (selectedKeys.length) {
+        if (props.visible && !this.lastVisible) {
+          activeKeyProps.activeKey = selectedKeys[0];
         }
-
-        var selectedKeys = (0, _util.getSelectKeys)(menuItems, value);
-        var activeKeyProps = {};
-
-        var clonedMenuItems = menuItems;
-        if (selectedKeys.length) {
-          (function () {
-            if (props.visible && !_this2.lastVisible) {
-              activeKeyProps.activeKey = selectedKeys[0];
-            }
-            var foundFirst = false;
-            // set firstActiveItem via cloning menus
-            // for scroll into view
-            var clone = function clone(item) {
-              if (!foundFirst && selectedKeys.indexOf(item.key) !== -1) {
-                foundFirst = true;
-                return (0, _react.cloneElement)(item, {
-                  ref: function ref(_ref) {
-                    _this2.firstActiveItem = _ref;
-                  }
-                });
+        var foundFirst = false;
+        // set firstActiveItem via cloning menus
+        // for scroll into view
+        var clone = function clone(item) {
+          if (!foundFirst && selectedKeys.indexOf(item.key) !== -1) {
+            foundFirst = true;
+            return (0, _react.cloneElement)(item, {
+              ref: function ref(_ref) {
+                _this2.firstActiveItem = _ref;
               }
-              return item;
-            };
-
-            clonedMenuItems = menuItems.map(function (item) {
-              if (item.type === _beeMenu.ItemGroup) {
-                var children = (0, _tinperBeeCore.toArray)(item.props.children).map(clone);
-                return (0, _react.cloneElement)(item, {}, children);
-              }
-              return clone(item);
             });
-          })();
-        }
-
-        // clear activeKey when inputValue change
-        if (inputValue !== _this2.lastInputValue) {
-          activeKeyProps.activeKey = '';
-        }
-
-        return {
-          v: _react2["default"].createElement(
-            _beeMenu2["default"],
-            _extends({
-              ref: 'menu',
-              style: _this2.props.dropdownMenuStyle,
-              defaultActiveFirst: defaultActiveFirstOption
-            }, activeKeyProps, {
-              multiple: multiple,
-              focusable: false
-            }, menuProps, {
-              selectedKeys: selectedKeys,
-              clsPrefix: clsPrefix + '-menu'
-            }),
-            clonedMenuItems
-          )
+          }
+          return item;
         };
-      }();
 
-      if ((typeof _ret === 'undefined' ? 'undefined' : _typeof(_ret)) === "object") return _ret.v;
+        clonedMenuItems = menuItems.map(function (item) {
+          if (item.type === _beeMenu.ItemGroup) {
+            var children = (0, _tinperBeeCore.toArray)(item.props.children).map(clone);
+            return (0, _react.cloneElement)(item, {}, children);
+          }
+          return clone(item);
+        });
+      }
+
+      // clear activeKey when inputValue change
+      if (inputValue !== this.lastInputValue) {
+        activeKeyProps.activeKey = '';
+      }
+
+      return _react2["default"].createElement(
+        _beeMenu2["default"],
+        _extends({
+          ref: 'menu',
+          style: this.props.dropdownMenuStyle,
+          defaultActiveFirst: defaultActiveFirstOption
+        }, activeKeyProps, {
+          multiple: multiple,
+          focusable: false
+        }, menuProps, {
+          selectedKeys: selectedKeys,
+          clsPrefix: clsPrefix + '-menu'
+        }),
+        clonedMenuItems
+      );
     }
     return null;
   };
