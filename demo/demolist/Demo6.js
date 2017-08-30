@@ -2,6 +2,12 @@
  * @title 搜索单选`Select`
  * @description 从下拉选中，通过输入的值检索相应的选项。
  */
+
+import React, { Component } from 'react';
+import Select from '../../src';
+
+const Option = Select.Option;
+
 class Demo6 extends Component {
 	constructor() {
 		super();
@@ -26,3 +32,5 @@ class Demo6 extends Component {
 		)
 	}
 }
+
+export default Demo6;

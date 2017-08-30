@@ -3,6 +3,16 @@
  * @description 用户在框内输入自定义内容，Select将输入的内容自动纳入下拉选项中一员。
  */
 
+import React, { Component } from 'react';
+import Select from '../../src';
+
+const Option = Select.Option;
+
+const Children = [];
+for (let i = 10; i < 36; i++) {
+  Children.push(<Option key={i.toString(36) + i}>{i.toString(36) + i}</Option>);
+}
+
 class Demo3 extends Component {
 	constructor() {
 		super();
@@ -23,3 +33,6 @@ class Demo3 extends Component {
 		)
 	}
 }
+
+
+export default Demo3;

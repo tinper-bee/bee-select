@@ -3,11 +3,14 @@
  * @description `size`参数控制大小
  */
 
-/*
-	这段代码放在了全局，如您单独使用例子，请加上这段代码
-	const Option = Select.Option;
-	const OptGroup = Select.OptGroup;
-*/
+
+
+import React, { Component } from 'react';
+import Select from '../../src';
+
+const Option = Select.Option;
+const OptGroup = Select.OptGroup;
+
 class Demo1 extends Component {
 	constructor() {
 		super();
@@ -41,3 +44,6 @@ class Demo1 extends Component {
 		)
 	}
 }
+
+
+export default Demo1;

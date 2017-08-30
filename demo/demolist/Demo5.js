@@ -2,6 +2,12 @@
  * @title 自定义自动填充单选`Select`
  * @description 常用邮箱后缀自动填充。
  */
+
+import React, { Component } from 'react';
+import Select from '../../src';
+
+const Option = Select.Option;
+
 class Demo5 extends Component {
 	constructor() {
 		super();
@@ -36,3 +42,6 @@ class Demo5 extends Component {
 	    );
 	}
 }
+
+
+export default Demo5;

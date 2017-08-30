@@ -3,6 +3,17 @@
  * @description 常用语城市级联的选择。
  */
 
+import React, { Component } from 'react';
+import Select from '../../src';
+
+const Option = Select.Option;
+
+const provinceData = ['Zhejiang', 'Jiangsu'];
+const cityData = {
+  Zhejiang: ['Hangzhou', 'Ningbo', 'Wenzhou'],
+  Jiangsu: ['Nanjing', 'Suzhou', 'Zhenjiang'],
+};
+
 class Demo4 extends Component {
 	constructor() {
 		super();
@@ -39,3 +50,6 @@ class Demo4 extends Component {
 	    );
 	}
 }
+
+
+export default Demo4;
