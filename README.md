@@ -17,7 +17,7 @@ npm install --save bee-select
 ```
 组件调用
 ```js
-import Option from 'bee-select';
+import Select from 'bee-select';
 const Option = Select.Option;
 
 React.render(<div>
@@ -33,7 +33,6 @@ class Demo extends Component {
 			      <Option value="lucy">Lucy</Option>
 			      <Option value="disabled" disabled>Disabled</Option>
 			      <Option value="yiminghe">Yiminghe</Option>
-			    </Select>
 			    </Select>
 			</div>
 		)
