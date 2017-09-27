@@ -121,7 +121,7 @@ var Select = function (_Component) {
       // children 带 dom 结构时，无法填入输入框
       optionLabelProp = optionLabelProp || 'value';
     }
-
+    debugger;
     return _react2["default"].createElement(_RcSelect2["default"], _extends({}, this.props, {
       className: cls,
       optionLabelProp: optionLabelProp || 'children',

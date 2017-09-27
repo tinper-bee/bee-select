@@ -727,7 +727,7 @@ var RcSelect = function (_Component) {
           }, _util.UNSELECTABLE_STYLE)
         }, _util.UNSELECTABLE_ATTRIBUTE, {
           onClick: this.onPlaceholderClick,
-          className: props.clsPrefix + '-selection__placeholder'
+          className: props.clsPrefix + '-selection-placeholder'
         }),
         placeholder
       );
@@ -739,20 +739,20 @@ var RcSelect = function (_Component) {
     var props = this.props;
     return _react2["default"].createElement(
       'div',
-      { className: props.clsPrefix + '-search__field__wrap' },
+      { className: props.clsPrefix + '-search-field-wrap' },
       _react2["default"].createElement('input', {
         ref: this.saveInputRef,
         onChange: this.onInputChange,
         onKeyDown: this.onInputKeyDown,
         value: this.state.inputValue,
         disabled: props.disabled,
-        className: props.clsPrefix + '-search__field'
+        className: props.clsPrefix + '-search-field'
       }),
       _react2["default"].createElement(
         'span',
         {
           ref: this.saveInputMirrorRef,
-          className: props.clsPrefix + '-search__field__mirror'
+          className: props.clsPrefix + '-search-field-mirror'
         },
         this.state.inputValue
       )
@@ -1009,7 +1009,7 @@ var RcSelect = function (_Component) {
         maxTagTextLength = props.maxTagTextLength,
         showSearch = props.showSearch;
 
-    var className = clsPrefix + '-selection__rendered';
+    var className = clsPrefix + '-selection-rendered';
     // search input is inside topControlNode in single, multiple & combobox. 2016/04/13
     var innerNode = null;
     if ((0, _util.isSingleMode)(props)) {
@@ -1069,7 +1069,7 @@ var RcSelect = function (_Component) {
             content = content.slice(0, maxTagTextLength) + '...';
           }
           var disabled = _this11.isChildDisabled(singleValue.key);
-          var choiceClassName = disabled ? clsPrefix + '-selection__choice ' + clsPrefix + '-selection__choice__disabled' : clsPrefix + '-selection__choice';
+          var choiceClassName = disabled ? clsPrefix + '-selection-choice ' + clsPrefix + '-selection-choice-disabled' : clsPrefix + '-selection-choice';
           return _react2["default"].createElement(
             'li',
             _extends({
@@ -1082,11 +1082,11 @@ var RcSelect = function (_Component) {
             }),
             _react2["default"].createElement(
               'div',
-              { className: clsPrefix + '-selection__choice__content' },
+              { className: clsPrefix + '-selection-choice-content' },
               content
             ),
             disabled ? null : _react2["default"].createElement('span', {
-              className: clsPrefix + '-selection__choice__remove',
+              className: clsPrefix + '-selection-choice-remove',
               onClick: _this11.removeSelected.bind(_this11, singleValue.key)
             })
           );
@@ -1149,7 +1149,7 @@ var RcSelect = function (_Component) {
       onMouseDown: _util.preventDefaultEvent,
       style: clearStyle
     }, _util.UNSELECTABLE_ATTRIBUTE, {
-      className: clsPrefix + '-selection__clear',
+      className: clsPrefix + '-selection-clear',
       onClick: this.onClearSelection
     }));
     return _react2["default"].createElement(

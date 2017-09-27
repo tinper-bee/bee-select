@@ -665,7 +665,7 @@ class RcSelect extends Component{
         }}
         {...UNSELECTABLE_ATTRIBUTE}
         onClick={this.onPlaceholderClick}
-        className={`${props.clsPrefix}-selection__placeholder`}
+        className={`${props.clsPrefix}-selection-placeholder`}
       >
         {placeholder}
       </div>);
@@ -675,18 +675,18 @@ class RcSelect extends Component{
 
   getInputElement() {
     const props = this.props;
-    return (<div className={`${props.clsPrefix}-search__field__wrap`}>
+    return (<div className={`${props.clsPrefix}-search-field-wrap`}>
       <input
         ref={this.saveInputRef}
         onChange={this.onInputChange}
         onKeyDown={this.onInputKeyDown}
         value={this.state.inputValue}
         disabled={props.disabled}
-        className={`${props.clsPrefix}-search__field`}
+        className={`${props.clsPrefix}-search-field`}
       />
       <span
         ref={this.saveInputMirrorRef}
-        className={`${props.clsPrefix}-search__field__mirror`}
+        className={`${props.clsPrefix}-search-field-mirror`}
       >
         {this.state.inputValue}
       </span>
@@ -909,7 +909,7 @@ class RcSelect extends Component{
     const { value, open, inputValue } = this.state;
     const props = this.props;
     const { choiceTransitionName, clsPrefix, maxTagTextLength, showSearch } = props;
-    const className = `${clsPrefix}-selection__rendered`;
+    const className = `${clsPrefix}-selection-rendered`;
     // search input is inside topControlNode in single, multiple & combobox. 2016/04/13
     let innerNode = null;
     if (isSingleMode(props)) {
@@ -969,8 +969,8 @@ class RcSelect extends Component{
           }
           const disabled = this.isChildDisabled(singleValue.key);
           const choiceClassName = disabled
-            ? `${clsPrefix}-selection__choice ${clsPrefix}-selection__choice__disabled`
-            : `${clsPrefix}-selection__choice`;
+            ? `${clsPrefix}-selection-choice ${clsPrefix}-selection-choice-disabled`
+            : `${clsPrefix}-selection-choice`;
           return (
             <li
               style={UNSELECTABLE_STYLE}
@@ -980,10 +980,10 @@ class RcSelect extends Component{
               key={singleValue.key}
               title={title}
             >
-              <div className={`${clsPrefix}-selection__choice__content`}>{content}</div>
+              <div className={`${clsPrefix}-selection-choice-content`}>{content}</div>
               {
                 disabled ? null : <span
-                  className={`${clsPrefix}-selection__choice__remove`}
+                  className={`${clsPrefix}-selection-choice-remove`}
                   onClick={this.removeSelected.bind(this, singleValue.key)}
                 />
               }
@@ -1041,7 +1041,7 @@ class RcSelect extends Component{
       onMouseDown={preventDefaultEvent}
       style={clearStyle}
       {...UNSELECTABLE_ATTRIBUTE}
-      className={`${clsPrefix}-selection__clear`}
+      className={`${clsPrefix}-selection-clear`}
       onClick={this.onClearSelection}
     />);
     return (
