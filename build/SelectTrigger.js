@@ -28,6 +28,10 @@ var _reactDom2 = _interopRequireDefault(_reactDom);
 
 var _util = require('./util');
 
+var _propTypes = require('prop-types');
+
+var _propTypes2 = _interopRequireDefault(_propTypes);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
 function _defaults(obj, defaults) { var keys = Object.getOwnPropertyNames(defaults); for (var i = 0; i < keys.length; i++) { var key = keys[i]; var value = Object.getOwnPropertyDescriptor(defaults, key); if (value && value.configurable && obj[key] === undefined) { Object.defineProperty(obj, key, value); } } return obj; }
@@ -62,20 +66,20 @@ var BUILT_IN_PLACEMENTS = {
 };
 
 var propTypes = {
-  onPopupFocus: _react.PropTypes.func,
-  dropdownMatchSelectWidth: _react.PropTypes.bool,
-  dropdownAlign: _react.PropTypes.object,
-  visible: _react.PropTypes.bool,
-  disabled: _react.PropTypes.bool,
-  showSearch: _react.PropTypes.bool,
-  dropdownClassName: _react.PropTypes.string,
-  multiple: _react.PropTypes.bool,
-  inputValue: _react.PropTypes.string,
-  filterOption: _react.PropTypes.any,
-  options: _react.PropTypes.any,
-  clsPrefix: _react.PropTypes.string,
-  popupClassName: _react.PropTypes.string,
-  children: _react.PropTypes.any
+  onPopupFocus: _propTypes2["default"].func,
+  dropdownMatchSelectWidth: _propTypes2["default"].bool,
+  dropdownAlign: _propTypes2["default"].object,
+  visible: _propTypes2["default"].bool,
+  disabled: _propTypes2["default"].bool,
+  showSearch: _propTypes2["default"].bool,
+  dropdownClassName: _propTypes2["default"].string,
+  multiple: _propTypes2["default"].bool,
+  inputValue: _propTypes2["default"].string,
+  filterOption: _propTypes2["default"].any,
+  options: _propTypes2["default"].any,
+  clsPrefix: _propTypes2["default"].string,
+  popupClassName: _propTypes2["default"].string,
+  children: _propTypes2["default"].any
 };
 
 var SelectTrigger = function (_Component) {

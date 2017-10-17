@@ -1,9 +1,10 @@
 import Trigger from 'bee-overlay/build/trigger';
-import React, { PropTypes, Component } from 'react';
+import React, { Component } from 'react';
 import classnames from 'classnames';
 import DropdownMenu from './DropdownMenu';
 import ReactDOM from 'react-dom';
 import { isSingleMode } from './util';
+import PropTypes from 'prop-types';
 
 const BUILT_IN_PLACEMENTS = {
   bottomLeft: {

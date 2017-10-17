@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { PropTypes } from 'react';
+import PropTypes from 'prop-types';
 import RcSelect from './RcSelect';
 import Option from './Option';
 import OptGroup from './OptGroup';
@@ -98,7 +98,6 @@ class Select extends Component {
       // children 带 dom 结构时，无法填入输入框
       optionLabelProp = optionLabelProp || 'value';
     }
-    debugger;
     return (
       <RcSelect
         {...this.props}

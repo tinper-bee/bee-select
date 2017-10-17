@@ -10,7 +10,7 @@ var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
 
-var _beeMenu = require('bee-menu');
+var _beeMenus = require('bee-menus');
 
 var _reactDom = require('react-dom');
 
@@ -33,6 +33,10 @@ var _warning2 = _interopRequireDefault(_warning);
 var _componentClasses = require('component-classes');
 
 var _componentClasses2 = _interopRequireDefault(_componentClasses);
+
+var _propTypes = require('prop-types');
+
+var _propTypes2 = _interopRequireDefault(_propTypes);
 
 var _util = require('./util');
 
@@ -66,43 +70,43 @@ function saveRef(name, component) {
 
 var valueObjectShape = void 0;
 
-if (_react.PropTypes) {
-  valueObjectShape = _react.PropTypes.oneOfType([_react.PropTypes.string, _react.PropTypes.shape({
-    key: _react.PropTypes.string,
-    label: _react.PropTypes.node
+if (_propTypes2["default"]) {
+  valueObjectShape = _propTypes2["default"].oneOfType([_propTypes2["default"].string, _propTypes2["default"].shape({
+    key: _propTypes2["default"].string,
+    label: _propTypes2["default"].node
   })]);
 }
 
 var propTypes = {
-  defaultActiveFirstOption: _react.PropTypes.bool,
-  multiple: _react.PropTypes.bool,
-  filterOption: _react.PropTypes.any,
-  children: _react.PropTypes.any,
-  showSearch: _react.PropTypes.bool,
-  disabled: _react.PropTypes.bool,
-  allowClear: _react.PropTypes.bool,
-  showArrow: _react.PropTypes.bool,
-  tags: _react.PropTypes.bool,
-  clsPrefix: _react.PropTypes.string,
-  className: _react.PropTypes.string,
-  transitionName: _react.PropTypes.string,
-  optionLabelProp: _react.PropTypes.string,
-  optionFilterProp: _react.PropTypes.string,
-  animation: _react.PropTypes.string,
-  choiceTransitionName: _react.PropTypes.string,
-  onChange: _react.PropTypes.func,
-  onBlur: _react.PropTypes.func,
-  onFocus: _react.PropTypes.func,
-  onSelect: _react.PropTypes.func,
-  onSearch: _react.PropTypes.func,
-  placeholder: _react.PropTypes.any,
-  onDeselect: _react.PropTypes.func,
-  labelInValue: _react.PropTypes.bool,
-  value: _react.PropTypes.oneOfType([valueObjectShape, _react.PropTypes.arrayOf(valueObjectShape)]),
-  defaultValue: _react.PropTypes.oneOfType([valueObjectShape, _react.PropTypes.arrayOf(valueObjectShape)]),
-  dropdownStyle: _react.PropTypes.object,
-  maxTagTextLength: _react.PropTypes.number,
-  tokenSeparators: _react.PropTypes.arrayOf(_react.PropTypes.string)
+  defaultActiveFirstOption: _propTypes2["default"].bool,
+  multiple: _propTypes2["default"].bool,
+  filterOption: _propTypes2["default"].any,
+  children: _propTypes2["default"].any,
+  showSearch: _propTypes2["default"].bool,
+  disabled: _propTypes2["default"].bool,
+  allowClear: _propTypes2["default"].bool,
+  showArrow: _propTypes2["default"].bool,
+  tags: _propTypes2["default"].bool,
+  clsPrefix: _propTypes2["default"].string,
+  className: _propTypes2["default"].string,
+  transitionName: _propTypes2["default"].string,
+  optionLabelProp: _propTypes2["default"].string,
+  optionFilterProp: _propTypes2["default"].string,
+  animation: _propTypes2["default"].string,
+  choiceTransitionName: _propTypes2["default"].string,
+  onChange: _propTypes2["default"].func,
+  onBlur: _propTypes2["default"].func,
+  onFocus: _propTypes2["default"].func,
+  onSelect: _propTypes2["default"].func,
+  onSearch: _propTypes2["default"].func,
+  placeholder: _propTypes2["default"].any,
+  onDeselect: _propTypes2["default"].func,
+  labelInValue: _propTypes2["default"].bool,
+  value: _propTypes2["default"].oneOfType([valueObjectShape, _propTypes2["default"].arrayOf(valueObjectShape)]),
+  defaultValue: _propTypes2["default"].oneOfType([valueObjectShape, _propTypes2["default"].arrayOf(valueObjectShape)]),
+  dropdownStyle: _propTypes2["default"].object,
+  maxTagTextLength: _propTypes2["default"].number,
+  tokenSeparators: _propTypes2["default"].arrayOf(_propTypes2["default"].string)
 };
 
 var defaultProps = {
@@ -311,7 +315,7 @@ var RcSelect = function (_Component) {
             label = key;
           }
           sel.push(_react2["default"].createElement(
-            _beeMenu.MenuItemGroup,
+            _beeMenus.MenuItemGroup,
             { key: key, title: label },
             innerItems
           ));
@@ -327,7 +331,7 @@ var RcSelect = function (_Component) {
 
       var childValue = (0, _util.getValuePropValue)(child);
       if (_this2.filterOption(inputValue, child)) {
-        sel.push(_react2["default"].createElement(_beeMenu.MenuItem, _extends({
+        sel.push(_react2["default"].createElement(_beeMenus.MenuItem, _extends({
           style: _util.UNSELECTABLE_STYLE,
           attribute: _util.UNSELECTABLE_ATTRIBUTE,
           value: childValue,
@@ -347,7 +351,7 @@ var RcSelect = function (_Component) {
       sel = sel.concat(value.map(function (singleValue) {
         var key = singleValue.key;
         return _react2["default"].createElement(
-          _beeMenu.MenuItem,
+          _beeMenus.MenuItem,
           {
             style: _util.UNSELECTABLE_STYLE,
             attribute: _util.UNSELECTABLE_ATTRIBUTE,
@@ -363,7 +367,7 @@ var RcSelect = function (_Component) {
         });
         if (notFindInputItem) {
           sel.unshift(_react2["default"].createElement(
-            _beeMenu.MenuItem,
+            _beeMenus.MenuItem,
             {
               style: _util.UNSELECTABLE_STYLE,
               attribute: _util.UNSELECTABLE_ATTRIBUTE,
@@ -377,7 +381,7 @@ var RcSelect = function (_Component) {
     }
     if (!sel.length && showNotFound && props.notFoundContent) {
       sel = [_react2["default"].createElement(
-        _beeMenu.MenuItem,
+        _beeMenus.MenuItem,
         {
           style: _util.UNSELECTABLE_STYLE,
           attribute: _util.UNSELECTABLE_ATTRIBUTE,

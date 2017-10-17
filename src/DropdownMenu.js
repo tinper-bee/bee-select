@@ -1,9 +1,10 @@
-import React, { cloneElement, PropTypes, Component } from 'react';
+import React, { cloneElement, Component } from 'react';
 import { findDOMNode } from 'react-dom';
 import { toArray } from 'tinper-bee-core';
-import Menu, { ItemGroup as MenuItemGroup } from 'bee-menu';
+import Menu, { ItemGroup as MenuItemGroup } from 'bee-menus';
 import scrollIntoView from 'dom-scroll-into-view';
 import { getSelectKeys, preventDefaultEvent } from './util';
+import PropTypes from 'prop-types';
 
 const propTypes = {
     defaultActiveFirstOption: PropTypes.bool,

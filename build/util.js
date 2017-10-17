@@ -19,7 +19,7 @@ exports.findFirstMenuItem = findFirstMenuItem;
 exports.includesSeparators = includesSeparators;
 exports.splitBySeparators = splitBySeparators;
 
-var _beeMenu = require('bee-menu');
+var _beeMenus = require('bee-menus');
 
 var _react = require('react');
 
@@ -103,7 +103,7 @@ function getSelectKeys(menuItems, value) {
   }
   var selectedKeys = [];
   _react2["default"].Children.forEach(menuItems, function (item) {
-    if (item.type === _beeMenu.ItemGroup) {
+    if (item.type === _beeMenus.ItemGroup) {
       selectedKeys = selectedKeys.concat(getSelectKeys(item.props.children, value));
     } else {
       var itemValue = getValuePropValue(item);
@@ -128,7 +128,7 @@ var UNSELECTABLE_ATTRIBUTE = exports.UNSELECTABLE_ATTRIBUTE = {
 function findFirstMenuItem(children) {
   for (var i = 0; i < children.length; i++) {
     var child = children[i];
-    if (child.type === _beeMenu.ItemGroup) {
+    if (child.type === _beeMenus.ItemGroup) {
       var found = findFirstMenuItem(child.props.children);
       if (found) {
         return found;

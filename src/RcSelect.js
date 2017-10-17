@@ -1,11 +1,13 @@
-import React, { PropTypes,Component } from 'react';
-import { MenuItem, MenuItemGroup} from 'bee-menu';
+import React, {Component } from 'react';
+import { MenuItem, MenuItemGroup} from 'bee-menus';
 import ReactDOM from 'react-dom';
 import { KeyCode } from 'tinper-bee-core';
 import classnames from 'classnames';
 import OptGroup from './OptGroup';
 import warning from 'warning';
 import classes from 'component-classes';
+import PropTypes from 'prop-types';
+
 import {
   getPropValue, getValuePropValue, isCombobox,
   isMultipleOrTags, isMultipleOrTagsOrCombobox,

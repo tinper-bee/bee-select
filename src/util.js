@@ -1,4 +1,4 @@
-import { ItemGroup as MenuItemGroup } from 'bee-menu';
+import { ItemGroup as MenuItemGroup } from 'bee-menus';
 import React from 'react';
 
 export function getValuePropValue(child) {

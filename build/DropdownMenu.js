@@ -14,15 +14,19 @@ var _reactDom = require('react-dom');
 
 var _tinperBeeCore = require('tinper-bee-core');
 
-var _beeMenu = require('bee-menu');
+var _beeMenus = require('bee-menus');
 
-var _beeMenu2 = _interopRequireDefault(_beeMenu);
+var _beeMenus2 = _interopRequireDefault(_beeMenus);
 
 var _domScrollIntoView = require('dom-scroll-into-view');
 
 var _domScrollIntoView2 = _interopRequireDefault(_domScrollIntoView);
 
 var _util = require('./util');
+
+var _propTypes = require('prop-types');
+
+var _propTypes2 = _interopRequireDefault(_propTypes);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
@@ -35,17 +39,17 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : _defaults(subClass, superClass); }
 
 var propTypes = {
-  defaultActiveFirstOption: _react.PropTypes.bool,
-  value: _react.PropTypes.any,
-  dropdownMenuStyle: _react.PropTypes.object,
-  multiple: _react.PropTypes.bool,
-  onPopupFocus: _react.PropTypes.func,
-  onMenuDeSelect: _react.PropTypes.func,
-  onMenuSelect: _react.PropTypes.func,
-  clsPrefix: _react.PropTypes.string,
-  menuItems: _react.PropTypes.any,
-  inputValue: _react.PropTypes.string,
-  visible: _react.PropTypes.bool
+  defaultActiveFirstOption: _propTypes2["default"].bool,
+  value: _propTypes2["default"].any,
+  dropdownMenuStyle: _propTypes2["default"].object,
+  multiple: _propTypes2["default"].bool,
+  onPopupFocus: _propTypes2["default"].func,
+  onMenuDeSelect: _propTypes2["default"].func,
+  onMenuSelect: _propTypes2["default"].func,
+  clsPrefix: _propTypes2["default"].string,
+  menuItems: _propTypes2["default"].any,
+  inputValue: _propTypes2["default"].string,
+  visible: _propTypes2["default"].bool
 };
 
 var DropdownMenu = function (_Component) {
@@ -138,7 +142,7 @@ var DropdownMenu = function (_Component) {
         };
 
         clonedMenuItems = menuItems.map(function (item) {
-          if (item.type === _beeMenu.ItemGroup) {
+          if (item.type === _beeMenus.ItemGroup) {
             var children = (0, _tinperBeeCore.toArray)(item.props.children).map(clone);
             return (0, _react.cloneElement)(item, {}, children);
           }
@@ -152,7 +156,7 @@ var DropdownMenu = function (_Component) {
       }
 
       return _react2["default"].createElement(
-        _beeMenu2["default"],
+        _beeMenus2["default"],
         _extends({
           ref: 'menu',
           style: this.props.dropdownMenuStyle,

@@ -10,6 +10,10 @@ var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
 
+var _propTypes = require('prop-types');
+
+var _propTypes2 = _interopRequireDefault(_propTypes);
+
 var _RcSelect = require('./RcSelect');
 
 var _RcSelect2 = _interopRequireDefault(_RcSelect);
@@ -40,7 +44,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 var SelectContext = {
   antLocale: {
-    Select: _react.PropTypes.any
+    Select: _propTypes2["default"].any
   }
 };
 
@@ -52,35 +56,35 @@ var defaultProps = {
 };
 
 var propTypes = {
-  clsPrefix: _react.PropTypes.string,
-  className: _react.PropTypes.string,
-  value: _react.PropTypes.oneOfType([_react.PropTypes.string, _react.PropTypes.any]),
-  defaultValue: _react.PropTypes.oneOfType([_react.PropTypes.node, _react.PropTypes.array, _react.PropTypes.any]),
-  size: _react.PropTypes.oneOf(['default', 'lg', 'sm']),
-  combobox: _react.PropTypes.bool,
-  notFoundContent: _react.PropTypes.oneOfType([_react.PropTypes.node, _react.PropTypes.array, _react.PropTypes.any]),
-  showSearch: _react.PropTypes.bool,
-  transitionName: _react.PropTypes.string,
-  choiceTransitionName: _react.PropTypes.string,
-  multiple: _react.PropTypes.bool,
-  allowClear: _react.PropTypes.bool,
-  filterOption: _react.PropTypes.oneOfType([_react.PropTypes.bool, _react.PropTypes.func]),
-  tags: _react.PropTypes.bool,
-  onSelect: _react.PropTypes.func,
-  onDeselect: _react.PropTypes.func,
-  onSearch: _react.PropTypes.func,
-  placeholder: _react.PropTypes.string,
-  dropdownMatchSelectWidth: _react.PropTypes.bool,
-  optionFilterProp: _react.PropTypes.string,
-  optionLabelProp: _react.PropTypes.string,
-  disabled: _react.PropTypes.bool,
-  defaultActiveFirstOption: _react.PropTypes.bool,
-  labelInValue: _react.PropTypes.bool,
-  getPopupContainer: _react.PropTypes.func,
-  style: _react.PropTypes.object,
-  dropdownStyle: _react.PropTypes.object,
-  dropdownMenuStyle: _react.PropTypes.object,
-  onChange: _react.PropTypes.func
+  clsPrefix: _propTypes2["default"].string,
+  className: _propTypes2["default"].string,
+  value: _propTypes2["default"].oneOfType([_propTypes2["default"].string, _propTypes2["default"].any]),
+  defaultValue: _propTypes2["default"].oneOfType([_propTypes2["default"].node, _propTypes2["default"].array, _propTypes2["default"].any]),
+  size: _propTypes2["default"].oneOf(['default', 'lg', 'sm']),
+  combobox: _propTypes2["default"].bool,
+  notFoundContent: _propTypes2["default"].oneOfType([_propTypes2["default"].node, _propTypes2["default"].array, _propTypes2["default"].any]),
+  showSearch: _propTypes2["default"].bool,
+  transitionName: _propTypes2["default"].string,
+  choiceTransitionName: _propTypes2["default"].string,
+  multiple: _propTypes2["default"].bool,
+  allowClear: _propTypes2["default"].bool,
+  filterOption: _propTypes2["default"].oneOfType([_propTypes2["default"].bool, _propTypes2["default"].func]),
+  tags: _propTypes2["default"].bool,
+  onSelect: _propTypes2["default"].func,
+  onDeselect: _propTypes2["default"].func,
+  onSearch: _propTypes2["default"].func,
+  placeholder: _propTypes2["default"].string,
+  dropdownMatchSelectWidth: _propTypes2["default"].bool,
+  optionFilterProp: _propTypes2["default"].string,
+  optionLabelProp: _propTypes2["default"].string,
+  disabled: _propTypes2["default"].bool,
+  defaultActiveFirstOption: _propTypes2["default"].bool,
+  labelInValue: _propTypes2["default"].bool,
+  getPopupContainer: _propTypes2["default"].func,
+  style: _propTypes2["default"].object,
+  dropdownStyle: _propTypes2["default"].object,
+  dropdownMenuStyle: _propTypes2["default"].object,
+  onChange: _propTypes2["default"].func
 };
 
 var Select = function (_Component) {
@@ -121,7 +125,6 @@ var Select = function (_Component) {
       // children 带 dom 结构时，无法填入输入框
       optionLabelProp = optionLabelProp || 'value';
     }
-    debugger;
     return _react2["default"].createElement(_RcSelect2["default"], _extends({}, this.props, {
       className: cls,
       optionLabelProp: optionLabelProp || 'children',
