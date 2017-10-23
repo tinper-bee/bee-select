@@ -315,7 +315,7 @@ var RcSelect = function (_Component) {
             label = key;
           }
           sel.push(_react2["default"].createElement(
-            _beeMenus.MenuItemGroup,
+            _beeMenus.ItemGroup,
             { key: key, title: label },
             innerItems
           ));
@@ -331,7 +331,7 @@ var RcSelect = function (_Component) {
 
       var childValue = (0, _util.getValuePropValue)(child);
       if (_this2.filterOption(inputValue, child)) {
-        sel.push(_react2["default"].createElement(_beeMenus.MenuItem, _extends({
+        sel.push(_react2["default"].createElement(_beeMenus.Item, _extends({
           style: _util.UNSELECTABLE_STYLE,
           attribute: _util.UNSELECTABLE_ATTRIBUTE,
           value: childValue,
@@ -351,7 +351,7 @@ var RcSelect = function (_Component) {
       sel = sel.concat(value.map(function (singleValue) {
         var key = singleValue.key;
         return _react2["default"].createElement(
-          _beeMenus.MenuItem,
+          _beeMenus.Item,
           {
             style: _util.UNSELECTABLE_STYLE,
             attribute: _util.UNSELECTABLE_ATTRIBUTE,
@@ -367,7 +367,7 @@ var RcSelect = function (_Component) {
         });
         if (notFindInputItem) {
           sel.unshift(_react2["default"].createElement(
-            _beeMenus.MenuItem,
+            _beeMenus.Item,
             {
               style: _util.UNSELECTABLE_STYLE,
               attribute: _util.UNSELECTABLE_ATTRIBUTE,
@@ -381,7 +381,7 @@ var RcSelect = function (_Component) {
     }
     if (!sel.length && showNotFound && props.notFoundContent) {
       sel = [_react2["default"].createElement(
-        _beeMenus.MenuItem,
+        _beeMenus.Item,
         {
           style: _util.UNSELECTABLE_STYLE,
           attribute: _util.UNSELECTABLE_ATTRIBUTE,

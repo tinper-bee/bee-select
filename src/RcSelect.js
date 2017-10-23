@@ -1,5 +1,5 @@
 import React, {Component } from 'react';
-import { MenuItem, MenuItemGroup} from 'bee-menus';
+import { Item as MenuItem, ItemGroup as MenuItemGroup} from 'bee-menus';
 import ReactDOM from 'react-dom';
 import { KeyCode } from 'tinper-bee-core';
 import classnames from 'classnames';
