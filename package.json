@@ -54,6 +54,8 @@
   "es5-shim": "~4.1.10",
   "bee-panel": "latest",
   "bee-layout": "latest",
-  "bee-button": "latest"
+  "bee-button": "latest",
+  "react": "~15.3.0",
+  "react-dom": "~15.3.0"
  }
 }

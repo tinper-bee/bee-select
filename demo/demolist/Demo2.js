@@ -17,12 +17,14 @@ for (let i = 10; i < 36; i++) {
 
 class Demo2 extends Component {
 	
-	constructor() {
-		super();
+	constructor(props) {
+		super(props);
+
 		this.handleChange = this.handleChange.bind(this);
 	}
 	handleChange(value) {
-  		console.log(`selected ${value}`);
+		debugger;
+  		// console.log('selected ${value}');
 	}
 	render(){
 		return( 
