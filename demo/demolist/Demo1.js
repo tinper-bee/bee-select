@@ -17,7 +17,6 @@ class Demo1 extends Component {
 		this.handleChange = this.handleChange.bind(this);
 	}
 	handleChange(value) {
-		debugger;
   		// console.log(`selected ${value}`);
 	}
 	render(){	

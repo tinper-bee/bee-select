@@ -472,7 +472,8 @@ var RcSelect = function (_Component) {
 
     if (state.open) {
       var menu = this.refs.trigger.getInnerMenu();
-      if (menu && menu.onKeyDown(event)) {
+
+      if (menu && menu.rcMenu.onKeyDown(event)) {
         event.preventDefault();
         event.stopPropagation();
       }

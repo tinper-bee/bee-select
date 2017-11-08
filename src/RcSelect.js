@@ -430,7 +430,8 @@ class RcSelect extends Component{
 
     if (state.open) {
       const menu = this.refs.trigger.getInnerMenu();
-      if (menu && menu.onKeyDown(event)) {
+      
+      if (menu && menu.rcMenu.onKeyDown(event)) {
         event.preventDefault();
         event.stopPropagation();
       }
