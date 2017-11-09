@@ -14100,11 +14100,8 @@
 	  DropdownMenu.prototype.componentDidMount = function componentDidMount() {
 	    this.scrollActiveItemToView();
 	    this.lastVisible = this.props.visible;
-	    var dom = (0, _reactDom.findDOMNode)(this.refs.menu);
-	    // dom.onscroll = function() {
-	    //   console.log("div 监听");
-	    // }
-	    dom.addEventListener('scroll', this.handleScroll.bind(this));
+	    var scrollDom = (0, _reactDom.findDOMNode)(this.refs.menu);
+	    scrollDom.addEventListener('scroll', this.handleScroll.bind(this));
 	  };
 	
 	  DropdownMenu.prototype.shouldComponentUpdate = function shouldComponentUpdate(nextProps) {

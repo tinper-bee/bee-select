@@ -837,7 +837,7 @@ ul {
     width: auto;
     padding: 0; }
     .u-select-selection--multiple .u-select-search--inline .u-select-search-field {
-      width: 0.75em; }
+      width: 0.75em !important; }
   .u-select-selection--multiple .u-select-selection-rendered {
     margin-left: 5px;
     margin-bottom: -3px;

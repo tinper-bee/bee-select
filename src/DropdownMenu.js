@@ -30,11 +30,8 @@ class DropdownMenu extends Component{
   componentDidMount() {
     this.scrollActiveItemToView();
     this.lastVisible = this.props.visible;
-    let dom = findDOMNode(this.refs.menu);
-    // dom.onscroll = function() {
-    //   console.log("div 监听");
-    // }
-    dom.addEventListener('scroll', this.handleScroll.bind(this));
+    let scrollDom = findDOMNode(this.refs.menu);
+    scrollDom.addEventListener('scroll', this.handleScroll.bind(this));
   }
 
   shouldComponentUpdate(nextProps) {
@@ -53,7 +50,7 @@ class DropdownMenu extends Component{
     this.lastVisible = props.visible;
     this.lastInputValue = props.inputValue;
   }
-
+  
   handleScroll(event) {
     const  {scrollToEnd} = this.props;
     let el = event.target;
@@ -62,7 +59,6 @@ class DropdownMenu extends Component{
         scrollToEnd();
       }
     }
-    
   }
 
   scrollActiveItemToView() {
