@@ -3,8 +3,8 @@
  * @description 用户在框内输入自定义内容，Select将输入的内容自动纳入下拉选项中一员。
  */
 
-import React, { Component } from 'react';
-import Select from '../../src';
+import React, { Component } from "react";
+import Select from "../../src";
 
 const Option = Select.Option;
 
@@ -14,30 +14,25 @@ for (let i = 10; i < 36; i++) {
 }
 
 class Demo3 extends Component {
-	constructor() {
-		super();
-		this.handleChange = this.handleChange.bind(this);
-		this.scrollToEnd = this.scrollToEnd.bind(this);
-	}
-	handleChange(value) {
-  		console.log(`selected ${value}`);
-	}
-	scrollToEnd() {
-		console.log("软加载")
-	}
-	render(){
-		return( 
-			<Select tags
-			    style={{ width: '100%' }}
-			    searchPlaceholder="标签模式"
-					scrollToEnd = {this.scrollToEnd}
-			    onChange={this.handleChange}
-			  >
-			    {Children}
-			  </Select>
-		)
-	}
+  handleChange = value => {
+    console.log(`selected ${value}`);
+  };
+  scrollToEnd = () => {
+    console.log("软加载");
+  };
+  render() {
+    return (
+      <Select
+        tags
+        style={{ width: "100%" }}
+        searchPlaceholder="标签模式"
+        scrollToEnd={this.scrollToEnd}
+        onChange={this.handleChange}
+      >
+        {Children}
+      </Select>
+    );
+  }
 }
-
 
 export default Demo3;

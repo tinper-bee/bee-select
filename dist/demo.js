@@ -98,7 +98,7 @@
 	
 	var CARETUP = _react2['default'].createElement('i', { className: 'uf uf-arrow-up' });
 	
-	var Demo1 = __webpack_require__(143);var Demo2 = __webpack_require__(144);var Demo3 = __webpack_require__(145);var Demo4 = __webpack_require__(146);var Demo5 = __webpack_require__(147);var Demo6 = __webpack_require__(148);var DemoArray = [{ "example": _react2['default'].createElement(Demo1, null), "title": " 不同尺寸单选`Select`", "code": "/**\n * @title 不同尺寸单选`Select`\n * @description `size`参数控制大小\n */\n\n\n\nimport React, { Component } from 'react';\nimport Select from 'bee-select';\n\nconst Option = Select.Option;\nconst OptGroup = Select.OptGroup;\n\nclass Demo1 extends Component {\n\tconstructor() {\n\t\tsuper();\n\t\tthis.handleChange = this.handleChange.bind(this);\n\t}\n\thandleChange(value) {\n  \t\t// console.log(`selected ${value}`);\n\t}\n\trender(){\t\n\t\treturn( \n\t\t\t<div>\n\t\t\t    <Select size=\"lg\" defaultValue=\"lucy\" style={{ width: 200,marginRight: 6 }} onChange={this.handleChange}>\n\t\t\t      <Option value=\"jack\">boyuzhou</Option>\n\t\t\t      <Option value=\"lucy\">renhualiu</Option>\n\t\t\t      <Option value=\"disabled\" disabled>Disabled</Option>\n\t\t\t      <Option value=\"yiminghe\">yuzhao</Option>\n\t\t\t    </Select>\n\t\t\t    <Select defaultValue=\"lucy\" style={{ width: 200,marginRight: 6 }} onChange={this.handleChange}>\n\t\t\t      <Option value=\"jack\">boyuzhou</Option>\n\t\t\t      <Option value=\"lucy\">renhualiu</Option>\n\t\t\t      <Option value=\"disabled\" disabled>Disabled</Option>\n\t\t\t      <Option value=\"yiminghe\">yuzhao</Option>\n\t\t\t    </Select>\n\t\t\t    <Select size=\"sm\" defaultValue=\"lucy\" style={{ width: 200 }} onChange={this.handleChange}>\n\t\t\t      <Option value=\"jack\">boyuzhou</Option>\n\t\t\t      <Option value=\"lucy\">renhualiu</Option>\n\t\t\t      <Option value=\"disabled\" disabled>Disabled</Option>\n\t\t\t      <Option value=\"yiminghe\">yuzhao</Option>\n\t\t\t    </Select>\n\t\t\t</div>\n\t\t)\n\t}\n}\n\n\n\n", "desc": " `size`参数控制大小" }, { "example": _react2['default'].createElement(Demo2, null), "title": " 常用多选", "code": "/**\n * @title 常用多选\n * @description Children自定义数据列表,注意：Children已经定义到全局，此处显示为注释例子，其他例子用到Children变量均以此方式定义。\n */\n\nimport React, { Component } from 'react';\nimport Select from 'bee-select';\n\nconst Option = Select.Option;\nconst OptGroup = Select.OptGroup;\n\n\nconst Children = [];\nfor (let i = 10; i < 36; i++) {\n  Children.push(<Option key={i.toString(36) + i}>{i.toString(36) + i}</Option>);\n}\n\nclass Demo2 extends Component {\n\t\n\tconstructor(props) {\n\t\tsuper(props);\n\n\t\tthis.handleChange = this.handleChange.bind(this);\n\t}\n\thandleChange(value) {\n  \t\t// console.log('selected ${value}');\n\t}\n\trender(){\n\t\treturn( \n\t\t\t<Select multiple\n\t\t\t    style={{ width: '100%' }}\n\t\t\t    searchPlaceholder=\"标签模式\"\n\t\t\t    onChange={this.handleChange}\n\t\t\t  >\n\t\t\t    {Children}\n\t\t\t  </Select>\n\t\t)\n\t}\n}\n\n\n\n", "desc": " Children自定义数据列表,注意：Children已经定义到全局，此处显示为注释例子，其他例子用到Children变量均以此方式定义。" }, { "example": _react2['default'].createElement(Demo3, null), "title": " 自定义选项多选`Select`", "code": "/**\n * @title 自定义选项多选`Select`\n * @description 用户在框内输入自定义内容，Select将输入的内容自动纳入下拉选项中一员。\n */\n\nimport React, { Component } from 'react';\nimport Select from 'bee-select';\n\nconst Option = Select.Option;\n\nconst Children = [];\nfor (let i = 10; i < 36; i++) {\n  Children.push(<Option key={i.toString(36) + i}>{i.toString(36) + i}</Option>);\n}\n\nclass Demo3 extends Component {\n\tconstructor() {\n\t\tsuper();\n\t\tthis.handleChange = this.handleChange.bind(this);\n\t\tthis.scrollToEnd = this.scrollToEnd.bind(this);\n\t}\n\thandleChange(value) {\n  \t\tconsole.log(`selected ${value}`);\n\t}\n\tscrollToEnd() {\n\t\tconsole.log(\"软加载\")\n\t}\n\trender(){\n\t\treturn( \n\t\t\t<Select tags\n\t\t\t    style={{ width: '100%' }}\n\t\t\t    searchPlaceholder=\"标签模式\"\n\t\t\t\t\tscrollToEnd = {this.scrollToEnd}\n\t\t\t    onChange={this.handleChange}\n\t\t\t  >\n\t\t\t    {Children}\n\t\t\t  </Select>\n\t\t)\n\t}\n}\n\n\n\n", "desc": " 用户在框内输入自定义内容，Select将输入的内容自动纳入下拉选项中一员。" }, { "example": _react2['default'].createElement(Demo4, null), "title": " 简易级联单选`Select`", "code": "/**\n * @title 简易级联单选`Select`\n * @description 常用语城市级联的选择。\n */\n\nimport React, { Component } from 'react';\nimport Select from 'bee-select';\n\nconst Option = Select.Option;\n\nconst provinceData = ['Zhejiang', 'Jiangsu'];\nconst cityData = {\n  Zhejiang: ['Hangzhou', 'Ningbo', 'Wenzhou'],\n  Jiangsu: ['Nanjing', 'Suzhou', 'Zhenjiang'],\n};\n\nclass Demo4 extends Component {\n\tconstructor() {\n\t\tsuper();\n\t\tthis.state = {\n\t\t\tcities: cityData[provinceData[0]],\n      \t\tsecondCity: cityData[provinceData[0]][0],\n\t\t}\n\t\tthis.handleProvinceChange = this.handleProvinceChange.bind(this);\n\t\tthis.onSecondCityChange = this.onSecondCityChange.bind(this);\n\t}\n\thandleProvinceChange(value) {\n\t    this.setState({\n\t      cities: cityData[value],\n\t      secondCity: cityData[value][0],\n\t    });\n\t}\n\tonSecondCityChange(value) {\n\t    this.setState({\n\t      secondCity: value,\n\t    });\n\t}\n\trender() {\n\t    const provinceOptions = provinceData.map(province => <Option key={province}>{province}</Option>);\n\t    const cityOptions = this.state.cities.map(city => <Option key={city}>{city}</Option>);\n\t    return (\n\t      <div>\n\t        <Select defaultValue={provinceData[0]} style={{ width: 90,marginRight:6 }} onChange={this.handleProvinceChange}>\n\t          {provinceOptions}\n\t        </Select>\n\t        <Select value={this.state.secondCity} style={{ width: 90 }} onChange={this.onSecondCityChange}>\n\t          {cityOptions}\n\t        </Select>\n\t      </div>\n\t    );\n\t}\n}\n\n\n", "desc": " 常用语城市级联的选择。" }, { "example": _react2['default'].createElement(Demo5, null), "title": " 自定义自动填充单选`Select`", "code": "/**\n * @title 自定义自动填充单选`Select`\n * @description 常用邮箱后缀自动填充。\n */\n\nimport React, { Component } from 'react';\nimport Select from 'bee-select';\n\nconst Option = Select.Option;\n\nclass Demo5 extends Component {\n\tconstructor() {\n\t\tsuper();\n\t\tthis.state = {\n\t\t\toptions: [],\n\t\t}\n\t\tthis.handleChange = this.handleChange.bind(this);\n\t}\n\thandleChange(value) {\n\t    let options;\n\t    if (!value || value.indexOf('@') >= 0) {\n\t      options = [];\n\t    } else {\n\t      options = ['gmail.com', '163.com', 'qq.com'].map((domain) => {\n\t        const email = `${value}@${domain}`;\n\t        return <Option key={email}>{email}</Option>;\n\t      });\n\t    }\n\t    this.setState({ options });\n\t}\n\t\n\trender() {\n\t    return (\n\t      <Select combobox\n\t        style={{ width: 200 }}\n\t        onChange={this.handleChange}\n\t        filterOption={false}\n\t        placeholder=\"Enter the account name\"\n\t      >\n\t        {this.state.options}\n\t      </Select>\n\t    );\n\t}\n}\n\n\n", "desc": " 常用邮箱后缀自动填充。" }, { "example": _react2['default'].createElement(Demo6, null), "title": " 搜索单选`Select`", "code": "/**\n * @title 搜索单选`Select`\n * @description 从下拉选中，通过输入的值检索相应的选项。\n */\n\nimport React, { Component } from 'react';\nimport Select from 'bee-select';\n\nconst Option = Select.Option;\n\nclass Demo6 extends Component {\n\tconstructor() {\n\t\tsuper();\n\t\tthis.handleChange = this.handleChange.bind(this);\n\t}\n\thandleChange(value) {\n  \t\tconsole.log(`selected ${value}`);\n\t}\n\t\n\trender(){\n\t\treturn( \n\t\t\t<Select\n\t\t\t    showSearch\n\t\t\t    style={{ width: 200 }}\n\t\t\t    placeholder=\"Select a person\"\n\t\t\t    optionFilterProp=\"children\"\n\t\t\t    onChange={this.handleChange.bind(this)}\n\t\t\t  >\n\t\t\t    <Option value=\"jack\">Jack</Option>\n\t\t\t    <Option value=\"lucy\">Lucy</Option>\n\t\t\t    <Option value=\"tom\">Tom</Option>\n\t\t\t  </Select>\n\t\t)\n\t}\n}\n\n", "desc": " 从下拉选中，通过输入的值检索相应的选项。" }];
+	var Demo1 = __webpack_require__(143);var Demo2 = __webpack_require__(144);var Demo3 = __webpack_require__(145);var Demo4 = __webpack_require__(146);var Demo5 = __webpack_require__(147);var Demo6 = __webpack_require__(148);var DemoArray = [{ "example": _react2['default'].createElement(Demo1, null), "title": " 不同尺寸单选`Select`", "code": "/**\n * @title 不同尺寸单选`Select`\n * @description `size`参数控制大小\n */\n\nimport React, { Component } from \"react\";\nimport Select from \"../../src\";\n\nconst Option = Select.Option;\nconst OptGroup = Select.OptGroup;\n\nclass Demo1 extends Component {\n  handleChange = value => {\n    console.log(`selected ${value}`);\n  };\n  render() {\n    return (\n      <div>\n        <Select\n          size=\"lg\"\n          defaultValue=\"lucy\"\n          style={{ width: 200, marginRight: 6 }}\n          onChange={this.handleChange}\n        >\n          <Option value=\"jack\">boyuzhou</Option>\n          <Option value=\"lucy\">renhualiu</Option>\n          <Option value=\"disabled\" disabled>\n            Disabled\n          </Option>\n          <Option value=\"yiminghe\">yuzhao</Option>\n        </Select>\n        <Select\n          defaultValue=\"lucy\"\n          style={{ width: 200, marginRight: 6 }}\n          onChange={this.handleChange}\n        >\n          <Option value=\"jack\">boyuzhou</Option>\n          <Option value=\"lucy\">renhualiu</Option>\n          <Option value=\"disabled\" disabled>\n            Disabled\n          </Option>\n          <Option value=\"yiminghe\">yuzhao</Option>\n        </Select>\n        <Select\n          size=\"sm\"\n          defaultValue=\"lucy\"\n          style={{ width: 200 }}\n          onChange={this.handleChange}\n        >\n          <Option value=\"jack\">boyuzhou</Option>\n          <Option value=\"lucy\">renhualiu</Option>\n          <Option value=\"disabled\" disabled>\n            Disabled\n          </Option>\n          <Option value=\"yiminghe\">yuzhao</Option>\n        </Select>\n      </div>\n    );\n  }\n}\n\n\n", "desc": " `size`参数控制大小" }, { "example": _react2['default'].createElement(Demo2, null), "title": " 常用多选", "code": "/**\n * @title 常用多选\n * @description Children自定义数据列表,注意：Children已经定义到全局，此处显示为注释例子，其他例子用到Children变量均以此方式定义。\n */\n\nimport React, { Component } from \"react\";\nimport Select from \"../../src\";\n\nconst Option = Select.Option;\nconst OptGroup = Select.OptGroup;\n\nconst Children = [];\nfor (let i = 10; i < 36; i++) {\n  Children.push(<Option key={i.toString(36) + i}>{i.toString(36) + i}</Option>);\n}\n\nclass Demo2 extends Component {\n  handleChange = value => {\n    console.log('selected ${value}');\n  };\n  render() {\n    return (\n      <Select\n        multiple\n        style={{ width: \"100%\" }}\n        searchPlaceholder=\"标签模式\"\n        onChange={this.handleChange}\n      >\n        {Children}\n      </Select>\n    );\n  }\n}\n\n\n", "desc": " Children自定义数据列表,注意：Children已经定义到全局，此处显示为注释例子，其他例子用到Children变量均以此方式定义。" }, { "example": _react2['default'].createElement(Demo3, null), "title": " 自定义选项多选`Select`", "code": "/**\n * @title 自定义选项多选`Select`\n * @description 用户在框内输入自定义内容，Select将输入的内容自动纳入下拉选项中一员。\n */\n\nimport React, { Component } from \"react\";\nimport Select from \"../../src\";\n\nconst Option = Select.Option;\n\nconst Children = [];\nfor (let i = 10; i < 36; i++) {\n  Children.push(<Option key={i.toString(36) + i}>{i.toString(36) + i}</Option>);\n}\n\nclass Demo3 extends Component {\n  handleChange = value => {\n    console.log(`selected ${value}`);\n  };\n  scrollToEnd = () => {\n    console.log(\"软加载\");\n  };\n  render() {\n    return (\n      <Select\n        tags\n        style={{ width: \"100%\" }}\n        searchPlaceholder=\"标签模式\"\n        scrollToEnd={this.scrollToEnd}\n        onChange={this.handleChange}\n      >\n        {Children}\n      </Select>\n    );\n  }\n}\n\n\n", "desc": " 用户在框内输入自定义内容，Select将输入的内容自动纳入下拉选项中一员。" }, { "example": _react2['default'].createElement(Demo4, null), "title": " 简易级联单选`Select`", "code": "/**\n * @title 简易级联单选`Select`\n * @description 常用语城市级联的选择。\n */\n\nimport React, { Component } from \"react\";\nimport Select from \"../../src\";\n\nconst Option = Select.Option;\n\nconst provinceData = [\"Zhejiang\", \"Jiangsu\"];\nconst cityData = {\n  Zhejiang: [\"Hangzhou\", \"Ningbo\", \"Wenzhou\"],\n  Jiangsu: [\"Nanjing\", \"Suzhou\", \"Zhenjiang\"]\n};\n\nclass Demo4 extends Component {\n  constructor(props) {\n    super(props);\n    this.state = {\n      cities: cityData[provinceData[0]],\n      secondCity: cityData[provinceData[0]][0]\n    };\n  }\n  handleProvinceChange = value => {\n    this.setState({\n      cities: cityData[value],\n      secondCity: cityData[value][0]\n    });\n  };\n  onSecondCityChange = value => {\n    this.setState({\n      secondCity: value\n    });\n  };\n  render() {\n    const provinceOptions = provinceData.map(province => (\n      <Option key={province}>{province}</Option>\n    ));\n    const cityOptions = this.state.cities.map(city => (\n      <Option key={city}>{city}</Option>\n    ));\n    return (\n      <div>\n        <Select\n          defaultValue={provinceData[0]}\n          style={{ width: 90, marginRight: 6 }}\n          onChange={this.handleProvinceChange}\n        >\n          {provinceOptions}\n        </Select>\n        <Select\n          value={this.state.secondCity}\n          style={{ width: 90 }}\n          onChange={this.onSecondCityChange}\n        >\n          {cityOptions}\n        </Select>\n      </div>\n    );\n  }\n}\n\n\n", "desc": " 常用语城市级联的选择。" }, { "example": _react2['default'].createElement(Demo5, null), "title": " 自定义自动填充单选`Select`", "code": "/**\n * @title 自定义自动填充单选`Select`\n * @description 常用邮箱后缀自动填充。\n */\n\nimport React, { Component } from \"react\";\nimport Select from \"../../src\";\n\nconst Option = Select.Option;\n\nclass Demo5 extends Component {\n  constructor(props) {\n    super(props);\n    this.state = {\n      options: []\n    };\n  }\n  handleChange = value => {\n    let options;\n    if (!value || value.indexOf(\"@\") >= 0) {\n      options = [];\n    } else {\n      options = [\"gmail.com\", \"163.com\", \"qq.com\"].map(domain => {\n        const email = `${value}@${domain}`;\n        return <Option key={email}>{email}</Option>;\n      });\n    }\n    this.setState({ options });\n  };\n\n  render() {\n    return (\n      <Select\n        combobox\n        style={{ width: 200 }}\n        onChange={this.handleChange}\n        filterOption={false}\n        placeholder=\"Enter the account name\"\n      >\n        {this.state.options}\n      </Select>\n    );\n  }\n}\n\n\n", "desc": " 常用邮箱后缀自动填充。" }, { "example": _react2['default'].createElement(Demo6, null), "title": " 搜索单选`Select`", "code": "/**\n * @title 搜索单选`Select`\n * @description 从下拉选中，通过输入的值检索相应的选项。\n */\n\nimport React, { Component } from \"react\";\nimport Select from \"../../src\";\n\nconst Option = Select.Option;\n\nclass Demo6 extends Component {\n  constructor(props) {\n    super(props);\n  }\n  handleChange = value => {\n    console.log(`selected ${value}`);\n  };\n\n  render() {\n    return (\n      <Select\n        showSearch\n        style={{ width: 200 }}\n        placeholder=\"Select a person\"\n        optionFilterProp=\"children\"\n        onChange={this.handleChange.bind(this)}\n      >\n        <Option value=\"jack\">Jack</Option>\n        <Option value=\"lucy\">Lucy</Option>\n        <Option value=\"tom\">Tom</Option>\n      </Select>\n    );\n  }\n}\n\n\n", "desc": " 从下拉选中，通过输入的值检索相应的选项。" }];
 	
 	var Demo = function (_Component) {
 	    _inherits(Demo, _Component);
@@ -10048,12 +10048,6 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _tinperBeeCore = __webpack_require__(26);
-	
-	var _warning = __webpack_require__(31);
-	
-	var _warning2 = _interopRequireDefault(_warning);
-	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 	
 	function noop() {}
@@ -10196,7 +10190,9 @@
 	
 	var _propTypes2 = _interopRequireDefault(_propTypes);
 	
-	var _tinperBeeCore = __webpack_require__(26);
+	var _keyCode = __webpack_require__(72);
+	
+	var _keyCode2 = _interopRequireDefault(_keyCode);
 	
 	var _classnames = __webpack_require__(3);
 	
@@ -10324,7 +10320,7 @@
 	    var menu = this.menuInstance;
 	    var isOpen = this.isOpen();
 	
-	    if (keyCode === _tinperBeeCore.KeyCode.ENTER) {
+	    if (keyCode === _keyCode2["default"].ENTER) {
 	      this.onTitleClick(e);
 	      this.setState({
 	        defaultActiveFirst: true
@@ -10332,7 +10328,7 @@
 	      return true;
 	    }
 	
-	    if (keyCode === _tinperBeeCore.KeyCode.RIGHT) {
+	    if (keyCode === _keyCode2["default"].RIGHT) {
 	      if (isOpen) {
 	        menu.onKeyDown(e);
 	      } else {
@@ -10343,7 +10339,7 @@
 	      }
 	      return true;
 	    }
-	    if (keyCode === _tinperBeeCore.KeyCode.LEFT) {
+	    if (keyCode === _keyCode2["default"].LEFT) {
 	      var handled = void 0;
 	      if (isOpen) {
 	        handled = menu.onKeyDown(e);
@@ -10357,7 +10353,7 @@
 	      return handled;
 	    }
 	
-	    if (isOpen && (keyCode === _tinperBeeCore.KeyCode.UP || keyCode === _tinperBeeCore.KeyCode.DOWN)) {
+	    if (isOpen && (keyCode === _keyCode2["default"].UP || keyCode === _keyCode2["default"].DOWN)) {
 	      return menu.onKeyDown(e);
 	    }
 	  };
@@ -10739,7 +10735,9 @@
 	
 	var _classnames2 = _interopRequireDefault(_classnames);
 	
-	var _tinperBeeCore = __webpack_require__(26);
+	var _createChainedFunction = __webpack_require__(71);
+	
+	var _createChainedFunction2 = _interopRequireDefault(_createChainedFunction);
 	
 	var _util = __webpack_require__(112);
 	
@@ -10807,7 +10805,6 @@
 	  }
 	}
 	
-	//import Animate from 'bee-transition';
 	var propTypes = {
 	  onSelect: _propTypes2["default"].func,
 	  onClick: _propTypes2["default"].func,
@@ -10966,7 +10963,7 @@
 	      rootPrefixCls: props.prefixCls,
 	      index: i,
 	      parentMenu: this,
-	      ref: childProps.disabled ? undefined : (0, _tinperBeeCore.createChainedFunction)(child.ref, saveRef.bind(this, i, subIndex)),
+	      ref: childProps.disabled ? undefined : (0, _createChainedFunction2["default"])(child.ref, saveRef.bind(this, i, subIndex)),
 	      eventKey: key,
 	      closeSubMenuOnMouseLeave: props.closeSubMenuOnMouseLeave,
 	      onItemHover: this.onItemHover,
@@ -11797,7 +11794,9 @@
 	
 	var _propTypes2 = _interopRequireDefault(_propTypes);
 	
-	var _tinperBeeCore = __webpack_require__(26);
+	var _keyCode = __webpack_require__(72);
+	
+	var _keyCode2 = _interopRequireDefault(_keyCode);
 	
 	var _classnames = __webpack_require__(3);
 	
@@ -11878,7 +11877,7 @@
 	
 	  MenuItem.prototype.onKeyDown = function onKeyDown(e) {
 	    var keyCode = e.keyCode;
-	    if (keyCode === _tinperBeeCore.KeyCode.ENTER) {
+	    if (keyCode === _keyCode2["default"].ENTER) {
 	      this.onClick(e);
 	      return true;
 	    }
@@ -12293,7 +12292,9 @@
 	
 	var _propTypes2 = _interopRequireDefault(_propTypes);
 	
-	var _tinperBeeCore = __webpack_require__(26);
+	var _createChainedFunction = __webpack_require__(71);
+	
+	var _createChainedFunction2 = _interopRequireDefault(_createChainedFunction);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 	
@@ -12367,7 +12368,7 @@
 	    var buttonProps = _extends({
 	      type: 'button'
 	    }, props, {
-	      onClick: (0, _tinperBeeCore.createChainedFunction)(onClick, this.handleClick.bind(this)),
+	      onClick: (0, _createChainedFunction2["default"])(onClick, this.handleClick.bind(this)),
 	      className: (0, _classnames2["default"])(className, clsPrefix, show && 'show')
 	      //!this.context.u_navbar.expanded && 'collapsed',
 	    });
@@ -14104,6 +14105,11 @@
 	    scrollDom.addEventListener('scroll', this.handleScroll.bind(this));
 	  };
 	
+	  DropdownMenu.prototype.componentWillUnmount = function componentWillUnmount() {
+	    var scrollDom = (0, _reactDom.findDOMNode)(this.refs.menu);
+	    scrollDom.removeEventListener('scroll', this.handleScroll.bind(this));
+	  };
+	
 	  DropdownMenu.prototype.shouldComponentUpdate = function shouldComponentUpdate(nextProps) {
 	    if (!nextProps.visible) {
 	      this.lastVisible = false;
@@ -14879,10 +14885,10 @@
 /* 143 */
 /***/ (function(module, exports, __webpack_require__) {
 
-	'use strict';
+	"use strict";
 	
 	Object.defineProperty(exports, "__esModule", {
-		value: true
+	  value: true
 	});
 	
 	var _react = __webpack_require__(4);
@@ -14893,7 +14899,7 @@
 	
 	var _src2 = _interopRequireDefault(_src);
 	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 	
 	function _defaults(obj, defaults) { var keys = Object.getOwnPropertyNames(defaults); for (var i = 0; i < keys.length; i++) { var key = keys[i]; var value = Object.getOwnPropertyDescriptor(defaults, key); if (value && value.configurable && obj[key] === undefined) { Object.defineProperty(obj, key, value); } } return obj; }
 	
@@ -14906,118 +14912,133 @@
 	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * @description `size`参数控制大小
 	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                */
 	
-	var Option = _src2['default'].Option;
-	var OptGroup = _src2['default'].OptGroup;
+	var Option = _src2["default"].Option;
+	var OptGroup = _src2["default"].OptGroup;
 	
 	var Demo1 = function (_Component) {
-		_inherits(Demo1, _Component);
+	  _inherits(Demo1, _Component);
 	
-		function Demo1() {
-			_classCallCheck(this, Demo1);
+	  function Demo1() {
+	    var _temp, _this, _ret;
 	
-			var _this = _possibleConstructorReturn(this, _Component.call(this));
+	    _classCallCheck(this, Demo1);
 	
-			_this.handleChange = _this.handleChange.bind(_this);
-			return _this;
-		}
+	    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+	      args[_key] = arguments[_key];
+	    }
 	
-		Demo1.prototype.handleChange = function handleChange(value) {
-			// console.log(`selected ${value}`);
-		};
+	    return _ret = (_temp = (_this = _possibleConstructorReturn(this, _Component.call.apply(_Component, [this].concat(args))), _this), _this.handleChange = function (value) {
+	      console.log("selected " + value);
+	    }, _temp), _possibleConstructorReturn(_this, _ret);
+	  }
 	
-		Demo1.prototype.render = function render() {
-			return _react2['default'].createElement(
-				'div',
-				null,
-				_react2['default'].createElement(
-					_src2['default'],
-					{ size: 'lg', defaultValue: 'lucy', style: { width: 200, marginRight: 6 }, onChange: this.handleChange },
-					_react2['default'].createElement(
-						Option,
-						{ value: 'jack' },
-						'boyuzhou'
-					),
-					_react2['default'].createElement(
-						Option,
-						{ value: 'lucy' },
-						'renhualiu'
-					),
-					_react2['default'].createElement(
-						Option,
-						{ value: 'disabled', disabled: true },
-						'Disabled'
-					),
-					_react2['default'].createElement(
-						Option,
-						{ value: 'yiminghe' },
-						'yuzhao'
-					)
-				),
-				_react2['default'].createElement(
-					_src2['default'],
-					{ defaultValue: 'lucy', style: { width: 200, marginRight: 6 }, onChange: this.handleChange },
-					_react2['default'].createElement(
-						Option,
-						{ value: 'jack' },
-						'boyuzhou'
-					),
-					_react2['default'].createElement(
-						Option,
-						{ value: 'lucy' },
-						'renhualiu'
-					),
-					_react2['default'].createElement(
-						Option,
-						{ value: 'disabled', disabled: true },
-						'Disabled'
-					),
-					_react2['default'].createElement(
-						Option,
-						{ value: 'yiminghe' },
-						'yuzhao'
-					)
-				),
-				_react2['default'].createElement(
-					_src2['default'],
-					{ size: 'sm', defaultValue: 'lucy', style: { width: 200 }, onChange: this.handleChange },
-					_react2['default'].createElement(
-						Option,
-						{ value: 'jack' },
-						'boyuzhou'
-					),
-					_react2['default'].createElement(
-						Option,
-						{ value: 'lucy' },
-						'renhualiu'
-					),
-					_react2['default'].createElement(
-						Option,
-						{ value: 'disabled', disabled: true },
-						'Disabled'
-					),
-					_react2['default'].createElement(
-						Option,
-						{ value: 'yiminghe' },
-						'yuzhao'
-					)
-				)
-			);
-		};
+	  Demo1.prototype.render = function render() {
+	    return _react2["default"].createElement(
+	      "div",
+	      null,
+	      _react2["default"].createElement(
+	        _src2["default"],
+	        {
+	          size: "lg",
+	          defaultValue: "lucy",
+	          style: { width: 200, marginRight: 6 },
+	          onChange: this.handleChange
+	        },
+	        _react2["default"].createElement(
+	          Option,
+	          { value: "jack" },
+	          "boyuzhou"
+	        ),
+	        _react2["default"].createElement(
+	          Option,
+	          { value: "lucy" },
+	          "renhualiu"
+	        ),
+	        _react2["default"].createElement(
+	          Option,
+	          { value: "disabled", disabled: true },
+	          "Disabled"
+	        ),
+	        _react2["default"].createElement(
+	          Option,
+	          { value: "yiminghe" },
+	          "yuzhao"
+	        )
+	      ),
+	      _react2["default"].createElement(
+	        _src2["default"],
+	        {
+	          defaultValue: "lucy",
+	          style: { width: 200, marginRight: 6 },
+	          onChange: this.handleChange
+	        },
+	        _react2["default"].createElement(
+	          Option,
+	          { value: "jack" },
+	          "boyuzhou"
+	        ),
+	        _react2["default"].createElement(
+	          Option,
+	          { value: "lucy" },
+	          "renhualiu"
+	        ),
+	        _react2["default"].createElement(
+	          Option,
+	          { value: "disabled", disabled: true },
+	          "Disabled"
+	        ),
+	        _react2["default"].createElement(
+	          Option,
+	          { value: "yiminghe" },
+	          "yuzhao"
+	        )
+	      ),
+	      _react2["default"].createElement(
+	        _src2["default"],
+	        {
+	          size: "sm",
+	          defaultValue: "lucy",
+	          style: { width: 200 },
+	          onChange: this.handleChange
+	        },
+	        _react2["default"].createElement(
+	          Option,
+	          { value: "jack" },
+	          "boyuzhou"
+	        ),
+	        _react2["default"].createElement(
+	          Option,
+	          { value: "lucy" },
+	          "renhualiu"
+	        ),
+	        _react2["default"].createElement(
+	          Option,
+	          { value: "disabled", disabled: true },
+	          "Disabled"
+	        ),
+	        _react2["default"].createElement(
+	          Option,
+	          { value: "yiminghe" },
+	          "yuzhao"
+	        )
+	      )
+	    );
+	  };
 	
-		return Demo1;
+	  return Demo1;
 	}(_react.Component);
 	
-	exports['default'] = Demo1;
-	module.exports = exports['default'];
+	exports["default"] = Demo1;
+	module.exports = exports["default"];
 
 /***/ }),
 /* 144 */
 /***/ (function(module, exports, __webpack_require__) {
 
-	'use strict';
+	"use strict";
 	
 	Object.defineProperty(exports, "__esModule", {
-		value: true
+	  value: true
 	});
 	
 	var _react = __webpack_require__(4);
@@ -15028,7 +15049,7 @@
 	
 	var _src2 = _interopRequireDefault(_src);
 	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 	
 	function _defaults(obj, defaults) { var keys = Object.getOwnPropertyNames(defaults); for (var i = 0; i < keys.length; i++) { var key = keys[i]; var value = Object.getOwnPropertyDescriptor(defaults, key); if (value && value.configurable && obj[key] === undefined) { Object.defineProperty(obj, key, value); } } return obj; }
 	
@@ -15041,60 +15062,62 @@
 	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * @description Children自定义数据列表,注意：Children已经定义到全局，此处显示为注释例子，其他例子用到Children变量均以此方式定义。
 	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                */
 	
-	var Option = _src2['default'].Option;
-	var OptGroup = _src2['default'].OptGroup;
+	var Option = _src2["default"].Option;
+	var OptGroup = _src2["default"].OptGroup;
 	
 	var Children = [];
 	for (var i = 10; i < 36; i++) {
-		Children.push(_react2['default'].createElement(
-			Option,
-			{ key: i.toString(36) + i },
-			i.toString(36) + i
-		));
+	  Children.push(_react2["default"].createElement(
+	    Option,
+	    { key: i.toString(36) + i },
+	    i.toString(36) + i
+	  ));
 	}
 	
 	var Demo2 = function (_Component) {
-		_inherits(Demo2, _Component);
+	  _inherits(Demo2, _Component);
 	
-		function Demo2(props) {
-			_classCallCheck(this, Demo2);
+	  function Demo2() {
+	    var _temp, _this, _ret;
 	
-			var _this = _possibleConstructorReturn(this, _Component.call(this, props));
+	    _classCallCheck(this, Demo2);
 	
-			_this.handleChange = _this.handleChange.bind(_this);
-			return _this;
-		}
+	    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+	      args[_key] = arguments[_key];
+	    }
 	
-		Demo2.prototype.handleChange = function handleChange(value) {
-			// console.log('selected ${value}');
-		};
+	    return _ret = (_temp = (_this = _possibleConstructorReturn(this, _Component.call.apply(_Component, [this].concat(args))), _this), _this.handleChange = function (value) {
+	      console.log('selected ${value}');
+	    }, _temp), _possibleConstructorReturn(_this, _ret);
+	  }
 	
-		Demo2.prototype.render = function render() {
-			return _react2['default'].createElement(
-				_src2['default'],
-				{ multiple: true,
-					style: { width: '100%' },
-					searchPlaceholder: '\u6807\u7B7E\u6A21\u5F0F',
-					onChange: this.handleChange
-				},
-				Children
-			);
-		};
+	  Demo2.prototype.render = function render() {
+	    return _react2["default"].createElement(
+	      _src2["default"],
+	      {
+	        multiple: true,
+	        style: { width: "100%" },
+	        searchPlaceholder: "\u6807\u7B7E\u6A21\u5F0F",
+	        onChange: this.handleChange
+	      },
+	      Children
+	    );
+	  };
 	
-		return Demo2;
+	  return Demo2;
 	}(_react.Component);
 	
-	exports['default'] = Demo2;
-	module.exports = exports['default'];
+	exports["default"] = Demo2;
+	module.exports = exports["default"];
 
 /***/ }),
 /* 145 */
 /***/ (function(module, exports, __webpack_require__) {
 
-	'use strict';
+	"use strict";
 	
 	Object.defineProperty(exports, "__esModule", {
-		value: true
+	  value: true
 	});
 	
 	var _react = __webpack_require__(4);
@@ -15105,7 +15128,7 @@
 	
 	var _src2 = _interopRequireDefault(_src);
 	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 	
 	function _defaults(obj, defaults) { var keys = Object.getOwnPropertyNames(defaults); for (var i = 0; i < keys.length; i++) { var key = keys[i]; var value = Object.getOwnPropertyDescriptor(defaults, key); if (value && value.configurable && obj[key] === undefined) { Object.defineProperty(obj, key, value); } } return obj; }
 	
@@ -15118,65 +15141,64 @@
 	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * @description 用户在框内输入自定义内容，Select将输入的内容自动纳入下拉选项中一员。
 	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                */
 	
-	var Option = _src2['default'].Option;
+	var Option = _src2["default"].Option;
 	
 	var Children = [];
 	for (var i = 10; i < 36; i++) {
-		Children.push(_react2['default'].createElement(
-			Option,
-			{ key: i.toString(36) + i },
-			i.toString(36) + i
-		));
+	  Children.push(_react2["default"].createElement(
+	    Option,
+	    { key: i.toString(36) + i },
+	    i.toString(36) + i
+	  ));
 	}
 	
 	var Demo3 = function (_Component) {
-		_inherits(Demo3, _Component);
+	  _inherits(Demo3, _Component);
 	
-		function Demo3() {
-			_classCallCheck(this, Demo3);
+	  function Demo3() {
+	    var _temp, _this, _ret;
 	
-			var _this = _possibleConstructorReturn(this, _Component.call(this));
+	    _classCallCheck(this, Demo3);
 	
-			_this.handleChange = _this.handleChange.bind(_this);
-			_this.scrollToEnd = _this.scrollToEnd.bind(_this);
-			return _this;
-		}
+	    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+	      args[_key] = arguments[_key];
+	    }
 	
-		Demo3.prototype.handleChange = function handleChange(value) {
-			console.log('selected ' + value);
-		};
+	    return _ret = (_temp = (_this = _possibleConstructorReturn(this, _Component.call.apply(_Component, [this].concat(args))), _this), _this.handleChange = function (value) {
+	      console.log("selected " + value);
+	    }, _this.scrollToEnd = function () {
+	      console.log("软加载");
+	    }, _temp), _possibleConstructorReturn(_this, _ret);
+	  }
 	
-		Demo3.prototype.scrollToEnd = function scrollToEnd() {
-			console.log("软加载");
-		};
+	  Demo3.prototype.render = function render() {
+	    return _react2["default"].createElement(
+	      _src2["default"],
+	      {
+	        tags: true,
+	        style: { width: "100%" },
+	        searchPlaceholder: "\u6807\u7B7E\u6A21\u5F0F",
+	        scrollToEnd: this.scrollToEnd,
+	        onChange: this.handleChange
+	      },
+	      Children
+	    );
+	  };
 	
-		Demo3.prototype.render = function render() {
-			return _react2['default'].createElement(
-				_src2['default'],
-				{ tags: true,
-					style: { width: '100%' },
-					searchPlaceholder: '\u6807\u7B7E\u6A21\u5F0F',
-					scrollToEnd: this.scrollToEnd,
-					onChange: this.handleChange
-				},
-				Children
-			);
-		};
-	
-		return Demo3;
+	  return Demo3;
 	}(_react.Component);
 	
-	exports['default'] = Demo3;
-	module.exports = exports['default'];
+	exports["default"] = Demo3;
+	module.exports = exports["default"];
 
 /***/ }),
 /* 146 */
 /***/ (function(module, exports, __webpack_require__) {
 
-	'use strict';
+	"use strict";
 	
 	Object.defineProperty(exports, "__esModule", {
-		value: true
+	  value: true
 	});
 	
 	var _react = __webpack_require__(4);
@@ -15187,7 +15209,7 @@
 	
 	var _src2 = _interopRequireDefault(_src);
 	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 	
 	function _defaults(obj, defaults) { var keys = Object.getOwnPropertyNames(defaults); for (var i = 0; i < keys.length; i++) { var key = keys[i]; var value = Object.getOwnPropertyDescriptor(defaults, key); if (value && value.configurable && obj[key] === undefined) { Object.defineProperty(obj, key, value); } } return obj; }
 	
@@ -15200,89 +15222,95 @@
 	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * @description 常用语城市级联的选择。
 	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                */
 	
-	var Option = _src2['default'].Option;
+	var Option = _src2["default"].Option;
 	
-	var provinceData = ['Zhejiang', 'Jiangsu'];
+	var provinceData = ["Zhejiang", "Jiangsu"];
 	var cityData = {
-		Zhejiang: ['Hangzhou', 'Ningbo', 'Wenzhou'],
-		Jiangsu: ['Nanjing', 'Suzhou', 'Zhenjiang']
+	  Zhejiang: ["Hangzhou", "Ningbo", "Wenzhou"],
+	  Jiangsu: ["Nanjing", "Suzhou", "Zhenjiang"]
 	};
 	
 	var Demo4 = function (_Component) {
-		_inherits(Demo4, _Component);
+	  _inherits(Demo4, _Component);
 	
-		function Demo4() {
-			_classCallCheck(this, Demo4);
+	  function Demo4(props) {
+	    _classCallCheck(this, Demo4);
 	
-			var _this = _possibleConstructorReturn(this, _Component.call(this));
+	    var _this = _possibleConstructorReturn(this, _Component.call(this, props));
 	
-			_this.state = {
-				cities: cityData[provinceData[0]],
-				secondCity: cityData[provinceData[0]][0]
-			};
-			_this.handleProvinceChange = _this.handleProvinceChange.bind(_this);
-			_this.onSecondCityChange = _this.onSecondCityChange.bind(_this);
-			return _this;
-		}
+	    _this.handleProvinceChange = function (value) {
+	      _this.setState({
+	        cities: cityData[value],
+	        secondCity: cityData[value][0]
+	      });
+	    };
 	
-		Demo4.prototype.handleProvinceChange = function handleProvinceChange(value) {
-			this.setState({
-				cities: cityData[value],
-				secondCity: cityData[value][0]
-			});
-		};
+	    _this.onSecondCityChange = function (value) {
+	      _this.setState({
+	        secondCity: value
+	      });
+	    };
 	
-		Demo4.prototype.onSecondCityChange = function onSecondCityChange(value) {
-			this.setState({
-				secondCity: value
-			});
-		};
+	    _this.state = {
+	      cities: cityData[provinceData[0]],
+	      secondCity: cityData[provinceData[0]][0]
+	    };
+	    return _this;
+	  }
 	
-		Demo4.prototype.render = function render() {
-			var provinceOptions = provinceData.map(function (province) {
-				return _react2['default'].createElement(
-					Option,
-					{ key: province },
-					province
-				);
-			});
-			var cityOptions = this.state.cities.map(function (city) {
-				return _react2['default'].createElement(
-					Option,
-					{ key: city },
-					city
-				);
-			});
-			return _react2['default'].createElement(
-				'div',
-				null,
-				_react2['default'].createElement(
-					_src2['default'],
-					{ defaultValue: provinceData[0], style: { width: 90, marginRight: 6 }, onChange: this.handleProvinceChange },
-					provinceOptions
-				),
-				_react2['default'].createElement(
-					_src2['default'],
-					{ value: this.state.secondCity, style: { width: 90 }, onChange: this.onSecondCityChange },
-					cityOptions
-				)
-			);
-		};
+	  Demo4.prototype.render = function render() {
+	    var provinceOptions = provinceData.map(function (province) {
+	      return _react2["default"].createElement(
+	        Option,
+	        { key: province },
+	        province
+	      );
+	    });
+	    var cityOptions = this.state.cities.map(function (city) {
+	      return _react2["default"].createElement(
+	        Option,
+	        { key: city },
+	        city
+	      );
+	    });
+	    return _react2["default"].createElement(
+	      "div",
+	      null,
+	      _react2["default"].createElement(
+	        _src2["default"],
+	        {
+	          defaultValue: provinceData[0],
+	          style: { width: 90, marginRight: 6 },
+	          onChange: this.handleProvinceChange
+	        },
+	        provinceOptions
+	      ),
+	      _react2["default"].createElement(
+	        _src2["default"],
+	        {
+	          value: this.state.secondCity,
+	          style: { width: 90 },
+	          onChange: this.onSecondCityChange
+	        },
+	        cityOptions
+	      )
+	    );
+	  };
 	
-		return Demo4;
+	  return Demo4;
 	}(_react.Component);
 	
-	exports['default'] = Demo4;
-	module.exports = exports['default'];
+	exports["default"] = Demo4;
+	module.exports = exports["default"];
 
 /***/ }),
 /* 147 */
 /***/ (function(module, exports, __webpack_require__) {
 
-	'use strict';
+	"use strict";
 	
 	Object.defineProperty(exports, "__esModule", {
-		value: true
+	  value: true
 	});
 	
 	var _react = __webpack_require__(4);
@@ -15293,7 +15321,7 @@
 	
 	var _src2 = _interopRequireDefault(_src);
 	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 	
 	function _defaults(obj, defaults) { var keys = Object.getOwnPropertyNames(defaults); for (var i = 0; i < keys.length; i++) { var key = keys[i]; var value = Object.getOwnPropertyDescriptor(defaults, key); if (value && value.configurable && obj[key] === undefined) { Object.defineProperty(obj, key, value); } } return obj; }
 	
@@ -15306,67 +15334,67 @@
 	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * @description 常用邮箱后缀自动填充。
 	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                */
 	
-	var Option = _src2['default'].Option;
+	var Option = _src2["default"].Option;
 	
 	var Demo5 = function (_Component) {
-		_inherits(Demo5, _Component);
+	  _inherits(Demo5, _Component);
 	
-		function Demo5() {
-			_classCallCheck(this, Demo5);
+	  function Demo5(props) {
+	    _classCallCheck(this, Demo5);
 	
-			var _this = _possibleConstructorReturn(this, _Component.call(this));
+	    var _this = _possibleConstructorReturn(this, _Component.call(this, props));
 	
-			_this.state = {
-				options: []
-			};
-			_this.handleChange = _this.handleChange.bind(_this);
-			return _this;
-		}
+	    _this.handleChange = function (value) {
+	      var options = void 0;
+	      if (!value || value.indexOf("@") >= 0) {
+	        options = [];
+	      } else {
+	        options = ["gmail.com", "163.com", "qq.com"].map(function (domain) {
+	          var email = value + "@" + domain;
+	          return _react2["default"].createElement(
+	            Option,
+	            { key: email },
+	            email
+	          );
+	        });
+	      }
+	      _this.setState({ options: options });
+	    };
 	
-		Demo5.prototype.handleChange = function handleChange(value) {
-			var options = void 0;
-			if (!value || value.indexOf('@') >= 0) {
-				options = [];
-			} else {
-				options = ['gmail.com', '163.com', 'qq.com'].map(function (domain) {
-					var email = value + '@' + domain;
-					return _react2['default'].createElement(
-						Option,
-						{ key: email },
-						email
-					);
-				});
-			}
-			this.setState({ options: options });
-		};
+	    _this.state = {
+	      options: []
+	    };
+	    return _this;
+	  }
 	
-		Demo5.prototype.render = function render() {
-			return _react2['default'].createElement(
-				_src2['default'],
-				{ combobox: true,
-					style: { width: 200 },
-					onChange: this.handleChange,
-					filterOption: false,
-					placeholder: 'Enter the account name'
-				},
-				this.state.options
-			);
-		};
+	  Demo5.prototype.render = function render() {
+	    return _react2["default"].createElement(
+	      _src2["default"],
+	      {
+	        combobox: true,
+	        style: { width: 200 },
+	        onChange: this.handleChange,
+	        filterOption: false,
+	        placeholder: "Enter the account name"
+	      },
+	      this.state.options
+	    );
+	  };
 	
-		return Demo5;
+	  return Demo5;
 	}(_react.Component);
 	
-	exports['default'] = Demo5;
-	module.exports = exports['default'];
+	exports["default"] = Demo5;
+	module.exports = exports["default"];
 
 /***/ }),
 /* 148 */
 /***/ (function(module, exports, __webpack_require__) {
 
-	'use strict';
+	"use strict";
 	
 	Object.defineProperty(exports, "__esModule", {
-		value: true
+	  value: true
 	});
 	
 	var _react = __webpack_require__(4);
@@ -15377,7 +15405,7 @@
 	
 	var _src2 = _interopRequireDefault(_src);
 	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 	
 	function _defaults(obj, defaults) { var keys = Object.getOwnPropertyNames(defaults); for (var i = 0; i < keys.length; i++) { var key = keys[i]; var value = Object.getOwnPropertyDescriptor(defaults, key); if (value && value.configurable && obj[key] === undefined) { Object.defineProperty(obj, key, value); } } return obj; }
 	
@@ -15390,57 +15418,56 @@
 	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * @description 从下拉选中，通过输入的值检索相应的选项。
 	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                */
 	
-	var Option = _src2['default'].Option;
+	var Option = _src2["default"].Option;
 	
 	var Demo6 = function (_Component) {
-		_inherits(Demo6, _Component);
+	  _inherits(Demo6, _Component);
 	
-		function Demo6() {
-			_classCallCheck(this, Demo6);
+	  function Demo6(props) {
+	    _classCallCheck(this, Demo6);
 	
-			var _this = _possibleConstructorReturn(this, _Component.call(this));
+	    var _this = _possibleConstructorReturn(this, _Component.call(this, props));
 	
-			_this.handleChange = _this.handleChange.bind(_this);
-			return _this;
-		}
+	    _this.handleChange = function (value) {
+	      console.log("selected " + value);
+	    };
 	
-		Demo6.prototype.handleChange = function handleChange(value) {
-			console.log('selected ' + value);
-		};
+	    return _this;
+	  }
 	
-		Demo6.prototype.render = function render() {
-			return _react2['default'].createElement(
-				_src2['default'],
-				{
-					showSearch: true,
-					style: { width: 200 },
-					placeholder: 'Select a person',
-					optionFilterProp: 'children',
-					onChange: this.handleChange.bind(this)
-				},
-				_react2['default'].createElement(
-					Option,
-					{ value: 'jack' },
-					'Jack'
-				),
-				_react2['default'].createElement(
-					Option,
-					{ value: 'lucy' },
-					'Lucy'
-				),
-				_react2['default'].createElement(
-					Option,
-					{ value: 'tom' },
-					'Tom'
-				)
-			);
-		};
+	  Demo6.prototype.render = function render() {
+	    return _react2["default"].createElement(
+	      _src2["default"],
+	      {
+	        showSearch: true,
+	        style: { width: 200 },
+	        placeholder: "Select a person",
+	        optionFilterProp: "children",
+	        onChange: this.handleChange.bind(this)
+	      },
+	      _react2["default"].createElement(
+	        Option,
+	        { value: "jack" },
+	        "Jack"
+	      ),
+	      _react2["default"].createElement(
+	        Option,
+	        { value: "lucy" },
+	        "Lucy"
+	      ),
+	      _react2["default"].createElement(
+	        Option,
+	        { value: "tom" },
+	        "Tom"
+	      )
+	    );
+	  };
 	
-		return Demo6;
+	  return Demo6;
 	}(_react.Component);
 	
-	exports['default'] = Demo6;
-	module.exports = exports['default'];
+	exports["default"] = Demo6;
+	module.exports = exports["default"];
 
 /***/ })
 /******/ ]);

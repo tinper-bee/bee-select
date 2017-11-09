@@ -33,6 +33,10 @@ class DropdownMenu extends Component{
     let scrollDom = findDOMNode(this.refs.menu);
     scrollDom.addEventListener('scroll', this.handleScroll.bind(this));
   }
+  componentWillUnmount(){
+    let scrollDom = findDOMNode(this.refs.menu);
+    scrollDom.removeEventListener('scroll', this.handleScroll.bind(this));
+  }
 
   shouldComponentUpdate(nextProps) {
     if (!nextProps.visible) {
