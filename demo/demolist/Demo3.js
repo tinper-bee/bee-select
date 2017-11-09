@@ -17,15 +17,20 @@ class Demo3 extends Component {
 	constructor() {
 		super();
 		this.handleChange = this.handleChange.bind(this);
+		this.scrollToEnd = this.scrollToEnd.bind(this);
 	}
 	handleChange(value) {
   		console.log(`selected ${value}`);
+	}
+	scrollToEnd() {
+		console.log("软加载")
 	}
 	render(){
 		return( 
 			<Select tags
 			    style={{ width: '100%' }}
 			    searchPlaceholder="标签模式"
+					scrollToEnd = {this.scrollToEnd}
 			    onChange={this.handleChange}
 			  >
 			    {Children}

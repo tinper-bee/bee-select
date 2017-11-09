@@ -68,6 +68,11 @@ var DropdownMenu = function (_Component) {
   DropdownMenu.prototype.componentDidMount = function componentDidMount() {
     this.scrollActiveItemToView();
     this.lastVisible = this.props.visible;
+    var dom = (0, _reactDom.findDOMNode)(this.refs.menu);
+    // dom.onscroll = function() {
+    //   console.log("div 监听");
+    // }
+    dom.addEventListener('scroll', this.handleScroll.bind(this));
   };
 
   DropdownMenu.prototype.shouldComponentUpdate = function shouldComponentUpdate(nextProps) {
@@ -85,6 +90,17 @@ var DropdownMenu = function (_Component) {
     }
     this.lastVisible = props.visible;
     this.lastInputValue = props.inputValue;
+  };
+
+  DropdownMenu.prototype.handleScroll = function handleScroll(event) {
+    var scrollToEnd = this.props.scrollToEnd;
+
+    var el = event.target;
+    if (el.scrollHeight < el.clientHeight + el.scrollTop + 1) {
+      if (scrollToEnd) {
+        scrollToEnd();
+      }
+    }
   };
 
   DropdownMenu.prototype.scrollActiveItemToView = function scrollActiveItemToView() {

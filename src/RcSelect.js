@@ -1071,6 +1071,7 @@ class RcSelect extends Component{
         getPopupContainer={props.getPopupContainer}
         onMenuSelect={this.onMenuSelect}
         onMenuDeselect={this.onMenuDeselect}
+        scrollToEnd = {props.scrollToEnd}
         ref="trigger"
       >
         <div

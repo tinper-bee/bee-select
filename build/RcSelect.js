@@ -1182,6 +1182,7 @@ var RcSelect = function (_Component) {
         getPopupContainer: props.getPopupContainer,
         onMenuSelect: this.onMenuSelect,
         onMenuDeselect: this.onMenuDeselect,
+        scrollToEnd: props.scrollToEnd,
         ref: 'trigger'
       },
       _react2["default"].createElement(

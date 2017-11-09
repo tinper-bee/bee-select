@@ -74,6 +74,7 @@ import "./node_modules/build/bee-select.css"
 |onSelect|被选中时调用，参数为选中项的 value 值|func|-|
 |onDeselect|取消选中时调用，参数为选中项的 option value 值，仅在 multiple 或 tags 模式下生效|func|-|
 |onChange|选中 option，或 input 的 value 变化（combobox 模式下）时，调用此函数|bool|-|
+|scrollToEdn|钩子函数 下拉列表的滚动条滚到最底触发|func|-|
 |onSearch|文本框值变化时回调|func|-|
 |onBlur|失去焦点的时回调|bool|-|
 |onFocus|获得焦点时回调|func|-|

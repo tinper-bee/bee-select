@@ -83,6 +83,7 @@ class SelectTrigger extends Component{
       {...newProps}
       clsPrefix={this.getDropdownPrefixCls()}
       onMenuSelect={props.onMenuSelect}
+      scrollToEnd = {props.scrollToEnd}
       onMenuDeselect={props.onMenuDeselect}
       value={props.value}
       defaultActiveFirstOption={props.defaultActiveFirstOption}

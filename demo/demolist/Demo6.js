@@ -16,6 +16,7 @@ class Demo6 extends Component {
 	handleChange(value) {
   		console.log(`selected ${value}`);
 	}
+	
 	render(){
 		return( 
 			<Select
