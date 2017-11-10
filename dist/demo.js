@@ -7915,7 +7915,8 @@
 	  style: _propTypes2['default'].object,
 	  dropdownStyle: _propTypes2['default'].object,
 	  dropdownMenuStyle: _propTypes2['default'].object,
-	  onChange: _propTypes2['default'].func
+	  onChange: _propTypes2['default'].func,
+	  scrollToEnd: _propTypes2['default'].func
 	};
 	
 	var Select = function (_Component) {
@@ -10048,6 +10049,12 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
+	var _tinperBeeCore = __webpack_require__(26);
+	
+	var _warning = __webpack_require__(31);
+	
+	var _warning2 = _interopRequireDefault(_warning);
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 	
 	function noop() {}
@@ -10190,9 +10197,7 @@
 	
 	var _propTypes2 = _interopRequireDefault(_propTypes);
 	
-	var _keyCode = __webpack_require__(72);
-	
-	var _keyCode2 = _interopRequireDefault(_keyCode);
+	var _tinperBeeCore = __webpack_require__(26);
 	
 	var _classnames = __webpack_require__(3);
 	
@@ -10320,7 +10325,7 @@
 	    var menu = this.menuInstance;
 	    var isOpen = this.isOpen();
 	
-	    if (keyCode === _keyCode2["default"].ENTER) {
+	    if (keyCode === _tinperBeeCore.KeyCode.ENTER) {
 	      this.onTitleClick(e);
 	      this.setState({
 	        defaultActiveFirst: true
@@ -10328,7 +10333,7 @@
 	      return true;
 	    }
 	
-	    if (keyCode === _keyCode2["default"].RIGHT) {
+	    if (keyCode === _tinperBeeCore.KeyCode.RIGHT) {
 	      if (isOpen) {
 	        menu.onKeyDown(e);
 	      } else {
@@ -10339,7 +10344,7 @@
 	      }
 	      return true;
 	    }
-	    if (keyCode === _keyCode2["default"].LEFT) {
+	    if (keyCode === _tinperBeeCore.KeyCode.LEFT) {
 	      var handled = void 0;
 	      if (isOpen) {
 	        handled = menu.onKeyDown(e);
@@ -10353,7 +10358,7 @@
 	      return handled;
 	    }
 	
-	    if (isOpen && (keyCode === _keyCode2["default"].UP || keyCode === _keyCode2["default"].DOWN)) {
+	    if (isOpen && (keyCode === _tinperBeeCore.KeyCode.UP || keyCode === _tinperBeeCore.KeyCode.DOWN)) {
 	      return menu.onKeyDown(e);
 	    }
 	  };
@@ -10735,9 +10740,7 @@
 	
 	var _classnames2 = _interopRequireDefault(_classnames);
 	
-	var _createChainedFunction = __webpack_require__(71);
-	
-	var _createChainedFunction2 = _interopRequireDefault(_createChainedFunction);
+	var _tinperBeeCore = __webpack_require__(26);
 	
 	var _util = __webpack_require__(112);
 	
@@ -10805,6 +10808,7 @@
 	  }
 	}
 	
+	//import Animate from 'bee-transition';
 	var propTypes = {
 	  onSelect: _propTypes2["default"].func,
 	  onClick: _propTypes2["default"].func,
@@ -10963,7 +10967,7 @@
 	      rootPrefixCls: props.prefixCls,
 	      index: i,
 	      parentMenu: this,
-	      ref: childProps.disabled ? undefined : (0, _createChainedFunction2["default"])(child.ref, saveRef.bind(this, i, subIndex)),
+	      ref: childProps.disabled ? undefined : (0, _tinperBeeCore.createChainedFunction)(child.ref, saveRef.bind(this, i, subIndex)),
 	      eventKey: key,
 	      closeSubMenuOnMouseLeave: props.closeSubMenuOnMouseLeave,
 	      onItemHover: this.onItemHover,
@@ -11794,9 +11798,7 @@
 	
 	var _propTypes2 = _interopRequireDefault(_propTypes);
 	
-	var _keyCode = __webpack_require__(72);
-	
-	var _keyCode2 = _interopRequireDefault(_keyCode);
+	var _tinperBeeCore = __webpack_require__(26);
 	
 	var _classnames = __webpack_require__(3);
 	
@@ -11877,7 +11879,7 @@
 	
 	  MenuItem.prototype.onKeyDown = function onKeyDown(e) {
 	    var keyCode = e.keyCode;
-	    if (keyCode === _keyCode2["default"].ENTER) {
+	    if (keyCode === _tinperBeeCore.KeyCode.ENTER) {
 	      this.onClick(e);
 	      return true;
 	    }
@@ -12292,9 +12294,7 @@
 	
 	var _propTypes2 = _interopRequireDefault(_propTypes);
 	
-	var _createChainedFunction = __webpack_require__(71);
-	
-	var _createChainedFunction2 = _interopRequireDefault(_createChainedFunction);
+	var _tinperBeeCore = __webpack_require__(26);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 	
@@ -12368,7 +12368,7 @@
 	    var buttonProps = _extends({
 	      type: 'button'
 	    }, props, {
-	      onClick: (0, _createChainedFunction2["default"])(onClick, this.handleClick.bind(this)),
+	      onClick: (0, _tinperBeeCore.createChainedFunction)(onClick, this.handleClick.bind(this)),
 	      className: (0, _classnames2["default"])(className, clsPrefix, show && 'show')
 	      //!this.context.u_navbar.expanded && 'collapsed',
 	    });

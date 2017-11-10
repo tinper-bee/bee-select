@@ -72,6 +72,11 @@ var DropdownMenu = function (_Component) {
     scrollDom.addEventListener('scroll', this.handleScroll.bind(this));
   };
 
+  DropdownMenu.prototype.componentWillUnmount = function componentWillUnmount() {
+    var scrollDom = (0, _reactDom.findDOMNode)(this.refs.menu);
+    scrollDom.removeEventListener('scroll', this.handleScroll.bind(this));
+  };
+
   DropdownMenu.prototype.shouldComponentUpdate = function shouldComponentUpdate(nextProps) {
     if (!nextProps.visible) {
       this.lastVisible = false;

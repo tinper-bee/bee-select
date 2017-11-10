@@ -61,7 +61,8 @@ const propTypes = {
   style: PropTypes.object,
   dropdownStyle: PropTypes.object,
   dropdownMenuStyle: PropTypes.object,
-  onChange: PropTypes.func
+  onChange: PropTypes.func,
+  scrollToEnd: PropTypes.func
 };
 
 class Select extends Component {

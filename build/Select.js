@@ -84,7 +84,8 @@ var propTypes = {
   style: _propTypes2["default"].object,
   dropdownStyle: _propTypes2["default"].object,
   dropdownMenuStyle: _propTypes2["default"].object,
-  onChange: _propTypes2["default"].func
+  onChange: _propTypes2["default"].func,
+  scrollToEnd: _propTypes2["default"].func
 };
 
 var Select = function (_Component) {
