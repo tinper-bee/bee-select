@@ -52,19 +52,23 @@ class SelectTrigger extends Component{
     this.getDropdownElement = this.getDropdownElement.bind(this);
     this.getDropdownPrefixCls = this.getDropdownPrefixCls.bind(this);
     this.saveMenu = this.saveMenu.bind(this);
-
+    this.state = {
+      dropdownWidth: null,
+    }
 
   }
-
+  componentDidMount() {
+    this.setDropdownWidth();
+  }
 
   componentDidUpdate() {
-    const { visible, dropdownMatchSelectWidth } = this.props;
-    if (visible) {
-      const dropdownDOMNode = this.getPopupDOMNode();
-      if (dropdownDOMNode) {
-        const widthProp = dropdownMatchSelectWidth ? 'width' : 'minWidth';
-        dropdownDOMNode.style[widthProp] = `${ReactDOM.findDOMNode(this).offsetWidth}px`;
-      }
+    this.setDropdownWidth();
+  }
+
+  setDropdownWidth = () => {
+    const width = ReactDOM.findDOMNode(this).offsetWidth;
+    if (width !== this.state.dropdownWidth) {
+      this.setState({ dropdownWidth: width });
     }
   }
 
@@ -110,7 +114,7 @@ class SelectTrigger extends Component{
   render() {
     const { onPopupFocus, ...props } = this.props;
     const { multiple, visible, inputValue, dropdownAlign,
-      disabled, showSearch, dropdownClassName } = props;
+      disabled, showSearch, dropdownClassName,dropdownStyle,dropdownMatchSelectWidth } = props;
     const dropdownPrefixCls = this.getDropdownPrefixCls();
     const popupClassName = {
       [dropdownClassName]: !!dropdownClassName,
@@ -131,6 +135,11 @@ class SelectTrigger extends Component{
     } else {
       hideAction = ['blur'];
     }
+    const popupStyle = { ...dropdownStyle };
+    const widthProp = dropdownMatchSelectWidth ? 'width' : 'minWidth';
+    if (this.state.dropdownWidth) {
+      popupStyle[widthProp] = `${this.state.dropdownWidth}px`;
+    }
     return (<Trigger {...props}
       showAction={disabled ? [] : ['click']}
       hideAction={hideAction}
@@ -145,7 +154,7 @@ class SelectTrigger extends Component{
       popupVisible={visible}
       getPopupContainer={props.getPopupContainer}
       popupClassName={classnames(popupClassName)}
-      popupStyle={props.dropdownStyle}
+      popupStyle={popupStyle}
     >{props.children}</Trigger>);
   }
 };

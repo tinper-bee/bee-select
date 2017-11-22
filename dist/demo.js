@@ -10049,12 +10049,6 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _tinperBeeCore = __webpack_require__(26);
-	
-	var _warning = __webpack_require__(31);
-	
-	var _warning2 = _interopRequireDefault(_warning);
-	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 	
 	function noop() {}
@@ -10197,7 +10191,9 @@
 	
 	var _propTypes2 = _interopRequireDefault(_propTypes);
 	
-	var _tinperBeeCore = __webpack_require__(26);
+	var _keyCode = __webpack_require__(72);
+	
+	var _keyCode2 = _interopRequireDefault(_keyCode);
 	
 	var _classnames = __webpack_require__(3);
 	
@@ -10325,7 +10321,7 @@
 	    var menu = this.menuInstance;
 	    var isOpen = this.isOpen();
 	
-	    if (keyCode === _tinperBeeCore.KeyCode.ENTER) {
+	    if (keyCode === _keyCode2["default"].ENTER) {
 	      this.onTitleClick(e);
 	      this.setState({
 	        defaultActiveFirst: true
@@ -10333,7 +10329,7 @@
 	      return true;
 	    }
 	
-	    if (keyCode === _tinperBeeCore.KeyCode.RIGHT) {
+	    if (keyCode === _keyCode2["default"].RIGHT) {
 	      if (isOpen) {
 	        menu.onKeyDown(e);
 	      } else {
@@ -10344,7 +10340,7 @@
 	      }
 	      return true;
 	    }
-	    if (keyCode === _tinperBeeCore.KeyCode.LEFT) {
+	    if (keyCode === _keyCode2["default"].LEFT) {
 	      var handled = void 0;
 	      if (isOpen) {
 	        handled = menu.onKeyDown(e);
@@ -10358,7 +10354,7 @@
 	      return handled;
 	    }
 	
-	    if (isOpen && (keyCode === _tinperBeeCore.KeyCode.UP || keyCode === _tinperBeeCore.KeyCode.DOWN)) {
+	    if (isOpen && (keyCode === _keyCode2["default"].UP || keyCode === _keyCode2["default"].DOWN)) {
 	      return menu.onKeyDown(e);
 	    }
 	  };
@@ -10740,7 +10736,9 @@
 	
 	var _classnames2 = _interopRequireDefault(_classnames);
 	
-	var _tinperBeeCore = __webpack_require__(26);
+	var _createChainedFunction = __webpack_require__(71);
+	
+	var _createChainedFunction2 = _interopRequireDefault(_createChainedFunction);
 	
 	var _util = __webpack_require__(112);
 	
@@ -10808,7 +10806,6 @@
 	  }
 	}
 	
-	//import Animate from 'bee-transition';
 	var propTypes = {
 	  onSelect: _propTypes2["default"].func,
 	  onClick: _propTypes2["default"].func,
@@ -10967,7 +10964,7 @@
 	      rootPrefixCls: props.prefixCls,
 	      index: i,
 	      parentMenu: this,
-	      ref: childProps.disabled ? undefined : (0, _tinperBeeCore.createChainedFunction)(child.ref, saveRef.bind(this, i, subIndex)),
+	      ref: childProps.disabled ? undefined : (0, _createChainedFunction2["default"])(child.ref, saveRef.bind(this, i, subIndex)),
 	      eventKey: key,
 	      closeSubMenuOnMouseLeave: props.closeSubMenuOnMouseLeave,
 	      onItemHover: this.onItemHover,
@@ -11798,7 +11795,9 @@
 	
 	var _propTypes2 = _interopRequireDefault(_propTypes);
 	
-	var _tinperBeeCore = __webpack_require__(26);
+	var _keyCode = __webpack_require__(72);
+	
+	var _keyCode2 = _interopRequireDefault(_keyCode);
 	
 	var _classnames = __webpack_require__(3);
 	
@@ -11879,7 +11878,7 @@
 	
 	  MenuItem.prototype.onKeyDown = function onKeyDown(e) {
 	    var keyCode = e.keyCode;
-	    if (keyCode === _tinperBeeCore.KeyCode.ENTER) {
+	    if (keyCode === _keyCode2["default"].ENTER) {
 	      this.onClick(e);
 	      return true;
 	    }
@@ -12294,7 +12293,9 @@
 	
 	var _propTypes2 = _interopRequireDefault(_propTypes);
 	
-	var _tinperBeeCore = __webpack_require__(26);
+	var _createChainedFunction = __webpack_require__(71);
+	
+	var _createChainedFunction2 = _interopRequireDefault(_createChainedFunction);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 	
@@ -12368,7 +12369,7 @@
 	    var buttonProps = _extends({
 	      type: 'button'
 	    }, props, {
-	      onClick: (0, _tinperBeeCore.createChainedFunction)(onClick, this.handleClick.bind(this)),
+	      onClick: (0, _createChainedFunction2["default"])(onClick, this.handleClick.bind(this)),
 	      className: (0, _classnames2["default"])(className, clsPrefix, show && 'show')
 	      //!this.context.u_navbar.expanded && 'collapsed',
 	    });
@@ -12812,28 +12813,32 @@
 	
 	    var _this = _possibleConstructorReturn(this, _Component.call(this, props));
 	
+	    _this.setDropdownWidth = function () {
+	      var width = _reactDom2['default'].findDOMNode(_this).offsetWidth;
+	      if (width !== _this.state.dropdownWidth) {
+	        _this.setState({ dropdownWidth: width });
+	      }
+	    };
+	
 	    _this.getInnerMenu = _this.getInnerMenu.bind(_this);
 	    _this.getPopupDOMNode = _this.getPopupDOMNode.bind(_this);
 	    _this.getDropdownTransitionName = _this.getDropdownTransitionName.bind(_this);
 	    _this.getDropdownElement = _this.getDropdownElement.bind(_this);
 	    _this.getDropdownPrefixCls = _this.getDropdownPrefixCls.bind(_this);
 	    _this.saveMenu = _this.saveMenu.bind(_this);
+	    _this.state = {
+	      dropdownWidth: null
+	    };
 	
 	    return _this;
 	  }
 	
-	  SelectTrigger.prototype.componentDidUpdate = function componentDidUpdate() {
-	    var _props = this.props,
-	        visible = _props.visible,
-	        dropdownMatchSelectWidth = _props.dropdownMatchSelectWidth;
+	  SelectTrigger.prototype.componentDidMount = function componentDidMount() {
+	    this.setDropdownWidth();
+	  };
 	
-	    if (visible) {
-	      var dropdownDOMNode = this.getPopupDOMNode();
-	      if (dropdownDOMNode) {
-	        var widthProp = dropdownMatchSelectWidth ? 'width' : 'minWidth';
-	        dropdownDOMNode.style[widthProp] = _reactDom2['default'].findDOMNode(this).offsetWidth + 'px';
-	      }
-	    }
+	  SelectTrigger.prototype.componentDidUpdate = function componentDidUpdate() {
+	    this.setDropdownWidth();
 	  };
 	
 	  SelectTrigger.prototype.getInnerMenu = function getInnerMenu() {
@@ -12879,9 +12884,9 @@
 	  SelectTrigger.prototype.render = function render() {
 	    var _popupClassName;
 	
-	    var _props2 = this.props,
-	        onPopupFocus = _props2.onPopupFocus,
-	        props = _objectWithoutProperties(_props2, ['onPopupFocus']);
+	    var _props = this.props,
+	        onPopupFocus = _props.onPopupFocus,
+	        props = _objectWithoutProperties(_props, ['onPopupFocus']);
 	
 	    var multiple = props.multiple,
 	        visible = props.visible,
@@ -12889,7 +12894,9 @@
 	        dropdownAlign = props.dropdownAlign,
 	        disabled = props.disabled,
 	        showSearch = props.showSearch,
-	        dropdownClassName = props.dropdownClassName;
+	        dropdownClassName = props.dropdownClassName,
+	        dropdownStyle = props.dropdownStyle,
+	        dropdownMatchSelectWidth = props.dropdownMatchSelectWidth;
 	
 	    var dropdownPrefixCls = this.getDropdownPrefixCls();
 	    var popupClassName = (_popupClassName = {}, _defineProperty(_popupClassName, dropdownClassName, !!dropdownClassName), _defineProperty(_popupClassName, dropdownPrefixCls + '--' + (multiple ? 'multiple' : 'single'), 1), _popupClassName);
@@ -12908,6 +12915,11 @@
 	    } else {
 	      hideAction = ['blur'];
 	    }
+	    var popupStyle = _extends({}, dropdownStyle);
+	    var widthProp = dropdownMatchSelectWidth ? 'width' : 'minWidth';
+	    if (this.state.dropdownWidth) {
+	      popupStyle[widthProp] = this.state.dropdownWidth + 'px';
+	    }
 	    return _react2['default'].createElement(
 	      _trigger2['default'],
 	      _extends({}, props, {
@@ -12924,7 +12936,7 @@
 	        popupVisible: visible,
 	        getPopupContainer: props.getPopupContainer,
 	        popupClassName: (0, _classnames2['default'])(popupClassName),
-	        popupStyle: props.dropdownStyle
+	        popupStyle: popupStyle
 	      }),
 	      props.children
 	    );
