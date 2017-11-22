@@ -12920,6 +12920,7 @@
 	    if (this.state.dropdownWidth) {
 	      popupStyle[widthProp] = this.state.dropdownWidth + 'px';
 	    }
+	    console.log(popupStyle);
 	    return _react2['default'].createElement(
 	      _trigger2['default'],
 	      _extends({}, props, {
@@ -12928,9 +12929,9 @@
 	        ref: 'trigger',
 	        popupPlacement: 'bottomLeft',
 	        builtinPlacements: BUILT_IN_PLACEMENTS,
-	        clsPrefix: dropdownPrefixCls,
-	        popupTransitionName: this.getDropdownTransitionName(),
-	        onPopupVisibleChange: props.onDropdownVisibleChange,
+	        clsPrefix: dropdownPrefixCls
+	        // popupTransitionName={this.getDropdownTransitionName()}
+	        , onPopupVisibleChange: props.onDropdownVisibleChange,
 	        popup: popupElement,
 	        popupAlign: dropdownAlign,
 	        popupVisible: visible,
