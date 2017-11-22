@@ -98,7 +98,7 @@
 	
 	var CARETUP = _react2['default'].createElement('i', { className: 'uf uf-arrow-up' });
 	
-	var Demo1 = __webpack_require__(143);var Demo2 = __webpack_require__(144);var Demo3 = __webpack_require__(145);var Demo4 = __webpack_require__(146);var Demo5 = __webpack_require__(147);var Demo6 = __webpack_require__(148);var DemoArray = [{ "example": _react2['default'].createElement(Demo1, null), "title": " 不同尺寸单选`Select`", "code": "/**\n * @title 不同尺寸单选`Select`\n * @description `size`参数控制大小\n */\n\nimport React, { Component } from \"react\";\nimport Select from \"../../src\";\n\nconst Option = Select.Option;\nconst OptGroup = Select.OptGroup;\n\nclass Demo1 extends Component {\n  handleChange = value => {\n    console.log(`selected ${value}`);\n  };\n  render() {\n    return (\n      <div>\n        <Select\n          size=\"lg\"\n          defaultValue=\"lucy\"\n          style={{ width: 200, marginRight: 6 }}\n          onChange={this.handleChange}\n        >\n          <Option value=\"jack\">boyuzhou</Option>\n          <Option value=\"lucy\">renhualiu</Option>\n          <Option value=\"disabled\" disabled>\n            Disabled\n          </Option>\n          <Option value=\"yiminghe\">yuzhao</Option>\n        </Select>\n        <Select\n          defaultValue=\"lucy\"\n          style={{ width: 200, marginRight: 6 }}\n          onChange={this.handleChange}\n        >\n          <Option value=\"jack\">boyuzhou</Option>\n          <Option value=\"lucy\">renhualiu</Option>\n          <Option value=\"disabled\" disabled>\n            Disabled\n          </Option>\n          <Option value=\"yiminghe\">yuzhao</Option>\n        </Select>\n        <Select\n          size=\"sm\"\n          defaultValue=\"lucy\"\n          style={{ width: 200 }}\n          onChange={this.handleChange}\n        >\n          <Option value=\"jack\">boyuzhou</Option>\n          <Option value=\"lucy\">renhualiu</Option>\n          <Option value=\"disabled\" disabled>\n            Disabled\n          </Option>\n          <Option value=\"yiminghe\">yuzhao</Option>\n        </Select>\n      </div>\n    );\n  }\n}\n\n\n", "desc": " `size`参数控制大小" }, { "example": _react2['default'].createElement(Demo2, null), "title": " 常用多选", "code": "/**\n * @title 常用多选\n * @description Children自定义数据列表,注意：Children已经定义到全局，此处显示为注释例子，其他例子用到Children变量均以此方式定义。\n */\n\nimport React, { Component } from \"react\";\nimport Select from \"../../src\";\n\nconst Option = Select.Option;\nconst OptGroup = Select.OptGroup;\n\nconst Children = [];\nfor (let i = 10; i < 36; i++) {\n  Children.push(<Option key={i.toString(36) + i}>{i.toString(36) + i}</Option>);\n}\n\nclass Demo2 extends Component {\n  handleChange = value => {\n    console.log('selected ${value}');\n  };\n  render() {\n    return (\n      <Select\n        multiple\n        style={{ width: \"100%\" }}\n        searchPlaceholder=\"标签模式\"\n        onChange={this.handleChange}\n      >\n        {Children}\n      </Select>\n    );\n  }\n}\n\n\n", "desc": " Children自定义数据列表,注意：Children已经定义到全局，此处显示为注释例子，其他例子用到Children变量均以此方式定义。" }, { "example": _react2['default'].createElement(Demo3, null), "title": " 自定义选项多选`Select`", "code": "/**\n * @title 自定义选项多选`Select`\n * @description 用户在框内输入自定义内容，Select将输入的内容自动纳入下拉选项中一员。\n */\n\nimport React, { Component } from \"react\";\nimport Select from \"../../src\";\n\nconst Option = Select.Option;\n\nconst Children = [];\nfor (let i = 10; i < 36; i++) {\n  Children.push(<Option key={i.toString(36) + i}>{i.toString(36) + i}</Option>);\n}\n\nclass Demo3 extends Component {\n  handleChange = value => {\n    console.log(`selected ${value}`);\n  };\n  scrollToEnd = () => {\n    console.log(\"软加载\");\n  };\n  render() {\n    return (\n      <Select\n        tags\n        style={{ width: \"100%\" }}\n        searchPlaceholder=\"标签模式\"\n        scrollToEnd={this.scrollToEnd}\n        onChange={this.handleChange}\n      >\n        {Children}\n      </Select>\n    );\n  }\n}\n\n\n", "desc": " 用户在框内输入自定义内容，Select将输入的内容自动纳入下拉选项中一员。" }, { "example": _react2['default'].createElement(Demo4, null), "title": " 简易级联单选`Select`", "code": "/**\n * @title 简易级联单选`Select`\n * @description 常用语城市级联的选择。\n */\n\nimport React, { Component } from \"react\";\nimport Select from \"../../src\";\n\nconst Option = Select.Option;\n\nconst provinceData = [\"Zhejiang\", \"Jiangsu\"];\nconst cityData = {\n  Zhejiang: [\"Hangzhou\", \"Ningbo\", \"Wenzhou\"],\n  Jiangsu: [\"Nanjing\", \"Suzhou\", \"Zhenjiang\"]\n};\n\nclass Demo4 extends Component {\n  constructor(props) {\n    super(props);\n    this.state = {\n      cities: cityData[provinceData[0]],\n      secondCity: cityData[provinceData[0]][0]\n    };\n  }\n  handleProvinceChange = value => {\n    this.setState({\n      cities: cityData[value],\n      secondCity: cityData[value][0]\n    });\n  };\n  onSecondCityChange = value => {\n    this.setState({\n      secondCity: value\n    });\n  };\n  render() {\n    const provinceOptions = provinceData.map(province => (\n      <Option key={province}>{province}</Option>\n    ));\n    const cityOptions = this.state.cities.map(city => (\n      <Option key={city}>{city}</Option>\n    ));\n    return (\n      <div>\n        <Select\n          defaultValue={provinceData[0]}\n          style={{ width: 90, marginRight: 6 }}\n          onChange={this.handleProvinceChange}\n        >\n          {provinceOptions}\n        </Select>\n        <Select\n          value={this.state.secondCity}\n          style={{ width: 90 }}\n          onChange={this.onSecondCityChange}\n        >\n          {cityOptions}\n        </Select>\n      </div>\n    );\n  }\n}\n\n\n", "desc": " 常用语城市级联的选择。" }, { "example": _react2['default'].createElement(Demo5, null), "title": " 自定义自动填充单选`Select`", "code": "/**\n * @title 自定义自动填充单选`Select`\n * @description 常用邮箱后缀自动填充。\n */\n\nimport React, { Component } from \"react\";\nimport Select from \"../../src\";\n\nconst Option = Select.Option;\n\nclass Demo5 extends Component {\n  constructor(props) {\n    super(props);\n    this.state = {\n      options: []\n    };\n  }\n  handleChange = value => {\n    let options;\n    if (!value || value.indexOf(\"@\") >= 0) {\n      options = [];\n    } else {\n      options = [\"gmail.com\", \"163.com\", \"qq.com\"].map(domain => {\n        const email = `${value}@${domain}`;\n        return <Option key={email}>{email}</Option>;\n      });\n    }\n    this.setState({ options });\n  };\n\n  render() {\n    return (\n      <Select\n        combobox\n        style={{ width: 200 }}\n        onChange={this.handleChange}\n        filterOption={false}\n        placeholder=\"Enter the account name\"\n      >\n        {this.state.options}\n      </Select>\n    );\n  }\n}\n\n\n", "desc": " 常用邮箱后缀自动填充。" }, { "example": _react2['default'].createElement(Demo6, null), "title": " 搜索单选`Select`", "code": "/**\n * @title 搜索单选`Select`\n * @description 从下拉选中，通过输入的值检索相应的选项。\n */\n\nimport React, { Component } from \"react\";\nimport Select from \"../../src\";\n\nconst Option = Select.Option;\n\nclass Demo6 extends Component {\n  constructor(props) {\n    super(props);\n  }\n  handleChange = value => {\n    console.log(`selected ${value}`);\n  };\n\n  render() {\n    return (\n      <Select\n        showSearch\n        style={{ width: 200 }}\n        placeholder=\"Select a person\"\n        optionFilterProp=\"children\"\n        onChange={this.handleChange.bind(this)}\n      >\n        <Option value=\"jack\">Jack</Option>\n        <Option value=\"lucy\">Lucy</Option>\n        <Option value=\"tom\">Tom</Option>\n      </Select>\n    );\n  }\n}\n\n\n", "desc": " 从下拉选中，通过输入的值检索相应的选项。" }];
+	var Demo1 = __webpack_require__(143);var Demo2 = __webpack_require__(144);var Demo3 = __webpack_require__(145);var Demo4 = __webpack_require__(146);var Demo5 = __webpack_require__(147);var Demo6 = __webpack_require__(148);var Demo7 = __webpack_require__(149);var DemoArray = [{ "example": _react2['default'].createElement(Demo1, null), "title": " 不同尺寸单选`Select`", "code": "/**\n * @title 不同尺寸单选`Select`\n * @description `size`参数控制大小\n */\n\nimport React, { Component } from \"react\";\nimport Select from \"../../src\";\n\nconst Option = Select.Option;\nconst OptGroup = Select.OptGroup;\n\nclass Demo1 extends Component {\n  handleChange = value => {\n    console.log(`selected ${value}`);\n  };\n  render() {\n    return (\n      <div>\n        <Select\n          size=\"lg\"\n          defaultValue=\"lucy\"\n          style={{ width: 200, marginRight: 6 }}\n          onChange={this.handleChange}\n        >\n          <Option value=\"jack\">boyuzhou</Option>\n          <Option value=\"lucy\">renhualiu</Option>\n          <Option value=\"disabled\" disabled>\n            Disabled\n          </Option>\n          <Option value=\"yiminghe\">yuzhao</Option>\n        </Select>\n        <Select\n          defaultValue=\"lucy\"\n          style={{ width: 200, marginRight: 6 }}\n          onChange={this.handleChange}\n        >\n          <Option value=\"jack\">boyuzhou</Option>\n          <Option value=\"lucy\">renhualiu</Option>\n          <Option value=\"disabled\" disabled>\n            Disabled\n          </Option>\n          <Option value=\"yiminghe\">yuzhao</Option>\n        </Select>\n        <Select\n          size=\"sm\"\n          defaultValue=\"lucy\"\n          style={{ width: 200 }}\n          onChange={this.handleChange}\n        >\n          <Option value=\"jack\">boyuzhou</Option>\n          <Option value=\"lucy\">renhualiu</Option>\n          <Option value=\"disabled\" disabled>\n            Disabled\n          </Option>\n          <Option value=\"yiminghe\">yuzhao</Option>\n        </Select>\n      </div>\n    );\n  }\n}\n\n\n", "desc": " `size`参数控制大小" }, { "example": _react2['default'].createElement(Demo2, null), "title": " 常用多选", "code": "/**\n * @title 常用多选\n * @description Children自定义数据列表,注意：Children已经定义到全局，此处显示为注释例子，其他例子用到Children变量均以此方式定义。\n */\n\nimport React, { Component } from \"react\";\nimport Select from \"../../src\";\n\nconst Option = Select.Option;\nconst OptGroup = Select.OptGroup;\n\nconst Children = [];\nfor (let i = 10; i < 36; i++) {\n  Children.push(<Option key={i.toString(36) + i}>{i.toString(36) + i}</Option>);\n}\n\nclass Demo2 extends Component {\n  handleChange = value => {\n    console.log('selected ${value}');\n  };\n  render() {\n    return (\n      <Select\n        multiple\n        style={{ width: \"100%\" }}\n        searchPlaceholder=\"标签模式\"\n        onChange={this.handleChange}\n      >\n        {Children}\n      </Select>\n    );\n  }\n}\n\n\n", "desc": " Children自定义数据列表,注意：Children已经定义到全局，此处显示为注释例子，其他例子用到Children变量均以此方式定义。" }, { "example": _react2['default'].createElement(Demo3, null), "title": " 自定义选项多选`Select`", "code": "/**\n * @title 自定义选项多选`Select`\n * @description 用户在框内输入自定义内容，Select将输入的内容自动纳入下拉选项中一员。\n */\n\nimport React, { Component } from \"react\";\nimport Select from \"../../src\";\n\nconst Option = Select.Option;\n\nconst Children = [];\nfor (let i = 10; i < 36; i++) {\n  Children.push(<Option key={i.toString(36) + i}>{i.toString(36) + i}</Option>);\n}\n\nclass Demo3 extends Component {\n  handleChange = value => {\n    console.log(`selected ${value}`);\n  };\n  scrollToEnd = () => {\n    console.log(\"软加载\");\n  };\n  render() {\n    return (\n      <Select\n        tags\n        style={{ width: \"100%\" }}\n        searchPlaceholder=\"标签模式\"\n        scrollToEnd={this.scrollToEnd}\n        onChange={this.handleChange}\n      >\n        {Children}\n      </Select>\n    );\n  }\n}\n\n\n", "desc": " 用户在框内输入自定义内容，Select将输入的内容自动纳入下拉选项中一员。" }, { "example": _react2['default'].createElement(Demo4, null), "title": " 简易级联单选`Select`", "code": "/**\n * @title 简易级联单选`Select`\n * @description 常用语城市级联的选择。\n */\n\nimport React, { Component } from \"react\";\nimport Select from \"../../src\";\n\nconst Option = Select.Option;\n\nconst provinceData = [\"Zhejiang\", \"Jiangsu\"];\nconst cityData = {\n  Zhejiang: [\"Hangzhou\", \"Ningbo\", \"Wenzhou\"],\n  Jiangsu: [\"Nanjing\", \"Suzhou\", \"Zhenjiang\"]\n};\n\nclass Demo4 extends Component {\n  constructor(props) {\n    super(props);\n    this.state = {\n      cities: cityData[provinceData[0]],\n      secondCity: cityData[provinceData[0]][0]\n    };\n  }\n  handleProvinceChange = value => {\n    this.setState({\n      cities: cityData[value],\n      secondCity: cityData[value][0]\n    });\n  };\n  onSecondCityChange = value => {\n    this.setState({\n      secondCity: value\n    });\n  };\n  render() {\n    const provinceOptions = provinceData.map(province => (\n      <Option key={province}>{province}</Option>\n    ));\n    const cityOptions = this.state.cities.map(city => (\n      <Option key={city}>{city}</Option>\n    ));\n    return (\n      <div>\n        <Select\n          defaultValue={provinceData[0]}\n          style={{ width: 90, marginRight: 6 }}\n          onChange={this.handleProvinceChange}\n        >\n          {provinceOptions}\n        </Select>\n        <Select\n          value={this.state.secondCity}\n          style={{ width: 90 }}\n          onChange={this.onSecondCityChange}\n        >\n          {cityOptions}\n        </Select>\n      </div>\n    );\n  }\n}\n\n\n", "desc": " 常用语城市级联的选择。" }, { "example": _react2['default'].createElement(Demo5, null), "title": " 自定义自动填充单选`Select`", "code": "/**\n * @title 自定义自动填充单选`Select`\n * @description 常用邮箱后缀自动填充。\n */\n\nimport React, { Component } from \"react\";\nimport Select from \"../../src\";\n\nconst Option = Select.Option;\n\nclass Demo5 extends Component {\n  constructor(props) {\n    super(props);\n    this.state = {\n      options: []\n    };\n  }\n  handleChange = value => {\n    let options;\n    if (!value || value.indexOf(\"@\") >= 0) {\n      options = [];\n    } else {\n      options = [\"gmail.com\", \"163.com\", \"qq.com\"].map(domain => {\n        const email = `${value}@${domain}`;\n        return <Option key={email}>{email}</Option>;\n      });\n    }\n    this.setState({ options });\n  };\n\n  render() {\n    return (\n      <Select\n        combobox\n        style={{ width: 200 }}\n        onChange={this.handleChange}\n        filterOption={false}\n        placeholder=\"Enter the account name\"\n      >\n        {this.state.options}\n      </Select>\n    );\n  }\n}\n\n\n", "desc": " 常用邮箱后缀自动填充。" }, { "example": _react2['default'].createElement(Demo6, null), "title": " 搜索单选`Select`", "code": "/**\n * @title 搜索单选`Select`\n * @description 从下拉选中，通过输入的值检索相应的选项。\n */\n\nimport React, { Component } from \"react\";\nimport Select from \"../../src\";\n\nconst Option = Select.Option;\n\nclass Demo6 extends Component {\n  constructor(props) {\n    super(props);\n  }\n  handleChange = value => {\n    console.log(`selected ${value}`);\n  };\n\n  render() {\n    return (\n      <Select\n        showSearch\n        style={{ width: 200 }}\n        placeholder=\"Select a person\"\n        optionFilterProp=\"children\"\n        onChange={this.handleChange.bind(this)}\n      >\n        <Option value=\"jack\">Jack</Option>\n        <Option value=\"lucy\">Lucy</Option>\n        <Option value=\"tom\">Tom</Option>\n      </Select>\n    );\n  }\n}\n\n\n", "desc": " 从下拉选中，通过输入的值检索相应的选项。" }, { "example": _react2['default'].createElement(Demo7, null), "title": " 设置data数组对象来自动生成opti", "code": "/**\n * @title 设置data数组对象来自动生成option\n * @description 必须设置key，value。根据需要设置disabed\n */\n\nimport React, { Component } from \"react\";\nimport Select from \"../../src\";\n\nconst Option = Select.Option;\n\nlet selectDataSource = [\n  {\n    key: \"张三\",\n    value: \"zhangsan\"\n  },\n  {\n    key: \"李四\",\n    value: \"lisi\"\n  },\n  {\n    key: \"王五\",\n    value: \"wangwu\"\n  }\n];\n\nclass Demo7 extends Component {\n  constructor(props) {\n    super(props);\n    this.state = {\n      DataSource: [\n        {\n          key: \"其他数据\",\n          value: \"qita\"\n        }\n      ]\n    };\n  }\n  handleChange = value => {\n    if (value) {\n      this.setState({\n        DataSource: [\n          {\n            key: \"张三三\",\n            value: \"zhangsansan\",\n            disabled: true\n          },\n          {\n            key: \"李四四\",\n            value: \"lisisi\"\n          },\n          {\n            key: \"王五五\",\n            value: \"wangwuwu\"\n          }\n        ]\n      });\n    }\n  };\n\n  render() {\n    return (\n      <div>\n        <Select\n          style={{ width: 200 }}\n          placeholder=\"Select a person\"\n          onChange={this.handleChange}\n          data={selectDataSource}\n        />\n        <Select\n          style={{ width: 200, marginLeft: \"5px\" }}\n          placeholder=\"Select a person\"\n          data={this.state.DataSource}\n        />\n      </div>\n    );\n  }\n}\n\n\n", "desc": " 必须设置key，value。根据需要设置disabed" }];
 	
 	var Demo = function (_Component) {
 	    _inherits(Demo, _Component);
@@ -7829,7 +7829,7 @@
 /* 106 */
 /***/ (function(module, exports, __webpack_require__) {
 
-	'use strict';
+	"use strict";
 	
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
@@ -7861,7 +7861,7 @@
 	
 	var _classnames2 = _interopRequireDefault(_classnames);
 	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 	
 	function _defaults(obj, defaults) { var keys = Object.getOwnPropertyNames(defaults); for (var i = 0; i < keys.length; i++) { var key = keys[i]; var value = Object.getOwnPropertyDescriptor(defaults, key); if (value && value.configurable && obj[key] === undefined) { Object.defineProperty(obj, key, value); } } return obj; }
 	
@@ -7875,48 +7875,48 @@
 	
 	var SelectContext = {
 	  antLocale: {
-	    Select: _propTypes2['default'].any
+	    Select: _propTypes2["default"].any
 	  }
 	};
 	
 	var defaultProps = {
-	  clsPrefix: 'u-select',
+	  clsPrefix: "u-select",
 	  showSearch: false,
-	  transitionName: 'slide-up',
-	  choiceTransitionName: 'zoom'
+	  transitionName: "slide-up",
+	  choiceTransitionName: "zoom"
 	};
 	
 	var propTypes = {
-	  clsPrefix: _propTypes2['default'].string,
-	  className: _propTypes2['default'].string,
-	  value: _propTypes2['default'].oneOfType([_propTypes2['default'].string, _propTypes2['default'].any]),
-	  defaultValue: _propTypes2['default'].oneOfType([_propTypes2['default'].node, _propTypes2['default'].array, _propTypes2['default'].any]),
-	  size: _propTypes2['default'].oneOf(['default', 'lg', 'sm']),
-	  combobox: _propTypes2['default'].bool,
-	  notFoundContent: _propTypes2['default'].oneOfType([_propTypes2['default'].node, _propTypes2['default'].array, _propTypes2['default'].any]),
-	  showSearch: _propTypes2['default'].bool,
-	  transitionName: _propTypes2['default'].string,
-	  choiceTransitionName: _propTypes2['default'].string,
-	  multiple: _propTypes2['default'].bool,
-	  allowClear: _propTypes2['default'].bool,
-	  filterOption: _propTypes2['default'].oneOfType([_propTypes2['default'].bool, _propTypes2['default'].func]),
-	  tags: _propTypes2['default'].bool,
-	  onSelect: _propTypes2['default'].func,
-	  onDeselect: _propTypes2['default'].func,
-	  onSearch: _propTypes2['default'].func,
-	  placeholder: _propTypes2['default'].string,
-	  dropdownMatchSelectWidth: _propTypes2['default'].bool,
-	  optionFilterProp: _propTypes2['default'].string,
-	  optionLabelProp: _propTypes2['default'].string,
-	  disabled: _propTypes2['default'].bool,
-	  defaultActiveFirstOption: _propTypes2['default'].bool,
-	  labelInValue: _propTypes2['default'].bool,
-	  getPopupContainer: _propTypes2['default'].func,
-	  style: _propTypes2['default'].object,
-	  dropdownStyle: _propTypes2['default'].object,
-	  dropdownMenuStyle: _propTypes2['default'].object,
-	  onChange: _propTypes2['default'].func,
-	  scrollToEnd: _propTypes2['default'].func
+	  clsPrefix: _propTypes2["default"].string,
+	  className: _propTypes2["default"].string,
+	  value: _propTypes2["default"].oneOfType([_propTypes2["default"].string, _propTypes2["default"].any]),
+	  defaultValue: _propTypes2["default"].oneOfType([_propTypes2["default"].node, _propTypes2["default"].array, _propTypes2["default"].any]),
+	  size: _propTypes2["default"].oneOf(["default", "lg", "sm"]),
+	  combobox: _propTypes2["default"].bool,
+	  notFoundContent: _propTypes2["default"].oneOfType([_propTypes2["default"].node, _propTypes2["default"].array, _propTypes2["default"].any]),
+	  showSearch: _propTypes2["default"].bool,
+	  transitionName: _propTypes2["default"].string,
+	  choiceTransitionName: _propTypes2["default"].string,
+	  multiple: _propTypes2["default"].bool,
+	  allowClear: _propTypes2["default"].bool,
+	  filterOption: _propTypes2["default"].oneOfType([_propTypes2["default"].bool, _propTypes2["default"].func]),
+	  tags: _propTypes2["default"].bool,
+	  onSelect: _propTypes2["default"].func,
+	  onDeselect: _propTypes2["default"].func,
+	  onSearch: _propTypes2["default"].func,
+	  placeholder: _propTypes2["default"].string,
+	  dropdownMatchSelectWidth: _propTypes2["default"].bool,
+	  optionFilterProp: _propTypes2["default"].string,
+	  optionLabelProp: _propTypes2["default"].string,
+	  disabled: _propTypes2["default"].bool,
+	  defaultActiveFirstOption: _propTypes2["default"].bool,
+	  labelInValue: _propTypes2["default"].bool,
+	  getPopupContainer: _propTypes2["default"].func,
+	  style: _propTypes2["default"].object,
+	  dropdownStyle: _propTypes2["default"].object,
+	  dropdownMenuStyle: _propTypes2["default"].object,
+	  onChange: _propTypes2["default"].func,
+	  scrollToEnd: _propTypes2["default"].func
 	};
 	
 	var Select = function (_Component) {
@@ -7934,32 +7934,56 @@
 	    var _props = this.props,
 	        clsPrefix = _props.clsPrefix,
 	        _props$className = _props.className,
-	        className = _props$className === undefined ? '' : _props$className,
+	        className = _props$className === undefined ? "" : _props$className,
 	        size = _props.size,
 	        combobox = _props.combobox,
-	        showSearch = _props.showSearch;
+	        showSearch = _props.showSearch,
+	        data = _props.data;
 	    var _props2 = this.props,
 	        _props2$notFoundConte = _props2.notFoundContent,
-	        notFoundContent = _props2$notFoundConte === undefined ? 'Not Found' : _props2$notFoundConte,
+	        notFoundContent = _props2$notFoundConte === undefined ? "Not Found" : _props2$notFoundConte,
 	        optionLabelProp = _props2.optionLabelProp;
 	
 	
-	    var cls = (0, _classnames2['default'])((_classNames = {}, _defineProperty(_classNames, clsPrefix + '-lg', size === 'lg'), _defineProperty(_classNames, clsPrefix + '-sm', size === 'sm'), _defineProperty(_classNames, clsPrefix + '-show-search', showSearch), _classNames), className);
+	    var cls = (0, _classnames2["default"])((_classNames = {}, _defineProperty(_classNames, clsPrefix + "-lg", size === "lg"), _defineProperty(_classNames, clsPrefix + "-sm", size === "sm"), _defineProperty(_classNames, clsPrefix + "-show-search", showSearch), _classNames), className);
 	
 	    var antLocale = this.context.antLocale;
 	
 	    if (antLocale && antLocale.Select) {
-	      notFoundContent = 'notFoundContent' in this.props ? notFoundContent : antLocale.Select.notFoundContent;
+	      notFoundContent = "notFoundContent" in this.props ? notFoundContent : antLocale.Select.notFoundContent;
 	    }
 	
 	    if (combobox) {
 	      notFoundContent = null;
 	      // children 带 dom 结构时，无法填入输入框
-	      optionLabelProp = optionLabelProp || 'value';
+	      optionLabelProp = optionLabelProp || "value";
 	    }
-	    return _react2['default'].createElement(_RcSelect2['default'], _extends({}, this.props, {
+	    if (data) {
+	      data.map(function (item) {
+	        return _react2["default"].createElement(
+	          _Option2["default"],
+	          { value: item.value },
+	          item.key
+	        );
+	      });
+	    }
+	    return data ? _react2["default"].createElement(
+	      _RcSelect2["default"],
+	      _extends({}, this.props, {
+	        className: cls,
+	        optionLabelProp: optionLabelProp || "children",
+	        notFoundContent: notFoundContent
+	      }),
+	      data.map(function (item) {
+	        return _react2["default"].createElement(
+	          _Option2["default"],
+	          { key: item.value, value: item.value, disabled: item.disabled ? true : false },
+	          item.key
+	        );
+	      })
+	    ) : _react2["default"].createElement(_RcSelect2["default"], _extends({}, this.props, {
 	      className: cls,
-	      optionLabelProp: optionLabelProp || 'children',
+	      optionLabelProp: optionLabelProp || "children",
 	      notFoundContent: notFoundContent
 	    }));
 	  };
@@ -7970,11 +7994,11 @@
 	Select.context = SelectContext;
 	Select.propTypes = propTypes;
 	Select.defaultProps = defaultProps;
-	Select.Option = _Option2['default'];
-	Select.OptGroup = _OptGroup2['default'];
+	Select.Option = _Option2["default"];
+	Select.OptGroup = _OptGroup2["default"];
 	
-	exports['default'] = Select;
-	module.exports = exports['default'];
+	exports["default"] = Select;
+	module.exports = exports["default"];
 
 /***/ }),
 /* 107 */
@@ -12920,7 +12944,6 @@
 	    if (this.state.dropdownWidth) {
 	      popupStyle[widthProp] = this.state.dropdownWidth + 'px';
 	    }
-	    console.log(popupStyle);
 	    return _react2['default'].createElement(
 	      _trigger2['default'],
 	      _extends({}, props, {
@@ -15480,6 +15503,109 @@
 	}(_react.Component);
 	
 	exports["default"] = Demo6;
+	module.exports = exports["default"];
+
+/***/ }),
+/* 149 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	"use strict";
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _react = __webpack_require__(4);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _src = __webpack_require__(105);
+	
+	var _src2 = _interopRequireDefault(_src);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+	
+	function _defaults(obj, defaults) { var keys = Object.getOwnPropertyNames(defaults); for (var i = 0; i < keys.length; i++) { var key = keys[i]; var value = Object.getOwnPropertyDescriptor(defaults, key); if (value && value.configurable && obj[key] === undefined) { Object.defineProperty(obj, key, value); } } return obj; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : _defaults(subClass, superClass); } /**
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * @title 设置data数组对象来自动生成option
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * @description 必须设置key，value。根据需要设置disabed
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                */
+	
+	var Option = _src2["default"].Option;
+	
+	var selectDataSource = [{
+	  key: "张三",
+	  value: "zhangsan"
+	}, {
+	  key: "李四",
+	  value: "lisi"
+	}, {
+	  key: "王五",
+	  value: "wangwu"
+	}];
+	
+	var Demo7 = function (_Component) {
+	  _inherits(Demo7, _Component);
+	
+	  function Demo7(props) {
+	    _classCallCheck(this, Demo7);
+	
+	    var _this = _possibleConstructorReturn(this, _Component.call(this, props));
+	
+	    _this.handleChange = function (value) {
+	      if (value) {
+	        _this.setState({
+	          DataSource: [{
+	            key: "张三三",
+	            value: "zhangsansan",
+	            disabled: true
+	          }, {
+	            key: "李四四",
+	            value: "lisisi"
+	          }, {
+	            key: "王五五",
+	            value: "wangwuwu"
+	          }]
+	        });
+	      }
+	    };
+	
+	    _this.state = {
+	      DataSource: [{
+	        key: "其他数据",
+	        value: "qita"
+	      }]
+	    };
+	    return _this;
+	  }
+	
+	  Demo7.prototype.render = function render() {
+	    return _react2["default"].createElement(
+	      "div",
+	      null,
+	      _react2["default"].createElement(_src2["default"], {
+	        style: { width: 200 },
+	        placeholder: "Select a person",
+	        onChange: this.handleChange,
+	        data: selectDataSource
+	      }),
+	      _react2["default"].createElement(_src2["default"], {
+	        style: { width: 200, marginLeft: "5px" },
+	        placeholder: "Select a person",
+	        data: this.state.DataSource
+	      })
+	    );
+	  };
+	
+	  return Demo7;
+	}(_react.Component);
+	
+	exports["default"] = Demo7;
 	module.exports = exports["default"];
 
 /***/ })

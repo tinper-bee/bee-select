@@ -1,51 +1,45 @@
-import React, {Component} from 'react';
-import PropTypes from 'prop-types';
-import RcSelect from './RcSelect';
-import Option from './Option';
-import OptGroup from './OptGroup';
-import classNames from 'classnames';
+import React, { Component } from "react";
+import PropTypes from "prop-types";
+import RcSelect from "./RcSelect";
+import Option from "./Option";
+import OptGroup from "./OptGroup";
+import classNames from "classnames";
 
-const SelectContext ={
-  antLocale : {
+const SelectContext = {
+  antLocale: {
     Select: PropTypes.any
   }
-}
+};
 
 const defaultProps = {
-    clsPrefix: 'u-select',
-    showSearch: false,
-    transitionName: 'slide-up',
-    choiceTransitionName: 'zoom',
+  clsPrefix: "u-select",
+  showSearch: false,
+  transitionName: "slide-up",
+  choiceTransitionName: "zoom"
 };
 
 const propTypes = {
   clsPrefix: PropTypes.string,
   className: PropTypes.string,
-  value: PropTypes.oneOfType([
-      PropTypes.string, 
-      PropTypes.any
-  ]),
+  value: PropTypes.oneOfType([PropTypes.string, PropTypes.any]),
   defaultValue: PropTypes.oneOfType([
-      PropTypes.node, 
-      PropTypes.array,
-      PropTypes.any
+    PropTypes.node,
+    PropTypes.array,
+    PropTypes.any
   ]),
-  size: PropTypes.oneOf(['default','lg','sm']) ,
+  size: PropTypes.oneOf(["default", "lg", "sm"]),
   combobox: PropTypes.bool,
   notFoundContent: PropTypes.oneOfType([
-      PropTypes.node, 
-      PropTypes.array,
-      PropTypes.any
+    PropTypes.node,
+    PropTypes.array,
+    PropTypes.any
   ]),
   showSearch: PropTypes.bool,
   transitionName: PropTypes.string,
   choiceTransitionName: PropTypes.string,
   multiple: PropTypes.bool,
   allowClear: PropTypes.bool,
-  filterOption: PropTypes.oneOfType([
-      PropTypes.bool, 
-      PropTypes.func
-  ]),
+  filterOption: PropTypes.oneOfType([PropTypes.bool, PropTypes.func]),
   tags: PropTypes.bool,
   onSelect: PropTypes.func,
   onDeselect: PropTypes.func,
@@ -66,44 +60,65 @@ const propTypes = {
 };
 
 class Select extends Component {
-
- constructor(props) {
+  constructor(props) {
     super(props);
   }
 
   render() {
     const {
       clsPrefix,
-      className = '',
+      className = "",
       size,
       combobox,
       showSearch,
+      data
     } = this.props;
 
-    let { notFoundContent = 'Not Found', optionLabelProp } = this.props;
+    let { notFoundContent = "Not Found", optionLabelProp } = this.props;
 
-    const cls = classNames({
-      [`${clsPrefix}-lg`]: size === 'lg',
-      [`${clsPrefix}-sm`]: size === 'sm',
-      [`${clsPrefix}-show-search`]: showSearch,
-    }, className);
+    const cls = classNames(
+      {
+        [`${clsPrefix}-lg`]: size === "lg",
+        [`${clsPrefix}-sm`]: size === "sm",
+        [`${clsPrefix}-show-search`]: showSearch
+      },
+      className
+    );
 
     const { antLocale } = this.context;
     if (antLocale && antLocale.Select) {
-      notFoundContent = ('notFoundContent' in this.props)
-        ? notFoundContent : antLocale.Select.notFoundContent;
+      notFoundContent =
+        "notFoundContent" in this.props
+          ? notFoundContent
+          : antLocale.Select.notFoundContent;
     }
 
     if (combobox) {
       notFoundContent = null;
       // children 带 dom 结构时，无法填入输入框
-      optionLabelProp = optionLabelProp || 'value';
+      optionLabelProp = optionLabelProp || "value";
     }
-    return (
+    if(data){
+      data.map(item => {
+        return <Option value={item.value}>{item.key}</Option>;
+      })
+    }
+    return data ? (
       <RcSelect
         {...this.props}
         className={cls}
-        optionLabelProp={optionLabelProp || 'children'}
+        optionLabelProp={optionLabelProp || "children"}
+        notFoundContent={notFoundContent}
+      >
+        {data.map(item => {
+          return <Option key={item.value} value={item.value} disabled={item.disabled?true:false}>{item.key}</Option>;
+        })}
+      </RcSelect>
+    ) : (
+      <RcSelect
+        {...this.props}
+        className={cls}
+        optionLabelProp={optionLabelProp || "children"}
         notFoundContent={notFoundContent}
       />
     );

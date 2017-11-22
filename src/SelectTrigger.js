@@ -140,7 +140,6 @@ class SelectTrigger extends Component{
     if (this.state.dropdownWidth) {
       popupStyle[widthProp] = `${this.state.dropdownWidth}px`;
     }
-    console.log(popupStyle)
     return (<Trigger {...props}
       showAction={disabled ? [] : ['click']}
       hideAction={hideAction}
