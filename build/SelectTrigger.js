@@ -90,28 +90,32 @@ var SelectTrigger = function (_Component) {
 
     var _this = _possibleConstructorReturn(this, _Component.call(this, props));
 
+    _this.setDropdownWidth = function () {
+      var width = _reactDom2["default"].findDOMNode(_this).offsetWidth;
+      if (width !== _this.state.dropdownWidth) {
+        _this.setState({ dropdownWidth: width });
+      }
+    };
+
     _this.getInnerMenu = _this.getInnerMenu.bind(_this);
     _this.getPopupDOMNode = _this.getPopupDOMNode.bind(_this);
     _this.getDropdownTransitionName = _this.getDropdownTransitionName.bind(_this);
     _this.getDropdownElement = _this.getDropdownElement.bind(_this);
     _this.getDropdownPrefixCls = _this.getDropdownPrefixCls.bind(_this);
     _this.saveMenu = _this.saveMenu.bind(_this);
+    _this.state = {
+      dropdownWidth: null
+    };
 
     return _this;
   }
 
-  SelectTrigger.prototype.componentDidUpdate = function componentDidUpdate() {
-    var _props = this.props,
-        visible = _props.visible,
-        dropdownMatchSelectWidth = _props.dropdownMatchSelectWidth;
+  SelectTrigger.prototype.componentDidMount = function componentDidMount() {
+    this.setDropdownWidth();
+  };
 
-    if (visible) {
-      var dropdownDOMNode = this.getPopupDOMNode();
-      if (dropdownDOMNode) {
-        var widthProp = dropdownMatchSelectWidth ? 'width' : 'minWidth';
-        dropdownDOMNode.style[widthProp] = _reactDom2["default"].findDOMNode(this).offsetWidth + 'px';
-      }
-    }
+  SelectTrigger.prototype.componentDidUpdate = function componentDidUpdate() {
+    this.setDropdownWidth();
   };
 
   SelectTrigger.prototype.getInnerMenu = function getInnerMenu() {
@@ -157,9 +161,9 @@ var SelectTrigger = function (_Component) {
   SelectTrigger.prototype.render = function render() {
     var _popupClassName;
 
-    var _props2 = this.props,
-        onPopupFocus = _props2.onPopupFocus,
-        props = _objectWithoutProperties(_props2, ['onPopupFocus']);
+    var _props = this.props,
+        onPopupFocus = _props.onPopupFocus,
+        props = _objectWithoutProperties(_props, ['onPopupFocus']);
 
     var multiple = props.multiple,
         visible = props.visible,
@@ -167,7 +171,9 @@ var SelectTrigger = function (_Component) {
         dropdownAlign = props.dropdownAlign,
         disabled = props.disabled,
         showSearch = props.showSearch,
-        dropdownClassName = props.dropdownClassName;
+        dropdownClassName = props.dropdownClassName,
+        dropdownStyle = props.dropdownStyle,
+        dropdownMatchSelectWidth = props.dropdownMatchSelectWidth;
 
     var dropdownPrefixCls = this.getDropdownPrefixCls();
     var popupClassName = (_popupClassName = {}, _defineProperty(_popupClassName, dropdownClassName, !!dropdownClassName), _defineProperty(_popupClassName, dropdownPrefixCls + '--' + (multiple ? 'multiple' : 'single'), 1), _popupClassName);
@@ -186,6 +192,11 @@ var SelectTrigger = function (_Component) {
     } else {
       hideAction = ['blur'];
     }
+    var popupStyle = _extends({}, dropdownStyle);
+    var widthProp = dropdownMatchSelectWidth ? 'width' : 'minWidth';
+    if (this.state.dropdownWidth) {
+      popupStyle[widthProp] = this.state.dropdownWidth + 'px';
+    }
     return _react2["default"].createElement(
       _trigger2["default"],
       _extends({}, props, {
@@ -194,15 +205,15 @@ var SelectTrigger = function (_Component) {
         ref: 'trigger',
         popupPlacement: 'bottomLeft',
         builtinPlacements: BUILT_IN_PLACEMENTS,
-        clsPrefix: dropdownPrefixCls,
-        popupTransitionName: this.getDropdownTransitionName(),
-        onPopupVisibleChange: props.onDropdownVisibleChange,
+        clsPrefix: dropdownPrefixCls
+        // popupTransitionName={this.getDropdownTransitionName()}
+        , onPopupVisibleChange: props.onDropdownVisibleChange,
         popup: popupElement,
         popupAlign: dropdownAlign,
         popupVisible: visible,
         getPopupContainer: props.getPopupContainer,
         popupClassName: (0, _classnames2["default"])(popupClassName),
-        popupStyle: props.dropdownStyle
+        popupStyle: popupStyle
       }),
       props.children
     );

@@ -1,4 +1,4 @@
-'use strict';
+"use strict";
 
 Object.defineProperty(exports, "__esModule", {
   value: true
@@ -6,27 +6,27 @@ Object.defineProperty(exports, "__esModule", {
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
-var _react = require('react');
+var _react = require("react");
 
 var _react2 = _interopRequireDefault(_react);
 
-var _propTypes = require('prop-types');
+var _propTypes = require("prop-types");
 
 var _propTypes2 = _interopRequireDefault(_propTypes);
 
-var _RcSelect = require('./RcSelect');
+var _RcSelect = require("./RcSelect");
 
 var _RcSelect2 = _interopRequireDefault(_RcSelect);
 
-var _Option = require('./Option');
+var _Option = require("./Option");
 
 var _Option2 = _interopRequireDefault(_Option);
 
-var _OptGroup = require('./OptGroup');
+var _OptGroup = require("./OptGroup");
 
 var _OptGroup2 = _interopRequireDefault(_OptGroup);
 
-var _classnames = require('classnames');
+var _classnames = require("classnames");
 
 var _classnames2 = _interopRequireDefault(_classnames);
 
@@ -49,10 +49,10 @@ var SelectContext = {
 };
 
 var defaultProps = {
-  clsPrefix: 'u-select',
+  clsPrefix: "u-select",
   showSearch: false,
-  transitionName: 'slide-up',
-  choiceTransitionName: 'zoom'
+  transitionName: "slide-up",
+  choiceTransitionName: "zoom"
 };
 
 var propTypes = {
@@ -60,7 +60,7 @@ var propTypes = {
   className: _propTypes2["default"].string,
   value: _propTypes2["default"].oneOfType([_propTypes2["default"].string, _propTypes2["default"].any]),
   defaultValue: _propTypes2["default"].oneOfType([_propTypes2["default"].node, _propTypes2["default"].array, _propTypes2["default"].any]),
-  size: _propTypes2["default"].oneOf(['default', 'lg', 'sm']),
+  size: _propTypes2["default"].oneOf(["default", "lg", "sm"]),
   combobox: _propTypes2["default"].bool,
   notFoundContent: _propTypes2["default"].oneOfType([_propTypes2["default"].node, _propTypes2["default"].array, _propTypes2["default"].any]),
   showSearch: _propTypes2["default"].bool,
@@ -103,32 +103,56 @@ var Select = function (_Component) {
     var _props = this.props,
         clsPrefix = _props.clsPrefix,
         _props$className = _props.className,
-        className = _props$className === undefined ? '' : _props$className,
+        className = _props$className === undefined ? "" : _props$className,
         size = _props.size,
         combobox = _props.combobox,
-        showSearch = _props.showSearch;
+        showSearch = _props.showSearch,
+        data = _props.data;
     var _props2 = this.props,
         _props2$notFoundConte = _props2.notFoundContent,
-        notFoundContent = _props2$notFoundConte === undefined ? 'Not Found' : _props2$notFoundConte,
+        notFoundContent = _props2$notFoundConte === undefined ? "Not Found" : _props2$notFoundConte,
         optionLabelProp = _props2.optionLabelProp;
 
 
-    var cls = (0, _classnames2["default"])((_classNames = {}, _defineProperty(_classNames, clsPrefix + '-lg', size === 'lg'), _defineProperty(_classNames, clsPrefix + '-sm', size === 'sm'), _defineProperty(_classNames, clsPrefix + '-show-search', showSearch), _classNames), className);
+    var cls = (0, _classnames2["default"])((_classNames = {}, _defineProperty(_classNames, clsPrefix + "-lg", size === "lg"), _defineProperty(_classNames, clsPrefix + "-sm", size === "sm"), _defineProperty(_classNames, clsPrefix + "-show-search", showSearch), _classNames), className);
 
     var antLocale = this.context.antLocale;
 
     if (antLocale && antLocale.Select) {
-      notFoundContent = 'notFoundContent' in this.props ? notFoundContent : antLocale.Select.notFoundContent;
+      notFoundContent = "notFoundContent" in this.props ? notFoundContent : antLocale.Select.notFoundContent;
     }
 
     if (combobox) {
       notFoundContent = null;
       // children 带 dom 结构时，无法填入输入框
-      optionLabelProp = optionLabelProp || 'value';
+      optionLabelProp = optionLabelProp || "value";
     }
-    return _react2["default"].createElement(_RcSelect2["default"], _extends({}, this.props, {
+    if (data) {
+      data.map(function (item) {
+        return _react2["default"].createElement(
+          _Option2["default"],
+          { value: item.value },
+          item.key
+        );
+      });
+    }
+    return data ? _react2["default"].createElement(
+      _RcSelect2["default"],
+      _extends({}, this.props, {
+        className: cls,
+        optionLabelProp: optionLabelProp || "children",
+        notFoundContent: notFoundContent
+      }),
+      data.map(function (item) {
+        return _react2["default"].createElement(
+          _Option2["default"],
+          { key: item.value, value: item.value, disabled: item.disabled ? true : false },
+          item.key
+        );
+      })
+    ) : _react2["default"].createElement(_RcSelect2["default"], _extends({}, this.props, {
       className: cls,
-      optionLabelProp: optionLabelProp || 'children',
+      optionLabelProp: optionLabelProp || "children",
       notFoundContent: notFoundContent
     }));
   };
@@ -143,4 +167,4 @@ Select.Option = _Option2["default"];
 Select.OptGroup = _OptGroup2["default"];
 
 exports["default"] = Select;
-module.exports = exports['default'];
+module.exports = exports["default"];

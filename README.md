@@ -1,7 +1,13 @@
 # bee-select
 [![npm version](https://img.shields.io/npm/v/bee-select.svg)](https://www.npmjs.com/package/bee-select)
 [![Build Status](https://img.shields.io/travis/tinper-bee/bee-select/master.svg)](https://travis-ci.org/tinper-bee/bee-select)
-[![devDependency Status](https://img.shields.io/david/dev/tinper-bee/bee-select.svg)](https://david-dm.org/tinper-bee/bee-select#info=devDependencies)
+[![Coverage Status](https://coveralls.io/repos/github/tinper-bee/bee-select/badge.svg?branch=master)](https://coveralls.io/github/tinper-bee/bee-select?branch=master)
+[![dependencies Status](https://david-dm.org/tinper-bee/bee-select/status.svg)](https://david-dm.org/tinper-bee/bee-select)
+[![NPM downloads](http://img.shields.io/npm/dm/bee-select.svg?style=flat)](https://npmjs.org/package/bee-select)
+[![Average time to resolve an issue](http://isitmaintained.com/badge/resolution/tinper-bee/bee-select.svg)](http://isitmaintained.com/project/tinper-bee/bee-select "Average time to resolve an issue")
+[![Percentage of issues still open](http://isitmaintained.com/badge/open/tinper-bee/bee-select.svg)](http://isitmaintained.com/project/tinper-bee/bee-select "Percentage of issues still open")
+
+
 
 
 下拉弹出菜单，代替原生的选择器。当然Select扩展了其他功能：多选，级联，搜索过滤单选和搜索过滤多选与自动填充选择。
