@@ -13040,6 +13040,9 @@
 	
 	var ALL_HANDLERS = ['onClick', 'onMouseDown', 'onTouchStart', 'onMouseEnter', 'onMouseLeave', 'onFocus', 'onBlur'];
 	
+	var isReact16 = _reactDom2["default"].createPortal !== undefined;
+	var createPortal = isReact16 ? _reactDom2["default"].createPortal : _reactDom2["default"].unstable_renderSubtreeIntoContainer;
+	
 	var propTypes = {
 	  children: _propTypes2["default"].any,
 	  action: _propTypes2["default"].oneOfType([_propTypes2["default"].string, _propTypes2["default"].arrayOf(_propTypes2["default"].string)]),
@@ -13101,6 +13104,21 @@
 	    _classCallCheck(this, Trigger);
 	
 	    var _this = _possibleConstructorReturn(this, _Component.call(this, props));
+	
+	    _this.renderComponentInReact16 = function (instance, componentArg, ready) {
+	      if (instance._component || _this.isVisible(instance)) {
+	        if (!instance._container) {
+	          instance._container = _this.getContainer(instance);
+	        }
+	        var component = instance.getComponent(componentArg);
+	        _reactDom2["default"].createPortal(component, instance._container, function callback() {
+	          instance._component = this;
+	          if (ready) {
+	            ready.call(this);
+	          }
+	        });
+	      }
+	    };
 	
 	    _this.state = {
 	      popupVisible: !!_this.props.popupVisible || _this.props.defaultPopupVisible
@@ -13202,7 +13220,7 @@
 	  Trigger.prototype.componentDidUpdate = function componentDidUpdate(_, prevState) {
 	    var props = this.props;
 	    var state = this.state;
-	    this.renderComponent(this, null, function () {
+	    !isReact16 && this.renderComponent(this, null, function () {
 	      if (prevState.popupVisible !== state.popupVisible) {
 	        props.afterPopupVisibleChange(state.popupVisible);
 	      }
@@ -13545,7 +13563,11 @@
 	      newChildProps.onBlur = this.createTwoChains('onBlur');
 	    }
 	
-	    return _react2["default"].cloneElement(child, newChildProps);
+	    if (isReact16) {
+	      return [_react2["default"].cloneElement(child, newChildProps), this.renderComponentInReact16(this, null)];
+	    } else {
+	      return _react2["default"].cloneElement(child, newChildProps);
+	    }
 	  };
 	
 	  return Trigger;
