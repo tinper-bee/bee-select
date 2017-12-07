@@ -116,6 +116,15 @@ import "./node_modules/build/bee-select.css"
 |label|组名|string/react element|-|
 |mode||string|-|
 
+## 注意
+
+在Modal组件中，使用Select组件时，需要设置高的`z-index`值才可以显示
+
+```
+<Select dropdownStyle={{ zIndex: '3000' }}>
+</Select>
+```
+
 #### 开发调试
 
 ```sh
