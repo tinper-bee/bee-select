@@ -25,7 +25,7 @@
 |placeholder|选择框默认文字	|string|-|
 |notFoundContent|当下拉列表为空时显示的内容|string|'Not Found'|
 |dropdownMatchSelectWidth|下拉菜单和选择器同宽|true|-|
-|optionLabelProp|回填到选择框的 Option 的属性值，默认是 Option 的子元素。比如在子元素需要高亮效果时，此值可以设为 value|string|children （combobox 模式下为 value|
+|optionLabelProp|回填到选择框的 Option 的属性值，默认是 Option 的子元素。比如在子元素需要高亮效果时，此值可以设为 value|string|children （combobox 模式下)为 value|
 |combobox|输入框自动提示模式|bool|false|
 |size|选择框大小，可选 lg sm|string|default|
 |showSearch|在选择框中显示搜索框|bool|false|
@@ -62,8 +62,14 @@
 在Modal组件中，使用Select组件时，需要设置高的`z-index`值才可以显示
 
 ```
-<Select dropdownStyle={{ zIndex: '3000' }}>
-</Select>
+let style = {
+    zIndex: '3000'
+}
+return (
+    <Select dropdownStyle={style}>
+    </Select>
+)
+
 ```
 
 
