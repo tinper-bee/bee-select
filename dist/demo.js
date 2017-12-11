@@ -2739,7 +2739,7 @@
 /* 41 */
 /***/ (function(module, exports) {
 
-	var core = module.exports = { version: '2.5.1' };
+	var core = module.exports = { version: '2.5.2' };
 	if (typeof __e == 'number') __e = core; // eslint-disable-line no-undef
 
 
@@ -6299,8 +6299,12 @@
 	
 	var getComputedStyleX = void 0;
 	
-	function force(x, y) {
-	  return x + y;
+	// https://stackoverflow.com/a/3485654/3040605
+	function forceRelayout(elem) {
+	  var originalStyle = elem.style.display;
+	  elem.style.display = 'none';
+	  elem.offsetHeight; // eslint-disable-line
+	  elem.style.display = originalStyle;
 	}
 	
 	function css(el, name, v) {
@@ -6535,6 +6539,8 @@
 	    elem.style[oppositeVerticalProperty] = '';
 	    elem.style[verticalProperty] = presetV + 'px';
 	  }
+	  // force relayout
+	  forceRelayout(elem);
 	  var old = getOffset(elem);
 	  var originalStyle = {};
 	  for (var key in offset) {
@@ -6551,7 +6557,7 @@
 	  }
 	  css(elem, originalStyle);
 	  // force relayout
-	  force(elem.offsetTop, elem.offsetLeft);
+	  forceRelayout(elem);
 	  if ('left' in offset || 'top' in offset) {
 	    (0, _propertyUtils.setTransitionProperty)(elem, originalTransition);
 	  }
@@ -7713,15 +7719,16 @@
 	     * @title <button> 的 type
 	     * @veIgnore
 	     */
-	    htmlType: _propTypes2["default"].oneOf(['submit', 'button', 'reset'])
+	    htmlType: _propTypes2["default"].oneOf(['submit', 'button', 'reset']),
+	    isSubmit: _propTypes2["default"].bool //是否作为form的提交按钮
 	};
 	
 	var defaultProps = {
 	    disabled: false,
 	    htmlType: 'button',
 	    clsPrefix: 'u-button',
-	    bordered: false
-	
+	    bordered: false,
+	    isSubmit: false
 	};
 	
 	var sizeMap = {
@@ -7768,7 +7775,8 @@
 	            children = _props.children,
 	            htmlType = _props.htmlType,
 	            clsPrefix = _props.clsPrefix,
-	            others = _objectWithoutProperties(_props, ['colors', 'shape', 'disabled', 'className', 'size', 'bordered', 'children', 'htmlType', 'clsPrefix']);
+	            isSubmit = _props.isSubmit,
+	            others = _objectWithoutProperties(_props, ['colors', 'shape', 'disabled', 'className', 'size', 'bordered', 'children', 'htmlType', 'clsPrefix', 'isSubmit']);
 	
 	        var clsObj = {};
 	        if (className) {
@@ -13040,9 +13048,6 @@
 	
 	var ALL_HANDLERS = ['onClick', 'onMouseDown', 'onTouchStart', 'onMouseEnter', 'onMouseLeave', 'onFocus', 'onBlur'];
 	
-	var isReact16 = _reactDom2["default"].createPortal !== undefined;
-	var createPortal = isReact16 ? _reactDom2["default"].createPortal : _reactDom2["default"].unstable_renderSubtreeIntoContainer;
-	
 	var propTypes = {
 	  children: _propTypes2["default"].any,
 	  action: _propTypes2["default"].oneOfType([_propTypes2["default"].string, _propTypes2["default"].arrayOf(_propTypes2["default"].string)]),
@@ -13104,21 +13109,6 @@
 	    _classCallCheck(this, Trigger);
 	
 	    var _this = _possibleConstructorReturn(this, _Component.call(this, props));
-	
-	    _this.renderComponentInReact16 = function (instance, componentArg, ready) {
-	      if (instance._component || _this.isVisible(instance)) {
-	        if (!instance._container) {
-	          instance._container = _this.getContainer(instance);
-	        }
-	        var component = instance.getComponent(componentArg);
-	        _reactDom2["default"].createPortal(component, instance._container, function callback() {
-	          instance._component = this;
-	          if (ready) {
-	            ready.call(this);
-	          }
-	        });
-	      }
-	    };
 	
 	    _this.state = {
 	      popupVisible: !!_this.props.popupVisible || _this.props.defaultPopupVisible
@@ -13220,7 +13210,7 @@
 	  Trigger.prototype.componentDidUpdate = function componentDidUpdate(_, prevState) {
 	    var props = this.props;
 	    var state = this.state;
-	    !isReact16 && this.renderComponent(this, null, function () {
+	    this.renderComponent(this, null, function () {
 	      if (prevState.popupVisible !== state.popupVisible) {
 	        props.afterPopupVisibleChange(state.popupVisible);
 	      }
@@ -13250,6 +13240,10 @@
 	      this.clickOutsideHandler = null;
 	      this.touchOutsideHandler = null;
 	    }
+	    if (this._container) {
+	      _reactDom2["default"].unmountComponentAtNode(this._container);
+	    }
+	
 	    //this.removeContainer();
 	  };
 	
@@ -13563,11 +13557,7 @@
 	      newChildProps.onBlur = this.createTwoChains('onBlur');
 	    }
 	
-	    if (isReact16) {
-	      return [_react2["default"].cloneElement(child, newChildProps), this.renderComponentInReact16(this, null)];
-	    } else {
-	      return _react2["default"].cloneElement(child, newChildProps);
-	    }
+	    return _react2["default"].cloneElement(child, newChildProps);
 	  };
 	
 	  return Trigger;
