@@ -62,10 +62,6 @@
 	
 	var _reactDom2 = _interopRequireDefault(_reactDom);
 	
-	var _src = __webpack_require__(105);
-	
-	var _src2 = _interopRequireDefault(_src);
-	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 	
 	function _defaults(obj, defaults) { var keys = Object.getOwnPropertyNames(defaults); for (var i = 0; i < keys.length; i++) { var key = keys[i]; var value = Object.getOwnPropertyDescriptor(defaults, key); if (value && value.configurable && obj[key] === undefined) { Object.defineProperty(obj, key, value); } } return obj; }
@@ -76,29 +72,11 @@
 	
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : _defaults(subClass, superClass); }
 	
-	var Option = _src2['default'].Option;
-	var OptGroup = _src2['default'].OptGroup;
-	
-	var Children = [];
-	for (var i = 10; i < 36; i++) {
-	    Children.push(_react2['default'].createElement(
-	        Option,
-	        { key: i.toString(36) + i },
-	        i.toString(36) + i
-	    ));
-	}
-	
-	var provinceData = ['Zhejiang', 'Jiangsu'];
-	var cityData = {
-	    Zhejiang: ['Hangzhou', 'Ningbo', 'Wenzhou'],
-	    Jiangsu: ['Nanjing', 'Suzhou', 'Zhenjiang']
-	};
-	
 	var CARET = _react2['default'].createElement('i', { className: 'uf uf-arrow-down' });
 	
 	var CARETUP = _react2['default'].createElement('i', { className: 'uf uf-arrow-up' });
 	
-	var Demo1 = __webpack_require__(143);var Demo2 = __webpack_require__(144);var Demo3 = __webpack_require__(145);var Demo4 = __webpack_require__(146);var Demo5 = __webpack_require__(147);var Demo6 = __webpack_require__(148);var Demo7 = __webpack_require__(149);var DemoArray = [{ "example": _react2['default'].createElement(Demo1, null), "title": " 不同尺寸单选`Select`", "code": "/**\n * @title 不同尺寸单选`Select`\n * @description `size`参数控制大小\n */\n\nimport React, { Component } from \"react\";\nimport Select from \"../../src\";\n\nconst Option = Select.Option;\nconst OptGroup = Select.OptGroup;\n\nclass Demo1 extends Component {\n  handleChange = value => {\n    console.log(`selected ${value}`);\n  };\n  render() {\n    return (\n      <div>\n        <Select\n          size=\"lg\"\n          defaultValue=\"lucy\"\n          style={{ width: 200, marginRight: 6 }}\n          onChange={this.handleChange}\n        >\n          <Option value=\"jack\">boyuzhou</Option>\n          <Option value=\"lucy\">renhualiu</Option>\n          <Option value=\"disabled\" disabled>\n            Disabled\n          </Option>\n          <Option value=\"yiminghe\">yuzhao</Option>\n        </Select>\n        <Select\n          defaultValue=\"lucy\"\n          style={{ width: 200, marginRight: 6 }}\n          onChange={this.handleChange}\n        >\n          <Option value=\"jack\">boyuzhou</Option>\n          <Option value=\"lucy\">renhualiu</Option>\n          <Option value=\"disabled\" disabled>\n            Disabled\n          </Option>\n          <Option value=\"yiminghe\">yuzhao</Option>\n        </Select>\n        <Select\n          size=\"sm\"\n          defaultValue=\"lucy\"\n          style={{ width: 200 }}\n          onChange={this.handleChange}\n        >\n          <Option value=\"jack\">boyuzhou</Option>\n          <Option value=\"lucy\">renhualiu</Option>\n          <Option value=\"disabled\" disabled>\n            Disabled\n          </Option>\n          <Option value=\"yiminghe\">yuzhao</Option>\n        </Select>\n      </div>\n    );\n  }\n}\n\n\n", "desc": " `size`参数控制大小" }, { "example": _react2['default'].createElement(Demo2, null), "title": " 常用多选", "code": "/**\n * @title 常用多选\n * @description Children自定义数据列表,注意：Children已经定义到全局，此处显示为注释例子，其他例子用到Children变量均以此方式定义。\n */\n\nimport React, { Component } from \"react\";\nimport Select from \"../../src\";\n\nconst Option = Select.Option;\nconst OptGroup = Select.OptGroup;\n\nconst Children = [];\nfor (let i = 10; i < 36; i++) {\n  Children.push(<Option key={i.toString(36) + i}>{i.toString(36) + i}</Option>);\n}\n\nclass Demo2 extends Component {\n  handleChange = value => {\n    console.log('selected ${value}');\n  };\n  render() {\n    return (\n      <Select\n        multiple\n        style={{ width: \"100%\" }}\n        searchPlaceholder=\"标签模式\"\n        onChange={this.handleChange}\n      >\n        {Children}\n      </Select>\n    );\n  }\n}\n\n\n", "desc": " Children自定义数据列表,注意：Children已经定义到全局，此处显示为注释例子，其他例子用到Children变量均以此方式定义。" }, { "example": _react2['default'].createElement(Demo3, null), "title": " 自定义选项多选`Select`", "code": "/**\n * @title 自定义选项多选`Select`\n * @description 用户在框内输入自定义内容，Select将输入的内容自动纳入下拉选项中一员。\n */\n\nimport React, { Component } from \"react\";\nimport Select from \"../../src\";\n\nconst Option = Select.Option;\n\nconst Children = [];\nfor (let i = 10; i < 36; i++) {\n  Children.push(<Option key={i.toString(36) + i}>{i.toString(36) + i}</Option>);\n}\n\nclass Demo3 extends Component {\n  handleChange = value => {\n    console.log(`selected ${value}`);\n  };\n  scrollToEnd = () => {\n    console.log(\"软加载\");\n  };\n  render() {\n    return (\n      <Select\n        tags\n        style={{ width: \"100%\" }}\n        searchPlaceholder=\"标签模式\"\n        scrollToEnd={this.scrollToEnd}\n        onChange={this.handleChange}\n      >\n        {Children}\n      </Select>\n    );\n  }\n}\n\n\n", "desc": " 用户在框内输入自定义内容，Select将输入的内容自动纳入下拉选项中一员。" }, { "example": _react2['default'].createElement(Demo4, null), "title": " 简易级联单选`Select`", "code": "/**\n * @title 简易级联单选`Select`\n * @description 常用语城市级联的选择。\n */\n\nimport React, { Component } from \"react\";\nimport Select from \"../../src\";\n\nconst Option = Select.Option;\n\nconst provinceData = [\"Zhejiang\", \"Jiangsu\"];\nconst cityData = {\n  Zhejiang: [\"Hangzhou\", \"Ningbo\", \"Wenzhou\"],\n  Jiangsu: [\"Nanjing\", \"Suzhou\", \"Zhenjiang\"]\n};\n\nclass Demo4 extends Component {\n  constructor(props) {\n    super(props);\n    this.state = {\n      cities: cityData[provinceData[0]],\n      secondCity: cityData[provinceData[0]][0]\n    };\n  }\n  handleProvinceChange = value => {\n    this.setState({\n      cities: cityData[value],\n      secondCity: cityData[value][0]\n    });\n  };\n  onSecondCityChange = value => {\n    this.setState({\n      secondCity: value\n    });\n  };\n  render() {\n    const provinceOptions = provinceData.map(province => (\n      <Option key={province}>{province}</Option>\n    ));\n    const cityOptions = this.state.cities.map(city => (\n      <Option key={city}>{city}</Option>\n    ));\n    return (\n      <div>\n        <Select\n          defaultValue={provinceData[0]}\n          style={{ width: 90, marginRight: 6 }}\n          onChange={this.handleProvinceChange}\n        >\n          {provinceOptions}\n        </Select>\n        <Select\n          value={this.state.secondCity}\n          style={{ width: 90 }}\n          onChange={this.onSecondCityChange}\n        >\n          {cityOptions}\n        </Select>\n      </div>\n    );\n  }\n}\n\n\n", "desc": " 常用语城市级联的选择。" }, { "example": _react2['default'].createElement(Demo5, null), "title": " 自定义自动填充单选`Select`", "code": "/**\n * @title 自定义自动填充单选`Select`\n * @description 常用邮箱后缀自动填充。\n */\n\nimport React, { Component } from \"react\";\nimport Select from \"../../src\";\n\nconst Option = Select.Option;\n\nclass Demo5 extends Component {\n  constructor(props) {\n    super(props);\n    this.state = {\n      options: []\n    };\n  }\n  handleChange = value => {\n    let options;\n    if (!value || value.indexOf(\"@\") >= 0) {\n      options = [];\n    } else {\n      options = [\"gmail.com\", \"163.com\", \"qq.com\"].map(domain => {\n        const email = `${value}@${domain}`;\n        return <Option key={email}>{email}</Option>;\n      });\n    }\n    this.setState({ options });\n  };\n\n  render() {\n    return (\n      <Select\n        combobox\n        style={{ width: 200 }}\n        onChange={this.handleChange}\n        filterOption={false}\n        placeholder=\"Enter the account name\"\n      >\n        {this.state.options}\n      </Select>\n    );\n  }\n}\n\n\n", "desc": " 常用邮箱后缀自动填充。" }, { "example": _react2['default'].createElement(Demo6, null), "title": " 搜索单选`Select`", "code": "/**\n * @title 搜索单选`Select`\n * @description 从下拉选中，通过输入的值检索相应的选项。\n */\n\nimport React, { Component } from \"react\";\nimport Select from \"../../src\";\n\nconst Option = Select.Option;\n\nclass Demo6 extends Component {\n  constructor(props) {\n    super(props);\n  }\n  handleChange = value => {\n    console.log(`selected ${value}`);\n  };\n\n  render() {\n    return (\n      <Select\n        showSearch\n        style={{ width: 200 }}\n        placeholder=\"Select a person\"\n        optionFilterProp=\"children\"\n        onChange={this.handleChange.bind(this)}\n      >\n        <Option value=\"jack\">Jack</Option>\n        <Option value=\"lucy\">Lucy</Option>\n        <Option value=\"tom\">Tom</Option>\n      </Select>\n    );\n  }\n}\n\n\n", "desc": " 从下拉选中，通过输入的值检索相应的选项。" }, { "example": _react2['default'].createElement(Demo7, null), "title": " 设置data数组对象来自动生成opti", "code": "/**\n * @title 设置data数组对象来自动生成option\n * @description 必须设置key，value。根据需要设置disabed\n */\n\nimport React, { Component } from \"react\";\nimport Select from \"../../src\";\n\nconst Option = Select.Option;\n\nlet selectDataSource = [\n  {\n    key: \"张三\",\n    value: \"zhangsan\"\n  },\n  {\n    key: \"李四\",\n    value: \"lisi\"\n  },\n  {\n    key: \"王五\",\n    value: \"wangwu\"\n  }\n];\n\nclass Demo7 extends Component {\n  constructor(props) {\n    super(props);\n    this.state = {\n      DataSource: [\n        {\n          key: \"其他数据\",\n          value: \"qita\"\n        }\n      ]\n    };\n  }\n  handleChange = value => {\n    if (value) {\n      this.setState({\n        DataSource: [\n          {\n            key: \"张三三\",\n            value: \"zhangsansan\",\n            disabled: true\n          },\n          {\n            key: \"李四四\",\n            value: \"lisisi\"\n          },\n          {\n            key: \"王五五\",\n            value: \"wangwuwu\"\n          }\n        ]\n      });\n    }\n  };\n\n  render() {\n    return (\n      <div>\n        <Select\n          style={{ width: 200 }}\n          placeholder=\"Select a person\"\n          onChange={this.handleChange}\n          data={selectDataSource}\n        />\n        <Select\n          style={{ width: 200, marginLeft: \"5px\" }}\n          placeholder=\"Select a person\"\n          data={this.state.DataSource}\n        />\n      </div>\n    );\n  }\n}\n\n\n", "desc": " 必须设置key，value。根据需要设置disabed" }];
+	var Demo1 = __webpack_require__(105);var Demo2 = __webpack_require__(144);var Demo3 = __webpack_require__(145);var Demo4 = __webpack_require__(146);var Demo5 = __webpack_require__(147);var Demo6 = __webpack_require__(148);var Demo7 = __webpack_require__(149);var DemoArray = [{ "example": _react2['default'].createElement(Demo1, null), "title": " 不同尺寸单选`Select`", "code": "/**\n * @title 不同尺寸单选`Select`\n * @description `size`参数控制大小\n */\n\nimport React, { Component } from \"react\";\nimport { Select } from 'tinper-bee';\n\nconst Option = Select.Option;\nconst OptGroup = Select.OptGroup;\n\nclass Demo1 extends Component {\n  handleChange = value => {\n    console.log(`selected ${value}`);\n  };\n  render() {\n    return (\n      <div>\n        <Select\n          size=\"lg\"\n          defaultValue=\"lucy\"\n          style={{ width: 200, marginRight: 6 }}\n          onChange={this.handleChange}\n        >\n          <Option value=\"jack\">boyuzhou</Option>\n          <Option value=\"lucy\">renhualiu</Option>\n          <Option value=\"disabled\" disabled>\n            Disabled\n          </Option>\n          <Option value=\"yiminghe\">yuzhao</Option>\n        </Select>\n        <Select\n          defaultValue=\"lucy\"\n          style={{ width: 200, marginRight: 6 }}\n          onChange={this.handleChange}\n        >\n          <Option value=\"jack\">boyuzhou</Option>\n          <Option value=\"lucy\">renhualiu</Option>\n          <Option value=\"disabled\" disabled>\n            Disabled\n          </Option>\n          <Option value=\"yiminghe\">yuzhao</Option>\n        </Select>\n        <Select\n          size=\"sm\"\n          defaultValue=\"lucy\"\n          style={{ width: 200 }}\n          onChange={this.handleChange}\n        >\n          <Option value=\"jack\">boyuzhou</Option>\n          <Option value=\"lucy\">renhualiu</Option>\n          <Option value=\"disabled\" disabled>\n            Disabled\n          </Option>\n          <Option value=\"yiminghe\">yuzhao</Option>\n        </Select>\n      </div>\n    );\n  }\n}\n\n\n", "desc": " `size`参数控制大小" }, { "example": _react2['default'].createElement(Demo2, null), "title": " 常用多选", "code": "/**\n * @title 常用多选\n * @description Children自定义数据列表,注意：Children已经定义到全局，此处显示为注释例子，其他例子用到Children变量均以此方式定义。\n */\n\nimport React, { Component } from \"react\";\nimport { Select } from 'tinper-bee';\n\nconst Option = Select.Option;\nconst OptGroup = Select.OptGroup;\n\nconst Children = [];\nfor (let i = 10; i < 36; i++) {\n  Children.push(<Option key={i.toString(36) + i}>{i.toString(36) + i}</Option>);\n}\n\nclass Demo2 extends Component {\n  handleChange = value => {\n    console.log('selected ${value}');\n  };\n  render() {\n    return (\n      <Select\n        multiple\n        style={{ width: \"100%\" }}\n        searchPlaceholder=\"标签模式\"\n        onChange={this.handleChange}\n      >\n        {Children}\n      </Select>\n    );\n  }\n}\n\n\n", "desc": " Children自定义数据列表,注意：Children已经定义到全局，此处显示为注释例子，其他例子用到Children变量均以此方式定义。" }, { "example": _react2['default'].createElement(Demo3, null), "title": " 自定义选项多选`Select`", "code": "/**\n * @title 自定义选项多选`Select`\n * @description 用户在框内输入自定义内容，Select将输入的内容自动纳入下拉选项中一员。\n */\n\nimport React, { Component } from \"react\";\nimport { Select } from 'tinper-bee';\n\nconst Option = Select.Option;\n\nconst Children = [];\nfor (let i = 10; i < 36; i++) {\n  Children.push(<Option key={i.toString(36) + i}>{i.toString(36) + i}</Option>);\n}\n\nclass Demo3 extends Component {\n  handleChange = value => {\n    console.log(`selected ${value}`);\n  };\n  scrollToEnd = () => {\n    console.log(\"软加载\");\n  };\n  render() {\n    return (\n      <Select\n        tags\n        style={{ width: \"100%\" }}\n        searchPlaceholder=\"标签模式\"\n        scrollToEnd={this.scrollToEnd}\n        onChange={this.handleChange}\n      >\n        {Children}\n      </Select>\n    );\n  }\n}\n\n\n", "desc": " 用户在框内输入自定义内容，Select将输入的内容自动纳入下拉选项中一员。" }, { "example": _react2['default'].createElement(Demo4, null), "title": " 简易级联单选`Select`", "code": "/**\n * @title 简易级联单选`Select`\n * @description 常用语城市级联的选择。\n */\n\nimport React, { Component } from \"react\";\nimport { Select } from 'tinper-bee';\n\nconst Option = Select.Option;\n\nconst provinceData = [\"Zhejiang\", \"Jiangsu\"];\nconst cityData = {\n  Zhejiang: [\"Hangzhou\", \"Ningbo\", \"Wenzhou\"],\n  Jiangsu: [\"Nanjing\", \"Suzhou\", \"Zhenjiang\"]\n};\n\nclass Demo4 extends Component {\n  constructor(props) {\n    super(props);\n    this.state = {\n      cities: cityData[provinceData[0]],\n      secondCity: cityData[provinceData[0]][0]\n    };\n  }\n  handleProvinceChange = value => {\n    this.setState({\n      cities: cityData[value],\n      secondCity: cityData[value][0]\n    });\n  };\n  onSecondCityChange = value => {\n    this.setState({\n      secondCity: value\n    });\n  };\n  render() {\n    const provinceOptions = provinceData.map(province => (\n      <Option key={province}>{province}</Option>\n    ));\n    const cityOptions = this.state.cities.map(city => (\n      <Option key={city}>{city}</Option>\n    ));\n    return (\n      <div>\n        <Select\n          defaultValue={provinceData[0]}\n          style={{ width: 90, marginRight: 6 }}\n          onChange={this.handleProvinceChange}\n        >\n          {provinceOptions}\n        </Select>\n        <Select\n          value={this.state.secondCity}\n          style={{ width: 90 }}\n          onChange={this.onSecondCityChange}\n        >\n          {cityOptions}\n        </Select>\n      </div>\n    );\n  }\n}\n\n\n", "desc": " 常用语城市级联的选择。" }, { "example": _react2['default'].createElement(Demo5, null), "title": " 自定义自动填充单选`Select`", "code": "/**\n * @title 自定义自动填充单选`Select`\n * @description 常用邮箱后缀自动填充。\n */\n\nimport React, { Component } from \"react\";\nimport { Select } from 'tinper-bee';\n\nconst Option = Select.Option;\n\nclass Demo5 extends Component {\n  constructor(props) {\n    super(props);\n    this.state = {\n      options: []\n    };\n  }\n  handleChange = value => {\n    let options;\n    if (!value || value.indexOf(\"@\") >= 0) {\n      options = [];\n    } else {\n      options = [\"gmail.com\", \"163.com\", \"qq.com\"].map(domain => {\n        const email = `${value}@${domain}`;\n        return <Option key={email}>{email}</Option>;\n      });\n    }\n    this.setState({ options });\n  };\n\n  render() {\n    return (\n      <Select\n        combobox\n        style={{ width: 200 }}\n        onChange={this.handleChange}\n        filterOption={false}\n        placeholder=\"Enter the account name\"\n      >\n        {this.state.options}\n      </Select>\n    );\n  }\n}\n\n\n", "desc": " 常用邮箱后缀自动填充。" }, { "example": _react2['default'].createElement(Demo6, null), "title": " 搜索单选`Select`", "code": "/**\n * @title 搜索单选`Select`\n * @description 从下拉选中，通过输入的值检索相应的选项。\n */\n\nimport React, { Component } from \"react\";\nimport { Select } from 'tinper-bee';\n\nconst Option = Select.Option;\n\nclass Demo6 extends Component {\n  constructor(props) {\n    super(props);\n  }\n  handleChange = value => {\n    console.log(`selected ${value}`);\n  };\n\n  render() {\n    return (\n      <Select\n        showSearch\n        style={{ width: 200 }}\n        placeholder=\"Select a person\"\n        optionFilterProp=\"children\"\n        onChange={this.handleChange.bind(this)}\n      >\n        <Option value=\"jack\">Jack</Option>\n        <Option value=\"lucy\">Lucy</Option>\n        <Option value=\"tom\">Tom</Option>\n      </Select>\n    );\n  }\n}\n\n\n", "desc": " 从下拉选中，通过输入的值检索相应的选项。" }, { "example": _react2['default'].createElement(Demo7, null), "title": " 设置data数组对象来自动生成opti", "code": "/**\n * @title 设置data数组对象来自动生成option\n * @description 必须设置key，value。根据需要设置disabed\n */\n\nimport React, { Component } from \"react\";\nimport { Select } from 'tinper-bee';\n\nconst Option = Select.Option;\n\nlet selectDataSource = [\n  {\n    key: \"张三\",\n    value: \"zhangsan\"\n  },\n  {\n    key: \"李四\",\n    value: \"lisi\"\n  },\n  {\n    key: \"王五\",\n    value: \"wangwu\"\n  }\n];\n\nclass Demo7 extends Component {\n  constructor(props) {\n    super(props);\n    this.state = {\n      DataSource: [\n        {\n          key: \"其他数据\",\n          value: \"qita\"\n        }\n      ]\n    };\n  }\n  handleChange = value => {\n    if (value) {\n      this.setState({\n        DataSource: [\n          {\n            key: \"张三三\",\n            value: \"zhangsansan\",\n            disabled: true\n          },\n          {\n            key: \"李四四\",\n            value: \"lisisi\"\n          },\n          {\n            key: \"王五五\",\n            value: \"wangwuwu\"\n          }\n        ]\n      });\n    }\n  };\n\n  render() {\n    return (\n      <div>\n        <Select\n          style={{ width: 200 }}\n          placeholder=\"Select a person\"\n          onChange={this.handleChange}\n          data={selectDataSource}\n        />\n        <Select\n          style={{ width: 200, marginLeft: \"5px\" }}\n          placeholder=\"Select a person\"\n          data={this.state.DataSource}\n        />\n      </div>\n    );\n  }\n}\n\n\n", "desc": " 必须设置key，value。根据需要设置disabed" }];
 	
 	var Demo = function (_Component) {
 	    _inherits(Demo, _Component);
@@ -124,16 +102,22 @@
 	            title = _props.title,
 	            example = _props.example,
 	            code = _props.code,
-	            desc = _props.desc;
+	            desc = _props.desc,
+	            scss_code = _props.scss_code;
 	
 	        var caret = this.state.open ? CARETUP : CARET;
 	        var text = this.state.open ? "隐藏代码" : "查看代码";
 	
-	        var footer = _react2['default'].createElement(
-	            _beeButton2['default'],
-	            { shape: 'block', onClick: this.handleClick },
-	            caret,
-	            text
+	        var header = _react2['default'].createElement(
+	            'div',
+	            null,
+	            example,
+	            _react2['default'].createElement(
+	                _beeButton2['default'],
+	                { style: { "marginTop": "10px" }, shape: 'block', onClick: this.handleClick },
+	                caret,
+	                text
+	            )
 	        );
 	        return _react2['default'].createElement(
 	            _beeLayout.Col,
@@ -150,7 +134,8 @@
 	            ),
 	            _react2['default'].createElement(
 	                _beePanel.Panel,
-	                { collapsible: true, expanded: this.state.open, colors: 'bordered', header: example, footer: footer, footerStyle: { padding: 0, borderColor: "transparent" } },
+	                { collapsible: true, headerContent: true, expanded: this.state.open, colors: 'bordered', header: header,
+	                    footerStyle: { padding: 0 } },
 	                _react2['default'].createElement(
 	                    'pre',
 	                    null,
@@ -159,7 +144,16 @@
 	                        { className: 'hljs javascript' },
 	                        code
 	                    )
-	                )
+	                ),
+	                !!scss_code ? _react2['default'].createElement(
+	                    'pre',
+	                    null,
+	                    _react2['default'].createElement(
+	                        'code',
+	                        { className: 'hljs css' },
+	                        scss_code
+	                    )
+	                ) : null
 	            )
 	        );
 	    };
@@ -182,7 +176,8 @@
 	            null,
 	            DemoArray.map(function (child, index) {
 	
-	                return _react2['default'].createElement(Demo, { example: child.example, title: child.title, code: child.code, desc: child.desc, key: index });
+	                return _react2['default'].createElement(Demo, { example: child.example, title: child.title, code: child.code, scss_code: child.scss_code,
+	                    desc: child.desc, key: index });
 	            })
 	        );
 	    };
@@ -2739,7 +2734,7 @@
 /* 41 */
 /***/ (function(module, exports) {
 
-	var core = module.exports = { version: '2.5.2' };
+	var core = module.exports = { version: '2.5.1' };
 	if (typeof __e == 'number') __e = core; // eslint-disable-line no-undef
 
 
@@ -6299,12 +6294,8 @@
 	
 	var getComputedStyleX = void 0;
 	
-	// https://stackoverflow.com/a/3485654/3040605
-	function forceRelayout(elem) {
-	  var originalStyle = elem.style.display;
-	  elem.style.display = 'none';
-	  elem.offsetHeight; // eslint-disable-line
-	  elem.style.display = originalStyle;
+	function force(x, y) {
+	  return x + y;
 	}
 	
 	function css(el, name, v) {
@@ -6539,8 +6530,6 @@
 	    elem.style[oppositeVerticalProperty] = '';
 	    elem.style[verticalProperty] = presetV + 'px';
 	  }
-	  // force relayout
-	  forceRelayout(elem);
 	  var old = getOffset(elem);
 	  var originalStyle = {};
 	  for (var key in offset) {
@@ -6557,7 +6546,7 @@
 	  }
 	  css(elem, originalStyle);
 	  // force relayout
-	  forceRelayout(elem);
+	  force(elem.offsetTop, elem.offsetLeft);
 	  if ('left' in offset || 'top' in offset) {
 	    (0, _propertyUtils.setTransitionProperty)(elem, originalTransition);
 	  }
@@ -7719,16 +7708,15 @@
 	     * @title <button> 的 type
 	     * @veIgnore
 	     */
-	    htmlType: _propTypes2["default"].oneOf(['submit', 'button', 'reset']),
-	    isSubmit: _propTypes2["default"].bool //是否作为form的提交按钮
+	    htmlType: _propTypes2["default"].oneOf(['submit', 'button', 'reset'])
 	};
 	
 	var defaultProps = {
 	    disabled: false,
 	    htmlType: 'button',
 	    clsPrefix: 'u-button',
-	    bordered: false,
-	    isSubmit: false
+	    bordered: false
+	
 	};
 	
 	var sizeMap = {
@@ -7775,8 +7763,7 @@
 	            children = _props.children,
 	            htmlType = _props.htmlType,
 	            clsPrefix = _props.clsPrefix,
-	            isSubmit = _props.isSubmit,
-	            others = _objectWithoutProperties(_props, ['colors', 'shape', 'disabled', 'className', 'size', 'bordered', 'children', 'htmlType', 'clsPrefix', 'isSubmit']);
+	            others = _objectWithoutProperties(_props, ['colors', 'shape', 'disabled', 'className', 'size', 'bordered', 'children', 'htmlType', 'clsPrefix']);
 	
 	        var clsObj = {};
 	        if (className) {
@@ -7818,13 +7805,163 @@
 /* 105 */
 /***/ (function(module, exports, __webpack_require__) {
 
+	"use strict";
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _react = __webpack_require__(4);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _src = __webpack_require__(106);
+	
+	var _src2 = _interopRequireDefault(_src);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+	
+	function _defaults(obj, defaults) { var keys = Object.getOwnPropertyNames(defaults); for (var i = 0; i < keys.length; i++) { var key = keys[i]; var value = Object.getOwnPropertyDescriptor(defaults, key); if (value && value.configurable && obj[key] === undefined) { Object.defineProperty(obj, key, value); } } return obj; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : _defaults(subClass, superClass); } /**
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * @title 不同尺寸单选`Select`
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * @description `size`参数控制大小
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                */
+	
+	var Option = _src2["default"].Option;
+	var OptGroup = _src2["default"].OptGroup;
+	
+	var Demo1 = function (_Component) {
+	  _inherits(Demo1, _Component);
+	
+	  function Demo1() {
+	    var _temp, _this, _ret;
+	
+	    _classCallCheck(this, Demo1);
+	
+	    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+	      args[_key] = arguments[_key];
+	    }
+	
+	    return _ret = (_temp = (_this = _possibleConstructorReturn(this, _Component.call.apply(_Component, [this].concat(args))), _this), _this.handleChange = function (value) {
+	      console.log("selected " + value);
+	    }, _temp), _possibleConstructorReturn(_this, _ret);
+	  }
+	
+	  Demo1.prototype.render = function render() {
+	    return _react2["default"].createElement(
+	      "div",
+	      null,
+	      _react2["default"].createElement(
+	        _src2["default"],
+	        {
+	          size: "lg",
+	          defaultValue: "lucy",
+	          style: { width: 200, marginRight: 6 },
+	          onChange: this.handleChange
+	        },
+	        _react2["default"].createElement(
+	          Option,
+	          { value: "jack" },
+	          "boyuzhou"
+	        ),
+	        _react2["default"].createElement(
+	          Option,
+	          { value: "lucy" },
+	          "renhualiu"
+	        ),
+	        _react2["default"].createElement(
+	          Option,
+	          { value: "disabled", disabled: true },
+	          "Disabled"
+	        ),
+	        _react2["default"].createElement(
+	          Option,
+	          { value: "yiminghe" },
+	          "yuzhao"
+	        )
+	      ),
+	      _react2["default"].createElement(
+	        _src2["default"],
+	        {
+	          defaultValue: "lucy",
+	          style: { width: 200, marginRight: 6 },
+	          onChange: this.handleChange
+	        },
+	        _react2["default"].createElement(
+	          Option,
+	          { value: "jack" },
+	          "boyuzhou"
+	        ),
+	        _react2["default"].createElement(
+	          Option,
+	          { value: "lucy" },
+	          "renhualiu"
+	        ),
+	        _react2["default"].createElement(
+	          Option,
+	          { value: "disabled", disabled: true },
+	          "Disabled"
+	        ),
+	        _react2["default"].createElement(
+	          Option,
+	          { value: "yiminghe" },
+	          "yuzhao"
+	        )
+	      ),
+	      _react2["default"].createElement(
+	        _src2["default"],
+	        {
+	          size: "sm",
+	          defaultValue: "lucy",
+	          style: { width: 200 },
+	          onChange: this.handleChange
+	        },
+	        _react2["default"].createElement(
+	          Option,
+	          { value: "jack" },
+	          "boyuzhou"
+	        ),
+	        _react2["default"].createElement(
+	          Option,
+	          { value: "lucy" },
+	          "renhualiu"
+	        ),
+	        _react2["default"].createElement(
+	          Option,
+	          { value: "disabled", disabled: true },
+	          "Disabled"
+	        ),
+	        _react2["default"].createElement(
+	          Option,
+	          { value: "yiminghe" },
+	          "yuzhao"
+	        )
+	      )
+	    );
+	  };
+	
+	  return Demo1;
+	}(_react.Component);
+	
+	exports["default"] = Demo1;
+	module.exports = exports["default"];
+
+/***/ }),
+/* 106 */
+/***/ (function(module, exports, __webpack_require__) {
+
 	'use strict';
 	
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
 	
-	var _Select = __webpack_require__(106);
+	var _Select = __webpack_require__(107);
 	
 	var _Select2 = _interopRequireDefault(_Select);
 
@@ -7834,7 +7971,7 @@
 	module.exports = exports['default'];
 
 /***/ }),
-/* 106 */
+/* 107 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -7853,15 +7990,15 @@
 	
 	var _propTypes2 = _interopRequireDefault(_propTypes);
 	
-	var _RcSelect = __webpack_require__(107);
+	var _RcSelect = __webpack_require__(108);
 	
 	var _RcSelect2 = _interopRequireDefault(_RcSelect);
 	
-	var _Option = __webpack_require__(142);
+	var _Option = __webpack_require__(143);
 	
 	var _Option2 = _interopRequireDefault(_Option);
 	
-	var _OptGroup = __webpack_require__(128);
+	var _OptGroup = __webpack_require__(129);
 	
 	var _OptGroup2 = _interopRequireDefault(_OptGroup);
 	
@@ -8009,7 +8146,7 @@
 	module.exports = exports["default"];
 
 /***/ }),
-/* 107 */
+/* 108 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -8024,7 +8161,7 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _beeMenus = __webpack_require__(108);
+	var _beeMenus = __webpack_require__(109);
 	
 	var _reactDom = __webpack_require__(12);
 	
@@ -8036,7 +8173,7 @@
 	
 	var _classnames2 = _interopRequireDefault(_classnames);
 	
-	var _OptGroup = __webpack_require__(128);
+	var _OptGroup = __webpack_require__(129);
 	
 	var _OptGroup2 = _interopRequireDefault(_OptGroup);
 	
@@ -8052,9 +8189,9 @@
 	
 	var _propTypes2 = _interopRequireDefault(_propTypes);
 	
-	var _util = __webpack_require__(129);
+	var _util = __webpack_require__(130);
 	
-	var _SelectTrigger = __webpack_require__(130);
+	var _SelectTrigger = __webpack_require__(131);
 	
 	var _SelectTrigger2 = _interopRequireDefault(_SelectTrigger);
 	
@@ -9250,7 +9387,7 @@
 	module.exports = exports['default'];
 
 /***/ }),
-/* 108 */
+/* 109 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -9259,7 +9396,7 @@
 	  value: true
 	});
 	
-	var _VerticalMenu = __webpack_require__(109);
+	var _VerticalMenu = __webpack_require__(110);
 	
 	var _VerticalMenu2 = _interopRequireDefault(_VerticalMenu);
 	
@@ -9269,7 +9406,7 @@
 	module.exports = exports['default'];
 
 /***/ }),
-/* 109 */
+/* 110 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -9284,15 +9421,15 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _ExportMenu = __webpack_require__(110);
+	var _ExportMenu = __webpack_require__(111);
 	
 	var _ExportMenu2 = _interopRequireDefault(_ExportMenu);
 	
-	var _openAnimation = __webpack_require__(126);
+	var _openAnimation = __webpack_require__(127);
 	
 	var _openAnimation2 = _interopRequireDefault(_openAnimation);
 	
-	var _warning = __webpack_require__(127);
+	var _warning = __webpack_require__(128);
 	
 	var _warning2 = _interopRequireDefault(_warning);
 	
@@ -9425,7 +9562,7 @@
 	module.exports = exports['default'];
 
 /***/ }),
-/* 110 */
+/* 111 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -9435,31 +9572,31 @@
 	});
 	exports.MenuToggle = exports.SideContainer = exports.Divider = exports.ItemGroup = exports.MenuItemGroup = exports.MenuItem = exports.Item = exports.SubMenu = undefined;
 	
-	var _Menu = __webpack_require__(111);
+	var _Menu = __webpack_require__(112);
 	
 	var _Menu2 = _interopRequireDefault(_Menu);
 	
-	var _SubMenu = __webpack_require__(114);
+	var _SubMenu = __webpack_require__(115);
 	
 	var _SubMenu2 = _interopRequireDefault(_SubMenu);
 	
-	var _MenuItem = __webpack_require__(121);
+	var _MenuItem = __webpack_require__(122);
 	
 	var _MenuItem2 = _interopRequireDefault(_MenuItem);
 	
-	var _MenuItemGroup = __webpack_require__(122);
+	var _MenuItemGroup = __webpack_require__(123);
 	
 	var _MenuItemGroup2 = _interopRequireDefault(_MenuItemGroup);
 	
-	var _Divider = __webpack_require__(123);
+	var _Divider = __webpack_require__(124);
 	
 	var _Divider2 = _interopRequireDefault(_Divider);
 	
-	var _SideContainer = __webpack_require__(124);
+	var _SideContainer = __webpack_require__(125);
 	
 	var _SideContainer2 = _interopRequireDefault(_SideContainer);
 	
-	var _MenuToggle = __webpack_require__(125);
+	var _MenuToggle = __webpack_require__(126);
 	
 	var _MenuToggle2 = _interopRequireDefault(_MenuToggle);
 	
@@ -9476,7 +9613,7 @@
 	exports["default"] = _Menu2["default"];
 
 /***/ }),
-/* 111 */
+/* 112 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -9495,13 +9632,13 @@
 	
 	var _propTypes2 = _interopRequireDefault(_propTypes);
 	
-	var _util = __webpack_require__(112);
+	var _util = __webpack_require__(113);
 	
 	var _classnames = __webpack_require__(3);
 	
 	var _classnames2 = _interopRequireDefault(_classnames);
 	
-	var _DOMWrap = __webpack_require__(113);
+	var _DOMWrap = __webpack_require__(114);
 	
 	var _DOMWrap2 = _interopRequireDefault(_DOMWrap);
 	
@@ -10064,7 +10201,7 @@
 	module.exports = exports['default'];
 
 /***/ }),
-/* 112 */
+/* 113 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -10128,7 +10265,7 @@
 	}
 
 /***/ }),
-/* 113 */
+/* 114 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -10200,7 +10337,7 @@
 	module.exports = exports['default'];
 
 /***/ }),
-/* 114 */
+/* 115 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -10211,7 +10348,7 @@
 	
 	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 	
-	var _SubPopupMenu = __webpack_require__(115);
+	var _SubPopupMenu = __webpack_require__(116);
 	
 	var _SubPopupMenu2 = _interopRequireDefault(_SubPopupMenu);
 	
@@ -10231,7 +10368,7 @@
 	
 	var _classnames2 = _interopRequireDefault(_classnames);
 	
-	var _util = __webpack_require__(112);
+	var _util = __webpack_require__(113);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 	
@@ -10739,7 +10876,7 @@
 	module.exports = exports['default'];
 
 /***/ }),
-/* 115 */
+/* 116 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -10760,7 +10897,7 @@
 	
 	var _propTypes2 = _interopRequireDefault(_propTypes);
 	
-	var _beeAnimate = __webpack_require__(116);
+	var _beeAnimate = __webpack_require__(117);
 	
 	var _beeAnimate2 = _interopRequireDefault(_beeAnimate);
 	
@@ -10772,9 +10909,9 @@
 	
 	var _createChainedFunction2 = _interopRequireDefault(_createChainedFunction);
 	
-	var _util = __webpack_require__(112);
+	var _util = __webpack_require__(113);
 	
-	var _DOMWrap = __webpack_require__(113);
+	var _DOMWrap = __webpack_require__(114);
 	
 	var _DOMWrap2 = _interopRequireDefault(_DOMWrap);
 	
@@ -11112,7 +11249,7 @@
 	module.exports = exports['default'];
 
 /***/ }),
-/* 116 */
+/* 117 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -11121,7 +11258,7 @@
 	  value: true
 	});
 	
-	var _Animate = __webpack_require__(117);
+	var _Animate = __webpack_require__(118);
 	
 	var _Animate2 = _interopRequireDefault(_Animate);
 	
@@ -11131,7 +11268,7 @@
 	module.exports = exports['default'];
 
 /***/ }),
-/* 117 */
+/* 118 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -11148,13 +11285,13 @@
 	
 	var _propTypes2 = _interopRequireDefault(_propTypes);
 	
-	var _ChildrenUtils = __webpack_require__(118);
+	var _ChildrenUtils = __webpack_require__(119);
 	
-	var _AnimateChild = __webpack_require__(119);
+	var _AnimateChild = __webpack_require__(120);
 	
 	var _AnimateChild2 = _interopRequireDefault(_AnimateChild);
 	
-	var _util = __webpack_require__(120);
+	var _util = __webpack_require__(121);
 	
 	var _util2 = _interopRequireDefault(_util);
 	
@@ -11511,7 +11648,7 @@
 	module.exports = exports['default'];
 
 /***/ }),
-/* 118 */
+/* 119 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -11633,7 +11770,7 @@
 	}
 
 /***/ }),
-/* 119 */
+/* 120 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -11658,7 +11795,7 @@
 	
 	var _tinperBeeCore = __webpack_require__(26);
 	
-	var _util = __webpack_require__(120);
+	var _util = __webpack_require__(121);
 	
 	var _util2 = _interopRequireDefault(_util);
 	
@@ -11776,7 +11913,7 @@
 	module.exports = exports['default'];
 
 /***/ }),
-/* 120 */
+/* 121 */
 /***/ (function(module, exports) {
 
 	"use strict";
@@ -11808,7 +11945,7 @@
 	module.exports = exports["default"];
 
 /***/ }),
-/* 121 */
+/* 122 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -11835,7 +11972,7 @@
 	
 	var _classnames2 = _interopRequireDefault(_classnames);
 	
-	var _util = __webpack_require__(112);
+	var _util = __webpack_require__(113);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 	
@@ -12071,7 +12208,7 @@
 	module.exports = exports['default'];
 
 /***/ }),
-/* 122 */
+/* 123 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -12168,7 +12305,7 @@
 	module.exports = exports['default'];
 
 /***/ }),
-/* 123 */
+/* 124 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -12228,7 +12365,7 @@
 	module.exports = exports['default'];
 
 /***/ }),
-/* 124 */
+/* 125 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -12302,7 +12439,7 @@
 	module.exports = exports['default'];
 
 /***/ }),
-/* 125 */
+/* 126 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -12460,7 +12597,7 @@
 	module.exports = exports['default'];
 
 /***/ }),
-/* 126 */
+/* 127 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -12508,7 +12645,7 @@
 	module.exports = exports['default'];
 
 /***/ }),
-/* 127 */
+/* 128 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -12535,7 +12672,7 @@
 	module.exports = exports['default'];
 
 /***/ }),
-/* 128 */
+/* 129 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -12583,7 +12720,7 @@
 	module.exports = exports['default'];
 
 /***/ }),
-/* 129 */
+/* 130 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -12607,7 +12744,7 @@
 	exports.includesSeparators = includesSeparators;
 	exports.splitBySeparators = splitBySeparators;
 	
-	var _beeMenus = __webpack_require__(108);
+	var _beeMenus = __webpack_require__(109);
 	
 	var _react = __webpack_require__(4);
 	
@@ -12750,7 +12887,7 @@
 	}
 
 /***/ }),
-/* 130 */
+/* 131 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -12761,7 +12898,7 @@
 	
 	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 	
-	var _trigger = __webpack_require__(131);
+	var _trigger = __webpack_require__(132);
 	
 	var _trigger2 = _interopRequireDefault(_trigger);
 	
@@ -12773,7 +12910,7 @@
 	
 	var _classnames2 = _interopRequireDefault(_classnames);
 	
-	var _DropdownMenu = __webpack_require__(138);
+	var _DropdownMenu = __webpack_require__(139);
 	
 	var _DropdownMenu2 = _interopRequireDefault(_DropdownMenu);
 	
@@ -12781,7 +12918,7 @@
 	
 	var _reactDom2 = _interopRequireDefault(_reactDom);
 	
-	var _util = __webpack_require__(129);
+	var _util = __webpack_require__(130);
 	
 	var _propTypes = __webpack_require__(5);
 	
@@ -12985,15 +13122,15 @@
 	module.exports = exports['default'];
 
 /***/ }),
-/* 131 */
+/* 132 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
 	
-	module.exports = __webpack_require__(132);
+	module.exports = __webpack_require__(133);
 
 /***/ }),
-/* 132 */
+/* 133 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -13016,17 +13153,17 @@
 	
 	var _reactDom2 = _interopRequireDefault(_reactDom);
 	
-	var _contains = __webpack_require__(133);
+	var _contains = __webpack_require__(134);
 	
 	var _contains2 = _interopRequireDefault(_contains);
 	
 	var _tinperBeeCore = __webpack_require__(26);
 	
-	var _Popup = __webpack_require__(134);
+	var _Popup = __webpack_require__(135);
 	
 	var _Popup2 = _interopRequireDefault(_Popup);
 	
-	var _utils = __webpack_require__(137);
+	var _utils = __webpack_require__(138);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 	
@@ -13240,10 +13377,6 @@
 	      this.clickOutsideHandler = null;
 	      this.touchOutsideHandler = null;
 	    }
-	    if (this._container) {
-	      _reactDom2["default"].unmountComponentAtNode(this._container);
-	    }
-	
 	    //this.removeContainer();
 	  };
 	
@@ -13571,7 +13704,7 @@
 	module.exports = exports['default'];
 
 /***/ }),
-/* 133 */
+/* 134 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -13610,7 +13743,7 @@
 	module.exports = exports['default'];
 
 /***/ }),
-/* 134 */
+/* 135 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -13637,15 +13770,15 @@
 	
 	var _Align2 = _interopRequireDefault(_Align);
 	
-	var _beeAnimate = __webpack_require__(116);
+	var _beeAnimate = __webpack_require__(117);
 	
 	var _beeAnimate2 = _interopRequireDefault(_beeAnimate);
 	
-	var _PopupInner = __webpack_require__(135);
+	var _PopupInner = __webpack_require__(136);
 	
 	var _PopupInner2 = _interopRequireDefault(_PopupInner);
 	
-	var _LazyRenderBox = __webpack_require__(136);
+	var _LazyRenderBox = __webpack_require__(137);
 	
 	var _LazyRenderBox2 = _interopRequireDefault(_LazyRenderBox);
 	
@@ -13885,7 +14018,7 @@
 	module.exports = exports['default'];
 
 /***/ }),
-/* 135 */
+/* 136 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -13902,7 +14035,7 @@
 	
 	var _propTypes2 = _interopRequireDefault(_propTypes);
 	
-	var _LazyRenderBox = __webpack_require__(136);
+	var _LazyRenderBox = __webpack_require__(137);
 	
 	var _LazyRenderBox2 = _interopRequireDefault(_LazyRenderBox);
 	
@@ -13966,7 +14099,7 @@
 	module.exports = exports['default'];
 
 /***/ }),
-/* 136 */
+/* 137 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -14041,7 +14174,7 @@
 	module.exports = exports['default'];
 
 /***/ }),
-/* 137 */
+/* 138 */
 /***/ (function(module, exports) {
 
 	'use strict';
@@ -14076,7 +14209,7 @@
 	}
 
 /***/ }),
-/* 138 */
+/* 139 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -14095,15 +14228,15 @@
 	
 	var _tinperBeeCore = __webpack_require__(26);
 	
-	var _beeMenus = __webpack_require__(108);
+	var _beeMenus = __webpack_require__(109);
 	
 	var _beeMenus2 = _interopRequireDefault(_beeMenus);
 	
-	var _domScrollIntoView = __webpack_require__(139);
+	var _domScrollIntoView = __webpack_require__(140);
 	
 	var _domScrollIntoView2 = _interopRequireDefault(_domScrollIntoView);
 	
-	var _util = __webpack_require__(129);
+	var _util = __webpack_require__(130);
 	
 	var _propTypes = __webpack_require__(5);
 	
@@ -14295,20 +14428,20 @@
 	module.exports = exports['default'];
 
 /***/ }),
-/* 139 */
-/***/ (function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	module.exports = __webpack_require__(140);
-
-/***/ }),
 /* 140 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
 	
-	var util = __webpack_require__(141);
+	module.exports = __webpack_require__(141);
+
+/***/ }),
+/* 141 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	var util = __webpack_require__(142);
 	
 	function scrollIntoView(elem, container, config) {
 	  config = config || {};
@@ -14437,7 +14570,7 @@
 	module.exports = scrollIntoView;
 
 /***/ }),
-/* 141 */
+/* 142 */
 /***/ (function(module, exports) {
 
 	'use strict';
@@ -14881,7 +15014,7 @@
 	}, domUtils);
 
 /***/ }),
-/* 142 */
+/* 143 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -14930,156 +15063,6 @@
 	module.exports = exports['default'];
 
 /***/ }),
-/* 143 */
-/***/ (function(module, exports, __webpack_require__) {
-
-	"use strict";
-	
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	
-	var _react = __webpack_require__(4);
-	
-	var _react2 = _interopRequireDefault(_react);
-	
-	var _src = __webpack_require__(105);
-	
-	var _src2 = _interopRequireDefault(_src);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
-	
-	function _defaults(obj, defaults) { var keys = Object.getOwnPropertyNames(defaults); for (var i = 0; i < keys.length; i++) { var key = keys[i]; var value = Object.getOwnPropertyDescriptor(defaults, key); if (value && value.configurable && obj[key] === undefined) { Object.defineProperty(obj, key, value); } } return obj; }
-	
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-	
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-	
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : _defaults(subClass, superClass); } /**
-	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * @title 不同尺寸单选`Select`
-	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * @description `size`参数控制大小
-	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                */
-	
-	var Option = _src2["default"].Option;
-	var OptGroup = _src2["default"].OptGroup;
-	
-	var Demo1 = function (_Component) {
-	  _inherits(Demo1, _Component);
-	
-	  function Demo1() {
-	    var _temp, _this, _ret;
-	
-	    _classCallCheck(this, Demo1);
-	
-	    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
-	      args[_key] = arguments[_key];
-	    }
-	
-	    return _ret = (_temp = (_this = _possibleConstructorReturn(this, _Component.call.apply(_Component, [this].concat(args))), _this), _this.handleChange = function (value) {
-	      console.log("selected " + value);
-	    }, _temp), _possibleConstructorReturn(_this, _ret);
-	  }
-	
-	  Demo1.prototype.render = function render() {
-	    return _react2["default"].createElement(
-	      "div",
-	      null,
-	      _react2["default"].createElement(
-	        _src2["default"],
-	        {
-	          size: "lg",
-	          defaultValue: "lucy",
-	          style: { width: 200, marginRight: 6 },
-	          onChange: this.handleChange
-	        },
-	        _react2["default"].createElement(
-	          Option,
-	          { value: "jack" },
-	          "boyuzhou"
-	        ),
-	        _react2["default"].createElement(
-	          Option,
-	          { value: "lucy" },
-	          "renhualiu"
-	        ),
-	        _react2["default"].createElement(
-	          Option,
-	          { value: "disabled", disabled: true },
-	          "Disabled"
-	        ),
-	        _react2["default"].createElement(
-	          Option,
-	          { value: "yiminghe" },
-	          "yuzhao"
-	        )
-	      ),
-	      _react2["default"].createElement(
-	        _src2["default"],
-	        {
-	          defaultValue: "lucy",
-	          style: { width: 200, marginRight: 6 },
-	          onChange: this.handleChange
-	        },
-	        _react2["default"].createElement(
-	          Option,
-	          { value: "jack" },
-	          "boyuzhou"
-	        ),
-	        _react2["default"].createElement(
-	          Option,
-	          { value: "lucy" },
-	          "renhualiu"
-	        ),
-	        _react2["default"].createElement(
-	          Option,
-	          { value: "disabled", disabled: true },
-	          "Disabled"
-	        ),
-	        _react2["default"].createElement(
-	          Option,
-	          { value: "yiminghe" },
-	          "yuzhao"
-	        )
-	      ),
-	      _react2["default"].createElement(
-	        _src2["default"],
-	        {
-	          size: "sm",
-	          defaultValue: "lucy",
-	          style: { width: 200 },
-	          onChange: this.handleChange
-	        },
-	        _react2["default"].createElement(
-	          Option,
-	          { value: "jack" },
-	          "boyuzhou"
-	        ),
-	        _react2["default"].createElement(
-	          Option,
-	          { value: "lucy" },
-	          "renhualiu"
-	        ),
-	        _react2["default"].createElement(
-	          Option,
-	          { value: "disabled", disabled: true },
-	          "Disabled"
-	        ),
-	        _react2["default"].createElement(
-	          Option,
-	          { value: "yiminghe" },
-	          "yuzhao"
-	        )
-	      )
-	    );
-	  };
-	
-	  return Demo1;
-	}(_react.Component);
-	
-	exports["default"] = Demo1;
-	module.exports = exports["default"];
-
-/***/ }),
 /* 144 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -15093,7 +15076,7 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _src = __webpack_require__(105);
+	var _src = __webpack_require__(106);
 	
 	var _src2 = _interopRequireDefault(_src);
 	
@@ -15172,7 +15155,7 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _src = __webpack_require__(105);
+	var _src = __webpack_require__(106);
 	
 	var _src2 = _interopRequireDefault(_src);
 	
@@ -15253,7 +15236,7 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _src = __webpack_require__(105);
+	var _src = __webpack_require__(106);
 	
 	var _src2 = _interopRequireDefault(_src);
 	
@@ -15365,7 +15348,7 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _src = __webpack_require__(105);
+	var _src = __webpack_require__(106);
 	
 	var _src2 = _interopRequireDefault(_src);
 	
@@ -15449,7 +15432,7 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _src = __webpack_require__(105);
+	var _src = __webpack_require__(106);
 	
 	var _src2 = _interopRequireDefault(_src);
 	
@@ -15531,7 +15514,7 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _src = __webpack_require__(105);
+	var _src = __webpack_require__(106);
 	
 	var _src2 = _interopRequireDefault(_src);
 	
