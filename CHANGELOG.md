@@ -1,5 +1,5 @@
 <a name="1.0.4"></a>
-## 1.0.4 (2017-11-23)
+## 1.0.4 (2018-01-21)
 
 
 * fix(搜索的时候会一直报错Uncaught TypeError: menu.onKeyDown is not a function): ([2830c2f](https://github.com/tinper-bee/select/commit/2830c2f)), closes [#8](https://github.com/tinper-bee/select/issues/8)
