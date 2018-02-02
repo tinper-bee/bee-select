@@ -49,7 +49,7 @@ ul {
         zoom: 1;
         &:before {
           display: block;
-          font-family: "uf" !important;
+          font-family: "uf";
           content: "\e609";
           -webkit-transition: -webkit-transform 0.2s ease;
           transition: -webkit-transform 0.2s ease;
@@ -301,7 +301,7 @@ ul {
         width: auto;
         padding: 0;
         .u-select-search-field {
-            width: 0.75em !important;
+            width: 0.75em;
         }
     }
     .u-select-selection-rendered {
@@ -372,7 +372,7 @@ ul {
     }
     .u-select-selection-choice-remove:before {
         display: block;
-        font-family: "uf" !important;
+        font-family: "uf";
     }
     .u-select-selection-choice-remove {
         -webkit-filter: none;
@@ -385,7 +385,7 @@ ul {
         color: #404040;
     }
     .u-select-selection-choice-remove:before {
-        font-family: 'uf' !important;
+        font-family: 'uf';
         content: "\e602";
     }
 }
