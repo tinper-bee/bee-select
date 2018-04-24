@@ -194,14 +194,31 @@ class RcSelect extends Component{
      this.tokenize = this.tokenize.bind(this);
      this.adjustOpenState = this.adjustOpenState.bind(this);
      this.renderTopControlNode = this.renderTopControlNode.bind(this);
-
   }
 
   componentWillMount() {
     this.adjustOpenState();
+    if(this.props.autofocus){
+      window.addEventListener("click",(event)=>{
+        if(event.target != "input")return;
+          if(this._focused){
+            this._focused = this._focused?false:true;
+            this.updateFocusClassName();
+            this.props.onBlur(); 
+          }
+      })
+    }
+  }
+
+
+  componentDidMount() {
+    if(this.props.autofocus){
+      this.onOuterFocus();
+    }
   }
 
   componentWillReceiveProps(nextProps) {
+
     if ('value' in nextProps) {
       let value = toArray(nextProps.value);
       value = this.addLabelToValue(nextProps, value);
@@ -510,7 +527,8 @@ class RcSelect extends Component{
     }
   }
 
-  onOuterFocus() {
+  onOuterFocus(e) {
+    window.event?window.event.cancelBubble=true:event.stopPropagation();
     this.clearBlurTime();
     this._focused = true;
     this.updateFocusClassName();
@@ -934,7 +952,7 @@ class RcSelect extends Component{
         }
         const singleValue = value[0];
         selectedValue = (
-          <div
+          <div 
             key="value"
             className={`${clsPrefix}-selection-selected-value`}
             title={singleValue.title || singleValue.label}
@@ -1004,7 +1022,7 @@ class RcSelect extends Component{
       
       innerNode = <ul>{selectedValueNodes}</ul>;
     }
-    return (<div className={className}>{this.getPlaceholderElement()}{innerNode}</div>);
+    return (<div className={className} name="input">{this.getPlaceholderElement()}{innerNode}</div>);
   }
 
   render() {
@@ -1084,7 +1102,7 @@ class RcSelect extends Component{
           <div
             ref="selection"
             key="selection"
-            className={`${clsPrefix}-selection
+            className={`${clsPrefix}-selection 
             ${clsPrefix}-selection--${multiple ? 'multiple' : 'single'}`}
             role="combobox"
             aria-autocomplete="list"

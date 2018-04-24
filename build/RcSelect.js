@@ -221,15 +221,33 @@ var RcSelect = function (_Component) {
     _this.tokenize = _this.tokenize.bind(_this);
     _this.adjustOpenState = _this.adjustOpenState.bind(_this);
     _this.renderTopControlNode = _this.renderTopControlNode.bind(_this);
-
     return _this;
   }
 
   RcSelect.prototype.componentWillMount = function componentWillMount() {
+    var _this2 = this;
+
     this.adjustOpenState();
+    if (this.props.autofocus) {
+      window.addEventListener("click", function (event) {
+        if (event.target != "input") return;
+        if (_this2._focused) {
+          _this2._focused = _this2._focused ? false : true;
+          _this2.updateFocusClassName();
+          _this2.props.onBlur();
+        }
+      });
+    }
+  };
+
+  RcSelect.prototype.componentDidMount = function componentDidMount() {
+    if (this.props.autofocus) {
+      this.onOuterFocus();
+    }
   };
 
   RcSelect.prototype.componentWillReceiveProps = function componentWillReceiveProps(nextProps) {
+
     if ('value' in nextProps) {
       var value = (0, _util.toArray)(nextProps.value);
       value = this.addLabelToValue(nextProps, value);
@@ -296,7 +314,7 @@ var RcSelect = function (_Component) {
   };
 
   RcSelect.prototype.renderFilterOptionsFromChildren = function renderFilterOptionsFromChildren(children, showNotFound, iv) {
-    var _this2 = this;
+    var _this3 = this;
 
     var sel = [];
     var props = this.props;
@@ -305,7 +323,7 @@ var RcSelect = function (_Component) {
     var tags = props.tags;
     _react2["default"].Children.forEach(children, function (child) {
       if (child.type === _OptGroup2["default"]) {
-        var innerItems = _this2.renderFilterOptionsFromChildren(child.props.children, false);
+        var innerItems = _this3.renderFilterOptionsFromChildren(child.props.children, false);
         if (innerItems.length) {
           var label = child.props.label;
           var key = child.key;
@@ -330,7 +348,7 @@ var RcSelect = function (_Component) {
       // );
 
       var childValue = (0, _util.getValuePropValue)(child);
-      if (_this2.filterOption(inputValue, child)) {
+      if (_this3.filterOption(inputValue, child)) {
         sel.push(_react2["default"].createElement(_beeMenus.Item, _extends({
           style: _util.UNSELECTABLE_STYLE,
           attribute: _util.UNSELECTABLE_ATTRIBUTE,
@@ -481,7 +499,7 @@ var RcSelect = function (_Component) {
   };
 
   RcSelect.prototype.onMenuSelect = function onMenuSelect(_ref) {
-    var _this3 = this;
+    var _this4 = this;
 
     var item = _ref.item;
 
@@ -512,7 +530,7 @@ var RcSelect = function (_Component) {
         this.skipAdjustOpen = true;
         this.clearAdjustTimer();
         this.skipAdjustOpenTimer = setTimeout(function () {
-          _this3.skipAdjustOpen = false;
+          _this4.skipAdjustOpen = false;
         }, 0);
       }
       if (value.length && value[0].key === selectedValue) {
@@ -559,7 +577,8 @@ var RcSelect = function (_Component) {
     }
   };
 
-  RcSelect.prototype.onOuterFocus = function onOuterFocus() {
+  RcSelect.prototype.onOuterFocus = function onOuterFocus(e) {
+    window.event ? window.event.cancelBubble = true : event.stopPropagation();
     this.clearBlurTime();
     this._focused = true;
     this.updateFocusClassName();
@@ -572,32 +591,32 @@ var RcSelect = function (_Component) {
   };
 
   RcSelect.prototype.onOuterBlur = function onOuterBlur() {
-    var _this4 = this;
+    var _this5 = this;
 
     this.blurTimer = setTimeout(function () {
-      _this4._focused = false;
-      _this4.updateFocusClassName();
-      var props = _this4.props;
-      var value = _this4.state.value;
-      var inputValue = _this4.state.inputValue;
+      _this5._focused = false;
+      _this5.updateFocusClassName();
+      var props = _this5.props;
+      var value = _this5.state.value;
+      var inputValue = _this5.state.inputValue;
 
       if ((0, _util.isSingleMode)(props) && props.showSearch && inputValue && props.defaultActiveFirstOption) {
-        var options = _this4._options || [];
+        var options = _this5._options || [];
         if (options.length) {
           var firstOption = (0, _util.findFirstMenuItem)(options);
           if (firstOption) {
             value = [{
               key: firstOption.key,
-              label: _this4.getLabelFromOption(firstOption)
+              label: _this5.getLabelFromOption(firstOption)
             }];
-            _this4.fireChange(value);
+            _this5.fireChange(value);
           }
         }
       } else if ((0, _util.isMultipleOrTags)(props) && inputValue) {
         // why not use setState?
-        _this4.state.inputValue = _this4.getInputDOMNode().value = '';
+        _this5.state.inputValue = _this5.getInputDOMNode().value = '';
       }
-      props.onBlur(_this4.getVLForOnChange(value));
+      props.onBlur(_this5.getVLForOnChange(value));
     }, 10);
   };
 
@@ -627,7 +646,7 @@ var RcSelect = function (_Component) {
   };
 
   RcSelect.prototype.getLabelBySingleValue = function getLabelBySingleValue(children, value) {
-    var _this5 = this;
+    var _this6 = this;
 
     if (value === undefined) {
       return null;
@@ -635,19 +654,19 @@ var RcSelect = function (_Component) {
     var label = null;
     _react2["default"].Children.forEach(children, function (child) {
       if (child.type === _OptGroup2["default"]) {
-        var maybe = _this5.getLabelBySingleValue(child.props.children, value);
+        var maybe = _this6.getLabelBySingleValue(child.props.children, value);
         if (maybe !== null) {
           label = maybe;
         }
       } else if ((0, _util.getValuePropValue)(child) === value) {
-        label = _this5.getLabelFromOption(child);
+        label = _this6.getLabelFromOption(child);
       }
     });
     return label;
   };
 
   RcSelect.prototype.getValueByLabel = function getValueByLabel(children, label) {
-    var _this6 = this;
+    var _this7 = this;
 
     if (label === undefined) {
       return null;
@@ -655,11 +674,11 @@ var RcSelect = function (_Component) {
     var value = null;
     _react2["default"].Children.forEach(children, function (child) {
       if (child.type === _OptGroup2["default"]) {
-        var maybe = _this6.getValueByLabel(child.props.children, label);
+        var maybe = _this7.getValueByLabel(child.props.children, label);
         if (maybe !== null) {
           value = maybe;
         }
-      } else if ((0, _util.toArray)(_this6.getLabelFromOption(child)).join('') === label) {
+      } else if ((0, _util.toArray)(_this7.getLabelFromOption(child)).join('') === label) {
         value = (0, _util.getValuePropValue)(child);
       }
     });
@@ -781,7 +800,7 @@ var RcSelect = function (_Component) {
   };
 
   RcSelect.prototype.setOpenState = function setOpenState(open, needFocus) {
-    var _this7 = this;
+    var _this8 = this;
 
     var props = this.props,
         state = this.state;
@@ -802,7 +821,7 @@ var RcSelect = function (_Component) {
     }
     this.setState(nextState, function () {
       if (open) {
-        _this7.maybeFocus(open, needFocus);
+        _this8.maybeFocus(open, needFocus);
       }
     });
   };
@@ -864,18 +883,18 @@ var RcSelect = function (_Component) {
   };
 
   RcSelect.prototype.addLabelToValue = function addLabelToValue(props, value_) {
-    var _this8 = this;
+    var _this9 = this;
 
     var value = value_;
     if (props.labelInValue) {
       value.forEach(function (v) {
-        v.label = v.label || _this8.getLabelFromProps(props, v.key);
+        v.label = v.label || _this9.getLabelFromProps(props, v.key);
       });
     } else {
       value = value.map(function (v) {
         return {
           key: v,
-          label: _this8.getLabelFromProps(props, v)
+          label: _this9.getLabelFromProps(props, v)
         };
       });
     }
@@ -883,7 +902,7 @@ var RcSelect = function (_Component) {
   };
 
   RcSelect.prototype.addTitleToValue = function addTitleToValue(props, values) {
-    var _this9 = this;
+    var _this10 = this;
 
     var nextValues = values;
     var keys = values.map(function (v) {
@@ -891,7 +910,7 @@ var RcSelect = function (_Component) {
     });
     _react2["default"].Children.forEach(props.children, function (child) {
       if (child.type === _OptGroup2["default"]) {
-        nextValues = _this9.addTitleToValue(child.props, nextValues);
+        nextValues = _this10.addTitleToValue(child.props, nextValues);
       } else {
         var value = (0, _util.getValuePropValue)(child);
         var valueIndex = keys.indexOf(value);
@@ -918,14 +937,14 @@ var RcSelect = function (_Component) {
     var canMultiple = (0, _util.isMultipleOrTags)(props);
 
     if (canMultiple) {
-      var event = selectedKey;
+      var _event = selectedKey;
       if (props.labelInValue) {
-        event = {
+        _event = {
           key: selectedKey,
           label: label
         };
       }
-      props.onDeselect(event);
+      props.onDeselect(_event);
     }
     this.fireChange(value);
   };
@@ -955,7 +974,7 @@ var RcSelect = function (_Component) {
   };
 
   RcSelect.prototype.tokenize = function tokenize(string) {
-    var _this10 = this;
+    var _this11 = this;
 
     var _props = this.props,
         multiple = _props.multiple,
@@ -967,7 +986,7 @@ var RcSelect = function (_Component) {
       var selectedValue = { key: label, label: label };
       if ((0, _util.findIndexInValueByLabel)(nextValue, label) === -1) {
         if (multiple) {
-          var value = _this10.getValueByLabel(children, label);
+          var value = _this11.getValueByLabel(children, label);
           if (value) {
             selectedValue.key = value;
             nextValue = nextValue.concat(selectedValue);
@@ -1001,7 +1020,7 @@ var RcSelect = function (_Component) {
   };
 
   RcSelect.prototype.renderTopControlNode = function renderTopControlNode() {
-    var _this11 = this;
+    var _this12 = this;
 
     var _state = this.state,
         value = _state.value,
@@ -1073,7 +1092,7 @@ var RcSelect = function (_Component) {
           if (maxTagTextLength && typeof content === 'string' && content.length > maxTagTextLength) {
             content = content.slice(0, maxTagTextLength) + '...';
           }
-          var disabled = _this11.isChildDisabled(singleValue.key);
+          var disabled = _this12.isChildDisabled(singleValue.key);
           var choiceClassName = disabled ? clsPrefix + '-selection-choice ' + clsPrefix + '-selection-choice-disabled' : clsPrefix + '-selection-choice';
           return _react2["default"].createElement(
             'li',
@@ -1092,7 +1111,7 @@ var RcSelect = function (_Component) {
             ),
             disabled ? null : _react2["default"].createElement('span', {
               className: clsPrefix + '-selection-choice-remove',
-              onClick: _this11.removeSelected.bind(_this11, singleValue.key)
+              onClick: _this12.removeSelected.bind(_this12, singleValue.key)
             })
           );
         });
@@ -1114,7 +1133,7 @@ var RcSelect = function (_Component) {
     }
     return _react2["default"].createElement(
       'div',
-      { className: className },
+      { className: className, name: 'input' },
       this.getPlaceholderElement(),
       innerNode
     );
@@ -1199,7 +1218,7 @@ var RcSelect = function (_Component) {
           _extends({
             ref: 'selection',
             key: 'selection',
-            className: clsPrefix + '-selection\n            ' + clsPrefix + '-selection--' + (multiple ? 'multiple' : 'single'),
+            className: clsPrefix + '-selection \n            ' + clsPrefix + '-selection--' + (multiple ? 'multiple' : 'single'),
             role: 'combobox',
             'aria-autocomplete': 'list',
             'aria-haspopup': 'true',

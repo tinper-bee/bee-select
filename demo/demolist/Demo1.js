@@ -1,18 +1,25 @@
 /**
- * @title 不同尺寸单选`Select`
+ * @title 不同尺寸单选`Select  、默认获取焦点autofocus`
  * @description `size`参数控制大小
  */
 
 import React, { Component } from "react";
 import Select from "../../src";
-
+import ReactDOM from "react-dom";
 const Option = Select.Option;
 const OptGroup = Select.OptGroup;
 
 class Demo1 extends Component {
   handleChange = value => {
     console.log(`selected ${value}`);
+  };  
+  handFocus = value => {
+    console.log(`获取焦点事件`);
   };
+  onBlur = value => {
+    console.log(`onBlur`);
+  };
+
   render() {
     return (
       <div>
@@ -21,8 +28,11 @@ class Demo1 extends Component {
           defaultValue="lucy"
           style={{ width: 200, marginRight: 6 }}
           onChange={this.handleChange}
+          onFocus={this.handFocus}
+          onBlur={this.onBlur}
+          autofocus
         >
-          <Option value="jack">boyuzhou</Option>
+          <Option value="jack">boyuzhou111</Option>
           <Option value="lucy">renhualiu</Option>
           <Option value="disabled" disabled>
             Disabled
