@@ -261,6 +261,10 @@ var RcSelect = function (_Component) {
         });
       }
     }
+
+    if (this.props.autofocus) {
+      this.onOuterFocus();
+    }
   };
 
   RcSelect.prototype.componentWillUpdate = function componentWillUpdate(nextProps, nextState) {

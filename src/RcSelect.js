@@ -232,6 +232,10 @@ class RcSelect extends Component{
         });
       }
     }
+
+    if(this.props.autofocus){
+      this.onOuterFocus();
+    }
   }
 
   componentWillUpdate(nextProps, nextState) {
