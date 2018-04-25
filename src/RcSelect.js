@@ -198,18 +198,19 @@ class RcSelect extends Component{
 
   componentWillMount() {
     this.adjustOpenState();
-    if(!this.props.autofocus)return ;
+    if(!this.props.autofocus)return ; 
     window.addEventListener("click",(event)=>{
-      if(event.target && event.target.getAttribute("name")){
+      console.log(event.target.getAttribute("name")+" this._focused----",this._focused);
+      if(event.target && event.target.getAttribute("name") == "input"){
         if(this._focused)return;
         this._focused = true;
         this.updateFocusClassName();
-        this.props.onFocus(); 
+        this.props.onFocus();
       }else{
         if(!this._focused)return;
         this._focused = false;
         this.updateFocusClassName();
-        this.props.onBlur(); 
+        this.props.onBlur();
       }
     })
   }
@@ -262,6 +263,7 @@ class RcSelect extends Component{
   }
 
   componentWillUnmount() {
+    window.removeEventListener("click",()=>{})
     this.clearBlurTime();
     this.clearAdjustTimer();
     if (this.dropdownContainer) {
@@ -534,8 +536,14 @@ class RcSelect extends Component{
     }
   }
 
-  onOuterFocus(e) {
-    window.event?window.event.cancelBubble=true:event.stopPropagation();
+  onOuterFocus(event) {
+    if(window.event){
+      window.event.cancelBubble=true
+    }else{
+      if(event.stopPropagation()){
+        event.stopPropagation()
+      }
+    }
     this.clearBlurTime();
     this._focused = true;
     this.updateFocusClassName();
