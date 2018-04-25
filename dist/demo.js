@@ -6773,16 +6773,18 @@
 	    var _this2 = this;
 	
 	    this.adjustOpenState();
-	    if (this.props.autofocus) {
-	      window.addEventListener("click", function (event) {
-	        if (event.target != "input") return;
-	        if (_this2._focused) {
-	          _this2._focused = _this2._focused ? false : true;
-	          _this2.updateFocusClassName();
-	          _this2.props.onBlur();
-	        }
-	      });
-	    }
+	    if (!this.props.autofocus) return;
+	    window.addEventListener("click", function (event) {
+	      if (event.target && event.target.getAttribute("name")) {
+	        _this2._focused = true;
+	        _this2.updateFocusClassName();
+	        _this2.props.onFocus();
+	      } else {
+	        _this2._focused = false;
+	        _this2.updateFocusClassName();
+	        _this2.props.onBlur();
+	      }
+	    });
 	  };
 	
 	  RcSelect.prototype.componentDidMount = function componentDidMount() {

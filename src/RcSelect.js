@@ -198,18 +198,19 @@ class RcSelect extends Component{
 
   componentWillMount() {
     this.adjustOpenState();
-    if(this.props.autofocus){
-      window.addEventListener("click",(event)=>{
-        if(event.target != "input")return;
-          if(this._focused){
-            this._focused = this._focused?false:true;
-            this.updateFocusClassName();
-            this.props.onBlur(); 
-          }
-      })
-    }
+    if(!this.props.autofocus)return ;
+    window.addEventListener("click",(event)=>{
+      if(event.target && event.target.getAttribute("name")){
+        this._focused = true;
+        this.updateFocusClassName();
+        this.props.onFocus(); 
+      }else{
+        this._focused = false;
+        this.updateFocusClassName();
+        this.props.onBlur(); 
+      }
+    })
   }
-
 
   componentDidMount() {
     if(this.props.autofocus){
