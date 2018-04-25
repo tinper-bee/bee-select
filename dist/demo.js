@@ -6776,10 +6776,12 @@
 	    if (!this.props.autofocus) return;
 	    window.addEventListener("click", function (event) {
 	      if (event.target && event.target.getAttribute("name")) {
+	        if (_this2._focused) return;
 	        _this2._focused = true;
 	        _this2.updateFocusClassName();
 	        _this2.props.onFocus();
 	      } else {
+	        if (!_this2._focused) return;
 	        _this2._focused = false;
 	        _this2.updateFocusClassName();
 	        _this2.props.onBlur();

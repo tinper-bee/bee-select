@@ -201,10 +201,12 @@ class RcSelect extends Component{
     if(!this.props.autofocus)return ;
     window.addEventListener("click",(event)=>{
       if(event.target && event.target.getAttribute("name")){
+        if(this._focused)return;
         this._focused = true;
         this.updateFocusClassName();
         this.props.onFocus(); 
       }else{
+        if(!this._focused)return;
         this._focused = false;
         this.updateFocusClassName();
         this.props.onBlur(); 
