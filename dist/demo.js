@@ -76,7 +76,7 @@
 	
 	var CARETUP = _react2['default'].createElement('i', { className: 'uf uf-arrow-up' });
 	
-	var Demo1 = __webpack_require__(64);var DemoArray = [{ "example": _react2['default'].createElement(Demo1, null), "title": " 不同尺寸单选`Select  、默认获", "code": "/**\n * @title 不同尺寸单选`Select  、默认获取焦点autofocus`\n * @description `size`参数控制大小\n */\n\nimport React, { Component } from \"react\";\nimport { Select } from 'tinper-bee';\nimport ReactDOM from \"react-dom\";\nconst Option = Select.Option;\nconst OptGroup = Select.OptGroup;\n\nclass Demo1 extends Component {\n  handleChange = value => {\n    console.log(`selected ${value}`);\n  };  \n  handFocus = value => {\n    console.log(`获取焦点事件`);\n  };\n  onBlur = value => {\n    console.log(`onBlur`);\n  };\n\n  render() {\n    return (\n      <div>\n        <Select\n          size=\"lg\"\n          defaultValue=\"lucy\"\n          style={{ width: 200, marginRight: 6 }}\n          onChange={this.handleChange}\n          onFocus={this.handFocus}\n          onBlur={this.onBlur}\n          autofocus\n        >\n          <Option value=\"jack\">boyuzhou111</Option>\n          <Option value=\"lucy\">renhualiu</Option>\n          <Option value=\"disabled\" disabled>\n            Disabled\n          </Option>\n          <Option value=\"yiminghe\">yuzhao</Option>\n        </Select>\n        <Select\n          defaultValue=\"lucy\"\n          style={{ width: 200, marginRight: 6 }}\n          onChange={this.handleChange}\n        >\n          <Option value=\"jack\">boyuzhou</Option>\n          <Option value=\"lucy\">renhualiu</Option>\n          <Option value=\"disabled\" disabled>\n            Disabled\n          </Option>\n          <Option value=\"yiminghe\">yuzhao</Option>\n        </Select>\n        <Select\n          size=\"sm\"\n          defaultValue=\"lucy\"\n          style={{ width: 200 }}\n          onChange={this.handleChange}\n        >\n          <Option value=\"jack\">boyuzhou</Option>\n          <Option value=\"lucy\">renhualiu</Option>\n          <Option value=\"disabled\" disabled>\n            Disabled\n          </Option>\n          <Option value=\"yiminghe\">yuzhao</Option>\n        </Select>\n      </div>\n    );\n  }\n}\n\n\n", "desc": " `size`参数控制大小" }];
+	var Demo1 = __webpack_require__(64);var Demo2 = __webpack_require__(103);var Demo3 = __webpack_require__(104);var Demo4 = __webpack_require__(105);var Demo5 = __webpack_require__(106);var Demo6 = __webpack_require__(107);var Demo7 = __webpack_require__(108);var Demo8 = __webpack_require__(109);var DemoArray = [{ "example": _react2['default'].createElement(Demo1, null), "title": " 不同尺寸单选`Select`", "code": "/**\n * @title 不同尺寸单选`Select`\n * @description `size`参数控制大小\n */\n\nimport React, { Component } from \"react\";\nimport { Select } from 'tinper-bee';\nimport ReactDOM from \"react-dom\";\nconst Option = Select.Option;\nconst OptGroup = Select.OptGroup;\n\nclass Demo1 extends Component {\n  handleChange = value => {\n    console.log(`selected ${value}`);\n  };  \n\n  render() {\n    return (\n      <div>\n        <Select\n          size=\"lg\"\n          defaultValue=\"lucy\"\n          style={{ width: 200, marginRight: 6 }}\n          onChange={this.handleChange}\n        >\n          <Option value=\"jack\">boyuzhou111</Option>\n          <Option value=\"lucy\">renhualiu</Option>\n          <Option value=\"disabled\" disabled>\n            Disabled\n          </Option>\n          <Option value=\"yiminghe\">yuzhao</Option>\n        </Select>\n        <Select\n          defaultValue=\"lucy\"\n          style={{ width: 200, marginRight: 6 }}\n          onChange={this.handleChange}\n        >\n          <Option value=\"jack\">boyuzhou</Option>\n          <Option value=\"lucy\">renhualiu</Option>\n          <Option value=\"disabled\" disabled>\n            Disabled\n          </Option>\n          <Option value=\"yiminghe\">yuzhao</Option>\n        </Select>\n        <Select\n          size=\"sm\"\n          defaultValue=\"lucy\"\n          style={{ width: 200 }}\n          onChange={this.handleChange}\n        >\n          <Option value=\"jack\">boyuzhou</Option>\n          <Option value=\"lucy\">renhualiu</Option>\n          <Option value=\"disabled\" disabled>\n            Disabled\n          </Option>\n          <Option value=\"yiminghe\">yuzhao</Option>\n        </Select>\n      </div>\n    );\n  }\n}\n\n\n", "desc": " `size`参数控制大小" }, { "example": _react2['default'].createElement(Demo2, null), "title": " 常用多选", "code": "/**\n * @title 常用多选\n * @description Children自定义数据列表,注意：Children已经定义到全局，此处显示为注释例子，其他例子用到Children变量均以此方式定义。\n */\n\nimport React, { Component } from \"react\";\nimport { Select } from 'tinper-bee';\n\nconst Option = Select.Option;\nconst OptGroup = Select.OptGroup;\n\nconst Children = [];\nfor (let i = 10; i < 36; i++) {\n  Children.push(<Option key={i.toString(36) + i}>{i.toString(36) + i}</Option>);\n}\n\nclass Demo2 extends Component {\n  handleChange = value => {\n    console.log('selected ${value}');\n  };\n  render() {\n    return (\n      <Select\n        multiple\n        style={{ width: \"100%\" }}\n        searchPlaceholder=\"标签模式\"\n        onChange={this.handleChange}\n      >\n        {Children}\n      </Select>\n    );\n  }\n}\n\n\n", "desc": " Children自定义数据列表,注意：Children已经定义到全局，此处显示为注释例子，其他例子用到Children变量均以此方式定义。" }, { "example": _react2['default'].createElement(Demo3, null), "title": " 自定义选项多选`Select`", "code": "/**\n * @title 自定义选项多选`Select`\n * @description 用户在框内输入自定义内容，Select将输入的内容自动纳入下拉选项中一员。\n */\n\nimport React, { Component } from \"react\";\nimport { Select } from 'tinper-bee';\n\nconst Option = Select.Option;\n\nconst Children = [];\nfor (let i = 10; i < 36; i++) {\n  Children.push(<Option key={i.toString(36) + i}>{i.toString(36) + i}</Option>);\n}\n\nclass Demo3 extends Component {\n  handleChange = value => {\n    console.log(`selected ${value}`);\n  };\n  scrollToEnd = () => {\n    console.log(\"软加载\");\n  };\n  render() {\n    return (\n      <Select\n        tags\n        style={{ width: \"100%\" }}\n        searchPlaceholder=\"标签模式\"\n        scrollToEnd={this.scrollToEnd}\n        onChange={this.handleChange}\n      >\n        {Children}\n      </Select>\n    );\n  }\n}\n\n\n", "desc": " 用户在框内输入自定义内容，Select将输入的内容自动纳入下拉选项中一员。" }, { "example": _react2['default'].createElement(Demo4, null), "title": " 简易级联单选`Select`", "code": "/**\n * @title 简易级联单选`Select`\n * @description 常用语城市级联的选择。\n */\n\nimport React, { Component } from \"react\";\nimport { Select } from 'tinper-bee';\n\nconst Option = Select.Option;\n\nconst provinceData = [\"Zhejiang\", \"Jiangsu\"];\nconst cityData = {\n  Zhejiang: [\"Hangzhou\", \"Ningbo\", \"Wenzhou\"],\n  Jiangsu: [\"Nanjing\", \"Suzhou\", \"Zhenjiang\"]\n};\n\nclass Demo4 extends Component {\n  constructor(props) {\n    super(props);\n    this.state = {\n      cities: cityData[provinceData[0]],\n      secondCity: cityData[provinceData[0]][0]\n    };\n  }\n  handleProvinceChange = value => {\n    this.setState({\n      cities: cityData[value],\n      secondCity: cityData[value][0]\n    });\n  };\n  onSecondCityChange = value => {\n    this.setState({\n      secondCity: value\n    });\n  };\n  render() {\n    const provinceOptions = provinceData.map(province => (\n      <Option key={province}>{province}</Option>\n    ));\n    const cityOptions = this.state.cities.map(city => (\n      <Option key={city}>{city}</Option>\n    ));\n    return (\n      <div>\n        <Select\n          defaultValue={provinceData[0]}\n          style={{ width: 90, marginRight: 6 }}\n          onChange={this.handleProvinceChange}\n        >\n          {provinceOptions}\n        </Select>\n        <Select\n          value={this.state.secondCity}\n          style={{ width: 90 }}\n          onChange={this.onSecondCityChange}\n        >\n          {cityOptions}\n        </Select>\n      </div>\n    );\n  }\n}\n\n\n", "desc": " 常用语城市级联的选择。" }, { "example": _react2['default'].createElement(Demo5, null), "title": " 自定义自动填充单选`Select`", "code": "/**\n * @title 自定义自动填充单选`Select`\n * @description 常用邮箱后缀自动填充。\n */\n\nimport React, { Component } from \"react\";\nimport { Select } from 'tinper-bee';\n\nconst Option = Select.Option;\n\nclass Demo5 extends Component {\n  constructor(props) {\n    super(props);\n    this.state = {\n      options: []\n    };\n  }\n  handleChange = value => {\n    let options;\n    if (!value || value.indexOf(\"@\") >= 0) {\n      options = [];\n    } else {\n      options = [\"gmail.com\", \"163.com\", \"qq.com\"].map(domain => {\n        const email = `${value}@${domain}`;\n        return <Option key={email}>{email}</Option>;\n      });\n    }\n    this.setState({ options });\n  };\n\n  render() {\n    return (\n      <Select\n        combobox\n        style={{ width: 200 }}\n        onChange={this.handleChange}\n        filterOption={false}\n        placeholder=\"Enter the account name\"\n      >\n        {this.state.options}\n      </Select>\n    );\n  }\n}\n\n\n", "desc": " 常用邮箱后缀自动填充。" }, { "example": _react2['default'].createElement(Demo6, null), "title": " 搜索单选`Select`", "code": "/**\n * @title 搜索单选`Select`\n * @description 从下拉选中，通过输入的值检索相应的选项。\n */\n\nimport React, { Component } from \"react\";\nimport { Select } from 'tinper-bee';\n\nconst Option = Select.Option;\n\nclass Demo6 extends Component {\n  constructor(props) {\n    super(props);\n  }\n  handleChange = value => {\n    console.log(`selected ${value}`);\n  };\n\n  render() {\n    return (\n      <Select\n        showSearch\n        style={{ width: 200 }}\n        placeholder=\"Select a person\"\n        optionFilterProp=\"children\"\n        onChange={this.handleChange.bind(this)}\n      >\n        <Option value=\"jack\">Jack</Option>\n        <Option value=\"lucy\">Lucy</Option>\n        <Option value=\"tom\">Tom</Option>\n      </Select>\n    );\n  }\n}\n\n\n", "desc": " 从下拉选中，通过输入的值检索相应的选项。" }, { "example": _react2['default'].createElement(Demo7, null), "title": " 设置data数组对象来自动生成opti", "code": "/**\n * @title 设置data数组对象来自动生成option\n * @description 必须设置key，value。根据需要设置disabed\n */\n\nimport React, { Component } from \"react\";\nimport { Select } from 'tinper-bee';\n\nconst Option = Select.Option;\n\nlet selectDataSource = [\n  {\n    key: \"张三\",\n    value: \"zhangsan\"\n  },\n  {\n    key: \"李四\",\n    value: \"lisi\"\n  },\n  {\n    key: \"王五\",\n    value: \"wangwu\"\n  }\n];\n\nclass Demo7 extends Component {\n  constructor(props) {\n    super(props);\n    this.state = {\n      DataSource: [\n        {\n          key: \"其他数据\",\n          value: \"qita\"\n        }\n      ]\n    };\n  }\n  handleChange = value => {\n    if (value) {\n      this.setState({\n        DataSource: [\n          {\n            key: \"张三三\",\n            value: \"zhangsansan\",\n            disabled: true\n          },\n          {\n            key: \"李四四\",\n            value: \"lisisi\"\n          },\n          {\n            key: \"王五五\",\n            value: \"wangwuwu\"\n          }\n        ]\n      });\n    }\n  };\n\n  render() {\n    return (\n      <div>\n        <Select\n          style={{ width: 200 }}\n          placeholder=\"Select a person\"\n          onChange={this.handleChange}\n          data={selectDataSource}\n        />\n        <Select\n          style={{ width: 200, marginLeft: \"5px\" }}\n          placeholder=\"Select a person\"\n          data={this.state.DataSource}\n        />\n      </div>\n    );\n  }\n}\n\n\n", "desc": " 必须设置key，value。根据需要设置disabed" }, { "example": _react2['default'].createElement(Demo8, null), "title": " 默认设置下拉框获取焦点事件 `默认获取", "code": "/**\n * @title 默认设置下拉框获取焦点事件 `默认获取焦点autofocus`\n * @description `autofocus`参数控制是否需要获取焦点。\n * 同时暴露两个api  handFocus、onBlur 返回当前选中的数据\n */\n\nimport React, { Component } from \"react\";\nimport { Select } from 'tinper-bee';\nimport ReactDOM from \"react-dom\";\nconst Option = Select.Option;\nconst OptGroup = Select.OptGroup;\n\nclass Demo8 extends Component {\n  handleChange = value => {\n    console.log(`selected ${value}`);\n  };  \n  handFocus = value => {\n    console.log(`获取焦点事件`);\n  };\n  onBlur = value => {\n    console.log(`onBlur`);\n  };\n\n  render() {\n    return (\n      <div>\n        <Select\n          size=\"lg\"\n          defaultValue=\"lucy\"\n          style={{ width: 200, marginRight: 6 }}\n          onChange={this.handleChange}\n          onFocus={this.handFocus}\n          onBlur={this.onBlur}\n          autofocus\n        >\n          <Option value=\"jack\">boyuzhou111</Option>\n          <Option value=\"lucy\">renhualiu</Option>\n          <Option value=\"disabled\" disabled>\n            Disabled\n          </Option>\n          <Option value=\"yiminghe\">yuzhao</Option>\n        </Select>\n        <Select\n          size=\"lg\"\n          defaultValue=\"lucy\"\n          style={{ width: 200, marginRight: 6 }}\n          onChange={this.handleChange}\n        >\n          <Option value=\"jack\">boyuzhou</Option>\n          <Option value=\"lucy\">renhualiu</Option>\n          <Option value=\"disabled\" disabled>\n            Disabled\n          </Option>\n          <Option value=\"yiminghe\">yuzhao</Option>\n        </Select>\n        \n      </div>\n    );\n  }\n}\n\n\n", "desc": " `autofocus`参数控制是否需要获取焦点。" }];
 	
 	var Demo = function (_Component) {
 	    _inherits(Demo, _Component);
@@ -6215,7 +6215,7 @@
 	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 	
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : _defaults(subClass, superClass); } /**
-	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * @title 不同尺寸单选`Select  、默认获取焦点autofocus`
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * @title 不同尺寸单选`Select`
 	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * @description `size`参数控制大小
 	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                */
 	
@@ -6236,10 +6236,6 @@
 	
 	    return _ret = (_temp = (_this = _possibleConstructorReturn(this, _Component.call.apply(_Component, [this].concat(args))), _this), _this.handleChange = function (value) {
 	      console.log("selected " + value);
-	    }, _this.handFocus = function (value) {
-	      console.log("\u83B7\u53D6\u7126\u70B9\u4E8B\u4EF6");
-	    }, _this.onBlur = function (value) {
-	      console.log("onBlur");
 	    }, _temp), _possibleConstructorReturn(_this, _ret);
 	  }
 	
@@ -6253,10 +6249,7 @@
 	          size: "lg",
 	          defaultValue: "lucy",
 	          style: { width: 200, marginRight: 6 },
-	          onChange: this.handleChange,
-	          onFocus: this.handFocus,
-	          onBlur: this.onBlur,
-	          autofocus: true
+	          onChange: this.handleChange
 	        },
 	        _react2["default"].createElement(
 	          Option,
@@ -6710,7 +6703,7 @@
 	      // this.clearBlurTime();
 	      _this2._focused = true;
 	      _this2.updateFocusClassName();
-	      _this2.props.onFocus();
+	      _this2.props.onFocus(_this2.state.value);
 	    };
 	
 	    var value = [];
@@ -7147,7 +7140,7 @@
 	    this.clearBlurTime();
 	    this._focused = true;
 	    this.updateFocusClassName();
-	    this.props.onFocus();
+	    this.props.onFocus(this.state.value);
 	  };
 	
 	  RcSelect.prototype.onPopupFocus = function onPopupFocus() {
@@ -7158,7 +7151,6 @@
 	  RcSelect.prototype.onOuterBlur = function onOuterBlur() {
 	    var _this5 = this;
 	
-	    console.log(" 0 00000 ");
 	    this.blurTimer = setTimeout(function () {
 	      _this5._focused = false;
 	      _this5.updateFocusClassName();
@@ -7182,7 +7174,9 @@
 	        // why not use setState?
 	        _this5.state.inputValue = _this5.getInputDOMNode().value = '';
 	      }
-	      props.onBlur(_this5.getVLForOnChange(value));
+	      //todu 返回数组对象
+	      // props.onBlur(this.getVLForOnChange(value));
+	      props.onBlur(_this5.state.value);
 	    }, 10);
 	  };
 	
@@ -13496,6 +13490,681 @@
 	Option.propTypes = propTypes;
 	exports['default'] = Option;
 	module.exports = exports['default'];
+
+/***/ }),
+/* 103 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	"use strict";
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _react = __webpack_require__(4);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _src = __webpack_require__(65);
+	
+	var _src2 = _interopRequireDefault(_src);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+	
+	function _defaults(obj, defaults) { var keys = Object.getOwnPropertyNames(defaults); for (var i = 0; i < keys.length; i++) { var key = keys[i]; var value = Object.getOwnPropertyDescriptor(defaults, key); if (value && value.configurable && obj[key] === undefined) { Object.defineProperty(obj, key, value); } } return obj; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : _defaults(subClass, superClass); } /**
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * @title 常用多选
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * @description Children自定义数据列表,注意：Children已经定义到全局，此处显示为注释例子，其他例子用到Children变量均以此方式定义。
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                */
+	
+	var Option = _src2["default"].Option;
+	var OptGroup = _src2["default"].OptGroup;
+	
+	var Children = [];
+	for (var i = 10; i < 36; i++) {
+	  Children.push(_react2["default"].createElement(
+	    Option,
+	    { key: i.toString(36) + i },
+	    i.toString(36) + i
+	  ));
+	}
+	
+	var Demo2 = function (_Component) {
+	  _inherits(Demo2, _Component);
+	
+	  function Demo2() {
+	    var _temp, _this, _ret;
+	
+	    _classCallCheck(this, Demo2);
+	
+	    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+	      args[_key] = arguments[_key];
+	    }
+	
+	    return _ret = (_temp = (_this = _possibleConstructorReturn(this, _Component.call.apply(_Component, [this].concat(args))), _this), _this.handleChange = function (value) {
+	      console.log('selected ${value}');
+	    }, _temp), _possibleConstructorReturn(_this, _ret);
+	  }
+	
+	  Demo2.prototype.render = function render() {
+	    return _react2["default"].createElement(
+	      _src2["default"],
+	      {
+	        multiple: true,
+	        style: { width: "100%" },
+	        searchPlaceholder: "\u6807\u7B7E\u6A21\u5F0F",
+	        onChange: this.handleChange
+	      },
+	      Children
+	    );
+	  };
+	
+	  return Demo2;
+	}(_react.Component);
+	
+	exports["default"] = Demo2;
+	module.exports = exports["default"];
+
+/***/ }),
+/* 104 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	"use strict";
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _react = __webpack_require__(4);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _src = __webpack_require__(65);
+	
+	var _src2 = _interopRequireDefault(_src);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+	
+	function _defaults(obj, defaults) { var keys = Object.getOwnPropertyNames(defaults); for (var i = 0; i < keys.length; i++) { var key = keys[i]; var value = Object.getOwnPropertyDescriptor(defaults, key); if (value && value.configurable && obj[key] === undefined) { Object.defineProperty(obj, key, value); } } return obj; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : _defaults(subClass, superClass); } /**
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * @title 自定义选项多选`Select`
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * @description 用户在框内输入自定义内容，Select将输入的内容自动纳入下拉选项中一员。
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                */
+	
+	var Option = _src2["default"].Option;
+	
+	var Children = [];
+	for (var i = 10; i < 36; i++) {
+	  Children.push(_react2["default"].createElement(
+	    Option,
+	    { key: i.toString(36) + i },
+	    i.toString(36) + i
+	  ));
+	}
+	
+	var Demo3 = function (_Component) {
+	  _inherits(Demo3, _Component);
+	
+	  function Demo3() {
+	    var _temp, _this, _ret;
+	
+	    _classCallCheck(this, Demo3);
+	
+	    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+	      args[_key] = arguments[_key];
+	    }
+	
+	    return _ret = (_temp = (_this = _possibleConstructorReturn(this, _Component.call.apply(_Component, [this].concat(args))), _this), _this.handleChange = function (value) {
+	      console.log("selected " + value);
+	    }, _this.scrollToEnd = function () {
+	      console.log("软加载");
+	    }, _temp), _possibleConstructorReturn(_this, _ret);
+	  }
+	
+	  Demo3.prototype.render = function render() {
+	    return _react2["default"].createElement(
+	      _src2["default"],
+	      {
+	        tags: true,
+	        style: { width: "100%" },
+	        searchPlaceholder: "\u6807\u7B7E\u6A21\u5F0F",
+	        scrollToEnd: this.scrollToEnd,
+	        onChange: this.handleChange
+	      },
+	      Children
+	    );
+	  };
+	
+	  return Demo3;
+	}(_react.Component);
+	
+	exports["default"] = Demo3;
+	module.exports = exports["default"];
+
+/***/ }),
+/* 105 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	"use strict";
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _react = __webpack_require__(4);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _src = __webpack_require__(65);
+	
+	var _src2 = _interopRequireDefault(_src);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+	
+	function _defaults(obj, defaults) { var keys = Object.getOwnPropertyNames(defaults); for (var i = 0; i < keys.length; i++) { var key = keys[i]; var value = Object.getOwnPropertyDescriptor(defaults, key); if (value && value.configurable && obj[key] === undefined) { Object.defineProperty(obj, key, value); } } return obj; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : _defaults(subClass, superClass); } /**
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * @title 简易级联单选`Select`
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * @description 常用语城市级联的选择。
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                */
+	
+	var Option = _src2["default"].Option;
+	
+	var provinceData = ["Zhejiang", "Jiangsu"];
+	var cityData = {
+	  Zhejiang: ["Hangzhou", "Ningbo", "Wenzhou"],
+	  Jiangsu: ["Nanjing", "Suzhou", "Zhenjiang"]
+	};
+	
+	var Demo4 = function (_Component) {
+	  _inherits(Demo4, _Component);
+	
+	  function Demo4(props) {
+	    _classCallCheck(this, Demo4);
+	
+	    var _this = _possibleConstructorReturn(this, _Component.call(this, props));
+	
+	    _this.handleProvinceChange = function (value) {
+	      _this.setState({
+	        cities: cityData[value],
+	        secondCity: cityData[value][0]
+	      });
+	    };
+	
+	    _this.onSecondCityChange = function (value) {
+	      _this.setState({
+	        secondCity: value
+	      });
+	    };
+	
+	    _this.state = {
+	      cities: cityData[provinceData[0]],
+	      secondCity: cityData[provinceData[0]][0]
+	    };
+	    return _this;
+	  }
+	
+	  Demo4.prototype.render = function render() {
+	    var provinceOptions = provinceData.map(function (province) {
+	      return _react2["default"].createElement(
+	        Option,
+	        { key: province },
+	        province
+	      );
+	    });
+	    var cityOptions = this.state.cities.map(function (city) {
+	      return _react2["default"].createElement(
+	        Option,
+	        { key: city },
+	        city
+	      );
+	    });
+	    return _react2["default"].createElement(
+	      "div",
+	      null,
+	      _react2["default"].createElement(
+	        _src2["default"],
+	        {
+	          defaultValue: provinceData[0],
+	          style: { width: 90, marginRight: 6 },
+	          onChange: this.handleProvinceChange
+	        },
+	        provinceOptions
+	      ),
+	      _react2["default"].createElement(
+	        _src2["default"],
+	        {
+	          value: this.state.secondCity,
+	          style: { width: 90 },
+	          onChange: this.onSecondCityChange
+	        },
+	        cityOptions
+	      )
+	    );
+	  };
+	
+	  return Demo4;
+	}(_react.Component);
+	
+	exports["default"] = Demo4;
+	module.exports = exports["default"];
+
+/***/ }),
+/* 106 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	"use strict";
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _react = __webpack_require__(4);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _src = __webpack_require__(65);
+	
+	var _src2 = _interopRequireDefault(_src);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+	
+	function _defaults(obj, defaults) { var keys = Object.getOwnPropertyNames(defaults); for (var i = 0; i < keys.length; i++) { var key = keys[i]; var value = Object.getOwnPropertyDescriptor(defaults, key); if (value && value.configurable && obj[key] === undefined) { Object.defineProperty(obj, key, value); } } return obj; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : _defaults(subClass, superClass); } /**
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * @title 自定义自动填充单选`Select`
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * @description 常用邮箱后缀自动填充。
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                */
+	
+	var Option = _src2["default"].Option;
+	
+	var Demo5 = function (_Component) {
+	  _inherits(Demo5, _Component);
+	
+	  function Demo5(props) {
+	    _classCallCheck(this, Demo5);
+	
+	    var _this = _possibleConstructorReturn(this, _Component.call(this, props));
+	
+	    _this.handleChange = function (value) {
+	      var options = void 0;
+	      if (!value || value.indexOf("@") >= 0) {
+	        options = [];
+	      } else {
+	        options = ["gmail.com", "163.com", "qq.com"].map(function (domain) {
+	          var email = value + "@" + domain;
+	          return _react2["default"].createElement(
+	            Option,
+	            { key: email },
+	            email
+	          );
+	        });
+	      }
+	      _this.setState({ options: options });
+	    };
+	
+	    _this.state = {
+	      options: []
+	    };
+	    return _this;
+	  }
+	
+	  Demo5.prototype.render = function render() {
+	    return _react2["default"].createElement(
+	      _src2["default"],
+	      {
+	        combobox: true,
+	        style: { width: 200 },
+	        onChange: this.handleChange,
+	        filterOption: false,
+	        placeholder: "Enter the account name"
+	      },
+	      this.state.options
+	    );
+	  };
+	
+	  return Demo5;
+	}(_react.Component);
+	
+	exports["default"] = Demo5;
+	module.exports = exports["default"];
+
+/***/ }),
+/* 107 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	"use strict";
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _react = __webpack_require__(4);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _src = __webpack_require__(65);
+	
+	var _src2 = _interopRequireDefault(_src);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+	
+	function _defaults(obj, defaults) { var keys = Object.getOwnPropertyNames(defaults); for (var i = 0; i < keys.length; i++) { var key = keys[i]; var value = Object.getOwnPropertyDescriptor(defaults, key); if (value && value.configurable && obj[key] === undefined) { Object.defineProperty(obj, key, value); } } return obj; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : _defaults(subClass, superClass); } /**
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * @title 搜索单选`Select`
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * @description 从下拉选中，通过输入的值检索相应的选项。
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                */
+	
+	var Option = _src2["default"].Option;
+	
+	var Demo6 = function (_Component) {
+	  _inherits(Demo6, _Component);
+	
+	  function Demo6(props) {
+	    _classCallCheck(this, Demo6);
+	
+	    var _this = _possibleConstructorReturn(this, _Component.call(this, props));
+	
+	    _this.handleChange = function (value) {
+	      console.log("selected " + value);
+	    };
+	
+	    return _this;
+	  }
+	
+	  Demo6.prototype.render = function render() {
+	    return _react2["default"].createElement(
+	      _src2["default"],
+	      {
+	        showSearch: true,
+	        style: { width: 200 },
+	        placeholder: "Select a person",
+	        optionFilterProp: "children",
+	        onChange: this.handleChange.bind(this)
+	      },
+	      _react2["default"].createElement(
+	        Option,
+	        { value: "jack" },
+	        "Jack"
+	      ),
+	      _react2["default"].createElement(
+	        Option,
+	        { value: "lucy" },
+	        "Lucy"
+	      ),
+	      _react2["default"].createElement(
+	        Option,
+	        { value: "tom" },
+	        "Tom"
+	      )
+	    );
+	  };
+	
+	  return Demo6;
+	}(_react.Component);
+	
+	exports["default"] = Demo6;
+	module.exports = exports["default"];
+
+/***/ }),
+/* 108 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	"use strict";
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _react = __webpack_require__(4);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _src = __webpack_require__(65);
+	
+	var _src2 = _interopRequireDefault(_src);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+	
+	function _defaults(obj, defaults) { var keys = Object.getOwnPropertyNames(defaults); for (var i = 0; i < keys.length; i++) { var key = keys[i]; var value = Object.getOwnPropertyDescriptor(defaults, key); if (value && value.configurable && obj[key] === undefined) { Object.defineProperty(obj, key, value); } } return obj; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : _defaults(subClass, superClass); } /**
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * @title 设置data数组对象来自动生成option
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * @description 必须设置key，value。根据需要设置disabed
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                */
+	
+	var Option = _src2["default"].Option;
+	
+	var selectDataSource = [{
+	  key: "张三",
+	  value: "zhangsan"
+	}, {
+	  key: "李四",
+	  value: "lisi"
+	}, {
+	  key: "王五",
+	  value: "wangwu"
+	}];
+	
+	var Demo7 = function (_Component) {
+	  _inherits(Demo7, _Component);
+	
+	  function Demo7(props) {
+	    _classCallCheck(this, Demo7);
+	
+	    var _this = _possibleConstructorReturn(this, _Component.call(this, props));
+	
+	    _this.handleChange = function (value) {
+	      if (value) {
+	        _this.setState({
+	          DataSource: [{
+	            key: "张三三",
+	            value: "zhangsansan",
+	            disabled: true
+	          }, {
+	            key: "李四四",
+	            value: "lisisi"
+	          }, {
+	            key: "王五五",
+	            value: "wangwuwu"
+	          }]
+	        });
+	      }
+	    };
+	
+	    _this.state = {
+	      DataSource: [{
+	        key: "其他数据",
+	        value: "qita"
+	      }]
+	    };
+	    return _this;
+	  }
+	
+	  Demo7.prototype.render = function render() {
+	    return _react2["default"].createElement(
+	      "div",
+	      null,
+	      _react2["default"].createElement(_src2["default"], {
+	        style: { width: 200 },
+	        placeholder: "Select a person",
+	        onChange: this.handleChange,
+	        data: selectDataSource
+	      }),
+	      _react2["default"].createElement(_src2["default"], {
+	        style: { width: 200, marginLeft: "5px" },
+	        placeholder: "Select a person",
+	        data: this.state.DataSource
+	      })
+	    );
+	  };
+	
+	  return Demo7;
+	}(_react.Component);
+	
+	exports["default"] = Demo7;
+	module.exports = exports["default"];
+
+/***/ }),
+/* 109 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	"use strict";
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _react = __webpack_require__(4);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _src = __webpack_require__(65);
+	
+	var _src2 = _interopRequireDefault(_src);
+	
+	var _reactDom = __webpack_require__(12);
+	
+	var _reactDom2 = _interopRequireDefault(_reactDom);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+	
+	function _defaults(obj, defaults) { var keys = Object.getOwnPropertyNames(defaults); for (var i = 0; i < keys.length; i++) { var key = keys[i]; var value = Object.getOwnPropertyDescriptor(defaults, key); if (value && value.configurable && obj[key] === undefined) { Object.defineProperty(obj, key, value); } } return obj; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : _defaults(subClass, superClass); } /**
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * @title 默认设置下拉框获取焦点事件 `默认获取焦点autofocus`
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * @description `autofocus`参数控制是否需要获取焦点。
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * 同时暴露两个api  handFocus、onBlur 返回当前选中的数据
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                */
+	
+	var Option = _src2["default"].Option;
+	var OptGroup = _src2["default"].OptGroup;
+	
+	var Demo8 = function (_Component) {
+	  _inherits(Demo8, _Component);
+	
+	  function Demo8() {
+	    var _temp, _this, _ret;
+	
+	    _classCallCheck(this, Demo8);
+	
+	    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+	      args[_key] = arguments[_key];
+	    }
+	
+	    return _ret = (_temp = (_this = _possibleConstructorReturn(this, _Component.call.apply(_Component, [this].concat(args))), _this), _this.handleChange = function (value) {
+	      console.log("selected " + value);
+	    }, _this.handFocus = function (value) {
+	      console.log("\u83B7\u53D6\u7126\u70B9\u4E8B\u4EF6");
+	    }, _this.onBlur = function (value) {
+	      console.log("onBlur");
+	    }, _temp), _possibleConstructorReturn(_this, _ret);
+	  }
+	
+	  Demo8.prototype.render = function render() {
+	    return _react2["default"].createElement(
+	      "div",
+	      null,
+	      _react2["default"].createElement(
+	        _src2["default"],
+	        {
+	          size: "lg",
+	          defaultValue: "lucy",
+	          style: { width: 200, marginRight: 6 },
+	          onChange: this.handleChange,
+	          onFocus: this.handFocus,
+	          onBlur: this.onBlur,
+	          autofocus: true
+	        },
+	        _react2["default"].createElement(
+	          Option,
+	          { value: "jack" },
+	          "boyuzhou111"
+	        ),
+	        _react2["default"].createElement(
+	          Option,
+	          { value: "lucy" },
+	          "renhualiu"
+	        ),
+	        _react2["default"].createElement(
+	          Option,
+	          { value: "disabled", disabled: true },
+	          "Disabled"
+	        ),
+	        _react2["default"].createElement(
+	          Option,
+	          { value: "yiminghe" },
+	          "yuzhao"
+	        )
+	      ),
+	      _react2["default"].createElement(
+	        _src2["default"],
+	        {
+	          size: "lg",
+	          defaultValue: "lucy",
+	          style: { width: 200, marginRight: 6 },
+	          onChange: this.handleChange
+	        },
+	        _react2["default"].createElement(
+	          Option,
+	          { value: "jack" },
+	          "boyuzhou"
+	        ),
+	        _react2["default"].createElement(
+	          Option,
+	          { value: "lucy" },
+	          "renhualiu"
+	        ),
+	        _react2["default"].createElement(
+	          Option,
+	          { value: "disabled", disabled: true },
+	          "Disabled"
+	        ),
+	        _react2["default"].createElement(
+	          Option,
+	          { value: "yiminghe" },
+	          "yuzhao"
+	        )
+	      )
+	    );
+	  };
+	
+	  return Demo8;
+	}(_react.Component);
+	
+	exports["default"] = Demo8;
+	module.exports = exports["default"];
 
 /***/ })
 /******/ ]);
