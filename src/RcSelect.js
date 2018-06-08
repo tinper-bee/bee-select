@@ -7,6 +7,7 @@ import OptGroup from './OptGroup';
 import warning from 'warning';
 import classes from 'component-classes';
 import PropTypes from 'prop-types';
+import contains from "dom-helpers/query/contains";
 
 import {
   getPropValue, getValuePropValue, isCombobox,
@@ -194,14 +195,38 @@ class RcSelect extends Component{
      this.tokenize = this.tokenize.bind(this);
      this.adjustOpenState = this.adjustOpenState.bind(this);
      this.renderTopControlNode = this.renderTopControlNode.bind(this);
-
   }
 
   componentWillMount() {
     this.adjustOpenState();
   }
 
+  componentDidMount() {
+    if(this.props.autofocus){
+      this.onOuterFocus();
+    }
+    if(!this.props.autofocus)return;
+    ReactDOM.findDOMNode(this.refs.root).click(); 
+    this.setState({
+      open:false
+    })
+  }
+
+  getInit=(event)=>{
+    let _this = ReactDOM.findDOMNode(this);
+    if(event.target && contains(_this,event.target)){
+      if(this._focused)return;
+      this._focused = true;
+      this.updateFocusClassName(); 
+    }else{ 
+      if(!this._focused)return;
+      this._focused = false;
+      this.updateFocusClassName();
+    }
+}
+
   componentWillReceiveProps(nextProps) {
+
     if ('value' in nextProps) {
       let value = toArray(nextProps.value);
       value = this.addLabelToValue(nextProps, value);
@@ -214,6 +239,10 @@ class RcSelect extends Component{
           inputValue: value.length ? this.getLabelFromProps(nextProps, value[0].key) : '',
         });
       }
+    }
+
+    if(this.props.autofocus){
+      this.onOuterFocus();
     }
   }
 
@@ -510,11 +539,18 @@ class RcSelect extends Component{
     }
   }
 
-  onOuterFocus() {
+  onOuterFocus(event) {
     this.clearBlurTime();
     this._focused = true;
     this.updateFocusClassName();
-    this.props.onFocus();
+    this.props.onFocus(this.state.value); 
+  }
+
+  onOutClick=(event)=>{
+    // this.clearBlurTime();
+    this._focused = true;
+    this.updateFocusClassName();
+    this.props.onFocus(this.state.value); 
   }
 
   onPopupFocus() {
@@ -546,7 +582,9 @@ class RcSelect extends Component{
         // why not use setState?
         this.state.inputValue = this.getInputDOMNode().value = '';
       }
-      props.onBlur(this.getVLForOnChange(value));
+      //todu 返回数组对象
+      // props.onBlur(this.getVLForOnChange(value));
+      props.onBlur(this.state.value);
     }, 10);
   }
 
@@ -934,7 +972,7 @@ class RcSelect extends Component{
         }
         const singleValue = value[0];
         selectedValue = (
-          <div
+          <div 
             key="value"
             className={`${clsPrefix}-selection-selected-value`}
             title={singleValue.title || singleValue.label}
@@ -1004,7 +1042,7 @@ class RcSelect extends Component{
       
       innerNode = <ul>{selectedValueNodes}</ul>;
     }
-    return (<div className={className}>{this.getPlaceholderElement()}{innerNode}</div>);
+    return (<div className={className} name="input" ref="input">{this.getPlaceholderElement()}{innerNode}</div>);
   }
 
   render() {
@@ -1079,12 +1117,13 @@ class RcSelect extends Component{
           ref="root"
           onBlur={this.onOuterBlur}
           onFocus={this.onOuterFocus}
+          onClick={this.onOutClick}
           className={classnames(rootCls)}
         >
           <div
             ref="selection"
             key="selection"
-            className={`${clsPrefix}-selection
+            className={`${clsPrefix}-selection 
             ${clsPrefix}-selection--${multiple ? 'multiple' : 'single'}`}
             role="combobox"
             aria-autocomplete="list"
