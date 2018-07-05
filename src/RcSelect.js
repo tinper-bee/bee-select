@@ -1085,6 +1085,12 @@ class RcSelect extends Component{
       className={`${clsPrefix}-selection-clear`}
       onClick={this.onClearSelection}
     />);
+
+    let attr = {};
+    if(this.props.haveFocus){
+      attr.onBlur = this.onOuterBlur;
+      attr.onFocus = this.onOuterFocus;
+    }
     return (
       <SelectTrigger
         onPopupFocus={this.onPopupFocus}
@@ -1115,8 +1121,9 @@ class RcSelect extends Component{
         <div
           style={props.style}
           ref="root"
-          onBlur={this.onOuterBlur}
-          onFocus={this.onOuterFocus}
+          // onBlur={this.onOuterBlur}
+          // onFocus={this.onOuterFocus}
+          {...attr}
           onClick={this.onOutClick}
           className={classnames(rootCls)}
         >

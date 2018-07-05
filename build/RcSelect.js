@@ -1198,6 +1198,12 @@ var RcSelect = function (_Component) {
       className: clsPrefix + '-selection-clear',
       onClick: this.onClearSelection
     }));
+
+    var attr = {};
+    if (this.props.haveFocus) {
+      attr.onBlur = this.onOuterBlur;
+      attr.onFocus = this.onOuterFocus;
+    }
     return _react2["default"].createElement(
       _SelectTrigger2["default"],
       {
@@ -1228,14 +1234,15 @@ var RcSelect = function (_Component) {
       },
       _react2["default"].createElement(
         'div',
-        {
+        _extends({
           style: props.style,
-          ref: 'root',
-          onBlur: this.onOuterBlur,
-          onFocus: this.onOuterFocus,
+          ref: 'root'
+          // onBlur={this.onOuterBlur}
+          // onFocus={this.onOuterFocus}
+        }, attr, {
           onClick: this.onOutClick,
           className: (0, _classnames2["default"])(rootCls)
-        },
+        }),
         _react2["default"].createElement(
           'div',
           _extends({

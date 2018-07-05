@@ -1,6 +1,7 @@
 /**
  * @title 默认设置下拉框获取焦点事件 `默认获取焦点autofocus`
  * @description `autofocus`参数控制是否需要获取焦点。
+ * 调用时须设置haveFocus={true}
  * 同时暴露两个api  handFocus、onBlur 返回当前选中的数据
  */
 
@@ -29,6 +30,7 @@ class Demo8 extends Component {
           defaultValue="lucy"
           style={{ width: 200, marginRight: 6 }}
           onChange={this.handleChange}
+          haveFocus={true}
           onFocus={this.handFocus}
           onBlur={this.onBlur}
           autofocus
