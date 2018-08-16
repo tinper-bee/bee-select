@@ -1001,7 +1001,10 @@ ul {
     white-space: nowrap;
     overflow: hidden;
     -webkit-transition: background 0.3s ease;
-    transition: background 0.3s ease; }
+    transition: background 0.3s ease;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap; }
   .u-select-dropdown .u-select-dropdown-menu-item:hover,
   .u-select-dropdown .u-select-dropdown-menu-item-active {
     background-color: #e7f4fd; }
