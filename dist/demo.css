@@ -5257,18 +5257,6 @@ a, .mdl-accordion, .mdl-button, .mdl-card, .mdl-checkbox, .mdl-dropdown-menu,
   .u-panel .u-panel-body {
     padding: 15px 15px;
     position: relative; }
-    .u-panel .u-panel-body .uf {
-      position: absolute;
-      right: 25px;
-      top: 30px;
-      color: #fff;
-      font-size: 20px;
-      padding: 2px 8px;
-      margin: 8px;
-      border-radius: 4px;
-      cursor: pointer; }
-      .u-panel .u-panel-body .uf:hover {
-        color: #a8a7a7; }
 
 .u-panel-default {
   border-color: #ddd; }
@@ -6754,7 +6742,7 @@ ul {
   box-shadow: 0 1px 6px rgba(0, 0, 0, 0.2);
   border-radius: 4px;
   box-sizing: border-box;
-  z-index: 1050;
+  z-index: 1800;
   left: -9999px;
   top: -9999px;
   position: absolute;

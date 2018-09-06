@@ -91,6 +91,9 @@ var SelectTrigger = function (_Component) {
     var _this = _possibleConstructorReturn(this, _Component.call(this, props));
 
     _this.setDropdownWidth = function () {
+      if (!_this.props.dropdownMatchSelectWidth) {
+        return;
+      }
       var width = _reactDom2["default"].findDOMNode(_this).offsetWidth;
       if (width !== _this.state.dropdownWidth) {
         _this.setState({ dropdownWidth: width });
