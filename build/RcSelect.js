@@ -524,6 +524,9 @@ var RcSelect = function (_Component) {
 
     var item = _ref.item;
 
+    if (!item) {
+      return;
+    }
     var value = this.state.value;
     var props = this.props;
     var selectedValue = (0, _util.getValuePropValue)(item);
@@ -930,10 +933,13 @@ var RcSelect = function (_Component) {
     var keys = values.map(function (v) {
       return v.key;
     });
+    console.log(props);
     _react2["default"].Children.forEach(props.children, function (child) {
+      // console.log(child);
       if (child.type === _OptGroup2["default"]) {
         nextValues = _this10.addTitleToValue(child.props, nextValues);
       } else {
+        // console.log(child.props);
         var value = (0, _util.getValuePropValue)(child);
         var valueIndex = keys.indexOf(value);
         if (valueIndex > -1) {
@@ -1256,7 +1262,7 @@ var RcSelect = function (_Component) {
           }, extraSelectionProps),
           ctrlNode,
           allowClear && !multiple ? clear : null,
-          multiple || !props.showArrow ? null : _react2["default"].createElement(
+          !props.showArrow ? null : _react2["default"].createElement(
             'span',
             _extends({
               key: 'arrow',

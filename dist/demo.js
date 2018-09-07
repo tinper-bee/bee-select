@@ -76,7 +76,7 @@
 	
 	var CARETUP = _react2['default'].createElement('i', { className: 'uf uf-arrow-up' });
 	
-	var Demo1 = __webpack_require__(79);var Demo2 = __webpack_require__(113);var Demo3 = __webpack_require__(114);var Demo4 = __webpack_require__(115);var Demo5 = __webpack_require__(116);var Demo6 = __webpack_require__(117);var Demo7 = __webpack_require__(118);var Demo8 = __webpack_require__(119);var DemoArray = [{ "example": _react2['default'].createElement(Demo1, null), "title": " 不同尺寸单选`Select`", "code": "/**\n * @title 不同尺寸单选`Select`\n * @description `size`参数控制大小\n */\n\nimport React, { Component } from \"react\";\nimport { Select } from 'tinper-bee';\nimport ReactDOM from \"react-dom\";\nconst Option = Select.Option;\nconst OptGroup = Select.OptGroup;\n\nclass Demo1 extends Component {\n  handleChange = value => {\n    console.log(`selected ${value}`);\n  };  \n\n  render() {\n    return (\n      <div>\n        <Select\n          size=\"lg\"\n          defaultValue=\"lucy\"\n          style={{ width: 200, marginRight: 6 }}\n          onChange={this.handleChange}\n        >\n          <Option value=\"jack\">boyuzhou111</Option>\n          <Option value=\"lucy\">renhualiu</Option>\n          <Option value=\"disabled\" disabled>\n            Disabled\n          </Option>\n          <Option value=\"yiminghe\">yuzhao</Option>\n        </Select>\n        <Select\n          defaultValue=\"lucy\"\n          style={{ width: 200, marginRight: 6 }}\n          onChange={this.handleChange}\n        >\n          <Option value=\"jack\">boyuzhou</Option>\n          <Option value=\"lucy\">renhualiu</Option>\n          <Option value=\"disabled\" disabled>\n            Disabled\n          </Option>\n          <Option value=\"yiminghe\">yuzhao</Option>\n        </Select>\n        <Select\n          size=\"sm\"\n          defaultValue=\"lucy\"\n          style={{ width: 200 }}\n          onChange={this.handleChange}\n        >\n          <Option value=\"jack\">boyuzhou</Option>\n          <Option value=\"lucy\">renhualiu</Option>\n          <Option value=\"disabled\" disabled>\n            Disabled\n          </Option>\n          <Option value=\"yiminghe\">yuzhao</Option>\n        </Select>\n      </div>\n    );\n  }\n}\n\n\n", "desc": " `size`参数控制大小" }, { "example": _react2['default'].createElement(Demo2, null), "title": " 常用多选", "code": "/**\n * @title 常用多选\n * @description Children自定义数据列表,注意：Children已经定义到全局，此处显示为注释例子，其他例子用到Children变量均以此方式定义。\n */\n\nimport React, { Component } from \"react\";\nimport { Select } from 'tinper-bee';\n\nconst Option = Select.Option;\nconst OptGroup = Select.OptGroup;\n\nconst Children = [];\nfor (let i = 10; i < 36; i++) {\n  Children.push(<Option key={i.toString(36) + i}>{i.toString(36) + i}</Option>);\n}\n\nclass Demo2 extends Component {\n  handleChange = value => {\n    console.log('selected ${value}');\n  };\n  render() {\n    return (\n      <Select\n        multiple\n        style={{ width: \"100%\" }}\n        searchPlaceholder=\"标签模式\"\n        onChange={this.handleChange}\n      >\n        {Children}\n      </Select>\n    );\n  }\n}\n\n\n", "desc": " Children自定义数据列表,注意：Children已经定义到全局，此处显示为注释例子，其他例子用到Children变量均以此方式定义。" }, { "example": _react2['default'].createElement(Demo3, null), "title": " 自定义选项多选`Select`", "code": "/**\n * @title 自定义选项多选`Select`\n * @description 用户在框内输入自定义内容，Select将输入的内容自动纳入下拉选项中一员。\n */\n\nimport React, { Component } from \"react\";\nimport { Select } from 'tinper-bee';\n\nconst Option = Select.Option;\n\nconst Children = [];\nfor (let i = 10; i < 36; i++) {\n  Children.push(<Option key={i.toString(36) + i}>{i.toString(36) + i}</Option>);\n}\n\nclass Demo3 extends Component {\n  handleChange = value => {\n    console.log(`selected ${value}`);\n  };\n  scrollToEnd = () => {\n    console.log(\"软加载\");\n  };\n  render() {\n    return (\n      <Select\n        tags\n        style={{ width: \"100%\" }}\n        searchPlaceholder=\"标签模式\"\n        scrollToEnd={this.scrollToEnd}\n        onChange={this.handleChange}\n      >\n        {Children}\n      </Select>\n    );\n  }\n}\n\n\n", "desc": " 用户在框内输入自定义内容，Select将输入的内容自动纳入下拉选项中一员。" }, { "example": _react2['default'].createElement(Demo4, null), "title": " 简易级联单选`Select`", "code": "/**\n * @title 简易级联单选`Select`\n * @description 常用语城市级联的选择。\n */\n\nimport React, { Component } from \"react\";\nimport { Select } from 'tinper-bee';\n\nconst Option = Select.Option;\n\nconst provinceData = [\"Zhejiang\", \"Jiangsu\"];\nconst cityData = {\n  Zhejiang: [\"Hangzhou\", \"Ningbo\", \"Wenzhou\"],\n  Jiangsu: [\"Nanjing\", \"Suzhou\", \"Zhenjiang\"]\n};\n\nclass Demo4 extends Component {\n  constructor(props) {\n    super(props);\n    this.state = {\n      cities: cityData[provinceData[0]],\n      secondCity: cityData[provinceData[0]][0]\n    };\n  }\n  handleProvinceChange = value => {\n    this.setState({\n      cities: cityData[value],\n      secondCity: cityData[value][0]\n    });\n  };\n  onSecondCityChange = value => {\n    this.setState({\n      secondCity: value\n    });\n  };\n  render() {\n    const provinceOptions = provinceData.map(province => (\n      <Option key={province}>{province}</Option>\n    ));\n    const cityOptions = this.state.cities.map(city => (\n      <Option key={city}>{city}</Option>\n    ));\n    return (\n      <div>\n        <Select\n          defaultValue={provinceData[0]}\n          style={{ width: 90, marginRight: 6 }}\n          onChange={this.handleProvinceChange}\n        >\n          {provinceOptions}\n        </Select>\n        <Select\n          value={this.state.secondCity}\n          style={{ width: 90 }}\n          onChange={this.onSecondCityChange}\n        >\n          {cityOptions}\n        </Select>\n      </div>\n    );\n  }\n}\n\n\n", "desc": " 常用语城市级联的选择。" }, { "example": _react2['default'].createElement(Demo5, null), "title": " 自定义自动填充单选`Select`", "code": "/**\n * @title 自定义自动填充单选`Select`\n * @description 常用邮箱后缀自动填充。\n */\n\nimport React, { Component } from \"react\";\nimport { Select } from 'tinper-bee';\n\nconst Option = Select.Option;\n\nclass Demo5 extends Component {\n  constructor(props) {\n    super(props);\n    this.state = {\n      options: []\n    };\n  }\n  handleChange = value => {\n    let options;\n    if (!value || value.indexOf(\"@\") >= 0) {\n      options = [];\n    } else {\n      options = [\"gmail.com\", \"163.com\", \"qq.com\"].map(domain => {\n        const email = `${value}@${domain}`;\n        return <Option key={email}>{email}</Option>;\n      });\n    }\n    this.setState({ options });\n  };\n\n  render() {\n    return (\n      <Select\n        combobox\n        style={{ width: 200 }}\n        onChange={this.handleChange}\n        filterOption={false}\n        placeholder=\"Enter the account name\"\n      >\n        {this.state.options}\n      </Select>\n    );\n  }\n}\n\n\n", "desc": " 常用邮箱后缀自动填充。" }, { "example": _react2['default'].createElement(Demo6, null), "title": " 搜索单选`Select`", "code": "/**\n * @title 搜索单选`Select`\n * @description 从下拉选中，获取当前选中自定义对象item data\n */\nimport React, { Component } from \"react\";\nimport { Select } from 'tinper-bee';\n\nconst Option = Select.Option;\n\nconst dataList = [\n  {key:\"1\",value:\"Jack\",label:\"Jack\"},\n  {key:\"2\",value:\"lucy\",label:\"lucy\"},\n  {key:\"3\",value:\"tom\",label:\"tom\"}\n]\n\nclass Demo6 extends Component {\n\n  constructor(props) {\n    super(props);\n  }\n\n  /**\n   * 获取选中对象数据\n   */\n  onSelect = (value,{props:{item}}) => {\n    console.log(`selected ${value}`);\n    console.log(`selected item `,item);\n  };\n\n  render() {\n    return (\n      <Select\n        showSearch\n        style={{ width: 200 }}\n        placeholder=\"Select a person\"\n        optionFilterProp=\"children\"\n        onSelect={this.onSelect}\n        onChange={this.handleChange}\n      >\n        {\n          dataList.map(da=><Option key={da.key} value={da.value} item={da} >{da.label}</Option>)\n        }\n      </Select>\n    );\n  }\n}\n\n\n", "desc": " 从下拉选中，获取当前选中自定义对象item data" }, { "example": _react2['default'].createElement(Demo7, null), "title": " 设置data数组对象来自动生成option", "code": "/**\n * @title 设置data数组对象来自动生成option\n * @description 必须设置key，value。根据需要设置disabed\n */\n\nimport React, { Component } from \"react\";\nimport { Select } from 'tinper-bee';\n\nconst Option = Select.Option;\n\nlet selectDataSource = [\n  {\n    key: \"张三\",\n    value: \"zhangsan\"\n  },\n  {\n    key: \"李四\",\n    value: \"lisi\"\n  },\n  {\n    key: \"王五\",\n    value: \"wangwu\"\n  }\n];\n\nclass Demo7 extends Component {\n  constructor(props) {\n    super(props);\n    this.state = {\n      DataSource: [\n        {\n          key: \"其他数据\",\n          value: \"qita\"\n        }\n      ]\n    };\n  }\n  handleChange = value => {\n    if (value) {\n      this.setState({\n        DataSource: [\n          {\n            key: \"张三三\",\n            value: \"zhangsansan\",\n            disabled: true\n          },\n          {\n            key: \"李四四\",\n            value: \"lisisi\"\n          },\n          {\n            key: \"王五五\",\n            value: \"wangwuwu\"\n          }\n        ]\n      });\n    }\n  };\n\n  render() {\n    return (\n      <div>\n        <Select\n          style={{ width: 200 }}\n          placeholder=\"Select a person\"\n          onChange={this.handleChange}\n          data={selectDataSource}\n        />\n        <Select\n          style={{ width: 200, marginLeft: \"5px\" }}\n          placeholder=\"Select a person\"\n          data={this.state.DataSource}\n        />\n      </div>\n    );\n  }\n}\n\n\n", "desc": " 必须设置key，value。根据需要设置disabed" }, { "example": _react2['default'].createElement(Demo8, null), "title": " 默认设置下拉框获取焦点事件 `默认获取焦点autofocu", "code": "/**\n * @title 默认设置下拉框获取焦点事件 `默认获取焦点autofocus`\n * @description `autofocus`参数控制是否需要获取焦点。\n * 调用时须设置haveFocus={true}\n * 同时暴露两个api  handFocus、onBlur 返回当前选中的数据\n */\n\nimport React, { Component } from \"react\";\nimport { Select } from 'tinper-bee';\nimport ReactDOM from \"react-dom\";\nconst Option = Select.Option;\nconst OptGroup = Select.OptGroup;\n\nclass Demo8 extends Component {\n  handleChange = value => {\n    console.log(`selected ${value}`);\n  };  \n  handFocus = value => {\n    console.log(`获取焦点事件`);\n  };\n  onBlur = value => {\n    console.log(`onBlur`);\n  };\n\n  render() {\n    return (\n      <div>\n        <Select\n          size=\"lg\"\n          defaultValue=\"lucy\"\n          style={{ width: 200, marginRight: 6 }}\n          onChange={this.handleChange}\n          haveFocus={true}\n          onFocus={this.handFocus}\n          onBlur={this.onBlur}\n          autofocus\n        >\n          <Option value=\"jack\">boyuzhou111</Option>\n          <Option value=\"lucy\">renhualiu</Option>\n          <Option value=\"disabled\" disabled>\n            Disabled\n          </Option>\n          <Option value=\"yiminghe\">yuzhao</Option>\n        </Select>\n        <Select\n          size=\"lg\"\n          defaultValue=\"lucy\"\n          style={{ width: 200, marginRight: 6 }}\n          onChange={this.handleChange}\n        >\n          <Option value=\"jack\">boyuzhou</Option>\n          <Option value=\"lucy\">renhualiu</Option>\n          <Option value=\"disabled\" disabled>\n            Disabled\n          </Option>\n          <Option value=\"yiminghe\">yuzhao</Option>\n        </Select>\n        \n      </div>\n    );\n  }\n}\n\n\n", "desc": " `autofocus`参数控制是否需要获取焦点。" }];
+	var Demo1 = __webpack_require__(79);var Demo2 = __webpack_require__(113);var Demo3 = __webpack_require__(114);var Demo4 = __webpack_require__(115);var Demo5 = __webpack_require__(116);var Demo6 = __webpack_require__(117);var Demo7 = __webpack_require__(118);var Demo8 = __webpack_require__(119);var Demo9 = __webpack_require__(120);var DemoArray = [{ "example": _react2['default'].createElement(Demo1, null), "title": " 不同尺寸单选`Select`", "code": "/**\r\n * @title 不同尺寸单选`Select`\r\n * @description `size`参数控制大小\r\n */\r\n\r\nimport React, { Component } from \"react\";\r\nimport { Select } from 'tinper-bee';\r\nimport ReactDOM from \"react-dom\";\r\nconst Option = Select.Option;\r\nconst OptGroup = Select.OptGroup;\r\n\r\nclass Demo1 extends Component {\r\n  handleChange = value => {\r\n    console.log(`selected ${value}`);\r\n  };  \r\n\r\n  render() {\r\n    return (\r\n      <div>\r\n        <Select\r\n          size=\"lg\"\r\n          defaultValue=\"lucy\"\r\n          style={{ width: 200, marginRight: 6 }}\r\n          onChange={this.handleChange}\r\n        >\r\n          <Option value=\"jack\">boyuzhou111</Option>\r\n          <Option value=\"lucy\">renhualiu</Option>\r\n          <Option value=\"disabled\" disabled>\r\n            Disabled\r\n          </Option>\r\n          <Option value=\"yiminghe\">yuzhao</Option>\r\n        </Select>\r\n        <Select\r\n          defaultValue=\"lucy\"\r\n          style={{ width: 200, marginRight: 6 }}\r\n          onChange={this.handleChange}\r\n        >\r\n          <Option value=\"jack\">boyuzhou</Option>\r\n          <Option value=\"lucy\">renhualiu</Option>\r\n          <Option value=\"disabled\" disabled>\r\n            Disabled\r\n          </Option>\r\n          <Option value=\"yiminghe\">yuzhao</Option>\r\n        </Select>\r\n        <Select\r\n          size=\"sm\"\r\n          defaultValue=\"lucy\"\r\n          style={{ width: 200 }}\r\n          onChange={this.handleChange}\r\n        >\r\n          <Option value=\"jack\">boyuzhou</Option>\r\n          <Option value=\"lucy\">renhualiu</Option>\r\n          <Option value=\"disabled\" disabled>\r\n            Disabled\r\n          </Option>\r\n          <Option value=\"yiminghe\">yuzhao</Option>\r\n        </Select>\r\n      </div>\r\n    );\r\n  }\r\n}\r\n\r\n\r\n", "desc": " `size`参数控制大小" }, { "example": _react2['default'].createElement(Demo2, null), "title": " 常用多选", "code": "/**\r\n * @title 常用多选\r\n * @description Children自定义数据列表,注意：Children已经定义到全局，此处显示为注释例子，其他例子用到Children变量均以此方式定义。\r\n */\r\n\r\nimport React, { Component } from \"react\";\r\nimport { Select } from 'tinper-bee';\r\n\r\nconst Option = Select.Option;\r\nconst OptGroup = Select.OptGroup;\r\n\r\nconst Children = [];\r\nfor (let i = 10; i < 36; i++) {\r\n  Children.push(<Option key={i.toString(36) + i}>{i.toString(36) + i}</Option>);\r\n}\r\n\r\nclass Demo2 extends Component {\r\n  handleChange = value => {\r\n    console.log('selected ${value}');\r\n  };\r\n  render() {\r\n    return (\r\n      <Select\r\n        multiple\r\n        style={{ width: \"100%\" }}\r\n        searchPlaceholder=\"标签模式\"\r\n        onChange={this.handleChange}\r\n      >\r\n        {Children}\r\n      </Select>\r\n    );\r\n  }\r\n}\r\n\r\n\r\n", "desc": " Children自定义数据列表,注意：Children已经定义到全局，此处显示为注释例子，其他例子用到Children变量均以此方式定义。" }, { "example": _react2['default'].createElement(Demo3, null), "title": " 自定义选项多选`Select`", "code": "/**\r\n * @title 自定义选项多选`Select`\r\n * @description 用户在框内输入自定义内容，Select将输入的内容自动纳入下拉选项中一员。\r\n */\r\n\r\nimport React, { Component } from \"react\";\r\nimport { Select } from 'tinper-bee';\r\n\r\nconst Option = Select.Option;\r\n\r\nconst Children = [];\r\nfor (let i = 10; i < 36; i++) {\r\n  Children.push(<Option key={i.toString(36) + i}>{i.toString(36) + i}</Option>);\r\n}\r\n\r\nclass Demo3 extends Component {\r\n  handleChange = value => {\r\n    console.log(`selected ${value}`);\r\n  };\r\n  scrollToEnd = () => {\r\n    console.log(\"软加载\");\r\n  };\r\n  render() {\r\n    return (\r\n      <Select\r\n        tags\r\n        style={{ width: \"100%\" }}\r\n        searchPlaceholder=\"标签模式\"\r\n        scrollToEnd={this.scrollToEnd}\r\n        onChange={this.handleChange}\r\n      >\r\n        {Children}\r\n      </Select>\r\n    );\r\n  }\r\n}\r\n\r\n\r\n", "desc": " 用户在框内输入自定义内容，Select将输入的内容自动纳入下拉选项中一员。" }, { "example": _react2['default'].createElement(Demo4, null), "title": " 简易级联单选`Select`", "code": "/**\r\n * @title 简易级联单选`Select`\r\n * @description 常用语城市级联的选择。\r\n */\r\n\r\nimport React, { Component } from \"react\";\r\nimport { Select } from 'tinper-bee';\r\n\r\nconst Option = Select.Option;\r\n\r\nconst provinceData = [\"Zhejiang\", \"Jiangsu\"];\r\nconst cityData = {\r\n  Zhejiang: [\"Hangzhou\", \"Ningbo\", \"Wenzhou\"],\r\n  Jiangsu: [\"Nanjing\", \"Suzhou\", \"Zhenjiang\"]\r\n};\r\n\r\nclass Demo4 extends Component {\r\n  constructor(props) {\r\n    super(props);\r\n    this.state = {\r\n      cities: cityData[provinceData[0]],\r\n      secondCity: cityData[provinceData[0]][0]\r\n    };\r\n  }\r\n  handleProvinceChange = value => {\r\n    this.setState({\r\n      cities: cityData[value],\r\n      secondCity: cityData[value][0]\r\n    });\r\n  };\r\n  onSecondCityChange = value => {\r\n    this.setState({\r\n      secondCity: value\r\n    });\r\n  };\r\n  render() {\r\n    const provinceOptions = provinceData.map(province => (\r\n      <Option key={province}>{province}</Option>\r\n    ));\r\n    const cityOptions = this.state.cities.map(city => (\r\n      <Option key={city}>{city}</Option>\r\n    ));\r\n    return (\r\n      <div>\r\n        <Select\r\n          defaultValue={provinceData[0]}\r\n          style={{ width: 90, marginRight: 6 }}\r\n          onChange={this.handleProvinceChange}\r\n        >\r\n          {provinceOptions}\r\n        </Select>\r\n        <Select\r\n          value={this.state.secondCity}\r\n          style={{ width: 90 }}\r\n          onChange={this.onSecondCityChange}\r\n        >\r\n          {cityOptions}\r\n        </Select>\r\n      </div>\r\n    );\r\n  }\r\n}\r\n\r\n\r\n", "desc": " 常用语城市级联的选择。" }, { "example": _react2['default'].createElement(Demo5, null), "title": " 自定义自动填充单选`Select`", "code": "/**\r\n * @title 自定义自动填充单选`Select`\r\n * @description 常用邮箱后缀自动填充。\r\n */\r\n\r\nimport React, { Component } from \"react\";\r\nimport { Select } from 'tinper-bee';\r\n\r\nconst Option = Select.Option;\r\n\r\nclass Demo5 extends Component {\r\n  constructor(props) {\r\n    super(props);\r\n    this.state = {\r\n      options: []\r\n    };\r\n  }\r\n  handleChange = value => {\r\n    let options;\r\n    if (!value || value.indexOf(\"@\") >= 0) {\r\n      options = [];\r\n    } else {\r\n      options = [\"gmail.com\", \"163.com\", \"qq.com\"].map(domain => {\r\n        const email = `${value}@${domain}`;\r\n        return <Option key={email}>{email}</Option>;\r\n      });\r\n    }\r\n    this.setState({ options });\r\n  };\r\n\r\n  render() {\r\n    return (\r\n      <Select\r\n        combobox\r\n        style={{ width: 200 }}\r\n        onChange={this.handleChange}\r\n        filterOption={false}\r\n        placeholder=\"Enter the account name\"\r\n      >\r\n        {this.state.options}\r\n      </Select>\r\n    );\r\n  }\r\n}\r\n\r\n\r\n", "desc": " 常用邮箱后缀自动填充。" }, { "example": _react2['default'].createElement(Demo6, null), "title": " 搜索单选`Select`", "code": "/**\r\n * @title 搜索单选`Select`\r\n * @description 从下拉选中，获取当前选中自定义对象item data\r\n */\r\nimport React, { Component } from \"react\";\r\nimport { Select } from 'tinper-bee';\r\n\r\nconst Option = Select.Option;\r\n\r\nconst dataList = [\r\n  {key:\"1\",value:\"Jack\",label:\"Jack\"},\r\n  {key:\"2\",value:\"lucy\",label:\"lucy\"},\r\n  {key:\"3\",value:\"tom\",label:\"tom\"}\r\n]\r\n\r\nclass Demo6 extends Component {\r\n\r\n  constructor(props) {\r\n    super(props);\r\n  }\r\n\r\n  /**\r\n   * 获取选中对象数据\r\n   */\r\n  onSelect = (value,{props:{item}}) => {\r\n    console.log(`selected ${value}`);\r\n    console.log(`selected item `,item);\r\n  };\r\n\r\n  render() {\r\n    return (\r\n      <Select\r\n        showSearch\r\n        style={{ width: 200 }}\r\n        placeholder=\"Select a person\"\r\n        optionFilterProp=\"children\"\r\n        onSelect={this.onSelect}\r\n        onChange={this.handleChange}\r\n      >\r\n        {\r\n          dataList.map(da=><Option key={da.key} value={da.value} item={da} >{da.label}</Option>)\r\n        }\r\n      </Select>\r\n    );\r\n  }\r\n}\r\n\r\n\r\n", "desc": " 从下拉选中，获取当前选中自定义对象item data" }, { "example": _react2['default'].createElement(Demo7, null), "title": " 设置data数组对象来自动生成option", "code": "/**\r\n * @title 设置data数组对象来自动生成option\r\n * @description 必须设置key，value。根据需要设置disabed\r\n */\r\n\r\nimport React, { Component } from \"react\";\r\nimport { Select } from 'tinper-bee';\r\n\r\nconst Option = Select.Option;\r\n\r\nlet selectDataSource = [\r\n  {\r\n    key: \"张三\",\r\n    value: \"zhangsan\"\r\n  },\r\n  {\r\n    key: \"李四\",\r\n    value: \"lisi\"\r\n  },\r\n  {\r\n    key: \"王五\",\r\n    value: \"wangwu\"\r\n  }\r\n];\r\n\r\nclass Demo7 extends Component {\r\n  constructor(props) {\r\n    super(props);\r\n    this.state = {\r\n      DataSource: [\r\n        {\r\n          key: \"其他数据\",\r\n          value: \"qita\"\r\n        }\r\n      ]\r\n    };\r\n  }\r\n  handleChange = value => {\r\n    if (value) {\r\n      this.setState({\r\n        DataSource: [\r\n          {\r\n            key: \"张三三\",\r\n            value: \"zhangsansan\",\r\n            disabled: true\r\n          },\r\n          {\r\n            key: \"李四四\",\r\n            value: \"lisisi\"\r\n          },\r\n          {\r\n            key: \"王五五\",\r\n            value: \"wangwuwu\"\r\n          }\r\n        ]\r\n      });\r\n    }\r\n  };\r\n\r\n  render() {\r\n    return (\r\n      <div>\r\n        <Select\r\n          style={{ width: 200 }}\r\n          placeholder=\"Select a person\"\r\n          onChange={this.handleChange}\r\n          data={selectDataSource}\r\n        />\r\n        <Select\r\n          style={{ width: 200, marginLeft: \"5px\" }}\r\n          placeholder=\"Select a person\"\r\n          data={this.state.DataSource}\r\n        />\r\n      </div>\r\n    );\r\n  }\r\n}\r\n\r\n\r\n", "desc": " 必须设置key，value。根据需要设置disabed" }, { "example": _react2['default'].createElement(Demo8, null), "title": " 默认设置下拉框获取焦点事件 `默认获取焦点autofocu", "code": "/**\r\n * @title 默认设置下拉框获取焦点事件 `默认获取焦点autofocus`\r\n * @description `autofocus`参数控制是否需要获取焦点。\r\n * 调用时须设置haveFocus={true}\r\n * 同时暴露两个api  handFocus、onBlur 返回当前选中的数据\r\n */\r\n\r\nimport React, { Component } from \"react\";\r\nimport { Select } from 'tinper-bee';\r\nimport ReactDOM from \"react-dom\";\r\nconst Option = Select.Option;\r\nconst OptGroup = Select.OptGroup;\r\n\r\nclass Demo8 extends Component {\r\n  handleChange = value => {\r\n    console.log(`selected ${value}`);\r\n  };  \r\n  handFocus = value => {\r\n    console.log(`获取焦点事件`);\r\n  };\r\n  onBlur = value => {\r\n    console.log(`onBlur`);\r\n  };\r\n\r\n  render() {\r\n    return (\r\n      <div>\r\n        <Select\r\n          size=\"lg\"\r\n          defaultValue=\"lucy\"\r\n          style={{ width: 200, marginRight: 6 }}\r\n          onChange={this.handleChange}\r\n          haveFocus={true}\r\n          onFocus={this.handFocus}\r\n          onBlur={this.onBlur}\r\n          autofocus\r\n        >\r\n          <Option value=\"jack\">boyuzhou111</Option>\r\n          <Option value=\"lucy\">renhualiu</Option>\r\n          <Option value=\"disabled\" disabled>\r\n            Disabled\r\n          </Option>\r\n          <Option value=\"yiminghe\">yuzhao</Option>\r\n        </Select>\r\n        <Select\r\n          size=\"lg\"\r\n          defaultValue=\"lucy\"\r\n          style={{ width: 200, marginRight: 6 }}\r\n          onChange={this.handleChange}\r\n        >\r\n          <Option value=\"jack\">boyuzhou</Option>\r\n          <Option value=\"lucy\">renhualiu</Option>\r\n          <Option value=\"disabled\" disabled>\r\n            Disabled\r\n          </Option>\r\n          <Option value=\"yiminghe\">yuzhao</Option>\r\n        </Select>\r\n        \r\n      </div>\r\n    );\r\n  }\r\n}\r\n\r\n\r\n", "desc": " `autofocus`参数控制是否需要获取焦点。" }, { "example": _react2['default'].createElement(Demo9, null), "title": " 动态渲染Option的多选", "code": "/**\r\n * @title 动态渲染Option的多选\r\n * @description Option标签与Children自定义数据列表组合的渲染方式\r\n */\r\n\r\nimport React, { Component } from \"react\";\r\nimport { Select } from 'tinper-bee';\r\n\r\nconst Option = Select.Option;\r\nconst OptGroup = Select.OptGroup;\r\n\r\nconst Children = ['a10','b11','c12','d13','e14','f15'];\r\n\r\nclass Demo9 extends Component {\r\n  handleChange = value => {\r\n    console.log('selected ${value}');\r\n  };\r\n  render() {\r\n    return (\r\n      <Select\r\n        multiple\r\n        style={{ width: \"100%\" }}\r\n        searchPlaceholder=\"标签模式\"\r\n        onChange={this.handleChange}\r\n      >\r\n        <Option key='first'>first</Option>\r\n        {Children.map((value) => {\r\n          return <Option key={value}>{value}</Option>\r\n        })}\r\n      </Select>\r\n    );\r\n  }\r\n}\r\n\r\n\r\n", "desc": " Option标签与Children自定义数据列表组合的渲染方式" }];
 	
 	var Demo = function (_Component) {
 	    _inherits(Demo, _Component);
@@ -8646,6 +8646,9 @@
 	
 	    var item = _ref.item;
 	
+	    if (!item) {
+	      return;
+	    }
 	    var value = this.state.value;
 	    var props = this.props;
 	    var selectedValue = (0, _util.getValuePropValue)(item);
@@ -9052,10 +9055,13 @@
 	    var keys = values.map(function (v) {
 	      return v.key;
 	    });
+	    console.log(props);
 	    _react2['default'].Children.forEach(props.children, function (child) {
+	      // console.log(child);
 	      if (child.type === _OptGroup2['default']) {
 	        nextValues = _this10.addTitleToValue(child.props, nextValues);
 	      } else {
+	        // console.log(child.props);
 	        var value = (0, _util.getValuePropValue)(child);
 	        var valueIndex = keys.indexOf(value);
 	        if (valueIndex > -1) {
@@ -9378,7 +9384,7 @@
 	          }, extraSelectionProps),
 	          ctrlNode,
 	          allowClear && !multiple ? clear : null,
-	          multiple || !props.showArrow ? null : _react2['default'].createElement(
+	          !props.showArrow ? null : _react2['default'].createElement(
 	            'span',
 	            _extends({
 	              key: 'arrow',
@@ -12116,14 +12122,26 @@
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 	
 	function getValuePropValue(child) {
-	  var props = child.props;
-	  if ('value' in props) {
-	    return props.value;
+	  //传入option标签 + 动态生成option数组
+	  if (child instanceof Array) {
+	    child.forEach(function (_child) {
+	      if ('value' in _child.props) {
+	        return _child.props.value;
+	      }
+	      if (_child.key) {
+	        return _child.key;
+	      }
+	    });
+	  } else {
+	    var props = child.props;
+	    if ('value' in props) {
+	      return props.value;
+	    }
+	    if (child.key) {
+	      return child.key;
+	    }
+	    throw new Error('no key or value for ' + child);
 	  }
-	  if (child.key) {
-	    return child.key;
-	  }
-	  throw new Error('no key or value for ' + child);
 	}
 	
 	function getPropValue(child, prop) {
@@ -15069,6 +15087,89 @@
 	}(_react.Component);
 	
 	exports["default"] = Demo8;
+	module.exports = exports["default"];
+
+/***/ }),
+/* 120 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	"use strict";
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _react = __webpack_require__(4);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _src = __webpack_require__(80);
+	
+	var _src2 = _interopRequireDefault(_src);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+	
+	function _defaults(obj, defaults) { var keys = Object.getOwnPropertyNames(defaults); for (var i = 0; i < keys.length; i++) { var key = keys[i]; var value = Object.getOwnPropertyDescriptor(defaults, key); if (value && value.configurable && obj[key] === undefined) { Object.defineProperty(obj, key, value); } } return obj; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : _defaults(subClass, superClass); } /**
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * @title 动态渲染Option的多选
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * @description Option标签与Children自定义数据列表组合的渲染方式
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                */
+	
+	var Option = _src2["default"].Option;
+	var OptGroup = _src2["default"].OptGroup;
+	
+	var Children = ['a10', 'b11', 'c12', 'd13', 'e14', 'f15'];
+	
+	var Demo9 = function (_Component) {
+	  _inherits(Demo9, _Component);
+	
+	  function Demo9() {
+	    var _temp, _this, _ret;
+	
+	    _classCallCheck(this, Demo9);
+	
+	    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+	      args[_key] = arguments[_key];
+	    }
+	
+	    return _ret = (_temp = (_this = _possibleConstructorReturn(this, _Component.call.apply(_Component, [this].concat(args))), _this), _this.handleChange = function (value) {
+	      console.log('selected ${value}');
+	    }, _temp), _possibleConstructorReturn(_this, _ret);
+	  }
+	
+	  Demo9.prototype.render = function render() {
+	    return _react2["default"].createElement(
+	      _src2["default"],
+	      {
+	        multiple: true,
+	        style: { width: "100%" },
+	        searchPlaceholder: "\u6807\u7B7E\u6A21\u5F0F",
+	        onChange: this.handleChange
+	      },
+	      _react2["default"].createElement(
+	        Option,
+	        { key: "first" },
+	        "first"
+	      ),
+	      Children.map(function (value) {
+	        return _react2["default"].createElement(
+	          Option,
+	          { key: value },
+	          value
+	        );
+	      })
+	    );
+	  };
+	
+	  return Demo9;
+	}(_react.Component);
+	
+	exports["default"] = Demo9;
 	module.exports = exports["default"];
 
 /***/ })

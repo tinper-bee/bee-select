@@ -468,6 +468,9 @@ class RcSelect extends Component{
   }
 
   onMenuSelect({ item }) {
+    if (!item) {
+      return;
+    }
     let value = this.state.value;
     const props = this.props;
     const selectedValue = getValuePropValue(item);
@@ -840,10 +843,13 @@ class RcSelect extends Component{
   addTitleToValue(props, values) {
     let nextValues = values;
     const keys = values.map(v => v.key);
+    console.log(props);
     React.Children.forEach(props.children, (child) => {
+      // console.log(child);
       if (child.type === OptGroup) {
         nextValues = this.addTitleToValue(child.props, nextValues);
       } else {
+        // console.log(child.props);
         const value = getValuePropValue(child);
         const valueIndex = keys.indexOf(value);
         if (valueIndex > -1) {
@@ -1140,7 +1146,7 @@ class RcSelect extends Component{
           >
             {ctrlNode}
             {allowClear && !multiple ? clear : null}
-            {multiple || !props.showArrow ? null :
+            { !props.showArrow ? null :
               (<span
                 key="arrow"
                 className={`${clsPrefix}-arrow`}

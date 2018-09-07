@@ -2,14 +2,26 @@ import { ItemGroup as MenuItemGroup } from 'bee-menus';
 import React from 'react';
 
 export function getValuePropValue(child) {
-  const props = child.props;
-  if ('value' in props) {
-    return props.value;
+  //传入option标签 + 动态生成option数组
+  if(child instanceof Array){
+    child.forEach((_child) => {
+      if ('value' in _child.props) {
+        return _child.props.value;
+      }
+      if (_child.key) {
+        return _child.key;
+      }
+    })
+  }else{
+    const props = child.props;
+    if ('value' in props) {
+      return props.value;
+    }
+    if (child.key) {
+      return child.key;
+    }
+    throw new Error(`no key or value for ${child}`);
   }
-  if (child.key) {
-    return child.key;
-  }
-  throw new Error(`no key or value for ${child}`);
 }
 
 export function getPropValue(child, prop) {
