@@ -28,14 +28,26 @@ var _react2 = _interopRequireDefault(_react);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
 function getValuePropValue(child) {
-  var props = child.props;
-  if ('value' in props) {
-    return props.value;
+  //传入option标签 + 动态生成option数组
+  if (child instanceof Array) {
+    child.forEach(function (_child) {
+      if ('value' in _child.props) {
+        return _child.props.value;
+      }
+      if (_child.key) {
+        return _child.key;
+      }
+    });
+  } else {
+    var props = child.props;
+    if ('value' in props) {
+      return props.value;
+    }
+    if (child.key) {
+      return child.key;
+    }
+    throw new Error('no key or value for ' + child);
   }
-  if (child.key) {
-    return child.key;
-  }
-  throw new Error('no key or value for ' + child);
 }
 
 function getPropValue(child, prop) {
