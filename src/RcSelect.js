@@ -843,7 +843,6 @@ class RcSelect extends Component{
   addTitleToValue(props, values) {
     let nextValues = values;
     const keys = values.map(v => v.key);
-    console.log(props);
     React.Children.forEach(props.children, (child) => {
       // console.log(child);
       if (child.type === OptGroup) {

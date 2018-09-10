@@ -933,7 +933,6 @@ var RcSelect = function (_Component) {
     var keys = values.map(function (v) {
       return v.key;
     });
-    console.log(props);
     _react2["default"].Children.forEach(props.children, function (child) {
       // console.log(child);
       if (child.type === _OptGroup2["default"]) {
