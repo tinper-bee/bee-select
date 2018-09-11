@@ -24,7 +24,7 @@ class Demo3 extends Component {
     return (
       <Select
         tags
-        style={{ width: "100%" }}
+        style={{ width: "97%" }}
         searchPlaceholder="标签模式"
         scrollToEnd={this.scrollToEnd}
         onChange={this.handleChange}
