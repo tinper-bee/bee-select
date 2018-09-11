@@ -19,7 +19,7 @@ class Demo9 extends Component {
     return (
       <Select
         multiple
-        style={{ width: "100%" }}
+        style={{ width: "97%" }}
         searchPlaceholder="标签模式"
         onChange={this.handleChange}
       >
