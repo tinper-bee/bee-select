@@ -6,8 +6,6 @@
 
 ### API
 
-## Select
-
 |参数|说明|类型|默认值|
 |:---|:----|:---|:------|
 |value|指定当前选中的条目|string/array/react node|-|
