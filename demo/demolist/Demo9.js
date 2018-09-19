@@ -13,7 +13,7 @@ const Children = ['a10','b11','c12','d13','e14','f15'];
 
 class Demo9 extends Component {
   handleChange = value => {
-    console.log('selected ${value}');
+    console.log(`selected ${value}`);
   };
   render() {
     return (

@@ -1241,9 +1241,9 @@ var RcSelect = function (_Component) {
         'div',
         _extends({
           style: props.style,
-          ref: 'root'
-          // onBlur={this.onOuterBlur}
-          // onFocus={this.onOuterFocus}
+          ref: 'root',
+          onBlur: this.onOuterBlur,
+          onFocus: this.onOuterFocus
         }, attr, {
           onClick: this.onOutClick,
           className: (0, _classnames2["default"])(rootCls)

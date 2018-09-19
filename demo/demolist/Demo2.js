@@ -16,7 +16,7 @@ for (let i = 10; i < 36; i++) {
 
 class Demo2 extends Component {
   handleChange = value => {
-    console.log('selected ${value}');
+    console.log(`selected ${value}`);
   };
   render() {
     return (
