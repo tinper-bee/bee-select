@@ -24,7 +24,7 @@ class Demo10 extends Component {
   render() {
     return (
       <div>
-        <Button onClick={this.changeOpen.bind(this)}>change select</Button>
+        <Button onClick={this.changeOpen.bind(this)} style={{marginRight:20 + 'px'}}>change select</Button>
         <Select
           defaultValue="lucy"
           style={{ width: 200, marginRight: 6 }}

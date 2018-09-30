@@ -3478,6 +3478,33 @@ a, .mdl-accordion, .mdl-button, .mdl-card, .mdl-checkbox, .mdl-dropdown-menu,
 .uf-treeline-copy:before {
   content: "\e994"; }
 
+.uf-listwithdots:before {
+  content: "\e9cd"; }
+
+.uf-gridlogo:before {
+  content: "\e900"; }
+
+.uf-magnifyingglass:before {
+  content: "\e9ce"; }
+
+.uf-anglearrowdown:before {
+  content: "\e9cf"; }
+
+.uf-yongyouyunchnen:before {
+  content: "\e98d"; }
+
+.uf-yycloud:before {
+  content: "\e68f"; }
+
+.uf-funnel-o:before {
+  content: "\e63c"; }
+
+.uf-filter:before {
+  content: "\e9d0"; }
+
+.uf-filterno:before {
+  content: "\e9d1"; }
+
 /* FormGroup */
 /*  Navlayout  */
 .vertical-align {
