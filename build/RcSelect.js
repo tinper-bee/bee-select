@@ -129,6 +129,7 @@ var defaultProps = {
   onSelect: noop,
   onSearch: noop,
   onDeselect: noop,
+  changeOpen: noop,
   showArrow: true,
   dropdownMatchSelectWidth: true,
   dropdownStyle: {},
@@ -182,14 +183,14 @@ var RcSelect = function (_Component) {
     }
     _this2.saveInputRef = saveRef.bind(_this2, 'inputInstance');
     _this2.saveInputMirrorRef = saveRef.bind(_this2, 'inputMirrorInstance');
-    var open = props.open;
-    if (open === undefined) {
-      open = props.defaultOpen;
-    }
+    // let open = props.open;
+    // if (open === undefined) {
+    //   open = props.defaultOpen;
+    // }
     _this2.state = {
       value: value,
       inputValue: inputValue,
-      open: open
+      open: props.open ? props.open : props.defaultOpen
     };
 
     _this2.filterOption = _this2.filterOption.bind(_this2);
@@ -264,6 +265,11 @@ var RcSelect = function (_Component) {
   };
 
   RcSelect.prototype.componentWillReceiveProps = function componentWillReceiveProps(nextProps) {
+    if (nextProps.open !== this.props.open) {
+      this.setState({
+        open: nextProps.open
+      });
+    }
 
     if ('value' in nextProps) {
       var value = (0, _util.toArray)(nextProps.value);

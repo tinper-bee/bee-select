@@ -8,6 +8,7 @@
 
 |参数|说明|类型|默认值|
 |:---|:----|:---|:------|
+|open|控制下拉框展开收起|bool|false|
 |value|指定当前选中的条目|string/array/react node|-|
 |defaultValue|指定默认选中的条目|string/array/react node|-|
 |multiple|支持多选|bool|false|

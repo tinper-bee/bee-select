@@ -35,6 +35,7 @@ const propTypes = {
     PropTypes.any
   ]),
   showSearch: PropTypes.bool,
+  open:PropTypes.bool,
   transitionName: PropTypes.string,
   choiceTransitionName: PropTypes.string,
   multiple: PropTypes.bool,
@@ -71,7 +72,8 @@ class Select extends Component {
       size,
       combobox,
       showSearch,
-      data
+      data,
+      open
     } = this.props;
 
     let { notFoundContent = "Not Found", optionLabelProp } = this.props;
@@ -109,6 +111,8 @@ class Select extends Component {
         className={cls}
         optionLabelProp={optionLabelProp || "children"}
         notFoundContent={notFoundContent}
+        open={this.props.open}
+        changeOpen={this.props.changeOpen}
       >
         {data.map(item => {
           return <Option key={item.value} value={item.value} disabled={item.disabled?true:false}>{item.key}</Option>;

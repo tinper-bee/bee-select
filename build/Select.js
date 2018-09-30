@@ -64,6 +64,7 @@ var propTypes = {
   combobox: _propTypes2["default"].bool,
   notFoundContent: _propTypes2["default"].oneOfType([_propTypes2["default"].node, _propTypes2["default"].array, _propTypes2["default"].any]),
   showSearch: _propTypes2["default"].bool,
+  open: _propTypes2["default"].bool,
   transitionName: _propTypes2["default"].string,
   choiceTransitionName: _propTypes2["default"].string,
   multiple: _propTypes2["default"].bool,
@@ -107,7 +108,8 @@ var Select = function (_Component) {
         size = _props.size,
         combobox = _props.combobox,
         showSearch = _props.showSearch,
-        data = _props.data;
+        data = _props.data,
+        open = _props.open;
     var _props2 = this.props,
         _props2$notFoundConte = _props2.notFoundContent,
         notFoundContent = _props2$notFoundConte === undefined ? "Not Found" : _props2$notFoundConte,
@@ -141,7 +143,9 @@ var Select = function (_Component) {
       _extends({}, this.props, {
         className: cls,
         optionLabelProp: optionLabelProp || "children",
-        notFoundContent: notFoundContent
+        notFoundContent: notFoundContent,
+        open: this.props.open,
+        changeOpen: this.props.changeOpen
       }),
       data.map(function (item) {
         return _react2["default"].createElement(
