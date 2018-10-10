@@ -57,8 +57,14 @@ const propTypes = {
     clsPrefix: PropTypes.string,
     className: PropTypes.string,
     transitionName: PropTypes.string,
-    optionLabelProp: PropTypes.string,
-    optionFilterProp: PropTypes.string,
+    optionLabelProp: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.number
+    ]),
+    optionFilterProp: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.number
+    ]),
     animation: PropTypes.string,
     choiceTransitionName: PropTypes.string,
     onChange: PropTypes.func,
