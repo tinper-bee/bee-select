@@ -75,7 +75,7 @@ function saveRef(name, component) {
 var valueObjectShape = void 0;
 
 if (_propTypes2["default"]) {
-  valueObjectShape = _propTypes2["default"].oneOfType([_propTypes2["default"].string, _propTypes2["default"].shape({
+  valueObjectShape = _propTypes2["default"].oneOfType([_propTypes2["default"].string, _propTypes2["default"].number, _propTypes2["default"].shape({
     key: _propTypes2["default"].string,
     label: _propTypes2["default"].node
   })]);
