@@ -1,3 +1,13 @@
+<a name="1.0.17"></a>
+## [1.0.17](https://github.com/tinper-bee/select/compare/v1.0.16...v1.0.17) (2018-10-11)
+
+
+### Features
+
+* **bee-select:** 文档修改，配合2.0form，失去焦点校验报错问题 ([fedec00](https://github.com/tinper-bee/select/commit/fedec00))
+
+
+
 <a name="1.0.16"></a>
 ## [1.0.16](https://github.com/tinper-bee/select/compare/v1.0.13...v1.0.16) (2018-09-30)
 
