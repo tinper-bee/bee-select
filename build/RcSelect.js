@@ -169,6 +169,13 @@ var RcSelect = function (_Component) {
       _this2.props.onFocus(_this2.state.value);
     };
 
+    _this2.borderBlur = function () {
+      _this2.setState({
+        open: false
+      });
+      _this2._focused = false;
+    };
+
     var value = [];
     if ('value' in props) {
       value = (0, _util.toArray)(props.value);
@@ -1214,6 +1221,9 @@ var RcSelect = function (_Component) {
     if (this.props.haveFocus) {
       attr.onBlur = this.onOuterBlur;
       attr.onFocus = this.onOuterFocus;
+    } else {
+      attr.onBlur = this.borderBlur;
+      attr.onFocus = this.onOuterFocus;
     }
     return _react2["default"].createElement(
       _SelectTrigger2["default"],
@@ -1247,9 +1257,7 @@ var RcSelect = function (_Component) {
         'div',
         _extends({
           style: props.style,
-          ref: 'root',
-          onBlur: this.onOuterBlur,
-          onFocus: this.onOuterFocus
+          ref: 'root'
         }, attr, {
           onClick: this.onOutClick,
           className: (0, _classnames2["default"])(rootCls)

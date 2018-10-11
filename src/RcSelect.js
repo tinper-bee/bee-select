@@ -1062,6 +1062,13 @@ class RcSelect extends Component{
     return (<div className={className} name="input" ref="input">{this.getPlaceholderElement()}{innerNode}</div>);
   }
 
+  borderBlur=()=>{
+    this.setState({
+      open:false
+    })
+    this._focused = false ;
+  }
+
   render() {
     const props = this.props;
     const multiple = isMultipleOrTags(props);
@@ -1107,6 +1114,9 @@ class RcSelect extends Component{
     if(this.props.haveFocus){
       attr.onBlur = this.onOuterBlur;
       attr.onFocus = this.onOuterFocus;
+    }else{
+      attr.onBlur = this.borderBlur;
+      attr.onFocus = this.onOuterFocus;
     }
     return (
       <SelectTrigger
@@ -1137,9 +1147,7 @@ class RcSelect extends Component{
       >
         <div
           style={props.style}
-          ref="root"
-          onBlur={this.onOuterBlur}
-          onFocus={this.onOuterFocus}
+          ref="root"  
           {...attr}
           onClick={this.onOutClick}
           className={classnames(rootCls)}
