@@ -24,7 +24,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 var propTypes = {
   disabled: _propTypes2["default"].bool,
-  value: _propTypes2["default"].string
+  value: _propTypes2["default"].oneOfType([_propTypes2["default"].string, _propTypes2["default"].number])
 };
 
 var Option = function (_React$Component) {
