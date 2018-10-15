@@ -445,8 +445,8 @@ ul {
     outline: none;
     overflow: hidden;
     font-size: 12px;
-    -webkit-animation: moveFromTop 300ms ease-in;
-    animation: uSlideUpIn 300ms ease;
+    // -webkit-animation: moveFromTop 300ms ease-in;
+    // animation: uSlideUpIn 300ms ease;
     &.slide-up-enter.slide-up-enter-active.u-select-dropdown-placement-bottomLeft,
     &.slide-up-appear.slide-up-appear-active.u-select-dropdown-placement-bottomLeft {
         -webkit-animation-name: uSlideUpIn;

@@ -6787,8 +6787,7 @@ ul {
   position: absolute;
   outline: none;
   overflow: hidden;
-  font-size: 12px;
-  animation: uSlideUpIn 300ms ease; }
+  font-size: 12px; }
   .u-select-dropdown.slide-up-enter.slide-up-enter-active.u-select-dropdown-placement-bottomLeft, .u-select-dropdown.slide-up-appear.slide-up-appear-active.u-select-dropdown-placement-bottomLeft {
     animation-name: uSlideUpIn; }
   .u-select-dropdown.slide-up-enter.slide-up-enter-active.u-select-dropdown-placement-topLeft, .u-select-dropdown.slide-up-appear.slide-up-appear-active.u-select-dropdown-placement-topLeft {
