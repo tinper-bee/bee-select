@@ -1,3 +1,13 @@
+<a name="1.0.20"></a>
+## [1.0.20](https://github.com/tinper-bee/select/compare/v1.0.19...v1.0.20) (2018-10-15)
+
+
+### Bug Fixes
+
+* **bee-select:** 多选闪烁bug ([49fbe60](https://github.com/tinper-bee/select/commit/49fbe60))
+
+
+
 <a name="1.0.19"></a>
 ## [1.0.19](https://github.com/tinper-bee/select/compare/v1.0.18...v1.0.19) (2018-10-11)
 
