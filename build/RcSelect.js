@@ -1223,7 +1223,7 @@ var RcSelect = function (_Component) {
       attr.onFocus = this.onOuterFocus;
     } else {
       attr.onBlur = this.borderBlur;
-      attr.onFocus = this.onOuterFocus;
+      // attr.onFocus = this.onOuterFocus;
     }
     return _react2["default"].createElement(
       _SelectTrigger2["default"],

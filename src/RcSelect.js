@@ -1117,7 +1117,7 @@ class RcSelect extends Component{
       attr.onFocus = this.onOuterFocus;
     }else{
       attr.onBlur = this.borderBlur;
-      attr.onFocus = this.onOuterFocus;
+      // attr.onFocus = this.onOuterFocus;
     }
     return (
       <SelectTrigger

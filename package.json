@@ -1,6 +1,6 @@
 {
  "name": "bee-select",
- "version": "1.0.20",
+ "version": "1.0.21",
  "description": "select ui component for react",
  "keywords": [
   "react",
@@ -13,9 +13,9 @@
  "engines": {
   "node": ">=4.0.0"
  },
- "homepage": "https://github.com/tinper-bee/select",
+ "homepage": "https://github.com/tinper-bee/bee-select",
  "author": "",
- "repository": "http://github.com/tinper-bee/select",
+ "repository": "http://github.com/tinper-bee/bee-select",
  "bugs": "https://github.com/tinper-bee/select/issues",
  "license": "MIT",
  "main": "./build/index",
