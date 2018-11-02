@@ -1,3 +1,13 @@
+<a name="1.0.22"></a>
+## [1.0.22](https://github.com/tinper-bee/bee-select/compare/v1.0.21...v1.0.22) (2018-11-02)
+
+
+### Bug Fixes
+
+* **bee-select:** 下拉框触发focus，宽度计算时机修改 ([64a2137](https://github.com/tinper-bee/bee-select/commit/64a2137))
+
+
+
 <a name="1.0.21"></a>
 ## [1.0.21](https://github.com/tinper-bee/bee-select/compare/v1.0.20...v1.0.21) (2018-10-16)
 
