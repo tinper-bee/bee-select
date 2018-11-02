@@ -83,7 +83,7 @@ import "./node_modules/build/bee-select.css"
 |onChange|选中 option，或 input 的 value 变化（combobox 模式下）时，调用此函数|bool|-|
 |scrollToEdn|钩子函数 下拉列表的滚动条滚到最底触发|func|-|
 |onSearch|文本框值变化时回调|func|-|
-|onBlur|失去焦点的时回调|func|返回当前值array|
+|onBlur|失去焦点的时回调，需设置 `haveFocus` 为 `true` |func|返回当前值array|
 |onFocus|获得焦点时回调|func|返回当前值array|
 |placeholder|选择框默认文字	|string|-|
 |notFoundContent|当下拉列表为空时显示的内容|string|'Not Found'|
@@ -99,8 +99,8 @@ import "./node_modules/build/bee-select.css"
 |getPopupContainer|菜单渲染父节点。默认渲染到 body 上，如果你遇到菜单滚动定位问题，试试修改为滚动的区域，并相对其定位|func|() => document.body|
 |labelInValue|是否把每个选项的 label 包装到 value 中，决定 Select 的 value 类型。|bool|false|
 |data|可以设置data属性来自动生成option,可以参见demo中的示例。也可以设置是否禁用disabled|Array|-|
-|haveFocus|组件是否需要配置onFocus、onBlur 事件|bool|false|
-|autofocus|设置是否默认打开，从属性需配合onFocus、onBlur 。|bool|false|
+|haveFocus|组件是否需要配置onBlur 事件|bool|false|
+|autofocus|设置是否默认打开，此属性需配合onFocus、onBlur 。|bool|false|
 
 
 

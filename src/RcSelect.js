@@ -547,6 +547,7 @@ class RcSelect extends Component{
     if (!this.props.disabled) {
       this.setOpenState(!this.state.open, true);
     }
+    this.onOuterFocus(e);//点击下拉箭头触发onFocus
   }
 
   onPlaceholderClick() {
@@ -1114,7 +1115,7 @@ class RcSelect extends Component{
     let attr = {};
     if(this.props.haveFocus){
       attr.onBlur = this.onOuterBlur;
-      attr.onFocus = this.onOuterFocus;
+      // attr.onFocus = this.onOuterFocus;
     }else{
       attr.onBlur = this.borderBlur;
       // attr.onFocus = this.onOuterFocus;
