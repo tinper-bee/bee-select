@@ -1,3 +1,13 @@
+<a name="1.0.23"></a>
+## [1.0.23](https://github.com/tinper-bee/bee-select/compare/v1.0.22...v1.0.23) (2018-11-09)
+
+
+### Bug Fixes
+
+* **bee-select:** 还原宽度计算 ([8d66d44](https://github.com/tinper-bee/bee-select/commit/8d66d44))
+
+
+
 <a name="1.0.22"></a>
 ## [1.0.22](https://github.com/tinper-bee/bee-select/compare/v1.0.21...v1.0.22) (2018-11-02)
 
