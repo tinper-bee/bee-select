@@ -118,7 +118,7 @@ var SelectTrigger = function (_Component) {
   };
 
   SelectTrigger.prototype.componentDidUpdate = function componentDidUpdate() {
-    // this.setDropdownWidth();
+    this.setDropdownWidth();
   };
 
   SelectTrigger.prototype.getInnerMenu = function getInnerMenu() {
