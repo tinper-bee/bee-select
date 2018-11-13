@@ -1,3 +1,13 @@
+<a name="1.0.24"></a>
+## [1.0.24](https://github.com/tinper-bee/bee-select/compare/v1.0.23...v1.0.24) (2018-11-13)
+
+
+### Features
+
+* **bee-select:** 优化计算宽度时机 ([5df58b7](https://github.com/tinper-bee/bee-select/commit/5df58b7))
+
+
+
 <a name="1.0.23"></a>
 ## [1.0.23](https://github.com/tinper-bee/bee-select/compare/v1.0.22...v1.0.23) (2018-11-09)
 
