@@ -1,3 +1,13 @@
+<a name="1.0.25"></a>
+## [1.0.25](https://github.com/tinper-bee/bee-select/compare/v1.0.24...v1.0.25) (2018-11-13)
+
+
+### Features
+
+* **bee-select:** 升级bee-menus ([fc96b00](https://github.com/tinper-bee/bee-select/commit/fc96b00))
+
+
+
 <a name="1.0.24"></a>
 ## [1.0.24](https://github.com/tinper-bee/bee-select/compare/v1.0.23...v1.0.24) (2018-11-13)
 
