@@ -58,11 +58,15 @@ class SelectTrigger extends Component{
 
   }
   componentDidMount() {
-    this.setDropdownWidth();
+    if(this.props.open){
+      this.setDropdownWidth();
+    }
   }
 
   componentDidUpdate() {
-    this.setDropdownWidth();
+    if(this.props.visible){
+      this.setDropdownWidth();
+    }
   }
 
   setDropdownWidth = () => {

@@ -114,11 +114,15 @@ var SelectTrigger = function (_Component) {
   }
 
   SelectTrigger.prototype.componentDidMount = function componentDidMount() {
-    this.setDropdownWidth();
+    if (this.props.open) {
+      this.setDropdownWidth();
+    }
   };
 
   SelectTrigger.prototype.componentDidUpdate = function componentDidUpdate() {
-    this.setDropdownWidth();
+    if (this.props.visible) {
+      this.setDropdownWidth();
+    }
   };
 
   SelectTrigger.prototype.getInnerMenu = function getInnerMenu() {

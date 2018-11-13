@@ -1122,6 +1122,7 @@ class RcSelect extends Component{
     }
     return (
       <SelectTrigger
+        open={props.open}
         onPopupFocus={this.onPopupFocus}
         dropdownAlign={props.dropdownAlign}
         dropdownClassName={props.dropdownClassName}

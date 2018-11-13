@@ -1229,6 +1229,7 @@ var RcSelect = function (_Component) {
     return _react2["default"].createElement(
       _SelectTrigger2["default"],
       {
+        open: props.open,
         onPopupFocus: this.onPopupFocus,
         dropdownAlign: props.dropdownAlign,
         dropdownClassName: props.dropdownClassName,
