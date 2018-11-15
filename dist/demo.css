@@ -5281,7 +5281,7 @@ a, .mdl-accordion, .mdl-button, .mdl-card, .mdl-checkbox, .mdl-dropdown-menu,
   .u-panel .u-panel-body {
     padding: 15px 15px;
     position: relative; }
-    .u-panel .u-panel-body .uf {
+    .u-panel .u-panel-body .u-panel-copy {
       position: absolute;
       right: 25px;
       top: 30px;
@@ -5291,7 +5291,7 @@ a, .mdl-accordion, .mdl-button, .mdl-card, .mdl-checkbox, .mdl-dropdown-menu,
       margin: 8px;
       border-radius: 4px;
       cursor: pointer; }
-      .u-panel .u-panel-body .uf:hover {
+      .u-panel .u-panel-body .u-panel-copy:hover {
         color: #a8a7a7; }
 
 .u-panel-default {
@@ -6726,7 +6726,8 @@ ul {
     zoom: 1;
     position: absolute;
     right: 4px;
-    padding: 0 0 0 8px; }
+    padding: 0 0 0 8px;
+    top: -3px; }
   .u-select-selection--multiple .u-select-selection-choice-remove:before {
     display: block;
     font-family: "uf"; }

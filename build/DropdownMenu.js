@@ -12,21 +12,27 @@ var _react2 = _interopRequireDefault(_react);
 
 var _reactDom = require('react-dom');
 
-var _tinperBeeCore = require('tinper-bee-core');
+var _propTypes = require('prop-types');
 
-var _beeMenus = require('bee-menus');
+var _propTypes2 = _interopRequireDefault(_propTypes);
 
-var _beeMenus2 = _interopRequireDefault(_beeMenus);
+var _toArray = require('rc-util/lib/Children/toArray');
+
+var _toArray2 = _interopRequireDefault(_toArray);
+
+var _rcMenu = require('rc-menu');
+
+var _rcMenu2 = _interopRequireDefault(_rcMenu);
 
 var _domScrollIntoView = require('dom-scroll-into-view');
 
 var _domScrollIntoView2 = _interopRequireDefault(_domScrollIntoView);
 
+var _raf = require('raf');
+
+var _raf2 = _interopRequireDefault(_raf);
+
 var _util = require('./util');
-
-var _propTypes = require('prop-types');
-
-var _propTypes2 = _interopRequireDefault(_propTypes);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
@@ -38,43 +44,48 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : _defaults(subClass, superClass); }
 
-var propTypes = {
-  defaultActiveFirstOption: _propTypes2["default"].bool,
-  value: _propTypes2["default"].any,
-  dropdownMenuStyle: _propTypes2["default"].object,
-  multiple: _propTypes2["default"].bool,
-  onPopupFocus: _propTypes2["default"].func,
-  onMenuDeSelect: _propTypes2["default"].func,
-  onMenuSelect: _propTypes2["default"].func,
-  clsPrefix: _propTypes2["default"].string,
-  menuItems: _propTypes2["default"].any,
-  inputValue: _propTypes2["default"].string,
-  visible: _propTypes2["default"].bool
-};
+var DropdownMenu = function (_React$Component) {
+  _inherits(DropdownMenu, _React$Component);
 
-var DropdownMenu = function (_Component) {
-  _inherits(DropdownMenu, _Component);
-
-  function DropdownMenu() {
+  function DropdownMenu(props) {
     _classCallCheck(this, DropdownMenu);
 
-    return _possibleConstructorReturn(this, _Component.apply(this, arguments));
-  }
+    var _this = _possibleConstructorReturn(this, _React$Component.call(this, props));
 
-  DropdownMenu.prototype.componentWillMount = function componentWillMount() {
-    this.lastInputValue = this.props.inputValue;
-  };
+    _this.scrollActiveItemToView = function () {
+      // scroll into view
+      var itemComponent = (0, _reactDom.findDOMNode)(_this.firstActiveItem);
+      var _this$props = _this.props,
+          value = _this$props.value,
+          visible = _this$props.visible,
+          firstActiveValue = _this$props.firstActiveValue;
+
+
+      if (!itemComponent || !visible) {
+        return;
+      }
+      var scrollIntoViewOpts = {
+        onlyScrollIfNeeded: true
+      };
+      if ((!value || value.length === 0) && firstActiveValue) {
+        scrollIntoViewOpts.alignWithTop = true;
+      }
+
+      // Delay to scroll since current frame item position is not ready when pre view is by filter
+      // https://github.com/ant-design/ant-design/issues/11268#issuecomment-406634462
+      _this.rafInstance = (0, _raf2["default"])(function () {
+        (0, _domScrollIntoView2["default"])(itemComponent, (0, _reactDom.findDOMNode)(_this.menuRef), scrollIntoViewOpts);
+      });
+    };
+
+    _this.lastInputValue = props.inputValue;
+    _this.saveMenuRef = (0, _util.saveRef)(_this, 'menuRef');
+    return _this;
+  }
 
   DropdownMenu.prototype.componentDidMount = function componentDidMount() {
     this.scrollActiveItemToView();
     this.lastVisible = this.props.visible;
-    var scrollDom = (0, _reactDom.findDOMNode)(this.refs.menu);
-    scrollDom.addEventListener('scroll', this.handleScroll.bind(this));
-  };
-
-  DropdownMenu.prototype.componentWillUnmount = function componentWillUnmount() {
-    var scrollDom = (0, _reactDom.findDOMNode)(this.refs.menu);
-    scrollDom.removeEventListener('scroll', this.handleScroll.bind(this));
   };
 
   DropdownMenu.prototype.shouldComponentUpdate = function shouldComponentUpdate(nextProps) {
@@ -82,7 +93,7 @@ var DropdownMenu = function (_Component) {
       this.lastVisible = false;
     }
     // freeze when hide
-    return nextProps.visible;
+    return nextProps.visible || nextProps.inputValue !== this.props.inputValue;
   };
 
   DropdownMenu.prototype.componentDidUpdate = function componentDidUpdate(prevProps) {
@@ -94,24 +105,9 @@ var DropdownMenu = function (_Component) {
     this.lastInputValue = props.inputValue;
   };
 
-  DropdownMenu.prototype.handleScroll = function handleScroll(event) {
-    var scrollToEnd = this.props.scrollToEnd;
-
-    var el = event.target;
-    if (el.scrollHeight < el.clientHeight + el.scrollTop + 1) {
-      if (scrollToEnd) {
-        scrollToEnd();
-      }
-    }
-  };
-
-  DropdownMenu.prototype.scrollActiveItemToView = function scrollActiveItemToView() {
-    // scroll into view
-    var itemComponent = (0, _reactDom.findDOMNode)(this.firstActiveItem);
-    if (itemComponent) {
-      (0, _domScrollIntoView2["default"])(itemComponent, (0, _reactDom.findDOMNode)(this.refs.menu), {
-        onlyScrollIfNeeded: true
-      });
+  DropdownMenu.prototype.componentWillUnmount = function componentWillUnmount() {
+    if (this.rafInstance && this.rafInstance.cancel) {
+      this.rafInstance.cancel();
     }
   };
 
@@ -120,12 +116,15 @@ var DropdownMenu = function (_Component) {
 
     var props = this.props;
     var menuItems = props.menuItems,
+        menuItemSelectedIcon = props.menuItemSelectedIcon,
         defaultActiveFirstOption = props.defaultActiveFirstOption,
         value = props.value,
-        clsPrefix = props.clsPrefix,
+        prefixCls = props.prefixCls,
         multiple = props.multiple,
         onMenuSelect = props.onMenuSelect,
-        inputValue = props.inputValue;
+        inputValue = props.inputValue,
+        firstActiveValue = props.firstActiveValue,
+        backfillValue = props.backfillValue;
 
     if (menuItems && menuItems.length) {
       var menuProps = {};
@@ -140,15 +139,15 @@ var DropdownMenu = function (_Component) {
       var activeKeyProps = {};
 
       var clonedMenuItems = menuItems;
-      if (selectedKeys.length) {
+      if (selectedKeys.length || firstActiveValue) {
         if (props.visible && !this.lastVisible) {
-          activeKeyProps.activeKey = selectedKeys[0];
+          activeKeyProps.activeKey = selectedKeys[0] || firstActiveValue;
         }
         var foundFirst = false;
         // set firstActiveItem via cloning menus
         // for scroll into view
         var clone = function clone(item) {
-          if (!foundFirst && selectedKeys.indexOf(item.key) !== -1) {
+          if (!foundFirst && selectedKeys.indexOf(item.key) !== -1 || !foundFirst && !selectedKeys.length && firstActiveValue.indexOf(item.key) !== -1) {
             foundFirst = true;
             return (0, _react.cloneElement)(item, {
               ref: function ref(_ref) {
@@ -160,31 +159,37 @@ var DropdownMenu = function (_Component) {
         };
 
         clonedMenuItems = menuItems.map(function (item) {
-          if (item.type === _beeMenus.ItemGroup) {
-            var children = (0, _tinperBeeCore.toArray)(item.props.children).map(clone);
+          if (item.type.isMenuItemGroup) {
+            var children = (0, _toArray2["default"])(item.props.children).map(clone);
             return (0, _react.cloneElement)(item, {}, children);
           }
           return clone(item);
         });
+      } else {
+        // Clear firstActiveItem when dropdown menu items was empty
+        // Avoid `Unable to find node on an unmounted component`
+        // https://github.com/ant-design/ant-design/issues/10774
+        this.firstActiveItem = null;
       }
 
       // clear activeKey when inputValue change
-      if (inputValue !== this.lastInputValue) {
+      var lastValue = value && value[value.length - 1];
+      if (inputValue !== this.lastInputValue && (!lastValue || lastValue !== backfillValue)) {
         activeKeyProps.activeKey = '';
       }
-
       return _react2["default"].createElement(
-        _beeMenus2["default"],
+        _rcMenu2["default"],
         _extends({
-          ref: 'menu',
+          ref: this.saveMenuRef,
           style: this.props.dropdownMenuStyle,
-          defaultActiveFirst: defaultActiveFirstOption
+          defaultActiveFirst: defaultActiveFirstOption,
+          role: 'listbox',
+          itemIcon: multiple ? menuItemSelectedIcon : null
         }, activeKeyProps, {
-          multiple: multiple,
-          focusable: false
+          multiple: multiple
         }, menuProps, {
           selectedKeys: selectedKeys,
-          clsPrefix: clsPrefix + '-menu'
+          prefixCls: prefixCls + '-menu'
         }),
         clonedMenuItems
       );
@@ -197,18 +202,37 @@ var DropdownMenu = function (_Component) {
     return renderMenu ? _react2["default"].createElement(
       'div',
       {
-        style: { overflow: 'auto' },
+        style: {
+          overflow: 'auto',
+          transform: 'translateZ(0)'
+        },
         onFocus: this.props.onPopupFocus,
-        onMouseDown: _util.preventDefaultEvent
+        onMouseDown: _util.preventDefaultEvent,
+        onScroll: this.props.onPopupScroll
       },
       renderMenu
     ) : null;
   };
 
   return DropdownMenu;
-}(_react.Component);
+}(_react2["default"].Component);
 
-;
-
+DropdownMenu.displayName = 'DropdownMenu';
+DropdownMenu.propTypes = {
+  defaultActiveFirstOption: _propTypes2["default"].bool,
+  value: _propTypes2["default"].any,
+  dropdownMenuStyle: _propTypes2["default"].object,
+  multiple: _propTypes2["default"].bool,
+  onPopupFocus: _propTypes2["default"].func,
+  onPopupScroll: _propTypes2["default"].func,
+  onMenuDeSelect: _propTypes2["default"].func,
+  onMenuSelect: _propTypes2["default"].func,
+  prefixCls: _propTypes2["default"].string,
+  menuItems: _propTypes2["default"].any,
+  inputValue: _propTypes2["default"].string,
+  visible: _propTypes2["default"].bool,
+  firstActiveValue: _propTypes2["default"].string,
+  menuItemSelectedIcon: _propTypes2["default"].oneOfType([_propTypes2["default"].func, _propTypes2["default"].node])
+};
 exports["default"] = DropdownMenu;
 module.exports = exports['default'];

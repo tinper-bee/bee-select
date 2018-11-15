@@ -1,27 +1,30 @@
-import { ItemGroup as MenuItemGroup } from 'bee-menus';
 import React from 'react';
 
-export function getValuePropValue(child) {
-  //传入option标签 + 动态生成option数组
-  if(child instanceof Array){
-    child.forEach((_child) => {
-      if ('value' in _child.props) {
-        return _child.props.value;
-      }
-      if (_child.key) {
-        return _child.key;
-      }
-    })
-  }else{
-    const props = child.props;
-    if ('value' in props) {
-      return props.value;
-    }
-    if (child.key) {
-      return child.key;
-    }
-    throw new Error(`no key or value for ${child}`);
+export function toTitle(title) {
+  if (typeof title === 'string') {
+    return title;
   }
+  return null;
+}
+
+export function getValuePropValue(child) {
+  if (!child) {
+    return null;
+  }
+
+  const props = child.props;
+  if ('value' in props) {
+    return props.value;
+  }
+  if (child.key) {
+    return child.key;
+  }
+  if (child.type && child.type.isSelectOptGroup && props.label) {
+    return props.label;
+  }
+  throw new Error(
+    `Need at least a key or a value or a label (only for OptGroup) for ${child}`
+  );
 }
 
 export function getPropValue(child, prop) {
@@ -29,6 +32,10 @@ export function getPropValue(child, prop) {
     return getValuePropValue(child);
   }
   return child.props[prop];
+}
+
+export function isMultiple(props) {
+  return props.multiple;
 }
 
 export function isCombobox(props) {
@@ -57,14 +64,18 @@ export function toArray(value) {
   return ret;
 }
 
+export function getMapKey(value) {
+  return `${typeof value}-${value}`;
+}
+
 export function preventDefaultEvent(e) {
   e.preventDefault();
 }
 
-export function findIndexInValueByKey(value, key) {
+export function findIndexInValueBySingleValue(value, singleValue) {
   let index = -1;
   for (let i = 0; i < value.length; i++) {
-    if (value[i].key === key) {
+    if (value[i] === singleValue) {
       index = i;
       break;
     }
@@ -72,15 +83,16 @@ export function findIndexInValueByKey(value, key) {
   return index;
 }
 
-export function findIndexInValueByLabel(value, label) {
-  let index = -1;
+export function getLabelFromPropsValue(value, key) {
+  let label;
+  value = toArray(value);
   for (let i = 0; i < value.length; i++) {
-    if (toArray(value[i].label).join('') === label) {
-      index = i;
+    if (value[i].key === key) {
+      label = value[i].label;
       break;
     }
   }
-  return index;
+  return label;
 }
 
 export function getSelectKeys(menuItems, value) {
@@ -88,13 +100,15 @@ export function getSelectKeys(menuItems, value) {
     return [];
   }
   let selectedKeys = [];
-  React.Children.forEach(menuItems, (item) => {
-    if (item.type === MenuItemGroup) {
-      selectedKeys = selectedKeys.concat(getSelectKeys(item.props.children, value));
+  React.Children.forEach(menuItems, item => {
+    if (item.type.isMenuItemGroup) {
+      selectedKeys = selectedKeys.concat(
+        getSelectKeys(item.props.children, value)
+      );
     } else {
       const itemValue = getValuePropValue(item);
       const itemKey = item.key;
-      if (findIndexInValueByKey(value, itemValue) !== -1 && itemKey) {
+      if (findIndexInValueBySingleValue(value, itemValue) !== -1 && itemKey) {
         selectedKeys.push(itemKey);
       }
     }
@@ -102,20 +116,19 @@ export function getSelectKeys(menuItems, value) {
   return selectedKeys;
 }
 
-
 export const UNSELECTABLE_STYLE = {
   userSelect: 'none',
   WebkitUserSelect: 'none',
 };
 
 export const UNSELECTABLE_ATTRIBUTE = {
-  unselectable: 'unselectable',
+  unselectable: 'on',
 };
 
 export function findFirstMenuItem(children) {
   for (let i = 0; i < children.length; i++) {
     const child = children[i];
-    if (child.type === MenuItemGroup) {
+    if (child.type.isMenuItemGroup) {
       const found = findFirstMenuItem(child.props.children);
       if (found) {
         return found;
@@ -138,12 +151,33 @@ export function includesSeparators(string, separators) {
 
 export function splitBySeparators(string, separators) {
   const reg = new RegExp(`[${separators.join()}]`);
-  const array = string.split(reg);
-  if (array[0] === '') {
-    array.shift();
+  return string.split(reg).filter(token => token);
+}
+
+export function defaultFilterFn(input, child) {
+  if (child.props.disabled) {
+    return false;
   }
-  if (array[array.length - 1] === '') {
-    array.pop();
+  const value = toArray(getPropValue(child, this.props.optionFilterProp)).join('');
+  return (
+    value.toLowerCase().indexOf(input.toLowerCase()) > -1
+  );
+}
+
+export function validateOptionValue(value, props) {
+  if (isSingleMode(props) || isMultiple(props)) {
+    return;
   }
-  return array;
+  if (typeof value !== 'string') {
+    throw new Error(
+      `Invalid \`value\` of type \`${typeof value}\` supplied to Option, ` +
+      `expected \`string\` when \`tags/combobox\` is \`true\`.`
+    );
+  }
+}
+
+export function saveRef(instance, name) {
+  return (node) => {
+    instance[name] = node;
+  };
 }

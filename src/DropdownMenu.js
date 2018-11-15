@@ -1,41 +1,43 @@
-import React, { cloneElement, Component } from 'react';
+import React, { cloneElement } from 'react';
 import { findDOMNode } from 'react-dom';
-import { toArray } from 'tinper-bee-core';
-import Menu, { ItemGroup as MenuItemGroup } from 'bee-menus';
-import scrollIntoView from 'dom-scroll-into-view';
-import { getSelectKeys, preventDefaultEvent } from './util';
 import PropTypes from 'prop-types';
+import toArray from 'rc-util/lib/Children/toArray';
+import Menu from 'rc-menu';
+import scrollIntoView from 'dom-scroll-into-view';
+import raf from 'raf';
+import { getSelectKeys, preventDefaultEvent, saveRef } from './util';
 
-const propTypes = {
+export default class DropdownMenu extends React.Component {
+  static displayName = 'DropdownMenu';
+  static propTypes = {
     defaultActiveFirstOption: PropTypes.bool,
     value: PropTypes.any,
     dropdownMenuStyle: PropTypes.object,
     multiple: PropTypes.bool,
     onPopupFocus: PropTypes.func,
+    onPopupScroll: PropTypes.func,
     onMenuDeSelect: PropTypes.func,
     onMenuSelect: PropTypes.func,
-    clsPrefix: PropTypes.string,
+    prefixCls: PropTypes.string,
     menuItems: PropTypes.any,
     inputValue: PropTypes.string,
     visible: PropTypes.bool,
-}
+    firstActiveValue: PropTypes.string,
+    menuItemSelectedIcon: PropTypes.oneOfType([
+      PropTypes.func,
+      PropTypes.node,
+    ]),
+  };
 
-class DropdownMenu extends Component{
-  
-
-  componentWillMount() {
-    this.lastInputValue = this.props.inputValue;
+  constructor(props) {
+    super(props);
+    this.lastInputValue = props.inputValue;
+    this.saveMenuRef = saveRef(this, 'menuRef');
   }
 
   componentDidMount() {
     this.scrollActiveItemToView();
     this.lastVisible = this.props.visible;
-    let scrollDom = findDOMNode(this.refs.menu);
-    scrollDom.addEventListener('scroll', this.handleScroll.bind(this));
-  }
-  componentWillUnmount(){
-    let scrollDom = findDOMNode(this.refs.menu);
-    scrollDom.removeEventListener('scroll', this.handleScroll.bind(this));
   }
 
   shouldComponentUpdate(nextProps) {
@@ -43,7 +45,7 @@ class DropdownMenu extends Component{
       this.lastVisible = false;
     }
     // freeze when hide
-    return nextProps.visible;
+    return nextProps.visible || nextProps.inputValue !== this.props.inputValue;
   }
 
   componentDidUpdate(prevProps) {
@@ -54,34 +56,54 @@ class DropdownMenu extends Component{
     this.lastVisible = props.visible;
     this.lastInputValue = props.inputValue;
   }
-  
-  handleScroll(event) {
-    const  {scrollToEnd} = this.props;
-    let el = event.target;
-    if(el.scrollHeight < el.clientHeight + el.scrollTop + 1) {
-      if(scrollToEnd) {
-        scrollToEnd();
-      }
+
+  componentWillUnmount() {
+    if (this.rafInstance && this.rafInstance.cancel) {
+      this.rafInstance.cancel();
     }
   }
 
-  scrollActiveItemToView() {
+  scrollActiveItemToView = () => {
     // scroll into view
     const itemComponent = findDOMNode(this.firstActiveItem);
-    if (itemComponent) {
-      scrollIntoView(itemComponent, findDOMNode(this.refs.menu), {
-        onlyScrollIfNeeded: true,
-      });
+    const { value, visible, firstActiveValue } = this.props;
+
+    if (!itemComponent || !visible) {
+      return;
     }
-  }
+    const scrollIntoViewOpts = {
+      onlyScrollIfNeeded: true,
+    };
+    if (
+      (!value || value.length === 0) && firstActiveValue
+    ) {
+      scrollIntoViewOpts.alignWithTop = true;
+    }
+
+    // Delay to scroll since current frame item position is not ready when pre view is by filter
+    // https://github.com/ant-design/ant-design/issues/11268#issuecomment-406634462
+    this.rafInstance = raf(() => {
+      scrollIntoView(
+        itemComponent,
+        findDOMNode(this.menuRef),
+        scrollIntoViewOpts
+      );
+    });
+  };
 
   renderMenu() {
     const props = this.props;
     const {
       menuItems,
-      defaultActiveFirstOption, value,
-      clsPrefix, multiple,
-      onMenuSelect, inputValue,
+      menuItemSelectedIcon,
+      defaultActiveFirstOption,
+      value,
+      prefixCls,
+      multiple,
+      onMenuSelect,
+      inputValue,
+      firstActiveValue,
+      backfillValue,
     } = props;
     if (menuItems && menuItems.length) {
       const menuProps = {};
@@ -96,18 +118,23 @@ class DropdownMenu extends Component{
       const activeKeyProps = {};
 
       let clonedMenuItems = menuItems;
-      if (selectedKeys.length) {
+      if (selectedKeys.length || firstActiveValue) {
         if (props.visible && !this.lastVisible) {
-          activeKeyProps.activeKey = selectedKeys[0];
+          activeKeyProps.activeKey = selectedKeys[0] || firstActiveValue;
         }
         let foundFirst = false;
         // set firstActiveItem via cloning menus
         // for scroll into view
-        const clone = (item) => {
-          if (!foundFirst && selectedKeys.indexOf(item.key) !== -1) {
+        const clone = item => {
+          if (
+            (!foundFirst && selectedKeys.indexOf(item.key) !== -1) ||
+            (!foundFirst &&
+              !selectedKeys.length &&
+              firstActiveValue.indexOf(item.key) !== -1)
+          ) {
             foundFirst = true;
             return cloneElement(item, {
-              ref: (ref) => {
+              ref: ref => {
                 this.firstActiveItem = ref;
               },
             });
@@ -116,32 +143,40 @@ class DropdownMenu extends Component{
         };
 
         clonedMenuItems = menuItems.map(item => {
-          if (item.type === MenuItemGroup) {
+          if (item.type.isMenuItemGroup) {
             const children = toArray(item.props.children).map(clone);
             return cloneElement(item, {}, children);
           }
           return clone(item);
         });
+      } else {
+        // Clear firstActiveItem when dropdown menu items was empty
+        // Avoid `Unable to find node on an unmounted component`
+        // https://github.com/ant-design/ant-design/issues/10774
+        this.firstActiveItem = null;
       }
 
       // clear activeKey when inputValue change
-      if (inputValue !== this.lastInputValue) {
+      const lastValue = value && value[value.length - 1];
+      if (inputValue !== this.lastInputValue && (!lastValue || lastValue !== backfillValue)) {
         activeKeyProps.activeKey = '';
       }
-
-      return (<Menu
-        ref="menu"
-        style={this.props.dropdownMenuStyle}
-        defaultActiveFirst={defaultActiveFirstOption}
-        {...activeKeyProps}
-        multiple={multiple}
-        focusable={false}
-        {...menuProps}
-        selectedKeys={selectedKeys}
-        clsPrefix={`${clsPrefix}-menu`}
-      >
-        {clonedMenuItems}
-      </Menu>);
+      return (
+        <Menu
+          ref={this.saveMenuRef}
+          style={this.props.dropdownMenuStyle}
+          defaultActiveFirst={defaultActiveFirstOption}
+          role="listbox"
+          itemIcon={multiple ? menuItemSelectedIcon : null}
+          {...activeKeyProps}
+          multiple={multiple}
+          {...menuProps}
+          selectedKeys={selectedKeys}
+          prefixCls={`${prefixCls}-menu`}
+        >
+          {clonedMenuItems}
+        </Menu>
+      );
     }
     return null;
   }
@@ -150,14 +185,16 @@ class DropdownMenu extends Component{
     const renderMenu = this.renderMenu();
     return renderMenu ? (
       <div
-        style={{ overflow: 'auto' }}
+        style={{
+          overflow: 'auto',
+          transform: 'translateZ(0)',
+        }}
         onFocus={this.props.onPopupFocus}
         onMouseDown={preventDefaultEvent}
+        onScroll={this.props.onPopupScroll}
       >
         {renderMenu}
       </div>
     ) : null;
   }
-};
-
-export default DropdownMenu;
+}

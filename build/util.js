@@ -4,22 +4,29 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.UNSELECTABLE_ATTRIBUTE = exports.UNSELECTABLE_STYLE = undefined;
+
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+
+exports.toTitle = toTitle;
 exports.getValuePropValue = getValuePropValue;
 exports.getPropValue = getPropValue;
+exports.isMultiple = isMultiple;
 exports.isCombobox = isCombobox;
 exports.isMultipleOrTags = isMultipleOrTags;
 exports.isMultipleOrTagsOrCombobox = isMultipleOrTagsOrCombobox;
 exports.isSingleMode = isSingleMode;
 exports.toArray = toArray;
+exports.getMapKey = getMapKey;
 exports.preventDefaultEvent = preventDefaultEvent;
-exports.findIndexInValueByKey = findIndexInValueByKey;
-exports.findIndexInValueByLabel = findIndexInValueByLabel;
+exports.findIndexInValueBySingleValue = findIndexInValueBySingleValue;
+exports.getLabelFromPropsValue = getLabelFromPropsValue;
 exports.getSelectKeys = getSelectKeys;
 exports.findFirstMenuItem = findFirstMenuItem;
 exports.includesSeparators = includesSeparators;
 exports.splitBySeparators = splitBySeparators;
-
-var _beeMenus = require('bee-menus');
+exports.defaultFilterFn = defaultFilterFn;
+exports.validateOptionValue = validateOptionValue;
+exports.saveRef = saveRef;
 
 var _react = require('react');
 
@@ -27,27 +34,29 @@ var _react2 = _interopRequireDefault(_react);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
-function getValuePropValue(child) {
-  //传入option标签 + 动态生成option数组
-  if (child instanceof Array) {
-    child.forEach(function (_child) {
-      if ('value' in _child.props) {
-        return _child.props.value;
-      }
-      if (_child.key) {
-        return _child.key;
-      }
-    });
-  } else {
-    var props = child.props;
-    if ('value' in props) {
-      return props.value;
-    }
-    if (child.key) {
-      return child.key;
-    }
-    throw new Error('no key or value for ' + child);
+function toTitle(title) {
+  if (typeof title === 'string') {
+    return title;
   }
+  return null;
+}
+
+function getValuePropValue(child) {
+  if (!child) {
+    return null;
+  }
+
+  var props = child.props;
+  if ('value' in props) {
+    return props.value;
+  }
+  if (child.key) {
+    return child.key;
+  }
+  if (child.type && child.type.isSelectOptGroup && props.label) {
+    return props.label;
+  }
+  throw new Error('Need at least a key or a value or a label (only for OptGroup) for ' + child);
 }
 
 function getPropValue(child, prop) {
@@ -55,6 +64,10 @@ function getPropValue(child, prop) {
     return getValuePropValue(child);
   }
   return child.props[prop];
+}
+
+function isMultiple(props) {
+  return props.multiple;
 }
 
 function isCombobox(props) {
@@ -83,14 +96,18 @@ function toArray(value) {
   return ret;
 }
 
+function getMapKey(value) {
+  return (typeof value === 'undefined' ? 'undefined' : _typeof(value)) + '-' + value;
+}
+
 function preventDefaultEvent(e) {
   e.preventDefault();
 }
 
-function findIndexInValueByKey(value, key) {
+function findIndexInValueBySingleValue(value, singleValue) {
   var index = -1;
   for (var i = 0; i < value.length; i++) {
-    if (value[i].key === key) {
+    if (value[i] === singleValue) {
       index = i;
       break;
     }
@@ -98,15 +115,16 @@ function findIndexInValueByKey(value, key) {
   return index;
 }
 
-function findIndexInValueByLabel(value, label) {
-  var index = -1;
+function getLabelFromPropsValue(value, key) {
+  var label = void 0;
+  value = toArray(value);
   for (var i = 0; i < value.length; i++) {
-    if (toArray(value[i].label).join('') === label) {
-      index = i;
+    if (value[i].key === key) {
+      label = value[i].label;
       break;
     }
   }
-  return index;
+  return label;
 }
 
 function getSelectKeys(menuItems, value) {
@@ -115,12 +133,12 @@ function getSelectKeys(menuItems, value) {
   }
   var selectedKeys = [];
   _react2["default"].Children.forEach(menuItems, function (item) {
-    if (item.type === _beeMenus.ItemGroup) {
+    if (item.type.isMenuItemGroup) {
       selectedKeys = selectedKeys.concat(getSelectKeys(item.props.children, value));
     } else {
       var itemValue = getValuePropValue(item);
       var itemKey = item.key;
-      if (findIndexInValueByKey(value, itemValue) !== -1 && itemKey) {
+      if (findIndexInValueBySingleValue(value, itemValue) !== -1 && itemKey) {
         selectedKeys.push(itemKey);
       }
     }
@@ -134,13 +152,13 @@ var UNSELECTABLE_STYLE = exports.UNSELECTABLE_STYLE = {
 };
 
 var UNSELECTABLE_ATTRIBUTE = exports.UNSELECTABLE_ATTRIBUTE = {
-  unselectable: 'unselectable'
+  unselectable: 'on'
 };
 
 function findFirstMenuItem(children) {
   for (var i = 0; i < children.length; i++) {
     var child = children[i];
-    if (child.type === _beeMenus.ItemGroup) {
+    if (child.type.isMenuItemGroup) {
       var found = findFirstMenuItem(child.props.children);
       if (found) {
         return found;
@@ -163,12 +181,30 @@ function includesSeparators(string, separators) {
 
 function splitBySeparators(string, separators) {
   var reg = new RegExp('[' + separators.join() + ']');
-  var array = string.split(reg);
-  if (array[0] === '') {
-    array.shift();
+  return string.split(reg).filter(function (token) {
+    return token;
+  });
+}
+
+function defaultFilterFn(input, child) {
+  if (child.props.disabled) {
+    return false;
   }
-  if (array[array.length - 1] === '') {
-    array.pop();
+  var value = toArray(getPropValue(child, this.props.optionFilterProp)).join('');
+  return value.toLowerCase().indexOf(input.toLowerCase()) > -1;
+}
+
+function validateOptionValue(value, props) {
+  if (isSingleMode(props) || isMultiple(props)) {
+    return;
   }
-  return array;
+  if (typeof value !== 'string') {
+    throw new Error('Invalid `value` of type `' + (typeof value === 'undefined' ? 'undefined' : _typeof(value)) + '` supplied to Option, ' + 'expected `string` when `tags/combobox` is `true`.');
+  }
+}
+
+function saveRef(instance, name) {
+  return function (node) {
+    instance[name] = node;
+  };
 }

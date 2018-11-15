@@ -896,7 +896,8 @@ ul {
     zoom: 1;
     position: absolute;
     right: 4px;
-    padding: 0 0 0 8px; }
+    padding: 0 0 0 8px;
+    top: -3px; }
   .u-select-selection--multiple .u-select-selection-choice-remove:before {
     display: block;
     font-family: "uf"; }

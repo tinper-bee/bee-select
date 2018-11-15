@@ -369,6 +369,7 @@ ul {
         position: absolute;
         right: 4px;
         padding: 0 0 0 8px;
+        top: -3px;
     }
     .u-select-selection-choice-remove:before {
         display: block;
@@ -445,7 +446,7 @@ ul {
     outline: none;
     overflow: hidden;
     font-size: 12px;
-    // -webkit-animation: moveFromTop 300ms ease-in;
+    // -webkit-animation: uSlideUpIn 300ms ease-in;
     // animation: uSlideUpIn 300ms ease;
     &.slide-up-enter.slide-up-enter-active.u-select-dropdown-placement-bottomLeft,
     &.slide-up-appear.slide-up-appear-active.u-select-dropdown-placement-bottomLeft {

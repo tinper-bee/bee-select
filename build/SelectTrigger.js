@@ -6,21 +6,21 @@ Object.defineProperty(exports, "__esModule", {
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
-var _trigger = require('bee-overlay/build/trigger');
+var _rcTrigger = require('rc-trigger');
 
-var _trigger2 = _interopRequireDefault(_trigger);
+var _rcTrigger2 = _interopRequireDefault(_rcTrigger);
 
 var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
 
+var _propTypes = require('prop-types');
+
+var _propTypes2 = _interopRequireDefault(_propTypes);
+
 var _classnames = require('classnames');
 
 var _classnames2 = _interopRequireDefault(_classnames);
-
-var _DropdownMenu = require('./DropdownMenu');
-
-var _DropdownMenu2 = _interopRequireDefault(_DropdownMenu);
 
 var _reactDom = require('react-dom');
 
@@ -28,9 +28,9 @@ var _reactDom2 = _interopRequireDefault(_reactDom);
 
 var _util = require('./util');
 
-var _propTypes = require('prop-types');
+var _DropdownMenu = require('./DropdownMenu');
 
-var _propTypes2 = _interopRequireDefault(_propTypes);
+var _DropdownMenu2 = _interopRequireDefault(_DropdownMenu);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
@@ -45,6 +45,8 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : _defaults(subClass, superClass); }
+
+_rcTrigger2["default"].displayName = 'Trigger';
 
 var BUILT_IN_PLACEMENTS = {
   bottomLeft: {
@@ -65,104 +67,37 @@ var BUILT_IN_PLACEMENTS = {
   }
 };
 
-var propTypes = {
-  onPopupFocus: _propTypes2["default"].func,
-  dropdownMatchSelectWidth: _propTypes2["default"].bool,
-  dropdownAlign: _propTypes2["default"].object,
-  visible: _propTypes2["default"].bool,
-  disabled: _propTypes2["default"].bool,
-  showSearch: _propTypes2["default"].bool,
-  dropdownClassName: _propTypes2["default"].string,
-  multiple: _propTypes2["default"].bool,
-  inputValue: _propTypes2["default"].string,
-  filterOption: _propTypes2["default"].any,
-  options: _propTypes2["default"].any,
-  clsPrefix: _propTypes2["default"].string,
-  popupClassName: _propTypes2["default"].string,
-  children: _propTypes2["default"].any
-};
-
-var SelectTrigger = function (_Component) {
-  _inherits(SelectTrigger, _Component);
+var SelectTrigger = function (_React$Component) {
+  _inherits(SelectTrigger, _React$Component);
 
   function SelectTrigger(props) {
     _classCallCheck(this, SelectTrigger);
 
-    var _this = _possibleConstructorReturn(this, _Component.call(this, props));
+    var _this = _possibleConstructorReturn(this, _React$Component.call(this, props));
 
-    _this.setDropdownWidth = function () {
-      if (!_this.props.dropdownMatchSelectWidth) {
-        return;
-      }
-      var width = _reactDom2["default"].findDOMNode(_this).offsetWidth;
-      if (width !== _this.state.dropdownWidth) {
-        _this.setState({ dropdownWidth: width });
-      }
-    };
+    _initialiseProps.call(_this);
 
-    _this.getInnerMenu = _this.getInnerMenu.bind(_this);
-    _this.getPopupDOMNode = _this.getPopupDOMNode.bind(_this);
-    _this.getDropdownTransitionName = _this.getDropdownTransitionName.bind(_this);
-    _this.getDropdownElement = _this.getDropdownElement.bind(_this);
-    _this.getDropdownPrefixCls = _this.getDropdownPrefixCls.bind(_this);
-    _this.saveMenu = _this.saveMenu.bind(_this);
+    _this.saveDropdownMenuRef = (0, _util.saveRef)(_this, 'dropdownMenuRef');
+    _this.saveTriggerRef = (0, _util.saveRef)(_this, 'triggerRef');
+
     _this.state = {
       dropdownWidth: null
     };
-
     return _this;
   }
 
   SelectTrigger.prototype.componentDidMount = function componentDidMount() {
     if (this.props.open) {
+      //宽度计算时机修改
       this.setDropdownWidth();
     }
   };
 
   SelectTrigger.prototype.componentDidUpdate = function componentDidUpdate() {
     if (this.props.visible) {
+      //宽度计算时机修改
       this.setDropdownWidth();
     }
-  };
-
-  SelectTrigger.prototype.getInnerMenu = function getInnerMenu() {
-    return this.popupMenu && this.popupMenu.refs.menu;
-  };
-
-  SelectTrigger.prototype.getPopupDOMNode = function getPopupDOMNode() {
-    return this.refs.trigger.getPopupDomNode();
-  };
-
-  SelectTrigger.prototype.getDropdownElement = function getDropdownElement(newProps) {
-    var props = this.props;
-    return _react2["default"].createElement(_DropdownMenu2["default"], _extends({
-      ref: this.saveMenu
-    }, newProps, {
-      clsPrefix: this.getDropdownPrefixCls(),
-      onMenuSelect: props.onMenuSelect,
-      scrollToEnd: props.scrollToEnd,
-      onMenuDeselect: props.onMenuDeselect,
-      value: props.value,
-      defaultActiveFirstOption: props.defaultActiveFirstOption,
-      dropdownMenuStyle: props.dropdownMenuStyle
-    }));
-  };
-
-  SelectTrigger.prototype.getDropdownTransitionName = function getDropdownTransitionName() {
-    var props = this.props;
-    var transitionName = props.transitionName;
-    if (!transitionName && props.animation) {
-      transitionName = this.getDropdownPrefixCls() + '-' + props.animation;
-    }
-    return transitionName;
-  };
-
-  SelectTrigger.prototype.getDropdownPrefixCls = function getDropdownPrefixCls() {
-    return this.props.clsPrefix + '-dropdown';
-  };
-
-  SelectTrigger.prototype.saveMenu = function saveMenu(menu) {
-    this.popupMenu = menu;
   };
 
   SelectTrigger.prototype.render = function render() {
@@ -204,17 +139,18 @@ var SelectTrigger = function (_Component) {
     if (this.state.dropdownWidth) {
       popupStyle[widthProp] = this.state.dropdownWidth + 'px';
     }
+
     return _react2["default"].createElement(
-      _trigger2["default"],
+      _rcTrigger2["default"],
       _extends({}, props, {
-        showAction: disabled ? [] : ['click'],
+        showAction: disabled ? [] : this.props.showAction,
         hideAction: hideAction,
-        ref: 'trigger',
+        ref: this.saveTriggerRef,
         popupPlacement: 'bottomLeft',
         builtinPlacements: BUILT_IN_PLACEMENTS,
-        clsPrefix: dropdownPrefixCls
-        // popupTransitionName={this.getDropdownTransitionName()}
-        , onPopupVisibleChange: props.onDropdownVisibleChange,
+        prefixCls: dropdownPrefixCls,
+        popupTransitionName: this.getDropdownTransitionName(),
+        onPopupVisibleChange: props.onDropdownVisibleChange,
         popup: popupElement,
         popupAlign: dropdownAlign,
         popupVisible: visible,
@@ -227,11 +163,83 @@ var SelectTrigger = function (_Component) {
   };
 
   return SelectTrigger;
-}(_react.Component);
+}(_react2["default"].Component);
 
-;
+SelectTrigger.propTypes = {
+  onPopupFocus: _propTypes2["default"].func,
+  onPopupScroll: _propTypes2["default"].func,
+  dropdownMatchSelectWidth: _propTypes2["default"].bool,
+  dropdownAlign: _propTypes2["default"].object,
+  visible: _propTypes2["default"].bool,
+  disabled: _propTypes2["default"].bool,
+  showSearch: _propTypes2["default"].bool,
+  dropdownClassName: _propTypes2["default"].string,
+  multiple: _propTypes2["default"].bool,
+  inputValue: _propTypes2["default"].string,
+  filterOption: _propTypes2["default"].any,
+  options: _propTypes2["default"].any,
+  prefixCls: _propTypes2["default"].string,
+  popupClassName: _propTypes2["default"].string,
+  children: _propTypes2["default"].any,
+  showAction: _propTypes2["default"].arrayOf(_propTypes2["default"].string),
+  menuItemSelectedIcon: _propTypes2["default"].oneOfType([_propTypes2["default"].func, _propTypes2["default"].node])
+};
 
-SelectTrigger.propTypes = propTypes;
+var _initialiseProps = function _initialiseProps() {
+  var _this2 = this;
+
+  this.setDropdownWidth = function () {
+    if (!_this2.props.dropdownMatchSelectWidth) {
+      return;
+    }
+    var width = _reactDom2["default"].findDOMNode(_this2).offsetWidth;
+    if (width !== _this2.state.dropdownWidth) {
+      _this2.setState({ dropdownWidth: width });
+    }
+  };
+
+  this.getInnerMenu = function () {
+    return _this2.dropdownMenuRef && _this2.dropdownMenuRef.menuRef;
+  };
+
+  this.getPopupDOMNode = function () {
+    return _this2.triggerRef.getPopupDomNode();
+  };
+
+  this.getDropdownElement = function (newProps) {
+    var props = _this2.props;
+    return _react2["default"].createElement(_DropdownMenu2["default"], _extends({
+      ref: _this2.saveDropdownMenuRef
+    }, newProps, {
+      prefixCls: _this2.getDropdownPrefixCls(),
+      onMenuSelect: props.onMenuSelect,
+      onMenuDeselect: props.onMenuDeselect,
+      onPopupScroll: props.onPopupScroll,
+      value: props.value,
+      backfillValue: props.backfillValue,
+      firstActiveValue: props.firstActiveValue,
+      defaultActiveFirstOption: props.defaultActiveFirstOption,
+      dropdownMenuStyle: props.dropdownMenuStyle,
+      menuItemSelectedIcon: props.menuItemSelectedIcon
+    }));
+  };
+
+  this.getDropdownTransitionName = function () {
+    var props = _this2.props;
+    var transitionName = props.transitionName;
+    if (!transitionName && props.animation) {
+      transitionName = _this2.getDropdownPrefixCls() + '-' + props.animation;
+    }
+    return transitionName;
+  };
+
+  this.getDropdownPrefixCls = function () {
+    return _this2.props.prefixCls + '-dropdown';
+  };
+};
 
 exports["default"] = SelectTrigger;
+
+
+SelectTrigger.displayName = 'SelectTrigger';
 module.exports = exports['default'];
