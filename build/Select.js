@@ -342,7 +342,7 @@ Select.defaultProps = {
   dropdownStyle: {},
   dropdownMenuStyle: {},
   optionFilterProp: 'value',
-  optionLabelProp: 'value',
+  optionLabelProp: 'children',
   notFoundContent: 'Not Found',
   backfill: false,
   showAction: ['click'],

@@ -19,16 +19,16 @@ class Demo1 extends Component {
       <div>
         <Select
           size="lg"
-          defaultValue="lucy"
+          defaultValue="1"
           style={{ width: 200, marginRight: 6 }}
           onChange={this.handleChange}
         >
-          <Option value="jack">boyuzhou111</Option>
-          <Option value="lucy">renhualiu</Option>
-          <Option value="disabled" disabled>
-            Disabled
+          <Option value="1">一</Option>
+          <Option value="2">二</Option>
+          <Option value="3" disabled>
+            第三
           </Option>
-          <Option value="yiminghe">yuzhao</Option>
+          <Option value="4">四</Option>
         </Select>
         <Select
           defaultValue="lucy"
