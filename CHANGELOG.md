@@ -1,3 +1,13 @@
+<a name="1.1.2"></a>
+## [1.1.2](https://github.com/tinper-bee/bee-select/compare/v1.1.1...v1.1.2) (2018-11-15)
+
+
+### Bug Fixes
+
+* **bee-select:** 支持data ([765ea3d](https://github.com/tinper-bee/bee-select/commit/765ea3d))
+
+
+
 <a name="1.1.1"></a>
 ## [1.1.1](https://github.com/tinper-bee/bee-select/compare/v1.0.26...v1.1.1) (2018-11-15)
 
