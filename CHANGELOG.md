@@ -1,3 +1,13 @@
+<a name="1.1.1"></a>
+## [1.1.1](https://github.com/tinper-bee/bee-select/compare/v1.0.26...v1.1.1) (2018-11-15)
+
+
+### Features
+
+* **bee-select:** 键盘操作功能 ([c59f1eb](https://github.com/tinper-bee/bee-select/commit/c59f1eb))
+
+
+
 <a name="1.0.26"></a>
 ## [1.0.26](https://github.com/tinper-bee/bee-select/compare/v1.0.25...v1.0.26) (2018-11-15)
 
