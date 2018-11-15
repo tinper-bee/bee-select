@@ -1,3 +1,13 @@
+<a name="1.1.3"></a>
+## [1.1.3](https://github.com/tinper-bee/bee-select/compare/v1.1.2...v1.1.3) (2018-11-15)
+
+
+### Features
+
+* **bee-select:** onClick出发onFocus ([98c900a](https://github.com/tinper-bee/bee-select/commit/98c900a))
+
+
+
 <a name="1.1.2"></a>
 ## [1.1.2](https://github.com/tinper-bee/bee-select/compare/v1.1.1...v1.1.2) (2018-11-15)
 
