@@ -27,7 +27,7 @@
 |optionLabelProp|回填到选择框的 Option 的属性值，默认是 Option 的子元素。比如在子元素需要高亮效果时，此值可以设为 value|string/number|children （combobox 模式下)为 value|
 |combobox|输入框自动提示模式|bool|false|
 |size|选择框大小，可选 lg sm|string|default|
-|showSearch|在选择框中显示搜索框|bool|false|
+|showSearch|是否可以输入搜索|bool|false|
 |disabled|是否禁用|bool|false|
 |defaultActiveFirstOption|是否默认高亮第一个选项|bool|true|
 |dropdownStyle|下拉菜单的 style 属性|object|-|

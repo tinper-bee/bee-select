@@ -327,7 +327,7 @@ Select.defaultProps = {
   defaultOpen: false,
   labelInValue: false,
   defaultActiveFirstOption: true,
-  showSearch: true,
+  showSearch: false,
   allowClear: false,
   placeholder: '',
   onChange: noop,
