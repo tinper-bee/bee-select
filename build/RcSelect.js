@@ -284,7 +284,8 @@ var Select = function (_React$Component) {
           ref: this.saveRootRef,
           onBlur: this.onOuterBlur,
           onFocus: this.onOuterFocus,
-          className: (0, _classnames3["default"])(rootCls),
+          onClick: this.onOuterClick //sp
+          , className: (0, _classnames3["default"])(rootCls),
           onMouseDown: this.markMouseDown,
           onMouseUp: this.markMouseLeave,
           onMouseOut: this.markMouseLeave
@@ -348,9 +349,7 @@ Select.defaultProps = {
   showAction: ['click'],
   tokenSeparators: [],
   autoClearSearchValue: true,
-  onKeyDown: function onKeyDown() {
-    console.log('keydown');
-  }
+  onKeyDown: noop
 };
 
 Select.getDerivedStateFromProps = function (nextProps, prevState) {
@@ -513,7 +512,7 @@ var _initialiseProps = function _initialiseProps() {
       if (!open) _this2.setOpenState(true);
       event.preventDefault();
     }
-    onKeyDown(event);
+    onKeyDown(event); //sp
   };
 
   this.onInputKeyDown = function (event) {
@@ -549,6 +548,7 @@ var _initialiseProps = function _initialiseProps() {
         event.preventDefault();
         event.stopPropagation();
       }
+      if (props.showSearch) props.onKeyDown(event); //sp
       return;
     }
 
@@ -1472,6 +1472,13 @@ var _initialiseProps = function _initialiseProps() {
       _this2.getPlaceholderElement(),
       innerNode
     );
+  };
+
+  this.onOuterClick = function (event) {
+    //sp:在不能输入的情况下，点击事件触发focus
+    _this2._focused = true;
+    _this2.updateFocusClassName();
+    _this2.props.onFocus(_this2.state.value);
   };
 };
 

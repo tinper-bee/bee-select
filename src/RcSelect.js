@@ -80,7 +80,7 @@ class Select extends React.Component {
     showAction: ['click'],
     tokenSeparators: [],
     autoClearSearchValue: true,
-    onKeyDown:()=>{console.log('keydown')}
+    onKeyDown:noop
   };
 
   constructor(props) {
@@ -190,7 +190,7 @@ class Select extends React.Component {
       if (!open) this.setOpenState(true);
       event.preventDefault();
     }
-    onKeyDown(event)
+    onKeyDown(event);//sp
   };
 
   onInputKeyDown = event => {
@@ -229,6 +229,7 @@ class Select extends React.Component {
         event.preventDefault();
         event.stopPropagation();
       }
+      if(props.showSearch)props.onKeyDown(event);//sp
       return;
     }
 
@@ -239,6 +240,7 @@ class Select extends React.Component {
         event.stopPropagation();
       }
     }
+
   };
 
   onMenuSelect = ({ item }) => {
@@ -1300,6 +1302,12 @@ class Select extends React.Component {
     return null;
   }
 
+  onOuterClick=(event)=>{//sp:在不能输入的情况下，点击事件触发focus
+    this._focused = true;
+    this.updateFocusClassName();
+    this.props.onFocus(this.state.value); 
+  }
+  
   render() {
     const props = this.props;
     const multiple = isMultipleOrTags(props);
@@ -1380,6 +1388,7 @@ class Select extends React.Component {
           ref={this.saveRootRef}
           onBlur={this.onOuterBlur}
           onFocus={this.onOuterFocus}
+          onClick={this.onOuterClick}//sp
           className={classnames(rootCls)}
           onMouseDown={this.markMouseDown}
           onMouseUp={this.markMouseLeave}

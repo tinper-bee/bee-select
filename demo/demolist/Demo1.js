@@ -34,6 +34,7 @@ class Demo1 extends Component {
           defaultValue="lucy"
           style={{ width: 200, marginRight: 6 }}
           onChange={this.handleChange}
+          showSearch={true}
         >
           <Option value="jack">boyuzhou</Option>
           <Option value="lucy">renhualiu</Option>
