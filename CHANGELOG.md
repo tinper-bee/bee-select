@@ -1,3 +1,13 @@
+<a name="1.0.26"></a>
+## [1.0.26](https://github.com/tinper-bee/bee-select/compare/v1.0.25...v1.0.26) (2018-11-15)
+
+
+### Features
+
+* **bee-select:** 键盘快捷键bug修改 ([e325eeb](https://github.com/tinper-bee/bee-select/commit/e325eeb))
+
+
+
 <a name="1.0.25"></a>
 ## [1.0.25](https://github.com/tinper-bee/bee-select/compare/v1.0.24...v1.0.25) (2018-11-13)
 
