@@ -8599,7 +8599,8 @@
 	          }, extraSelectionProps),
 	          ctrlNode,
 	          this.renderClear(),
-	          multiple || !props.showArrow ? null : _react2['default'].createElement(
+	          !props.showArrow ? null : //sp
+	          _react2['default'].createElement(
 	            'span',
 	            _extends({
 	              key: 'arrow',
