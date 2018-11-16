@@ -1,3 +1,13 @@
+<a name="1.1.4"></a>
+## [1.1.4](https://github.com/tinper-bee/bee-select/compare/v1.1.3...v1.1.4) (2018-11-16)
+
+
+### Bug Fixes
+
+* **bee-select:** 多选下拉箭头 ([e6b7a1a](https://github.com/tinper-bee/bee-select/commit/e6b7a1a))
+
+
+
 <a name="1.1.3"></a>
 ## [1.1.3](https://github.com/tinper-bee/bee-select/compare/v1.1.2...v1.1.3) (2018-11-15)
 
