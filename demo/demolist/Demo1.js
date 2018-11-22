@@ -19,14 +19,15 @@ class Demo1 extends Component {
       <div>
         <Select
           size="lg"
-          defaultValue="1"
+          defaultValue="1" 
+          onFocus={(v)=>{console.log('focus',v)}}
           style={{ width: 200, marginRight: 6 }}
           onChange={this.handleChange}
         >
           <Option value="1">一</Option>
           <Option value="2">二</Option>
           <Option value="3" disabled>
-            第三
+            三
           </Option>
           <Option value="4">四</Option>
         </Select>

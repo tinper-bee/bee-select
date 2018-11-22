@@ -620,6 +620,7 @@ var _initialiseProps = function _initialiseProps() {
   this.onArrowClick = function (e) {
     e.stopPropagation();
     e.preventDefault();
+    _this2.props.onFocus(_this2.state.value);
     if (!_this2.props.disabled) {
       _this2.setOpenState(!_this2.state.open, !_this2.state.open);
     }

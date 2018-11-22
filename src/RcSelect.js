@@ -299,6 +299,7 @@ class Select extends React.Component {
   onArrowClick = e => {
     e.stopPropagation();
     e.preventDefault();
+    this.props.onFocus(this.state.value);
     if (!this.props.disabled) {
       this.setOpenState(!this.state.open, !this.state.open);
     }
