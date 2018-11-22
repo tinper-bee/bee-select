@@ -1,3 +1,13 @@
+<a name="1.1.5"></a>
+## [1.1.5](https://github.com/tinper-bee/bee-select/compare/v1.1.4...v1.1.5) (2018-11-22)
+
+
+### Features
+
+* **bee-select:** 下拉箭头触发focus ([2ab192a](https://github.com/tinper-bee/bee-select/commit/2ab192a))
+
+
+
 <a name="1.1.4"></a>
 ## [1.1.4](https://github.com/tinper-bee/bee-select/compare/v1.1.3...v1.1.4) (2018-11-16)
 
