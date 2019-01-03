@@ -123,6 +123,16 @@ import "./node_modules/build/bee-select.css"
 |label|组名|string/react element|-|
 |mode||string|-|
 
+
+## 已支持的键盘操作
+
+|按键|功能|
+|:---|:----|
+|↑(上箭)|切换选项|
+|↓(下箭) |切换选项|
+|esc |关闭下拉项|
+|enter | 选中下拉框|
+
 ## 注意
 
 在Modal组件中，使用Select组件时，需要使用getPopupContainer,来让下拉显示在modal上。
@@ -136,6 +146,7 @@ return (
 )
 
 ```
+
 
 #### 开发调试
 
