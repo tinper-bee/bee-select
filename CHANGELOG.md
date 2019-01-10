@@ -1,3 +1,13 @@
+<a name="1.0.27"></a>
+## [1.0.27](https://github.com/tinper-bee/bee-select/compare/v1.0.25...v1.0.27) (2019-01-10)
+
+
+### Bug Fixes
+
+* **bee-select:** 写死bee-menus版本 ([37b37df](https://github.com/tinper-bee/bee-select/commit/37b37df))
+
+
+
 <a name="1.0.25"></a>
 ## [1.0.25](https://github.com/tinper-bee/bee-select/compare/v1.0.24...v1.0.25) (2018-11-13)
 
