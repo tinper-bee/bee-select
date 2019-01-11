@@ -6,9 +6,9 @@ Object.defineProperty(exports, "__esModule", {
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
-var _rcTrigger = require('rc-trigger');
+var _trigger = require('bee-overlay/build/trigger');
 
-var _rcTrigger2 = _interopRequireDefault(_rcTrigger);
+var _trigger2 = _interopRequireDefault(_trigger);
 
 var _react = require('react');
 
@@ -44,9 +44,10 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : _defaults(subClass, superClass); }
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : _defaults(subClass, superClass); } // import Trigger from 'rc-trigger';
 
-_rcTrigger2["default"].displayName = 'Trigger';
+
+_trigger2["default"].displayName = 'Trigger';
 
 var BUILT_IN_PLACEMENTS = {
   bottomLeft: {
@@ -141,7 +142,7 @@ var SelectTrigger = function (_React$Component) {
     }
 
     return _react2["default"].createElement(
-      _rcTrigger2["default"],
+      _trigger2["default"],
       _extends({}, props, {
         showAction: disabled ? [] : this.props.showAction,
         hideAction: hideAction,
@@ -211,7 +212,7 @@ var _initialiseProps = function _initialiseProps() {
     return _react2["default"].createElement(_DropdownMenu2["default"], _extends({
       ref: _this2.saveDropdownMenuRef
     }, newProps, {
-      prefixCls: _this2.getDropdownPrefixCls(),
+      clsPrefix: _this2.getDropdownPrefixCls(),
       onMenuSelect: props.onMenuSelect,
       onMenuDeselect: props.onMenuDeselect,
       onPopupScroll: props.onPopupScroll,

@@ -16,9 +16,7 @@ var _propTypes = require('prop-types');
 
 var _propTypes2 = _interopRequireDefault(_propTypes);
 
-var _toArray = require('rc-util/lib/Children/toArray');
-
-var _toArray2 = _interopRequireDefault(_toArray);
+var _tinperBeeCore = require('tinper-bee-core');
 
 var _rcMenu = require('rc-menu');
 
@@ -124,7 +122,8 @@ var DropdownMenu = function (_React$Component) {
         onMenuSelect = props.onMenuSelect,
         inputValue = props.inputValue,
         firstActiveValue = props.firstActiveValue,
-        backfillValue = props.backfillValue;
+        backfillValue = props.backfillValue,
+        clsPrefix = props.clsPrefix;
 
     if (menuItems && menuItems.length) {
       var menuProps = {};
@@ -160,7 +159,7 @@ var DropdownMenu = function (_React$Component) {
 
         clonedMenuItems = menuItems.map(function (item) {
           if (item.type.isMenuItemGroup) {
-            var children = (0, _toArray2["default"])(item.props.children).map(clone);
+            var children = (0, _tinperBeeCore.toArray)(item.props.children).map(clone);
             return (0, _react.cloneElement)(item, {}, children);
           }
           return clone(item);
@@ -189,7 +188,7 @@ var DropdownMenu = function (_React$Component) {
           multiple: multiple
         }, menuProps, {
           selectedKeys: selectedKeys,
-          prefixCls: prefixCls + '-menu'
+          prefixCls: 'u-menu'
         }),
         clonedMenuItems
       );

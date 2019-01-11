@@ -1,7 +1,7 @@
 import React, { cloneElement } from 'react';
 import { findDOMNode } from 'react-dom';
 import PropTypes from 'prop-types';
-import toArray from 'rc-util/lib/Children/toArray';
+import { toArray  } from 'tinper-bee-core';
 import Menu from 'rc-menu';
 import scrollIntoView from 'dom-scroll-into-view';
 import raf from 'raf';
@@ -103,7 +103,7 @@ export default class DropdownMenu extends React.Component {
       onMenuSelect,
       inputValue,
       firstActiveValue,
-      backfillValue,
+      backfillValue,clsPrefix
     } = props;
     if (menuItems && menuItems.length) {
       const menuProps = {};
@@ -172,7 +172,7 @@ export default class DropdownMenu extends React.Component {
           multiple={multiple}
           {...menuProps}
           selectedKeys={selectedKeys}
-          prefixCls={`${prefixCls}-menu`}
+          prefixCls={`u-menu`}
         >
           {clonedMenuItems}
         </Menu>

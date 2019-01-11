@@ -4,8 +4,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { polyfill } from 'react-lifecycles-compat';
-import { KeyCode } from 'tinper-bee-core';
-import childrenToArray from 'rc-util/lib/Children/toArray';
+import { KeyCode, toArray as childrenToArray  } from 'tinper-bee-core';
 import classnames from 'classnames';
 import Animate from 'bee-animate';
 import classes from 'component-classes';
@@ -1381,6 +1380,7 @@ class Select extends React.Component {
         onPopupScroll={props.onPopupScroll}
         showAction={props.showAction}
         ref={this.saveSelectTriggerRef}
+        clsPrefix={`${props.clsPrefix}-dropdown`}
         menuItemSelectedIcon={props.menuItemSelectedIcon}
       >
         <div

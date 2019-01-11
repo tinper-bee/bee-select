@@ -18,10 +18,6 @@ var _reactLifecyclesCompat = require('react-lifecycles-compat');
 
 var _tinperBeeCore = require('tinper-bee-core');
 
-var _toArray = require('rc-util/lib/Children/toArray');
-
-var _toArray2 = _interopRequireDefault(_toArray);
-
 var _classnames2 = require('classnames');
 
 var _classnames3 = _interopRequireDefault(_classnames2);
@@ -274,6 +270,7 @@ var Select = function (_React$Component) {
         onPopupScroll: props.onPopupScroll,
         showAction: props.showAction,
         ref: this.saveSelectTriggerRef,
+        clsPrefix: props.clsPrefix + '-dropdown',
         menuItemSelectedIcon: props.menuItemSelectedIcon
       },
       _react2["default"].createElement(
@@ -1152,7 +1149,7 @@ var _initialiseProps = function _initialiseProps() {
   };
 
   this.isChildDisabled = function (key) {
-    return (0, _toArray2["default"])(_this2.props.children).some(function (child) {
+    return (0, _tinperBeeCore.toArray)(_this2.props.children).some(function (child) {
       var childValue = (0, _util.getValuePropValue)(child);
       return childValue === key && child.props && child.props.disabled;
     });

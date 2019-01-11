@@ -1,4 +1,5 @@
-import Trigger from 'rc-trigger';
+// import Trigger from 'rc-trigger';
+import Trigger from 'bee-overlay/build/trigger';
 import React from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
@@ -98,7 +99,7 @@ export default class SelectTrigger extends React.Component {
       <DropdownMenu
         ref={this.saveDropdownMenuRef}
         {...newProps}
-        prefixCls={this.getDropdownPrefixCls()}
+        clsPrefix={this.getDropdownPrefixCls()}
         onMenuSelect={props.onMenuSelect}
         onMenuDeselect={props.onMenuDeselect}
         onPopupScroll={props.onPopupScroll}
