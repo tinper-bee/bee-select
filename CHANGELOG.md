@@ -1,3 +1,13 @@
+<a name="1.1.6"></a>
+## [1.1.6](https://github.com/tinper-bee/bee-select/compare/v1.1.5...v1.1.6) (2019-01-11)
+
+
+### Bug Fixes
+
+* **bee-select:** 修改Trigger从bee-overlay引入 ([c31e336](https://github.com/tinper-bee/bee-select/commit/c31e336))
+
+
+
 <a name="1.1.5"></a>
 ## [1.1.5](https://github.com/tinper-bee/bee-select/compare/v1.1.4...v1.1.5) (2018-11-22)
 
