@@ -21399,7 +21399,7 @@
 	          multiple: multiple
 	        }, menuProps, {
 	          selectedKeys: selectedKeys,
-	          prefixCls: 'u-menu'
+	          prefixCls: clsPrefix + '-menu'
 	        }),
 	        clonedMenuItems
 	      );

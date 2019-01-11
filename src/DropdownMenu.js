@@ -172,7 +172,7 @@ export default class DropdownMenu extends React.Component {
           multiple={multiple}
           {...menuProps}
           selectedKeys={selectedKeys}
-          prefixCls={`u-menu`}
+          prefixCls={`${clsPrefix}-menu`}
         >
           {clonedMenuItems}
         </Menu>
