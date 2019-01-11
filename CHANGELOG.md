@@ -1,3 +1,13 @@
+<a name="1.1.7"></a>
+## [1.1.7](https://github.com/tinper-bee/bee-select/compare/v1.1.6...v1.1.7) (2019-01-11)
+
+
+### Bug Fixes
+
+* **bee-select:** 行高调整 ([3e2e57e](https://github.com/tinper-bee/bee-select/commit/3e2e57e))
+
+
+
 <a name="1.1.6"></a>
 ## [1.1.6](https://github.com/tinper-bee/bee-select/compare/v1.1.5...v1.1.6) (2019-01-11)
 
