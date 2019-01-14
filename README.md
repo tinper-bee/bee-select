@@ -101,7 +101,7 @@ import "./node_modules/build/bee-select.css"
 |data|可以设置data属性来自动生成option,可以参见demo中的示例。也可以设置是否禁用disabled|Array|-|
 |autofocus|设置是否默认打开，此属性需配合onFocus、onBlur 。|bool|false|
 |onKeyDown|按下键盘的回调|bool|-|
-
+|Children|必填，Option组件/OptGroup组件|node|-|
 
 
 
@@ -122,6 +122,7 @@ import "./node_modules/build/bee-select.css"
 |---|----|---|------|
 |label|组名|string/react element|-|
 |mode||string|-|
+|Children|Option组件|node|-|
 
 
 ## 已支持的键盘操作
