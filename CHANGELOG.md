@@ -1,3 +1,13 @@
+<a name="1.1.8"></a>
+## [1.1.8](https://github.com/tinper-bee/bee-select/compare/v1.1.7...v1.1.8) (2019-01-15)
+
+
+### Bug Fixes
+
+* **bee-select:** 下拉item高度改为30px ([8e6a83d](https://github.com/tinper-bee/bee-select/commit/8e6a83d))
+
+
+
 <a name="1.1.7"></a>
 ## [1.1.7](https://github.com/tinper-bee/bee-select/compare/v1.1.6...v1.1.7) (2019-01-11)
 
