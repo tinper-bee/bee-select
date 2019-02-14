@@ -1,3 +1,7 @@
+/**
+* This source code is quoted from rc-select.
+* homepage: https://github.com/react-component/select
+*/
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import RcSelect from "./RcSelect";

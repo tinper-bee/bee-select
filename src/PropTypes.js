@@ -1,5 +1,7 @@
-/* eslint-disable consistent-return, prefer-rest-params, import/prefer-default-export */
-// TODO: Fix eslint later
+/**
+* This source code is quoted from rc-select.
+* homepage: https://github.com/react-component/select
+*/
 import PropTypes from 'prop-types';
 
 function valueType(props, propName, componentName) {

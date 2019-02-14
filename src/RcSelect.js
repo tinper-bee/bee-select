@@ -1,6 +1,7 @@
-/* eslint func-names: 1 */
-/* eslint-disable no-multi-assign, no-lonely-if, jsx-a11y/no-noninteractive-element-interactions, no-restricted-syntax, jsx-a11y/role-has-required-aria-props */
-// TODO: Fix eslint later
+/**
+* This source code is quoted from rc-select.
+* homepage: https://github.com/react-component/select
+*/
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { polyfill } from 'react-lifecycles-compat';

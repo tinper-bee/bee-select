@@ -1,4 +1,7 @@
-// import Trigger from 'rc-trigger';
+/**
+* This source code is quoted from rc-select.
+* homepage: https://github.com/react-component/select
+*/
 import Trigger from 'bee-overlay/build/trigger';
 import React from 'react';
 import PropTypes from 'prop-types';
