@@ -509,6 +509,7 @@ ul {
       .u-select-dropdown-menu-item:hover,
       .u-select-dropdown-menu-item-active {
           background-color: $select-dropdown-hover-bg;
+          color: $brand-primary;
       }
       .u-select-dropdown-menu-item-disabled {
           color: #ccc;

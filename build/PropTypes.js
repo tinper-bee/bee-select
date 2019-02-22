@@ -30,8 +30,10 @@ function valueType(props, propName, componentName) {
     var _validate = _propTypes2["default"].oneOfType([_propTypes2["default"].arrayOf(basicType), basicType]);
     return _validate.apply(undefined, arguments);
   }
-} /* eslint-disable consistent-return, prefer-rest-params, import/prefer-default-export */
-// TODO: Fix eslint later
+} /**
+  * This source code is quoted from rc-select.
+  * homepage: https://github.com/react-component/select
+  */
 var SelectPropTypes = exports.SelectPropTypes = {
   id: _propTypes2["default"].string,
   defaultActiveFirstOption: _propTypes2["default"].bool,
