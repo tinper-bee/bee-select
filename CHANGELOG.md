@@ -1,3 +1,13 @@
+<a name="1.1.9"></a>
+## [1.1.9](https://github.com/tinper-bee/bee-select/compare/v1.1.8...v1.1.9) (2019-03-04)
+
+
+### Bug Fixes
+
+* **bee-select:** export 问题 ([b7783d0](https://github.com/tinper-bee/bee-select/commit/b7783d0))
+
+
+
 <a name="1.1.8"></a>
 ## [1.1.8](https://github.com/tinper-bee/bee-select/compare/v1.1.7...v1.1.8) (2019-01-15)
 
