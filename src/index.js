@@ -5,5 +5,4 @@ import OptGroup from './OptGroup';
 
 Select.Option = Option;
 Select.OptGroup = OptGroup;
-export { Option, OptGroup, SelectPropTypes };
 export default Select;
