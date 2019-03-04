@@ -1,5 +1,15 @@
-<a name="2.0.0"></a>
-# [2.0.0](https://github.com/tinper-bee/bee-select/compare/v1.1.8...v2.0.0) (2019-02-22)
+<a name="2.0.2"></a>
+## [2.0.2](https://github.com/tinper-bee/bee-select/compare/v2.0.1...v2.0.2) (2019-03-04)
+
+
+### Bug Fixes
+
+* **bee-select:** export 问题 ([77fc595](https://github.com/tinper-bee/bee-select/commit/77fc595))
+
+
+
+<a name="2.0.1"></a>
+## [2.0.1](https://github.com/tinper-bee/bee-select/compare/v1.1.8...v2.0.1) (2019-02-28)
 
 
 
