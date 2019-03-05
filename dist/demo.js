@@ -5582,6 +5582,16 @@
 	  var documentWidth = documentElement.scrollWidth;
 	  var documentHeight = documentElement.scrollHeight;
 	
+	  // scrollXXX on html is sync with body which means overflow: hidden on body gets wrong scrollXXX.
+	  // We should cut this ourself.
+	  var bodyStyle = window.getComputedStyle(body);
+	  if (bodyStyle.overflowX === 'hidden') {
+	    documentWidth = win.innerWidth;
+	  }
+	  if (bodyStyle.overflowY === 'hidden') {
+	    documentHeight = win.innerHeight;
+	  }
+	
 	  // Reset element position after calculate the visible area
 	  if (element.style) {
 	    element.style.position = originalPosition;
@@ -8153,7 +8163,6 @@
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
-	exports.SelectPropTypes = exports.OptGroup = exports.Option = undefined;
 	
 	var _Select = __webpack_require__(86);
 	
@@ -8173,10 +8182,8 @@
 	
 	_Select2['default'].Option = _Option2['default'];
 	_Select2['default'].OptGroup = _OptGroup2['default'];
-	exports.Option = _Option2['default'];
-	exports.OptGroup = _OptGroup2['default'];
-	exports.SelectPropTypes = _PropTypes.SelectPropTypes;
 	exports['default'] = _Select2['default'];
+	module.exports = exports['default'];
 
 /***/ }),
 /* 86 */
