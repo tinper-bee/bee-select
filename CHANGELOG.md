@@ -1,3 +1,13 @@
+<a name="2.0.6"></a>
+## [2.0.6](https://github.com/tinper-bee/bee-select/compare/v2.0.5...v2.0.6) (2019-03-18)
+
+
+### Bug Fixes
+
+* **bee-select:** 多选配合form使用保存bug ([21d2c56](https://github.com/tinper-bee/bee-select/commit/21d2c56))
+
+
+
 <a name="2.0.5"></a>
 ## [2.0.5](https://github.com/tinper-bee/bee-select/compare/v2.0.4...v2.0.5) (2019-03-18)
 
