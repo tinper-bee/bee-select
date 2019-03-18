@@ -1,3 +1,13 @@
+<a name="2.0.7"></a>
+## [2.0.7](https://github.com/tinper-bee/bee-select/compare/v2.0.6...v2.0.7) (2019-03-18)
+
+
+### Bug Fixes
+
+* **bee-select:** 多选配合form使用设置初始值为字符串时，去掉报错，给警告 ([a36d4db](https://github.com/tinper-bee/bee-select/commit/a36d4db))
+
+
+
 <a name="2.0.6"></a>
 ## [2.0.6](https://github.com/tinper-bee/bee-select/compare/v2.0.5...v2.0.6) (2019-03-18)
 
