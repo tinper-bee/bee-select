@@ -1,3 +1,13 @@
+<a name="1.1.10"></a>
+## [1.1.10](https://github.com/tinper-bee/bee-select/compare/v1.1.9...v1.1.10) (2019-03-18)
+
+
+### Bug Fixes
+
+* **bee-select:** 多选配合form使用报错bug ([cb58339](https://github.com/tinper-bee/bee-select/commit/cb58339))
+
+
+
 <a name="1.1.9"></a>
 ## [1.1.9](https://github.com/tinper-bee/bee-select/compare/v1.1.8...v1.1.9) (2019-03-04)
 
@@ -204,22 +214,7 @@
 
 
 <a name="1.0.8"></a>
-## [1.0.8](https://github.com/tinper-bee/bee-select/compare/v1.0.7...v1.0.8) (2018-04-25)
-
-
-
-<a name="1.0.7"></a>
-## [1.0.7](https://github.com/tinper-bee/bee-select/compare/v1.0.6...v1.0.7) (2018-04-25)
-
-
-
-<a name="1.0.6"></a>
-## [1.0.6](https://github.com/tinper-bee/bee-select/compare/v1.0.5...v1.0.6) (2018-04-24)
-
-
-
-<a name="1.0.5"></a>
-## [1.0.5](https://github.com/tinper-bee/bee-select/compare/0df3382...v1.0.5) (2018-04-24)
+## [1.0.8](https://github.com/tinper-bee/bee-select/compare/0df3382...v1.0.8) (2018-04-25)
 
 
 * fix(搜索的时候会一直报错Uncaught TypeError: menu.onKeyDown is not a function): ([2830c2f](https://github.com/tinper-bee/bee-select/commit/2830c2f)), closes [#8](https://github.com/tinper-bee/bee-select/issues/8)
