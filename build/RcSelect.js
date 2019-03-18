@@ -58,9 +58,10 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : _defaults(subClass, superClass); } /* eslint func-names: 1 */
-/* eslint-disable no-multi-assign, no-lonely-if, jsx-a11y/no-noninteractive-element-interactions, no-restricted-syntax, jsx-a11y/role-has-required-aria-props */
-// TODO: Fix eslint later
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : _defaults(subClass, superClass); } /**
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               * This source code is quoted from rc-select.
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               * homepage: https://github.com/react-component/select
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               */
 
 
 function noop() {}
@@ -1394,7 +1395,8 @@ var _initialiseProps = function _initialiseProps() {
         );
       }
       if ((0, _util.isMultipleOrTags)(props)) {
-        selectedValueNodes = limitedCountValue.map(function (singleValue) {
+        selectedValueNodes = limitedCountValue.map(function (singleValue, index) {
+          var key = singleValue || index;
           var info = _this2.getOptionInfoBySingleValue(singleValue);
           var content = info.label;
           var title = info.title || content;
@@ -1410,7 +1412,7 @@ var _initialiseProps = function _initialiseProps() {
             }, _util.UNSELECTABLE_ATTRIBUTE, {
               onMouseDown: _util.preventDefaultEvent,
               className: choiceClassName,
-              key: singleValue,
+              key: key,
               title: (0, _util.toTitle)(title)
             }),
             _react2["default"].createElement(

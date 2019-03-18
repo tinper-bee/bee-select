@@ -1,6 +1,7 @@
-/* eslint func-names: 1 */
-/* eslint-disable no-multi-assign, no-lonely-if, jsx-a11y/no-noninteractive-element-interactions, no-restricted-syntax, jsx-a11y/role-has-required-aria-props */
-// TODO: Fix eslint later
+/**
+* This source code is quoted from rc-select.
+* homepage: https://github.com/react-component/select
+*/
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { polyfill } from 'react-lifecycles-compat';
@@ -1195,7 +1196,8 @@ class Select extends React.Component {
         </li>);
       }
       if (isMultipleOrTags(props)) {
-        selectedValueNodes = limitedCountValue.map(singleValue => {
+        selectedValueNodes = limitedCountValue.map((singleValue,index) => {
+          let key = singleValue||index;
           const info = this.getOptionInfoBySingleValue(singleValue);
           let content = info.label;
           const title = info.title || content;
@@ -1216,7 +1218,7 @@ class Select extends React.Component {
               {...UNSELECTABLE_ATTRIBUTE}
               onMouseDown={preventDefaultEvent}
               className={choiceClassName}
-              key={singleValue}
+              key={key}
               title={toTitle(title)}
             >
               <div className={`${prefixCls}-selection-choice-content`}>
