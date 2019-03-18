@@ -1,3 +1,13 @@
+<a name="1.1.11"></a>
+## [1.1.11](https://github.com/tinper-bee/bee-select/compare/v1.1.10...v1.1.11) (2019-03-18)
+
+
+### Bug Fixes
+
+* **bee-select:** 配合form使用，设置初始值为空字符串时，去掉报错，加警告 ([02f42f1](https://github.com/tinper-bee/bee-select/commit/02f42f1))
+
+
+
 <a name="1.1.10"></a>
 ## [1.1.10](https://github.com/tinper-bee/bee-select/compare/v1.1.9...v1.1.10) (2019-03-18)
 
