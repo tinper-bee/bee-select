@@ -13,6 +13,7 @@ import { ItemGroup as MenuItemGroup } from 'rc-menu';
 import MenuItem from 'rc-menu/lib/MenuItem'
 import warning from 'warning';
 import Option from './Option';
+import omit from 'omit.js';
 
 import {
   getPropValue,
@@ -1398,6 +1399,20 @@ class Select extends React.Component {
         popData={props.popData}
       >
         <div
+          {...omit(props, [
+            'transitionName',
+            'choiceTransitionName',
+            'optionLabelProp',
+            'notFoundContent',
+            'clsPrefix',
+            'prefixCls',
+            'placeholder',
+            'dropdownStyle',
+            'dropdownMenuStyle',
+            'optionFilterProp',
+            'showAction',
+            'tokenSeparators',
+          ])}
           id={props.id}
           style={props.style}
           ref={this.saveRootRef}
