@@ -36960,6 +36960,7 @@
 	    var realOpen = this.getRealOpenState();
 	    var options = this._options || [];
 	    var dataOrAriaAttributeProps = {};
+	    var customProps = _extends({}, (0, _omit2['default'])(props, ['transitionName', 'choiceTransitionName', 'optionLabelProp', 'notFoundContent', 'clsPrefix', 'prefixCls', 'placeholder', 'dropdownStyle', 'dropdownMenuStyle', 'optionFilterProp', 'showAction', 'tokenSeparators', 'showSearch', 'allowClear', 'enterKeyDown', 'defaultOpen', 'labelInValue', 'defaultActiveFirstOption', 'onSearch', 'onDeselect', 'onInputKeyDown', 'showArrow', 'dropdownMatchSelectWidth', 'autoClearSearchValue', 'searchPlaceholder', 'scrollToEnd', 'filterOption', 'backfill', 'tags', 'combobox']));
 	    for (var key in props) {
 	      if (Object.prototype.hasOwnProperty.call(props, key) && (key.substr(0, 5) === 'data-' || key.substr(0, 5) === 'aria-' || key === 'role')) {
 	        dataOrAriaAttributeProps[key] = props[key];
@@ -37012,7 +37013,7 @@
 	      },
 	      _react2['default'].createElement(
 	        'div',
-	        _extends({}, (0, _omit2['default'])(props, ['transitionName', 'choiceTransitionName', 'optionLabelProp', 'notFoundContent', 'clsPrefix', 'prefixCls', 'placeholder', 'dropdownStyle', 'dropdownMenuStyle', 'optionFilterProp', 'showAction', 'tokenSeparators']), {
+	        _extends({}, customProps, {
 	          id: props.id,
 	          style: props.style,
 	          ref: this.saveRootRef,
@@ -37892,6 +37893,7 @@
 	    if (noCheck) {
 	      props.onChange(value, null);
 	    } else {
+	      console.log('======', value);
 	      var vls = _this2.getVLForOnChange(value);
 	      var options = _this2.getOptionsBySingleValue(value);
 	      props.onChange(vls, (0, _util.isMultipleOrTags)(_this2.props) ? options : options[0]);
