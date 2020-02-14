@@ -871,10 +871,13 @@ class Select extends React.Component {
   };
 
   updateFocusClassName = () => {
-    const { rootRef, props } = this;
+    const { rootRef, props, state } = this;
+    const { openDropdownWhenFocus } = props;
+    const { open } = state;
     // avoid setState and its side effect
     if (this._focused) {
       classes(rootRef).add(`${props.prefixCls}-focused`);
+      if (openDropdownWhenFocus && !open) this.setOpenState(true);
     } else {
       classes(rootRef).remove(`${props.prefixCls}-focused`);
     }

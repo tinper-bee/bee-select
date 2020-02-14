@@ -20,7 +20,8 @@ const defaultProps = {
   showSearch: false,
   transitionName: "slide-up",
   choiceTransitionName: "zoom",
-  enterKeyDown:true
+  enterKeyDown:true,
+  openDropdownWhenFocus:false
 };
 
 const propTypes = {
@@ -64,7 +65,8 @@ const propTypes = {
   onChange: PropTypes.func,
   scrollToEnd: PropTypes.func,
   onKeyDown: PropTypes.func,
-  enterKeyDown: PropTypes.bool//是否启用 enter 和 space 键
+  enterKeyDown: PropTypes.bool,//是否启用 enter 和 space 键
+  openDropdownWhenFocus: PropTypes.bool
 };
 
 class Select extends Component {

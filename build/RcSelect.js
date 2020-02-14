@@ -1089,11 +1089,15 @@ var _initialiseProps = function _initialiseProps() {
 
   this.updateFocusClassName = function () {
     var rootRef = _this2.rootRef,
-        props = _this2.props;
+        props = _this2.props,
+        state = _this2.state;
+    var openDropdownWhenFocus = props.openDropdownWhenFocus;
+    var open = state.open;
     // avoid setState and its side effect
 
     if (_this2._focused) {
       (0, _componentClasses2["default"])(rootRef).add(props.prefixCls + '-focused');
+      if (openDropdownWhenFocus && !open) _this2.setOpenState(true);
     } else {
       (0, _componentClasses2["default"])(rootRef).remove(props.prefixCls + '-focused');
     }
