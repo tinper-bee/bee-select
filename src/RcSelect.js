@@ -449,7 +449,7 @@ class Select extends React.Component {
       if (!child) {
         return;
       }
-      if (child.type.isSelectOptGroup) {
+      if (child&&child.type&&child.type.isSelectOptGroup) {
         Select.getOptionsFromChildren(child.props.children, options);
       } else {
         options.push(child);
