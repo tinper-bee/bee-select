@@ -1,3 +1,13 @@
+<a name="2.0.20"></a>
+## [2.0.20](https://github.com/tinper-bee/bee-select/compare/v2.0.19...v2.0.20) (2020-04-20)
+
+
+### Bug Fixes
+
+* **bee-select:** child type 适配 ([24a0810](https://github.com/tinper-bee/bee-select/commit/24a0810))
+
+
+
 <a name="2.0.19"></a>
 ## [2.0.19](https://github.com/tinper-bee/bee-select/compare/v2.0.18...v2.0.19) (2020-04-14)
 
