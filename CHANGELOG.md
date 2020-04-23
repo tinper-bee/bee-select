@@ -1,3 +1,13 @@
+<a name="2.0.21"></a>
+## [2.0.21](https://github.com/tinper-bee/bee-select/compare/v2.0.20...v2.0.21) (2020-04-23)
+
+
+### Features
+
+* **bee-select:** 新增noWarp属性,多选超过宽度显示+n... ([590946d](https://github.com/tinper-bee/bee-select/commit/590946d))
+
+
+
 <a name="2.0.20"></a>
 ## [2.0.20](https://github.com/tinper-bee/bee-select/compare/v2.0.19...v2.0.20) (2020-04-20)
 
