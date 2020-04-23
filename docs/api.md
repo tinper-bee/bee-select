@@ -60,6 +60,7 @@ import 'bee-select/build/Select.css';
 |popData|下拉框自定义属性,例如 `{"data-name":"lucian","data-sex":"man"}`，属性名不能和其它属性名重复，否则会被覆盖|Object|-|
 |maxTagCount|最多显示多少个 tag，多选时超过次个数显示省略号|number|-|
 |maxTagPlaceholder|超过最大长度显示的内容|string|-|
+|noWarp|多选不换行|bool|-|
 
 
 

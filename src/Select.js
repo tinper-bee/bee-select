@@ -20,7 +20,9 @@ const defaultProps = {
   showSearch: false,
   transitionName: "slide-up",
   choiceTransitionName: "zoom",
-  enterKeyDown:true
+  enterKeyDown:true,
+  onDeselect:()=>{},
+  onSelect:()=>{}
 };
 
 const propTypes = {
@@ -70,7 +72,46 @@ const propTypes = {
 class Select extends Component {
   constructor(props) {
     super(props);
+    this.state={
+      maxTagCount:props.maxTagCount
+    }
   }
+
+  calculationWidth=()=>{
+    let selectDom = ReactDOM.findDOMNode(this.select)
+    let selectDomWidth = selectDom.clientWidth-40;
+    let ul = selectDom.querySelector('.u-select-selection-rendered ul');
+    let trueWidth = ul.clientWidth;
+    let lis = ul.querySelectorAll('li');
+    if(trueWidth>=selectDomWidth&&lis.length>0){
+      this.setState({
+        maxTagCount:lis.length-3
+      })
+    }
+    
+  }
+
+  onSelect=(value,option)=>{
+    let { noWarp, multiple,onSelect,maxTagCount} = this.props;
+    if(noWarp&&multiple&&(!maxTagCount)){
+      this.noWarpTimer&&clearTimeout(this.noWarpTimer);
+      this.noWarpTimer = setTimeout(()=>{
+        this.calculationWidth()
+      })
+    }
+    onSelect(value,option)
+  }
+  onDeselect=(value,option)=>{
+    let { noWarp, multiple,onDeselect,maxTagCount} = this.props;
+    if(noWarp&&multiple&&(!maxTagCount)){
+      this.noWarpTimer&&clearTimeout(this.noWarpTimer);
+      this.noWarpTimer = setTimeout(()=>{
+        this.calculationWidth()
+      })
+    }
+    onDeselect(value,option)
+  }
+
 
   render() {
     const {
@@ -79,7 +120,8 @@ class Select extends Component {
       size,
       data,
       showSearch,
-      combobox
+      combobox,
+      noWarp
     } = this.props;
 
     let { notFoundContent = "Not Found", optionLabelProp } = this.props;
@@ -88,7 +130,8 @@ class Select extends Component {
       {
         [`${clsPrefix}-lg`]: size === "lg",
         [`${clsPrefix}-sm`]: size === "sm",
-        [`${clsPrefix}-show-search`]: showSearch
+        [`${clsPrefix}-show-search`]: showSearch,
+        [`${clsPrefix}-nowarp`]: noWarp
       },
       className
     );
@@ -111,12 +154,17 @@ class Select extends Component {
         return <Option value={item.value}>{item.key}</Option>;
       })
     }
+    console.log('maxTagCount:'+this.state.maxTagCount)
     return data ? (
       <RcSelect
         {...this.props}
         className={cls}
         optionLabelProp={optionLabelProp || "children"}
         notFoundContent={notFoundContent}
+        onSelect={this.onSelect}
+        onDeselect={this.onDeselect}
+        ref = {ref=>this.select=ref}
+        maxTagCount={this.state.maxTagCount}
       >
         {data.map(item => {
           return <Option key={item.value} value={item.value} disabled={item.disabled?true:false}>{item.key}</Option>;
@@ -128,6 +176,10 @@ class Select extends Component {
         className={cls}
         optionLabelProp={optionLabelProp || "children"}
         notFoundContent={notFoundContent}
+        onSelect={this.onSelect}
+        onDeselect={this.onDeselect}
+        ref = {ref=>this.select=ref}
+        maxTagCount={this.state.maxTagCount}
       />
     );
   }

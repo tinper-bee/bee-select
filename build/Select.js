@@ -57,7 +57,9 @@ var defaultProps = {
   showSearch: false,
   transitionName: "slide-up",
   choiceTransitionName: "zoom",
-  enterKeyDown: true
+  enterKeyDown: true,
+  onDeselect: function onDeselect() {},
+  onSelect: function onSelect() {}
 };
 
 var propTypes = {
@@ -102,11 +104,62 @@ var Select = function (_Component) {
   function Select(props) {
     _classCallCheck(this, Select);
 
-    return _possibleConstructorReturn(this, _Component.call(this, props));
+    var _this = _possibleConstructorReturn(this, _Component.call(this, props));
+
+    _this.calculationWidth = function () {
+      var selectDom = ReactDOM.findDOMNode(_this.select);
+      var selectDomWidth = selectDom.clientWidth - 40;
+      var ul = selectDom.querySelector('.u-select-selection-rendered ul');
+      var trueWidth = ul.clientWidth;
+      var lis = ul.querySelectorAll('li');
+      if (trueWidth >= selectDomWidth && lis.length > 0) {
+        _this.setState({
+          maxTagCount: lis.length - 3
+        });
+      }
+    };
+
+    _this.onSelect = function (value, option) {
+      var _this$props = _this.props,
+          noWarp = _this$props.noWarp,
+          multiple = _this$props.multiple,
+          onSelect = _this$props.onSelect,
+          maxTagCount = _this$props.maxTagCount;
+
+      if (noWarp && multiple && !maxTagCount) {
+        _this.noWarpTimer && clearTimeout(_this.noWarpTimer);
+        _this.noWarpTimer = setTimeout(function () {
+          _this.calculationWidth();
+        });
+      }
+      onSelect(value, option);
+    };
+
+    _this.onDeselect = function (value, option) {
+      var _this$props2 = _this.props,
+          noWarp = _this$props2.noWarp,
+          multiple = _this$props2.multiple,
+          onDeselect = _this$props2.onDeselect,
+          maxTagCount = _this$props2.maxTagCount;
+
+      if (noWarp && multiple && !maxTagCount) {
+        _this.noWarpTimer && clearTimeout(_this.noWarpTimer);
+        _this.noWarpTimer = setTimeout(function () {
+          _this.calculationWidth();
+        });
+      }
+      onDeselect(value, option);
+    };
+
+    _this.state = {
+      maxTagCount: props.maxTagCount
+    };
+    return _this;
   }
 
   Select.prototype.render = function render() {
-    var _classNames;
+    var _classNames,
+        _this2 = this;
 
     var _props = this.props,
         clsPrefix = _props.clsPrefix,
@@ -115,14 +168,15 @@ var Select = function (_Component) {
         size = _props.size,
         data = _props.data,
         showSearch = _props.showSearch,
-        combobox = _props.combobox;
+        combobox = _props.combobox,
+        noWarp = _props.noWarp;
     var _props2 = this.props,
         _props2$notFoundConte = _props2.notFoundContent,
         notFoundContent = _props2$notFoundConte === undefined ? "Not Found" : _props2$notFoundConte,
         optionLabelProp = _props2.optionLabelProp;
 
 
-    var cls = (0, _classnames2["default"])((_classNames = {}, _defineProperty(_classNames, clsPrefix + "-lg", size === "lg"), _defineProperty(_classNames, clsPrefix + "-sm", size === "sm"), _defineProperty(_classNames, clsPrefix + "-show-search", showSearch), _classNames), className);
+    var cls = (0, _classnames2["default"])((_classNames = {}, _defineProperty(_classNames, clsPrefix + "-lg", size === "lg"), _defineProperty(_classNames, clsPrefix + "-sm", size === "sm"), _defineProperty(_classNames, clsPrefix + "-show-search", showSearch), _defineProperty(_classNames, clsPrefix + "-nowarp", noWarp), _classNames), className);
 
     var antLocale = this.context.antLocale;
 
@@ -144,12 +198,19 @@ var Select = function (_Component) {
         );
       });
     }
+    console.log('maxTagCount:' + this.state.maxTagCount);
     return data ? _react2["default"].createElement(
       _RcSelect2["default"],
       _extends({}, this.props, {
         className: cls,
         optionLabelProp: optionLabelProp || "children",
-        notFoundContent: notFoundContent
+        notFoundContent: notFoundContent,
+        onSelect: this.onSelect,
+        onDeselect: this.onDeselect,
+        ref: function ref(_ref) {
+          return _this2.select = _ref;
+        },
+        maxTagCount: this.state.maxTagCount
       }),
       data.map(function (item) {
         return _react2["default"].createElement(
@@ -161,7 +222,13 @@ var Select = function (_Component) {
     ) : _react2["default"].createElement(_RcSelect2["default"], _extends({}, this.props, {
       className: cls,
       optionLabelProp: optionLabelProp || "children",
-      notFoundContent: notFoundContent
+      notFoundContent: notFoundContent,
+      onSelect: this.onSelect,
+      onDeselect: this.onDeselect,
+      ref: function ref(_ref2) {
+        return _this2.select = _ref2;
+      },
+      maxTagCount: this.state.maxTagCount
     }));
   };
 
