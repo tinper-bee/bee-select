@@ -154,7 +154,6 @@ class Select extends Component {
         return <Option value={item.value}>{item.key}</Option>;
       })
     }
-    console.log('maxTagCount:'+this.state.maxTagCount)
     return data ? (
       <RcSelect
         {...this.props}
