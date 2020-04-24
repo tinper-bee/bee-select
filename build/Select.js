@@ -198,7 +198,6 @@ var Select = function (_Component) {
         );
       });
     }
-    console.log('maxTagCount:' + this.state.maxTagCount);
     return data ? _react2["default"].createElement(
       _RcSelect2["default"],
       _extends({}, this.props, {
