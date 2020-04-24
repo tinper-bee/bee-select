@@ -1,3 +1,14 @@
+<a name="2.0.22"></a>
+## [2.0.22](https://github.com/tinper-bee/bee-select/compare/v2.0.21...v2.0.22) (2020-04-24)
+
+
+### Bug Fixes
+
+* 去掉console ([9c8d5bd](https://github.com/tinper-bee/bee-select/commit/9c8d5bd))
+* **bee-select:** 去掉 console ([3c78323](https://github.com/tinper-bee/bee-select/commit/3c78323))
+
+
+
 <a name="2.0.21"></a>
 ## [2.0.21](https://github.com/tinper-bee/bee-select/compare/v2.0.20...v2.0.21) (2020-04-23)
 
