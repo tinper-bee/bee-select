@@ -1,3 +1,13 @@
+## [2.0.23](https://github.com/tinper-bee/bee-select/compare/v2.0.22...v2.0.23) (2020-04-26)
+
+
+### Bug Fixes
+
+* 报错bug ([26533a8](https://github.com/tinper-bee/bee-select/commit/26533a88e21260dbb622d8c41ee981a13899c299))
+* 自动化 ([0aeeaae](https://github.com/tinper-bee/bee-select/commit/0aeeaae9d6aafc2c2120fa229169c13eeae139b0))
+
+
+
 <a name="2.0.22"></a>
 ## [2.0.22](https://github.com/tinper-bee/bee-select/compare/v2.0.21...v2.0.22) (2020-04-24)
 
