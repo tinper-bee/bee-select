@@ -3,6 +3,7 @@
 * homepage: https://github.com/react-component/select
 */
 import React, { Component } from "react";
+import ReactDOM from 'react-dom';
 import PropTypes from "prop-types";
 import RcSelect from "./RcSelect";
 import Option from "./Option";
