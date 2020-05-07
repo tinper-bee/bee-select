@@ -10,6 +10,10 @@ var _react = require("react");
 
 var _react2 = _interopRequireDefault(_react);
 
+var _reactDom = require("react-dom");
+
+var _reactDom2 = _interopRequireDefault(_reactDom);
+
 var _propTypes = require("prop-types");
 
 var _propTypes2 = _interopRequireDefault(_propTypes);
@@ -107,11 +111,14 @@ var Select = function (_Component) {
     var _this = _possibleConstructorReturn(this, _Component.call(this, props));
 
     _this.calculationWidth = function () {
-      var selectDom = ReactDOM.findDOMNode(_this.select);
+      var selectDom = _reactDom2["default"].findDOMNode(_this.select);
       var selectDomWidth = selectDom.clientWidth - 40;
       var ul = selectDom.querySelector('.u-select-selection-rendered ul');
-      var trueWidth = ul.clientWidth;
+      var trueWidth = 0;
       var lis = ul.querySelectorAll('li');
+      [].forEach.call(lis, function (li) {
+        trueWidth += li.clientWidth;
+      });
       if (trueWidth >= selectDomWidth && lis.length > 0) {
         _this.setState({
           maxTagCount: lis.length - 3

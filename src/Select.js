@@ -82,8 +82,11 @@ class Select extends Component {
     let selectDom = ReactDOM.findDOMNode(this.select)
     let selectDomWidth = selectDom.clientWidth-40;
     let ul = selectDom.querySelector('.u-select-selection-rendered ul');
-    let trueWidth = ul.clientWidth;
+    let trueWidth = 0;
     let lis = ul.querySelectorAll('li');
+    [].forEach.call(lis,li=>{
+      trueWidth += li.clientWidth;
+    })
     if(trueWidth>=selectDomWidth&&lis.length>0){
       this.setState({
         maxTagCount:lis.length-3
