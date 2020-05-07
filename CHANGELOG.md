@@ -1,3 +1,12 @@
+## [2.0.24](https://github.com/tinper-bee/bee-select/compare/v2.0.23...v2.0.24) (2020-05-07)
+
+
+### Bug Fixes
+
+* li宽度计算修改 ([b801e80](https://github.com/tinper-bee/bee-select/commit/b801e80bfdf9251738cfd4e616296a9017185206))
+
+
+
 ## [2.0.23](https://github.com/tinper-bee/bee-select/compare/v2.0.22...v2.0.23) (2020-04-26)
 
 
