@@ -77,19 +77,26 @@ class Select extends Component {
       maxTagCount:props.maxTagCount
     }
   }
+  componentDidMount(){
+    if(this.props.noWarp){
+      this.selectDom = ReactDOM.findDOMNode(this.select);
+      let selectDomWidth  = this.selectDom.clientWidth - 40;
+      this.setState({
+        selectDomWidth
+      })
+    }
+    
+  }
 
   calculationWidth=()=>{
-    let selectDom = ReactDOM.findDOMNode(this.select)
-    let selectDomWidth = selectDom.clientWidth-40;
-    let ul = selectDom.querySelector('.u-select-selection-rendered ul');
+    let lis = this.selectDom.querySelectorAll('.u-select-selection-rendered ul li');
     let trueWidth = 0;
-    let lis = ul.querySelectorAll('li');
     [].forEach.call(lis,li=>{
       trueWidth += li.clientWidth;
     })
-    if(trueWidth>=selectDomWidth&&lis.length>0){
+    if(trueWidth>=this.state.selectDomWidth&&lis.length>0){
       this.setState({
-        maxTagCount:lis.length-3
+        maxTagCount:lis.length-3 // 去掉一个选项、去掉...区域、去掉光标区域
       })
     }
     
@@ -125,7 +132,8 @@ class Select extends Component {
       data,
       showSearch,
       combobox,
-      noWarp
+      noWarp,
+      style={}
     } = this.props;
 
     let { notFoundContent = "Not Found", optionLabelProp } = this.props;
@@ -158,9 +166,14 @@ class Select extends Component {
         return <Option value={item.value}>{item.key}</Option>;
       })
     }
+    let styles = { ...style }
+    if(noWarp&&this.state.selectDomWidth){
+      styles['width'] = this.state.selectDomWidth + 40 ;
+    }
     return data ? (
       <RcSelect
         {...this.props}
+        style={styles}
         className={cls}
         optionLabelProp={optionLabelProp || "children"}
         notFoundContent={notFoundContent}
@@ -176,6 +189,7 @@ class Select extends Component {
     ) : (
       <RcSelect
         {...this.props}
+        style={styles}
         className={cls}
         optionLabelProp={optionLabelProp || "children"}
         notFoundContent={notFoundContent}

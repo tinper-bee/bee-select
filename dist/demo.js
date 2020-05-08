@@ -35301,17 +35301,14 @@
 	    var _this = _possibleConstructorReturn(this, _Component.call(this, props));
 	
 	    _this.calculationWidth = function () {
-	      var selectDom = _reactDom2["default"].findDOMNode(_this.select);
-	      var selectDomWidth = selectDom.clientWidth - 40;
-	      var ul = selectDom.querySelector('.u-select-selection-rendered ul');
+	      var lis = _this.selectDom.querySelectorAll('.u-select-selection-rendered ul li');
 	      var trueWidth = 0;
-	      var lis = ul.querySelectorAll('li');
 	      [].forEach.call(lis, function (li) {
 	        trueWidth += li.clientWidth;
 	      });
-	      if (trueWidth >= selectDomWidth && lis.length > 0) {
+	      if (trueWidth >= _this.state.selectDomWidth && lis.length > 0) {
 	        _this.setState({
-	          maxTagCount: lis.length - 3
+	          maxTagCount: lis.length - 3 // 去掉一个选项、去掉...区域、去掉光标区域
 	        });
 	      }
 	    };
@@ -35354,6 +35351,16 @@
 	    return _this;
 	  }
 	
+	  Select.prototype.componentDidMount = function componentDidMount() {
+	    if (this.props.noWarp) {
+	      this.selectDom = _reactDom2["default"].findDOMNode(this.select);
+	      var selectDomWidth = this.selectDom.clientWidth - 40;
+	      this.setState({
+	        selectDomWidth: selectDomWidth
+	      });
+	    }
+	  };
+	
 	  Select.prototype.render = function render() {
 	    var _classNames,
 	        _this2 = this;
@@ -35366,7 +35373,9 @@
 	        data = _props.data,
 	        showSearch = _props.showSearch,
 	        combobox = _props.combobox,
-	        noWarp = _props.noWarp;
+	        noWarp = _props.noWarp,
+	        _props$style = _props.style,
+	        style = _props$style === undefined ? {} : _props$style;
 	    var _props2 = this.props,
 	        _props2$notFoundConte = _props2.notFoundContent,
 	        notFoundContent = _props2$notFoundConte === undefined ? "Not Found" : _props2$notFoundConte,
@@ -35395,9 +35404,14 @@
 	        );
 	      });
 	    }
+	    var styles = _extends({}, style);
+	    if (noWarp && this.state.selectDomWidth) {
+	      styles['width'] = this.state.selectDomWidth + 40;
+	    }
 	    return data ? _react2["default"].createElement(
 	      _RcSelect2["default"],
 	      _extends({}, this.props, {
+	        style: styles,
 	        className: cls,
 	        optionLabelProp: optionLabelProp || "children",
 	        notFoundContent: notFoundContent,
@@ -35416,6 +35430,7 @@
 	        );
 	      })
 	    ) : _react2["default"].createElement(_RcSelect2["default"], _extends({}, this.props, {
+	      style: styles,
 	      className: cls,
 	      optionLabelProp: optionLabelProp || "children",
 	      notFoundContent: notFoundContent,
