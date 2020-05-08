@@ -1,3 +1,12 @@
+## [2.0.25](https://github.com/tinper-bee/bee-select/compare/v2.0.24...v2.0.25) (2020-05-08)
+
+
+### Features
+
+* noWarp时 宽度计算优化 ([0ceb5be](https://github.com/tinper-bee/bee-select/commit/0ceb5be64bb25547259222fc24956107970c4700))
+
+
+
 ## [2.0.24](https://github.com/tinper-bee/bee-select/compare/v2.0.23...v2.0.24) (2020-05-07)
 
 
