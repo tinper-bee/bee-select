@@ -520,13 +520,49 @@ var _initialiseProps = function _initialiseProps() {
     if (open && !_this2.getInputDOMNode()) {
       _this2.onInputKeyDown(event);
     } else if (keyCode === _tinperBeeCore.KeyCode.DOWN) {
-      if (!open) _this2.setOpenState(true);
+      if (!open) {
+        _this2.setOpenState(true);
+        event.target._dataTransfer = {
+          _cancelBubble: true
+        };
+      } else {
+        _this2.appendDataTransferToEvent(event);
+      }
+      event.preventDefault();
+    } else if (keyCode === _tinperBeeCore.KeyCode.UP) {
+      if (open) {
+        _this2.appendDataTransferToEvent(event);
+      }
       event.preventDefault();
     } else if (keyCode === _tinperBeeCore.KeyCode.ENTER || keyCode === _tinperBeeCore.KeyCode.SPACE) {
       if (!open && enterKeyDown) _this2.setOpenState(true);
       event.preventDefault();
     }
     onKeyDown(event); //sp
+  };
+
+  this.appendDataTransferToEvent = function (event) {
+    var _props3 = _this2.props,
+        eventKey = _props3.eventKey,
+        children = _props3.children;
+
+    var _eventKey = eventKey || '0-menu-';
+    var keyCode = event.keyCode;
+    var activeKeyKey = _this2.refs.menuItemRef.store.getState().activeKey[_eventKey];
+    var activeIndex = children.findIndex(function (data) {
+      return data.key == activeKeyKey;
+    });
+    var activeIndexOld = children.findIndex(function (data) {
+      return data.key == _this2.old_activeKeyKey;
+    });
+    // console.log('activeIndex', activeIndex, activeIndexOld);
+    if (keyCode === _tinperBeeCore.KeyCode.DOWN && activeIndex > activeIndexOld || keyCode === _tinperBeeCore.KeyCode.UP && (activeIndex < activeIndexOld || activeIndexOld == -1)) {
+      event.target._dataTransfer = {
+        _cancelBubble: true
+      };
+    }
+    _this2.old_activeKeyKey = activeKeyKey;
+    return activeIndex;
   };
 
   this.onInputKeyDown = function (event) {
@@ -558,7 +594,11 @@ var _initialiseProps = function _initialiseProps() {
       event.preventDefault();
     } else if (keyCode === _tinperBeeCore.KeyCode.ESC) {
       if (state.open) {
-        _this2.setOpenState(false);
+        if (_this2.props.needFocusAfterSetOpenState) {
+          _this2.setOpenState(false, true);
+        } else {
+          _this2.setOpenState(false);
+        }
         event.preventDefault();
         event.stopPropagation();
       }
@@ -969,9 +1009,9 @@ var _initialiseProps = function _initialiseProps() {
   };
 
   this.getValueByInput = function (string) {
-    var _props3 = _this2.props,
-        multiple = _props3.multiple,
-        tokenSeparators = _props3.tokenSeparators;
+    var _props4 = _this2.props,
+        multiple = _props4.multiple,
+        tokenSeparators = _props4.tokenSeparators;
 
     var nextValue = _this2.state.value;
     var hasNewValue = false;
@@ -1193,11 +1233,11 @@ var _initialiseProps = function _initialiseProps() {
 
   this.renderFilterOptions = function () {
     var inputValue = _this2.state.inputValue;
-    var _props4 = _this2.props,
-        children = _props4.children,
-        tags = _props4.tags,
-        filterOption = _props4.filterOption,
-        notFoundContent = _props4.notFoundContent;
+    var _props5 = _this2.props,
+        children = _props5.children,
+        tags = _props5.tags,
+        filterOption = _props5.filterOption,
+        notFoundContent = _props5.notFoundContent;
 
     var menuItems = [];
     var childrenKeys = [];
@@ -1308,6 +1348,7 @@ var _initialiseProps = function _initialiseProps() {
 
       if (_this2.filterOption(inputValue, child)) {
         var menuItem = _react2["default"].createElement(_MenuItem2["default"], _extends({
+          ref: 'menuItemRef',
           style: _util.UNSELECTABLE_STYLE,
           attribute: _util.UNSELECTABLE_ATTRIBUTE,
           value: childValue,
