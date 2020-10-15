@@ -1,3 +1,7 @@
+## [2.0.28](https://github.com/tinper-bee/bee-select/compare/v2.0.26...v2.0.28) (2020-10-15)
+
+
+
 ## [2.0.26](https://github.com/tinper-bee/bee-select/compare/v2.0.25...v2.0.26) (2020-07-17)
 
 
