@@ -185,14 +185,43 @@ class Select extends React.Component {
     if (open && !this.getInputDOMNode()) {
       this.onInputKeyDown(event);
     } else if (keyCode === KeyCode.DOWN) {
-      if (!open) this.setOpenState(true);
+      if (!open) {
+        this.setOpenState(true);
+        event.target._dataTransfer = {
+          _cancelBubble: true,
+        };
+      } else {
+        this.appendDataTransferToEvent(event)
+      }
       event.preventDefault();
-    }else if(keyCode === KeyCode.ENTER || keyCode === KeyCode.SPACE ){
+    } else if (keyCode === KeyCode.UP) {
+      if (open) {
+        this.appendDataTransferToEvent(event)
+      } 
+      event.preventDefault();
+    } else if(keyCode === KeyCode.ENTER || keyCode === KeyCode.SPACE ){
       if ((!open)&&enterKeyDown) this.setOpenState(true);
       event.preventDefault();
     }
     onKeyDown(event);//sp
   };
+
+  appendDataTransferToEvent = (event) => {
+    const { eventKey, children } = this.props;
+    const _eventKey = eventKey || '0-menu-';
+    const keyCode = event.keyCode;
+    const activeKeyKey = this.refs.menuItemRef.store.getState().activeKey[_eventKey];
+    const activeIndex = children.findIndex((data)=> data.key == activeKeyKey);
+    const activeIndexOld = children.findIndex((data)=> data.key == this.old_activeKeyKey);
+    // console.log('activeIndex', activeIndex, activeIndexOld);
+    if((keyCode === KeyCode.DOWN && activeIndex > activeIndexOld) || (keyCode === KeyCode.UP && (activeIndex < activeIndexOld || activeIndexOld == -1))) {
+      event.target._dataTransfer = {
+        _cancelBubble: true
+      };
+    }
+    this.old_activeKeyKey = activeKeyKey;
+    return activeIndex
+  }
 
   onInputKeyDown = event => {
     const props = this.props;
@@ -226,7 +255,11 @@ class Select extends React.Component {
       event.preventDefault();
     } else if (keyCode === KeyCode.ESC) {
       if (state.open) {
-        this.setOpenState(false);
+        if (this.props.needFocusAfterSetOpenState) {
+          this.setOpenState(false, true);
+        } else {
+          this.setOpenState(false);
+        }
         event.preventDefault();
         event.stopPropagation();
       }
@@ -1106,6 +1139,7 @@ class Select extends React.Component {
       if (this.filterOption(inputValue, child)) {
         const menuItem = (
           <MenuItem
+            ref="menuItemRef"
             style={UNSELECTABLE_STYLE}
             attribute={UNSELECTABLE_ATTRIBUTE}
             value={childValue}
