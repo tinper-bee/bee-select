@@ -4,6 +4,10 @@ export function toTitle(title) {
   if (typeof title === 'string') {
     return title;
   }
+  //如果是超出数量长度隐藏起来的选项
+  if (Array.isArray(title)){
+    return title.join()
+  }
   return null;
 }
 

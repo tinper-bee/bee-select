@@ -277,6 +277,7 @@ class Select extends React.Component {
 
   };
 
+  // 选择下拉列表内容时调用
   onMenuSelect = ({ item }) => {
     if (!item) {
       return;
@@ -1234,13 +1235,14 @@ class Select extends React.Component {
           content = typeof maxTagPlaceholder === 'function' ?
             maxTagPlaceholder(omittedValues) : maxTagPlaceholder;
         }
+        //超过最大长度显示的内容
         maxTagPlaceholderEl = (<li
           style={UNSELECTABLE_STYLE}
           {...UNSELECTABLE_ATTRIBUTE}
           onMouseDown={preventDefaultEvent}
           className={`${prefixCls}-selection-choice ${prefixCls}-selection-choice-disabled`}
           key="maxTagPlaceholder"
-          title={toTitle(content)}
+          title={toTitle(omittedValues)}
         >
           <div className={`${prefixCls}-selection-choice-content`}>{content}</div>
         </li>);
