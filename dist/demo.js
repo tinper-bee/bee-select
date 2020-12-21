@@ -39706,7 +39706,8 @@
 	  onChange: _propTypes2["default"].func,
 	  scrollToEnd: _propTypes2["default"].func,
 	  onKeyDown: _propTypes2["default"].func,
-	  enterKeyDown: _propTypes2["default"].bool //是否启用 enter 和 space 键
+	  enterKeyDown: _propTypes2["default"].bool, //是否启用 enter 和 space 键
+	  userSelectText: _propTypes2["default"].bool
 	};
 	
 	var Select = function (_Component) {
@@ -40115,7 +40116,7 @@
 	    var realOpen = this.getRealOpenState();
 	    var options = this._options || [];
 	    var dataOrAriaAttributeProps = {};
-	    var customProps = _extends({}, (0, _omit2['default'])(props, ['transitionName', 'choiceTransitionName', 'optionLabelProp', 'notFoundContent', 'clsPrefix', 'prefixCls', 'placeholder', 'dropdownStyle', 'dropdownMenuStyle', 'optionFilterProp', 'showAction', 'tokenSeparators', 'showSearch', 'allowClear', 'enterKeyDown', 'defaultOpen', 'labelInValue', 'defaultActiveFirstOption', 'onSearch', 'onDeselect', 'onInputKeyDown', 'showArrow', 'dropdownMatchSelectWidth', 'autoClearSearchValue', 'searchPlaceholder', 'scrollToEnd', 'filterOption', 'backfill', 'tags', 'combobox', 'supportWrite', 'onChange', 'onFocus', 'onBlur', 'onSelect', 'onSearch', 'onDeselect', 'onInputKeyDown', 'onKeyDown']));
+	    var customProps = _extends({}, (0, _omit2['default'])(props, ['transitionName', 'choiceTransitionName', 'optionLabelProp', 'notFoundContent', 'clsPrefix', 'prefixCls', 'placeholder', 'dropdownStyle', 'dropdownMenuStyle', 'optionFilterProp', 'showAction', 'tokenSeparators', 'showSearch', 'allowClear', 'enterKeyDown', 'defaultOpen', 'labelInValue', 'defaultActiveFirstOption', 'onSearch', 'onDeselect', 'onInputKeyDown', 'showArrow', 'dropdownMatchSelectWidth', 'autoClearSearchValue', 'searchPlaceholder', 'scrollToEnd', 'filterOption', 'backfill', 'tags', 'combobox', 'supportWrite', 'onChange', 'onFocus', 'onBlur', 'onSelect', 'onSearch', 'onDeselect', 'onInputKeyDown', 'onKeyDown', 'userSelectText']));
 	    for (var key in props) {
 	      if (Object.prototype.hasOwnProperty.call(props, key) && (key.substr(0, 5) === 'data-' || key.substr(0, 5) === 'aria-' || key === 'role')) {
 	        dataOrAriaAttributeProps[key] = props[key];
@@ -41261,7 +41262,8 @@
 	        maxTagCount = props.maxTagCount,
 	        maxTagPlaceholder = props.maxTagPlaceholder,
 	        showSearch = props.showSearch,
-	        removeIcon = props.removeIcon;
+	        removeIcon = props.removeIcon,
+	        userSelectText = props.userSelectText;
 	
 	    var className = prefixCls + '-selection-rendered';
 	    // search input is inside topControlNode in single, multiple & combobox. 2016/04/13
@@ -41420,7 +41422,7 @@
 	    }
 	    return _react2['default'].createElement(
 	      'div',
-	      { className: className, ref: _this2.saveTopCtrlRef },
+	      { className: className, ref: _this2.saveTopCtrlRef, style: { userSelect: userSelectText ? "text" : null } },
 	      _this2.getPlaceholderElement(),
 	      innerNode
 	    );
@@ -50652,16 +50654,16 @@
 	    var _props3 = this.props,
 	        action = _props3.action,
 	        showAction = _props3.showAction;
-	    return '是你吗'
-	    // return action.indexOf('hover') !== -1 || showAction.indexOf('mouseEnter') !== -1;
+	
+	    return action.indexOf('hover') !== -1 || showAction.indexOf('mouseEnter') !== -1;
 	  };
 	
 	  Trigger.prototype.isMouseLeaveToHide = function isMouseLeaveToHide() {
 	    var _props4 = this.props,
 	        action = _props4.action,
 	        hideAction = _props4.hideAction;
-	    return '是你吗'
-	    // return action.indexOf('hover') !== -1 || hideAction.indexOf('mouseLeave') !== -1;
+	
+	    return action.indexOf('hover') !== -1 || hideAction.indexOf('mouseLeave') !== -1;
 	  };
 	
 	  Trigger.prototype.isFocusToShow = function isFocusToShow() {

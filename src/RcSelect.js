@@ -1172,6 +1172,7 @@ class Select extends React.Component {
       maxTagPlaceholder,
       showSearch,
       removeIcon,
+      userSelectText // 是否可以选中输入框内的文字，如果为true 样式user-select设置为text
     } = props;
     const className = `${prefixCls}-selection-rendered`;
     // search input is inside topControlNode in single, multiple & combobox. 2016/04/13
@@ -1321,7 +1322,7 @@ class Select extends React.Component {
       }
     }
     return (
-      <div className={className} ref={this.saveTopCtrlRef}>
+      <div className={className} ref={this.saveTopCtrlRef} style={{userSelect: userSelectText ? "text" : null}}>
         {this.getPlaceholderElement()}
         {innerNode}
       </div>
@@ -1414,7 +1415,8 @@ class Select extends React.Component {
                           'onSearch',
                           'onDeselect',
                           'onInputKeyDown',
-                          'onKeyDown'
+                          'onKeyDown',
+                          'userSelectText'
                         ])};
     for (const key in props) {
       if (

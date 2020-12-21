@@ -3,11 +3,15 @@
   <component name="ChangeListManager">
     <list default="true" id="133b3105-763f-45ca-aef1-1df6900411d3" name="Default" comment="fix: 超出最大长度隐藏的选项在hover时显示具体名称">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/Select.css" beforeDir="false" afterPath="$PROJECT_DIR$/build/Select.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/demolist/Demo1.js" beforeDir="false" afterPath="$PROJECT_DIR$/demo/demolist/Demo1.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/demo/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dist/demo.css.map" beforeDir="false" afterPath="$PROJECT_DIR$/dist/demo.css.map" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dist/demo.js" beforeDir="false" afterPath="$PROJECT_DIR$/dist/demo.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dist/demo.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/dist/demo.js.map" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/RcSelect.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/RcSelect.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/util.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/util.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Select.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Select.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Select.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/Select.scss" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -97,33 +101,40 @@
       <screen x="0" y="23" width="1280" height="725" />
     </state>
     <state x="104" y="47" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.23.1280.725@0.23.1280.725" timestamp="1603763810949" />
-    <state x="238" y="23" key="CommitChangelistDialog2" timestamp="1603764152865">
-      <screen x="0" y="23" width="1280" height="725" />
+    <state x="238" y="23" key="CommitChangelistDialog2" timestamp="1608538071989">
+      <screen x="0" y="23" width="1280" height="722" />
     </state>
+    <state x="238" y="23" key="CommitChangelistDialog2/0.23.1280.722@0.23.1280.722" timestamp="1608538071989" />
     <state x="238" y="23" key="CommitChangelistDialog2/0.23.1280.725@0.23.1280.725" timestamp="1603764152865" />
-    <state x="128" y="84" key="DiffContextDialog" timestamp="1603764025361">
-      <screen x="0" y="23" width="1280" height="725" />
+    <state x="128" y="84" key="DiffContextDialog" timestamp="1608538070527">
+      <screen x="0" y="23" width="1280" height="722" />
     </state>
+    <state x="128" y="84" key="DiffContextDialog/0.23.1280.722@0.23.1280.722" timestamp="1608538070527" />
     <state x="128" y="84" key="DiffContextDialog/0.23.1280.725@0.23.1280.725" timestamp="1603764025361" />
-    <state width="1236" height="250" key="GridCell.Tab.0.bottom" timestamp="1603764153983">
-      <screen x="0" y="23" width="1280" height="725" />
+    <state width="1236" height="162" key="GridCell.Tab.0.bottom" timestamp="1608538088626">
+      <screen x="0" y="23" width="1280" height="722" />
     </state>
+    <state width="1236" height="162" key="GridCell.Tab.0.bottom/0.23.1280.722@0.23.1280.722" timestamp="1608538088626" />
     <state width="1236" height="250" key="GridCell.Tab.0.bottom/0.23.1280.725@0.23.1280.725" timestamp="1603764153983" />
-    <state width="1236" height="250" key="GridCell.Tab.0.center" timestamp="1603764153983">
-      <screen x="0" y="23" width="1280" height="725" />
+    <state width="1236" height="162" key="GridCell.Tab.0.center" timestamp="1608538088625">
+      <screen x="0" y="23" width="1280" height="722" />
     </state>
+    <state width="1236" height="162" key="GridCell.Tab.0.center/0.23.1280.722@0.23.1280.722" timestamp="1608538088625" />
     <state width="1236" height="250" key="GridCell.Tab.0.center/0.23.1280.725@0.23.1280.725" timestamp="1603764153983" />
-    <state width="1236" height="250" key="GridCell.Tab.0.left" timestamp="1603764153982">
-      <screen x="0" y="23" width="1280" height="725" />
+    <state width="1236" height="162" key="GridCell.Tab.0.left" timestamp="1608538088624">
+      <screen x="0" y="23" width="1280" height="722" />
     </state>
+    <state width="1236" height="162" key="GridCell.Tab.0.left/0.23.1280.722@0.23.1280.722" timestamp="1608538088624" />
     <state width="1236" height="250" key="GridCell.Tab.0.left/0.23.1280.725@0.23.1280.725" timestamp="1603764153982" />
-    <state width="1236" height="250" key="GridCell.Tab.0.right" timestamp="1603764153983">
-      <screen x="0" y="23" width="1280" height="725" />
+    <state width="1236" height="162" key="GridCell.Tab.0.right" timestamp="1608538088626">
+      <screen x="0" y="23" width="1280" height="722" />
     </state>
+    <state width="1236" height="162" key="GridCell.Tab.0.right/0.23.1280.722@0.23.1280.722" timestamp="1608538088626" />
     <state width="1236" height="250" key="GridCell.Tab.0.right/0.23.1280.725@0.23.1280.725" timestamp="1603764153983" />
-    <state x="228" y="135" key="IDE.errors.dialog" timestamp="1603693299633">
-      <screen x="0" y="23" width="1280" height="725" />
+    <state x="228" y="135" key="IDE.errors.dialog" timestamp="1608537366846">
+      <screen x="0" y="23" width="1280" height="722" />
     </state>
+    <state x="228" y="135" key="IDE.errors.dialog/0.23.1280.722@0.23.1280.722" timestamp="1608537366846" />
     <state x="228" y="135" key="IDE.errors.dialog/0.23.1280.725@0.23.1280.725" timestamp="1603693299633" />
     <state x="141" y="24" key="SettingsEditor" timestamp="1603763848308">
       <screen x="0" y="23" width="1280" height="725" />
@@ -133,6 +144,10 @@
       <screen x="0" y="23" width="1280" height="725" />
     </state>
     <state x="424" y="97" key="VCS.ChangeListViewerDialog/0.23.1280.725@0.23.1280.725" timestamp="1603693984969" />
+    <state x="298" y="141" width="683" height="486" key="find.popup" timestamp="1608536988232">
+      <screen x="0" y="23" width="1280" height="722" />
+    </state>
+    <state x="298" y="141" width="683" height="486" key="find.popup/0.23.1280.722@0.23.1280.722" timestamp="1608536988232" />
     <state x="332" y="184" key="git4idea.merge.GitPullDialog" timestamp="1603763882169">
       <screen x="0" y="23" width="1280" height="725" />
     </state>

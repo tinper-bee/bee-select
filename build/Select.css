@@ -737,7 +737,7 @@ ul {
   margin-left: 2px;
   margin-right: 2px;
   position: relative;
-  line-height: 30px; }
+  line-height: 30px;}
   .u-select-selection-rendered:after {
     content: '.';
     visibility: hidden;

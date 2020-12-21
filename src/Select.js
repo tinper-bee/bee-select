@@ -67,7 +67,8 @@ const propTypes = {
   onChange: PropTypes.func,
   scrollToEnd: PropTypes.func,
   onKeyDown: PropTypes.func,
-  enterKeyDown: PropTypes.bool//是否启用 enter 和 space 键
+  enterKeyDown: PropTypes.bool,//是否启用 enter 和 space 键
+  userSelectText: PropTypes.bool
 };
 
 class Select extends Component {
