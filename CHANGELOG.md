@@ -1,3 +1,12 @@
+## [2.0.30](https://github.com/tinper-bee/bee-select/compare/v2.0.29...v2.0.30) (2020-12-21)
+
+
+### Features
+
+* 新增userSelectText参数(布尔值)，为true时可选中输入框内的值用于复制等场景 ([d4d1c7a](https://github.com/tinper-bee/bee-select/commit/d4d1c7ac18b0a7930b69d8f885e8c6794ef6dcae))
+
+
+
 ## [2.0.29](https://github.com/tinper-bee/bee-select/compare/v2.0.28...v2.0.29) (2020-10-27)
 
 
