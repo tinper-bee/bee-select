@@ -996,6 +996,16 @@ class Select extends React.Component {
     });
   };
 
+  // 超出长度时hover "+n" 显示的option的名称
+  getOptionName = (optionsInfo) => {
+    let titleArr = [];
+    Object.keys(optionsInfo).forEach(function(key){
+      let optionItem = optionsInfo[key];
+      titleArr.push(optionItem.label);
+    });
+    return titleArr;
+  }
+
   forcePopupAlign = () => {
     if (!this.state.open) {
       return;
@@ -1162,7 +1172,7 @@ class Select extends React.Component {
   };
 
   renderTopControlNode = () => {
-    const { value, open, inputValue } = this.state;
+    const { value, open, inputValue, optionsInfo } = this.state;
     const props = this.props;
     const {
       choiceTransitionName,
@@ -1230,7 +1240,8 @@ class Select extends React.Component {
       let maxTagPlaceholderEl;
       if (maxTagCount !== undefined && value.length > maxTagCount) {
         limitedCountValue = limitedCountValue.slice(0, maxTagCount);
-        const omittedValues = this.getVLForOnChange(value.slice(maxTagCount, value.length));
+        let title = this.getOptionName(optionsInfo, maxTagCount); // 获取option的中文名
+        const omittedValues = this.getVLForOnChange(title.slice(maxTagCount, value.length)); // 截取hover时需要显示的数组
         let content = `+ ${value.length - maxTagCount} ...`;
         if (maxTagPlaceholder) {
           content = typeof maxTagPlaceholder === 'function' ?

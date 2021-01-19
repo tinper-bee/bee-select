@@ -40060,6 +40060,9 @@
 	   */
 	
 	
+	  // 超出长度时hover "+n" 显示的option的名称
+	
+	
 	  Select.prototype.renderClear = function renderClear() {
 	    var _props = this.props,
 	        prefixCls = _props.prefixCls,
@@ -41102,6 +41105,15 @@
 	    });
 	  };
 	
+	  this.getOptionName = function (optionsInfo) {
+	    var titleArr = [];
+	    Object.keys(optionsInfo).forEach(function (key) {
+	      var optionItem = optionsInfo[key];
+	      titleArr.push(optionItem.label);
+	    });
+	    return titleArr;
+	  };
+	
 	  this.forcePopupAlign = function () {
 	    if (!_this2.state.open) {
 	      return;
@@ -41253,7 +41265,8 @@
 	    var _state2 = _this2.state,
 	        value = _state2.value,
 	        open = _state2.open,
-	        inputValue = _state2.inputValue;
+	        inputValue = _state2.inputValue,
+	        optionsInfo = _state2.optionsInfo;
 	
 	    var props = _this2.props;
 	    var choiceTransitionName = props.choiceTransitionName,
@@ -41324,7 +41337,8 @@
 	      var maxTagPlaceholderEl = void 0;
 	      if (maxTagCount !== undefined && value.length > maxTagCount) {
 	        limitedCountValue = limitedCountValue.slice(0, maxTagCount);
-	        var omittedValues = _this2.getVLForOnChange(value.slice(maxTagCount, value.length));
+	        var _title = _this2.getOptionName(optionsInfo, maxTagCount); // 获取option的中文名
+	        var omittedValues = _this2.getVLForOnChange(_title.slice(maxTagCount, value.length)); // 截取hover时需要显示的数组
 	        var content = '+ ' + (value.length - maxTagCount) + ' ...';
 	        if (maxTagPlaceholder) {
 	          content = typeof maxTagPlaceholder === 'function' ? maxTagPlaceholder(omittedValues) : maxTagPlaceholder;
