@@ -997,11 +997,14 @@ class Select extends React.Component {
   };
 
   // 超出长度时hover "+n" 显示的option的名称
-  getOptionName = (optionsInfo) => {
+  getOptionName = (optionsInfo, maxTagCount, value) => {
     let titleArr = [];
-    Object.keys(optionsInfo).forEach(function(key){
+    let arr = value.slice(maxTagCount)
+    Object.keys(optionsInfo).forEach(function(key, index){
       let optionItem = optionsInfo[key];
-      titleArr.push(optionItem.label);
+      if (arr.includes(optionItem.value)){
+        titleArr.push(optionItem.label);
+      }
     });
     return titleArr;
   }
@@ -1240,12 +1243,12 @@ class Select extends React.Component {
       let maxTagPlaceholderEl;
       if (maxTagCount !== undefined && value.length > maxTagCount) {
         limitedCountValue = limitedCountValue.slice(0, maxTagCount);
-        let title = this.getOptionName(optionsInfo, maxTagCount); // 获取option的中文名
-        const omittedValues = this.getVLForOnChange(title.slice(maxTagCount, value.length)); // 截取hover时需要显示的数组
+        let title = this.getOptionName(optionsInfo, maxTagCount, value); // 获取option的中文名
+        // const omittedValues = this.getVLForOnChange(title.slice(maxTagCount, value.length)); // 截取hover时需要显示的数组
         let content = `+ ${value.length - maxTagCount} ...`;
         if (maxTagPlaceholder) {
           content = typeof maxTagPlaceholder === 'function' ?
-            maxTagPlaceholder(omittedValues) : maxTagPlaceholder;
+            maxTagPlaceholder(title) : maxTagPlaceholder;
         }
         //超过最大长度显示的内容
         maxTagPlaceholderEl = (<li
@@ -1254,7 +1257,7 @@ class Select extends React.Component {
           onMouseDown={preventDefaultEvent}
           className={`${prefixCls}-selection-choice ${prefixCls}-selection-choice-disabled`}
           key="maxTagPlaceholder"
-          title={toTitle(omittedValues)}
+          title={toTitle(title)}
         >
           <div className={`${prefixCls}-selection-choice-content`}>{content}</div>
         </li>);

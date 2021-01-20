@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="133b3105-763f-45ca-aef1-1df6900411d3" name="Default" comment="feat: 新增userSelectText参数(布尔值)，为true时可选中输入框内的值用于复制等场景">
+    <list default="true" id="133b3105-763f-45ca-aef1-1df6900411d3" name="Default" comment="fix: 超出最大长度隐藏的选项在hover时显示具体名称">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/demo/demolist/Demo1.js" beforeDir="false" afterPath="$PROJECT_DIR$/demo/demolist/Demo1.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/demo/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/demo/index.js" afterDir="false" />
@@ -84,7 +84,8 @@
       <workItem from="1603699112677" duration="980000" />
       <workItem from="1608600840506" duration="844000" />
       <workItem from="1609744039202" duration="1943000" />
-      <workItem from="1611057898424" duration="1816000" />
+      <workItem from="1611057898424" duration="2903000" />
+      <workItem from="1611105652878" duration="1530000" />
     </task>
     <task id="LOCAL-00001" summary="feat: 新增userSelectText参数(布尔值)，为true时可选中输入框内的值用于复制等场景">
       <created>1608538636402</created>
@@ -93,7 +94,14 @@
       <option name="project" value="LOCAL" />
       <updated>1608538636402</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="fix: 超出最大长度隐藏的选项在hover时显示具体名称">
+      <created>1611060271017</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1611060271017</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -136,48 +144,49 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="fix: 超出最大长度隐藏的选项在hover时显示具体名称" />
     <MESSAGE value="feat: 新增userSelectText参数(布尔值)，为true时可选中输入框内的值用于复制等场景" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat: 新增userSelectText参数(布尔值)，为true时可选中输入框内的值用于复制等场景" />
+    <MESSAGE value="fix: 超出最大长度隐藏的选项在hover时显示具体名称" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix: 超出最大长度隐藏的选项在hover时显示具体名称" />
   </component>
   <component name="WindowStateProjectService">
     <state x="104" y="47" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1603763810949">
       <screen x="0" y="23" width="1280" height="725" />
     </state>
     <state x="104" y="47" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.23.1280.725@0.23.1280.725" timestamp="1603763810949" />
-    <state x="238" y="23" key="CommitChangelistDialog2" timestamp="1609744064932">
-      <screen x="0" y="23" width="1280" height="722" />
+    <state x="238" y="23" key="CommitChangelistDialog2" timestamp="1611109863605">
+      <screen x="0" y="23" width="1280" height="721" />
     </state>
+    <state x="238" y="23" key="CommitChangelistDialog2/0.23.1280.721@0.23.1280.721" timestamp="1611109863605" />
     <state x="238" y="23" key="CommitChangelistDialog2/0.23.1280.722@0.23.1280.722" timestamp="1609744064932" />
     <state x="238" y="23" key="CommitChangelistDialog2/0.23.1280.725@0.23.1280.725" timestamp="1603764152865" />
-    <state x="128" y="84" width="1024" height="576" key="DiffContextDialog" timestamp="1611059826676">
+    <state x="128" y="83" width="1024" height="576" key="DiffContextDialog" timestamp="1611109861201">
       <screen x="0" y="23" width="1280" height="721" />
     </state>
-    <state x="128" y="84" width="1024" height="576" key="DiffContextDialog/0.23.1280.721@0.23.1280.721" timestamp="1611059826676" />
+    <state x="128" y="83" width="1024" height="576" key="DiffContextDialog/0.23.1280.721@0.23.1280.721" timestamp="1611109861201" />
     <state x="128" y="84" key="DiffContextDialog/0.23.1280.722@0.23.1280.722" timestamp="1609744063668" />
     <state x="128" y="84" key="DiffContextDialog/0.23.1280.725@0.23.1280.725" timestamp="1603764025361" />
-    <state width="1236" height="206" key="GridCell.Tab.0.bottom" timestamp="1611058286824">
+    <state width="1236" height="96" key="GridCell.Tab.0.bottom" timestamp="1611109848993">
       <screen x="0" y="23" width="1280" height="721" />
     </state>
-    <state width="1236" height="206" key="GridCell.Tab.0.bottom/0.23.1280.721@0.23.1280.721" timestamp="1611058286824" />
+    <state width="1236" height="96" key="GridCell.Tab.0.bottom/0.23.1280.721@0.23.1280.721" timestamp="1611109848993" />
     <state width="1236" height="162" key="GridCell.Tab.0.bottom/0.23.1280.722@0.23.1280.722" timestamp="1609834652783" />
     <state width="1236" height="250" key="GridCell.Tab.0.bottom/0.23.1280.725@0.23.1280.725" timestamp="1603764153983" />
-    <state width="1236" height="206" key="GridCell.Tab.0.center" timestamp="1611058286823">
+    <state width="1236" height="96" key="GridCell.Tab.0.center" timestamp="1611109848992">
       <screen x="0" y="23" width="1280" height="721" />
     </state>
-    <state width="1236" height="206" key="GridCell.Tab.0.center/0.23.1280.721@0.23.1280.721" timestamp="1611058286823" />
+    <state width="1236" height="96" key="GridCell.Tab.0.center/0.23.1280.721@0.23.1280.721" timestamp="1611109848992" />
     <state width="1236" height="162" key="GridCell.Tab.0.center/0.23.1280.722@0.23.1280.722" timestamp="1609834652783" />
     <state width="1236" height="250" key="GridCell.Tab.0.center/0.23.1280.725@0.23.1280.725" timestamp="1603764153983" />
-    <state width="1236" height="206" key="GridCell.Tab.0.left" timestamp="1611058286823">
+    <state width="1236" height="96" key="GridCell.Tab.0.left" timestamp="1611109848992">
       <screen x="0" y="23" width="1280" height="721" />
     </state>
-    <state width="1236" height="206" key="GridCell.Tab.0.left/0.23.1280.721@0.23.1280.721" timestamp="1611058286823" />
+    <state width="1236" height="96" key="GridCell.Tab.0.left/0.23.1280.721@0.23.1280.721" timestamp="1611109848992" />
     <state width="1236" height="162" key="GridCell.Tab.0.left/0.23.1280.722@0.23.1280.722" timestamp="1609834652782" />
     <state width="1236" height="250" key="GridCell.Tab.0.left/0.23.1280.725@0.23.1280.725" timestamp="1603764153982" />
-    <state width="1236" height="206" key="GridCell.Tab.0.right" timestamp="1611058286824">
+    <state width="1236" height="96" key="GridCell.Tab.0.right" timestamp="1611109848992">
       <screen x="0" y="23" width="1280" height="721" />
     </state>
-    <state width="1236" height="206" key="GridCell.Tab.0.right/0.23.1280.721@0.23.1280.721" timestamp="1611058286824" />
+    <state width="1236" height="96" key="GridCell.Tab.0.right/0.23.1280.721@0.23.1280.721" timestamp="1611109848992" />
     <state width="1236" height="162" key="GridCell.Tab.0.right/0.23.1280.722@0.23.1280.722" timestamp="1609834652783" />
     <state width="1236" height="250" key="GridCell.Tab.0.right/0.23.1280.725@0.23.1280.725" timestamp="1603764153983" />
     <state x="228" y="135" key="IDE.errors.dialog" timestamp="1608537366846">
@@ -185,10 +194,10 @@
     </state>
     <state x="228" y="135" key="IDE.errors.dialog/0.23.1280.722@0.23.1280.722" timestamp="1608537366846" />
     <state x="228" y="135" key="IDE.errors.dialog/0.23.1280.725@0.23.1280.725" timestamp="1603693299633" />
-    <state x="405" y="101" key="RollbackChangesDialog" timestamp="1611060015009">
+    <state x="405" y="101" key="RollbackChangesDialog" timestamp="1611109870370">
       <screen x="0" y="23" width="1280" height="721" />
     </state>
-    <state x="405" y="101" key="RollbackChangesDialog/0.23.1280.721@0.23.1280.721" timestamp="1611060015009" />
+    <state x="405" y="101" key="RollbackChangesDialog/0.23.1280.721@0.23.1280.721" timestamp="1611109870370" />
     <state x="141" y="24" key="SettingsEditor" timestamp="1603763848308">
       <screen x="0" y="23" width="1280" height="725" />
     </state>
@@ -197,9 +206,10 @@
       <screen x="0" y="23" width="1280" height="725" />
     </state>
     <state x="424" y="97" key="VCS.ChangeListViewerDialog/0.23.1280.725@0.23.1280.725" timestamp="1603693984969" />
-    <state x="240" y="124" key="Vcs.Push.Dialog.v2" timestamp="1608538638034">
-      <screen x="0" y="23" width="1280" height="722" />
+    <state x="240" y="124" key="Vcs.Push.Dialog.v2" timestamp="1611060272563">
+      <screen x="0" y="23" width="1280" height="721" />
     </state>
+    <state x="240" y="124" key="Vcs.Push.Dialog.v2/0.23.1280.721@0.23.1280.721" timestamp="1611060272563" />
     <state x="240" y="124" key="Vcs.Push.Dialog.v2/0.23.1280.722@0.23.1280.722" timestamp="1608538638034" />
     <state x="298" y="141" width="683" height="486" key="find.popup" timestamp="1608536988232">
       <screen x="0" y="23" width="1280" height="722" />

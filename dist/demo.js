@@ -41105,11 +41105,14 @@
 	    });
 	  };
 	
-	  this.getOptionName = function (optionsInfo) {
+	  this.getOptionName = function (optionsInfo, maxTagCount, value) {
 	    var titleArr = [];
-	    Object.keys(optionsInfo).forEach(function (key) {
+	    var arr = value.slice(maxTagCount);
+	    Object.keys(optionsInfo).forEach(function (key, index) {
 	      var optionItem = optionsInfo[key];
-	      titleArr.push(optionItem.label);
+	      if (arr.includes(optionItem.value)) {
+	        titleArr.push(optionItem.label);
+	      }
 	    });
 	    return titleArr;
 	  };
@@ -41337,11 +41340,11 @@
 	      var maxTagPlaceholderEl = void 0;
 	      if (maxTagCount !== undefined && value.length > maxTagCount) {
 	        limitedCountValue = limitedCountValue.slice(0, maxTagCount);
-	        var _title = _this2.getOptionName(optionsInfo, maxTagCount); // 获取option的中文名
-	        var omittedValues = _this2.getVLForOnChange(_title.slice(maxTagCount, value.length)); // 截取hover时需要显示的数组
+	        var _title = _this2.getOptionName(optionsInfo, maxTagCount, value); // 获取option的中文名
+	        // const omittedValues = this.getVLForOnChange(title.slice(maxTagCount, value.length)); // 截取hover时需要显示的数组
 	        var content = '+ ' + (value.length - maxTagCount) + ' ...';
 	        if (maxTagPlaceholder) {
-	          content = typeof maxTagPlaceholder === 'function' ? maxTagPlaceholder(omittedValues) : maxTagPlaceholder;
+	          content = typeof maxTagPlaceholder === 'function' ? maxTagPlaceholder(_title) : maxTagPlaceholder;
 	        }
 	        //超过最大长度显示的内容
 	        maxTagPlaceholderEl = _react2['default'].createElement(
@@ -41352,7 +41355,7 @@
 	            onMouseDown: _util.preventDefaultEvent,
 	            className: prefixCls + '-selection-choice ' + prefixCls + '-selection-choice-disabled',
 	            key: 'maxTagPlaceholder',
-	            title: (0, _util.toTitle)(omittedValues)
+	            title: (0, _util.toTitle)(_title)
 	          }),
 	          _react2['default'].createElement(
 	            'div',
