@@ -1,3 +1,12 @@
+## [2.0.32](https://github.com/tinper-bee/bee-select/compare/v2.0.31...v2.0.32) (2021-01-20)
+
+
+### Bug Fixes
+
+* 超出最大长度隐藏的选项在hover时显示具体名称 ([0b4c004](https://github.com/tinper-bee/bee-select/commit/0b4c004de708eac9c21b06395f3f06e2b5c0b12c))
+
+
+
 ## [2.0.31](https://github.com/tinper-bee/bee-select/compare/v2.0.30...v2.0.31) (2021-01-19)
 
 
